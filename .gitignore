@@ -41,3 +41,7 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+core/init.php
+core/init1.php
+login/config.php
+login/configdemo.php

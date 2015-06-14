@@ -1,0 +1,154 @@
+body {
+  background-color:#f4f4f4;
+}
+/*a.link {
+  text-decoration:none;
+}
+.nav > li > a {
+  padding:5px 7px;
+}*/
+
+/*.nav > li.active > a {
+  background-color: #2196f3;
+  color:#fff;
+}*/
+.nav .title {
+  padding-top:9px;
+}
+.card {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.card {
+  margin-top: 10px;
+  box-sizing: border-box;
+  border-radius: 2px;
+  background-clip: padding-box;
+}
+
+
+.card .card-title {
+  padding: 10px;
+  font-size: 24px;
+  font-weight: 300;
+  text-transform: none;
+}
+
+
+.card .card-image {
+  position: relative;
+  overflow: hidden;
+}
+.card .card-image img {
+  border-radius: 2px 2px 0 0;
+  background-clip: padding-box;
+  position: relative;
+  z-index: -1;
+}
+.card .card-image span.card-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 10px;
+}
+.card .card-content {
+  padding-right: 15px;
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom:0;
+  font-size:16px;
+  border-radius: 0 0 2px 2px;
+  background-clip: padding-box;
+  box-sizing: border-box;
+}
+.card .card-content p {
+  margin: 0;
+  color: inherit;
+}
+.card .card-content span.card-title {
+  line-height: 48px;
+}
+.card .card-action {
+  border-top: 2px solid rgba(255,255,255, 0.1);
+  padding: 8px;
+  padding-left:25px;
+  padding-top:8px;
+}
+.card .card-action a {
+  margin-right: 16px;
+  transition: color 0.3s ease;
+  text-transform: uppercase;
+}
+.card .card-action a:hover {
+  text-decoration: none;
+}
+.card .card-action .text {
+  text-transform: none;
+  font-size: 13px;
+  display: inline;
+  text-align: right;
+}
+
+.revokeval {
+  background-color:#e51c23;
+  color:white;
+}
+
+.validation {
+  background-color:#4caf50;
+  color:white;
+}
+
+.adhoc {
+  background-color:#9c27b0;
+  color:white;
+}
+.live {
+  background-color:#504caf;
+  color:white;
+}
+.note {
+  background-color:#abaf4c;
+  color: white;
+}
+.sweatbox {
+  background-color:#ff9800;
+  color:white;
+}
+.nopad {
+  padding-top:4px!important;
+  padding-bottom:2px!important;
+}
+.vals li{
+  list-style-type:none;
+}
+
+.well {
+	background-color: #fbfbfb;
+}
+.flip {
+  display: inline-block;
+  width:100%;
+  height:50px;
+  padding-left:20px;
+}
+
+.tick {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAMAAACelLz8AAAAJ1BMVEVmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmaP/QSjAAAADHRSTlMAAgMJC0uWpKa6wMxMdjkoAAAANUlEQVR4AeXJyQEAERAAsNl7Hf3X6xt0QL6JpZWq30pdvdadme+0PMdzvHm8YThHcT1H7K0BtOMDniZhWOgAAAAASUVORK5CYII=);
+  background-size: 13px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.scribe {
+	font-size:16px;
+	height: auto;
+	overflow: auto;
+	margin-bottom: 1em;
+	border: 1px solid hsl(0, 0%, 80%);
+	padding: 0.5em;
+}
+
+.toolbar {
+	margin-bottom: 1em;
+}
