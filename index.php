@@ -1,8 +1,36 @@
 <?php
 $pagetitle = "Home";
 require_once("includes/header.php");
+$greeting = ['Hi there.', 'Fáilte.', 'Hello.', 'Dia dhuit.', 'Welcome.', 'Conas atá cúrsaí?', 'Deas tú a fheiscint.'];
+
 ?>
 <div class="col-md-8 well">
+<h2 class="text-center"><?php echo $greeting[array_rand($greeting)];?></h2><br>
+<?php
+$random = rand(0, 1);
+if($random == 1) {
+	echo '<iframe width="560" height="315"  src="https://www.youtube.com/embed/gLjKKQ0-BrE" frameborder="0" allowfullscreen></iframe>';
+} else {
+	echo '<iframe width="560" height="315" src="https://www.youtube.com/embed/r1wrc9DLgWQ" frameborder="0" allowfullscreen></iframe>';
+}
+?>
+<br>
+<br>
+<p>Tá an-fáilte romhat go suíomh lárionad fíorúil urlámhas na hÉireann.</p>
+
+<p>Ar an gcéad dul síos agus más ball den ghrúpa VATéir thú, sínigh isteach sa suíomh chun úsáid a bhaint as na h-áiseanna atá ar fáil duit mar rialatheoir.</p>
+
+<p>É sin ráite, más pílóta amháin thú, tabhar sreac-fhéachaint ar na h-áiseanna uile atá ar fáil duit ar an suíomh agus ag eitilt in Eirinn atá tú.</p>
+
+<p>Tá súil againn go mbaineann tú úsáid as na h-áiseanna atá cuirthe ar fáil duit.</p>
+
+<p>Le gach dea-ghuí, an fhoireann VATéir</p>
+
+
+
+
+
+
 </div>
 <div class="col-md-4 well">
 	<div class="panel panel-primary">

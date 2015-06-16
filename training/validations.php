@@ -9,7 +9,7 @@ echo '<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title">Validation List</h3>
 			</div>
-			<div class="panel-body" style="padding:0px;">';
+			<div class="panel-body">';
 			
 	if($validations) {
 	echo '<table class="table table-condensed table-striped">

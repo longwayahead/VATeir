@@ -55,6 +55,9 @@ switch($directory) {
   case(strpos($dir, "events") != true):
     $directory = 2;
   break;
+  case(strpos($dir, "pilots") != true):
+    $directory = 4;
+  break;
   case(strpos($dir, "controllers") != true):
     $directory = 5;
   break;
@@ -83,7 +86,7 @@ switch($directory) {
       <li <?php echo ($directory == 0) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL; ?>>Home</a></li>
       <li <?php echo ($directory == 1) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "training"; ?>>Training</a></li>
       <li <?php echo ($directory == 2) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "events"; ?>>Events</a></li>
-      <li><a href="#">Pilots</a></li>
+      <li <?php echo ($directory == 4) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "pilots"; ?>>Pilots</a></li>
       <li <?php echo ($directory == 5) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "controllers"; ?>>Controllers</a></li>
      <li <?php echo ($directory == 6) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "about"; ?>>About Us</a></li>
       <li><a href="#">Forum</a></li>
@@ -100,10 +103,11 @@ switch($directory) {
     if(!$user->isLoggedIn()) {
         echo '<li><a href="' . BASE_URL . 'login/">Login</a></li>';
     } else {
+
     ?>
       
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span><?php echo ' ' . $user->data()->first_name . ' ' . $user->data()->last_name ?><b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <?php echo $user->data()->first_name . ' ' . $user->data()->last_name; ?><b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li><a href="#">Controller Profile</a></li>
           <li><a href="#">My Notifications <span class="badge danger">5</span></a></li>

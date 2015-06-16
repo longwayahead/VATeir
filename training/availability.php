@@ -58,7 +58,7 @@ if(Input::exists()) {
     <div class="panel panel-default">
       <div class="panel-heading">Add Availability</div>
       <div class="panel-body">
-
+      <?php if($user->data()->rating < 5) { ?>
         <div class="col-md-8 col-md-offset-2">
         <form class="form-horizontal" action="" method="post">
           <fieldset>
@@ -110,13 +110,16 @@ if(Input::exists()) {
           </fieldset>
         </form>
       </div>
+      <?php } else { ?>
+        <div class="text-danger text-center" style="font-size:16px;"><br>Your training is finished.</div><br>
+      <?php } ?>
       </div>
     </div>
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title" id="myavailability">My Availability</h3>
       </div>
-      <div class="panel-body" style="padding:0px;">
+      <div class="panel-body">
       <?php
       try {
         $availabilities = $a->get(array(
@@ -166,6 +169,7 @@ if(Input::exists()) {
       ?>
        
       </div>
+
     </div>
     </div>
 

@@ -1,0 +1,34 @@
+<?php
+require_once("includes/header.php");
+$a = new Airports;
+$airports = $a->all();
+echo '<pre>';
+print_r($airports);
+echo '</pre>';
+foreach($airports as $airport) {
+	if($a->get($airport->icao) != true) {
+		$major = ($airport->major == 1) ? 1 : 0;
+
+		$a->add([
+			'icao'	=> $airport->icao,
+			'name'	=> $airport->data->name,
+			'major'	=> $major
+		]);
+	}
+	$id = $a->id($airport->icao);
+	foreach($airport->positions as $position) {
+		if($a->getPos($position->callsign) != true) {
+			$a->addPos([
+				'position_type_id' => $position->type,
+				'airport_list_id'	=> $id,
+				'callsign'	=> $position->callsign,
+				'freq'	=> $position->freq,
+				'name' => $position->name
+			]);
+		}
+	}
+		
+}
+
+
+require_once("../includes/footer.php");

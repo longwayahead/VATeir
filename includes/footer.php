@@ -1,5 +1,5 @@
 </div> <!-- Container -->
-Footer working...huzaah!
+<p class="text-center">Tógtha ag Cillian Ó Lúing, 2014&ndash;2015.</p>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -33,9 +33,3 @@ Footer working...huzaah!
     </div>
   </body>
 </html>
-
-<?php
-echo '<br>Site:';
-echo memory_get_usage();
-
-?>

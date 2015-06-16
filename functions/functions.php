@@ -19,6 +19,13 @@ function sortArray($array, $orderBy1, $direction1, $orderBy2, $direction2){ //so
 		return $array;
 }
 
+function array_search_partial($arr, $keyword) {
+    foreach($arr as $index => $string) {
+        if (strpos($string, $keyword) !== FALSE) 
+            return $index;
+    }
+}
+
 function searchByIndex(array $array, $index, $data){ //$index is the array key. $data is array value that you want to search for.
 	unset($searchedRecords);
 	foreach($array as $key => $value) {

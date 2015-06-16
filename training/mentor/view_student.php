@@ -123,7 +123,7 @@ try {
 											<?php foreach($perms as $perm):	?>
 												
 												<?php echo '<option value="' . $perm->id . '"';
-												if($perm->id == $data->group) {
+												if($perm->id == $data->grou) {
 													echo 'selected="" ';
 												}
 												echo '>';

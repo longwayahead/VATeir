@@ -38,11 +38,13 @@ if(Input::exists()) {
 }
 ?>
 
-<div class="row">
+
 <h3 class="text-center">My ATSimTest Token</h3><br>
-	<div class="col-md-8 col-md-offset-2 well text-center">
+	<div class="col-md-10 col-md-offset-1">
+	<div class="panel panel-primary">
+      <div class="panel-heading">ATSimTest Token</div>
+      	<div class="panel-body text-center">
 		
-		<br>
 		
 	<?php if($user->data()->rating < 5) { ?>
 	<p>You are eligible for a rating upgrade requiring a written test. When you wish to request the ability to take this test please press the button below.</p>
@@ -69,13 +71,16 @@ if(Input::exists()) {
 		
 	<?php } else { ?>
 		<div style="font-size:16px; color:red;">
-			You have no further upgrades.
+			<br>You have no further upgrades.<br><br>
 		</div>
 	<?php } ?>
-		<br><br>
+	</div>
+	</div>
+	</div>
+		<br>
 	
 	</div>
-</div>
+
 
 
 

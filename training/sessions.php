@@ -13,7 +13,7 @@ $s = new Sessions;
 			<div class="panel-heading">
 				<h3 class="panel-title">Forthcoming Sessions</h3>
 			</div>
-			<div class="panel-body" style="padding:0px;">
+			<div class="panel-body">
 				<?php
 				try {
 					$sessions = $s->get(array(
@@ -92,7 +92,7 @@ $s = new Sessions;
 			<div class="panel-heading">
 				<h3 class="panel-title">Past Sessions</h3>
 			</div>
-			<div class="panel-body" style="padding:0px;">
+			<div class="panel-body">
 				<?php
 				try {
 					$sess = $s->get(array(

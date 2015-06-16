@@ -167,6 +167,12 @@ class Training {
 		throw new Exception("Problem getting position data");
 	}
 
+	public function bookings() {
+		cacheFile(URL.'datafiles/bookings.json', 'http://vatbook.euroutepro.com/xml.php?fir=EISN');
+		$xml = new SimpleXMLElement(file_get_contents(URL.'datafiles/bookings.json'));
+		return $xml;
+	}
+
 
 	public function getSectorTypes($airport) {
 		$positions = $this->positions;
