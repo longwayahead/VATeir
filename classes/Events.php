@@ -14,6 +14,7 @@ class Events {
 			$ends_time = date('H:i', strtotime($event->ends));
 			if($event->ends > date('Y-m-d')) {
 				$this->current[$event->id] = array(
+					'id' => $event->id,
 					'title' => $event->title,
 					'subtitle' => $event->subtitle,
 					'banner_url' => $event->banner_url,

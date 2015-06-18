@@ -1,5 +1,9 @@
 <?php
 require_once("../includes/header.php");
+if(!$user->hasPermission('tdstaff')) {
+	Session::flash('error', 'Invalid permissions');
+	Redirect::to(BASE_URL . 'training');
+}
 try {
 $noreport = $s->get(array(
 		'all' => 1,

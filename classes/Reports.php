@@ -105,6 +105,13 @@ class Reports {
 		return false;
 	}
 
+	public function getSlider($id) {
+			$slider = $this->_db->query("SELECT * FROM report_slider_questions WHERE id = ?", [[$id]]);
+			if($slider->count()) {
+				return $slider->first();
+			}
+	}
+
 
 
 	public function getSliders($type, $id) { //Get all the sliders for a particular program
@@ -176,6 +183,13 @@ class Reports {
 	public function updateCard($fields, $where) {
 		if(!$this->_db->update('cards', $fields, $where)) {
 			throw new Exception('There was a problem updating that card.');
+		}
+		return true;
+	}
+
+	public function updateS($fields, $where) {
+		if(!$this->_db->update('report_slider_questions', $fields, $where)) {
+			throw new Exception('There was a problem updating that slider.');
 		}
 		return true;
 	}
@@ -286,6 +300,12 @@ class Reports {
 			throw new Exception('There was a problem updating that slider.');
 		}
 		return true;
+	}
+
+	public function addSlider($fields = array()) {
+		if(!$this->_db->insert('report_slider_questions', $fields)) {
+			throw new Exception('There was a problem creating a slider.');
+		}
 	}
 
 	public function addSliderAnswers($fields = array()) {

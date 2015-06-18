@@ -13,7 +13,7 @@ if(!$user->hasPermission('mentor')) {
 			<div class="panel-heading">
 				<h3 class="panel-title">My Forthcoming Sessions</h3>
 			</div>
-			<div class="panel-body" style="padding:0px;">
+			<div class="panel-body">
 				<?php
 				try {
 					$sessions = $s->get(array(
@@ -25,17 +25,20 @@ if(!$user->hasPermission('mentor')) {
 					<table class="table table-condensed table-striped">
 						<tr>
 							<td>
-								Student
+								<strong>Student</strong>
 							</td>
 							<td>
-								Position
+								<strong>Position</strong>
 							</td>
 							<td>
-								Starts
+								<strong>Date</strong>
 							</td>
+							<td>
+								<strong>Starts</strong>
+							</td><!-- 
 							<td>
 								View
-							</td>
+							</td> -->
 						</tr>
 					
 						<?php foreach($sessions as $session): ?>
@@ -47,11 +50,14 @@ if(!$user->hasPermission('mentor')) {
 									<?php echo $session->callsign; ?> 
 								</td>
 								<td>
-									<?php echo date("j-M-y H:i", strtotime($session->start)); ?> 
+									<?php echo date("j-M-y", strtotime($session->start)); ?> 
 								</td>
 								<td>
-									<?php echo '<a class="btn btn-xs btn-primary" href="view_session.php?id=' . $session->session_id . '"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>' ?> 
-								</td>
+									<?php echo date("H:i", strtotime($session->start)); ?> 
+								</td><!-- 
+								<td>
+									<?php //echo '<a class="btn btn-xs btn-primary" href="view_session.php?id=' . $session->session_id . '"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>' ?> 
+								</td> -->
 							</tr>
 
 						<?php endforeach; ?>
@@ -78,7 +84,7 @@ if(!$user->hasPermission('mentor')) {
 			<div class="panel-heading">
 				<h3 class="panel-title">Sessions without reports</h3>
 			</div>
-			<div class="panel-body" style="padding:0px;">
+			<div class="panel-body">
 			<?php
 				try {
 					$noreport = $s->get(array(
@@ -158,7 +164,7 @@ if(!$user->hasPermission('mentor')) {
 			<div class="panel-heading">
 				<h3 class="panel-title">Available Students</h3>
 			</div>
-			<div class="panel-body" style="padding:0px;">
+			<div class="panel-body">
 				<?php
       try {
       	$a = new Availability;

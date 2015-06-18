@@ -82,13 +82,7 @@ if(Input::exists()) { //if form submitted!
 			Session::flash('error', 'Insufficient permissions');
 			Redirect::to('./mentor/');
 		}
-		
-		$type = $r->getTypes(1, Input::get('type'));
-		if(!$type) {
-			Session::flash('error', 'No note type found for that ID');
-			Redirect::to('./view_student.php?cid=' . Input::get("cid"));
-
-		}
+	
 
 	} catch (Exception $e) { 
 		echo $e->getMessage();
@@ -110,7 +104,28 @@ if(Input::exists()) { //if form submitted!
 						<div class="form-group">
 							<label for="notetype" class="col-lg-3 control-label">Type</label>
 							<div class="col-lg-4">
-								<input class="form-control" type="text" id="notetype" placeholder="<?php echo $type->name;?>" readonly>
+								<select name="type" id="typeSelect" class="form-control tick" onchange="this.form.submit()">
+									<option>Select Type</option>
+									<?php
+										try {
+											$notes = $r->getTypes(1);
+											if($notes) {
+												$programs = array();
+												foreach($notes as $note){				
+												
+
+													echo '<option value="' . $note->id . '"';
+
+													if($note->id == Input::get('type')) { echo ' selected '; }
+													echo '>' . $note->name . '</option>';
+												}
+											}
+
+										} catch(Exception $e) {
+											echo '<option>' . $e->getMessage . '</option>';
+										}
+									?>
+									</select>
 							</div>
 						</div>
 						<div class="form-group">

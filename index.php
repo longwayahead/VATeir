@@ -1,6 +1,23 @@
 <?php
 $pagetitle = "Home";
 require_once("includes/header.php");
+?>
+<style>
+	.videoWrapper {
+		position: relative;
+		padding-bottom: 56.25%; /* 16:9 */
+		padding-top: 25px;
+		height: 0;
+	}
+	.videoWrapper iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+<?php
 $greeting = ['Hi there.', 'Fáilte.', 'Hello.', 'Dia dhuit.', 'Welcome.', 'Conas atá cúrsaí?', 'Deas tú a fheiscint.'];
 
 ?>
@@ -9,9 +26,9 @@ $greeting = ['Hi there.', 'Fáilte.', 'Hello.', 'Dia dhuit.', 'Welcome.', 'Conas
 <?php
 $random = rand(0, 1);
 if($random == 1) {
-	echo '<iframe width="560" height="315"  src="https://www.youtube.com/embed/gLjKKQ0-BrE" frameborder="0" allowfullscreen></iframe>';
+	echo '<div class="videoWrapper"><iframe width="560" height="315"  src="https://www.youtube.com/embed/gLjKKQ0-BrE" frameborder="0" allowfullscreen></iframe></div>';
 } else {
-	echo '<iframe width="560" height="315" src="https://www.youtube.com/embed/r1wrc9DLgWQ" frameborder="0" allowfullscreen></iframe>';
+	echo '<div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/r1wrc9DLgWQ" frameborder="0" allowfullscreen></iframe></div>';
 }
 ?>
 <br>
@@ -258,7 +275,7 @@ if($random == 1) {
 					<div class="caption">
 						<h4><?php echo $event->title;?><small><br><?php echo $event->starts_date . ' ' . $event->starts_time;?>&ndash;<?php echo $event->ends_time;?></small></h4>
 						<p><?php echo $event->short_description; ?></p>
-						<p><div class="text-right"><a href="#" class="btn btn-success" role="button">Read More</a></div></p>
+						<p><div class="text-right"><a href="events/index.php#<?php echo $event->id; ?>" class="btn btn-success" role="button">Read More</a></div></p>
 					</div>
 				</div>
 			

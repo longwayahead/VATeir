@@ -26,14 +26,14 @@ try {
 	// print_r($validations);
 	// echo '</pre>';
 	// exit();
-	echo '<div class="col-md-8">';
-		if($validations) {
-		echo '<div class="panel panel-primary">
+	echo '<div class="col-md-8">
+			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h3 class="panel-title">Validation List</h3>
 				</div>
-				<div class="panel-body">
-				<table class="table">
+				<div class="panel-body">';
+		if($validations) {
+		echo '<table class="table table-striped">
 					<tr>
 						<td><strong>Position</strong></td>
 						<td><strong>Issued By</strong></td>
@@ -63,15 +63,16 @@ try {
 								echo '</tr>';
 						}
 				echo '
-					</table>
-				</div>
-			</div>';
+					</table>';
 
 			
 		} else {
-			echo 'you have no validations';
+			echo '<div class="text-danger text-center" style="font-size:16px;"><br>No Validations</div><br>';
 		}
 	echo '</div>
+
+				</div>
+			</div>
 		<div class="col-md-4">';
 		echo '	<div class="panel panel-default">
 				  <div class="panel-heading">

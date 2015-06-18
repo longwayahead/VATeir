@@ -1,5 +1,9 @@
 <?php
 require_once('../includes/header.php');
+if(!$user->hasPermission('tdstaff')) {
+	Session::flash('error', 'Invalid permissions');
+	Redirect::to(BASE_URL . 'training');
+}
 echo '<h2 class="text-center">Validations <small>';
 	if(isset($_GET['e'])) {
 		echo 'Extend';

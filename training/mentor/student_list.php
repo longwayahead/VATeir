@@ -36,7 +36,7 @@ if(!isset($_GET['c']) && (!isset($_GET['a'])) || isset($_GET['c'])) {
 						<div class="panel-heading">
 							<h3 class="panel-title">' . $p->name . ' Programme</h3>
 						</div>
-					<div class="panel-body" style="padding:0px;">';
+					<div class="panel-body">';
 				echo '<table class="table table-condensed table-responsive table-striped table-hover">';
 					$students = $t->getStudentsProgram($p->id);
 					if($students) {			
@@ -104,7 +104,7 @@ if(!isset($_GET['c']) && (!isset($_GET['a'])) || isset($_GET['c'])) {
 						<td>' . $student->pratingstring . '</td>
 						<td>' . $student->name . '</td>
 						<td>
-							<a href="view_student.php?cid=' . $student->cid . '" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> View</a>
+							<a href="view_student.php?cid=' . $student->cid . '" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
 						</td>
 					</tr>';
 			}

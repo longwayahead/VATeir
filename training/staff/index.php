@@ -2,8 +2,8 @@
 $pagetitle = "TD Staff Home";
 require_once("../includes/header.php");
 if(!$user->hasPermission('tdstaff')) {
-	Session::flash('error', 'Insufficient permissions');
-	Redirect::to('../');
+	Session::flash('error', 'Invalid permissions');
+	Redirect::to(BASE_URL . 'training');
 }
 ?>
 <h3 class="text-center">Staff Dashboard</h3><br>

@@ -64,6 +64,7 @@ $s = new Sessions;
 				<span class="badge"><?php //echo $vals;?></span>
 			</a></li>
 			<li><a href="<?php echo BASE_URL . 'training/staff/mentors.php'; ?>">Mentors</a></li>
+			<li><a href="<?php echo BASE_URL . 'training/staff/sliders.php'; ?>">Sliders</a></li>
 <?php
 }
 ?>

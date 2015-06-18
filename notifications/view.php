@@ -109,6 +109,36 @@ if(Input::exists('get')) {
 					}
 					
 				}
+				?>
+				<div class="row">
+					<div class="col-md-10">
+						<br>
+						<br>
+						<div class="well clearfix">
+							<form action="add.php" method="post">
+								<div class="form-group">
+									<label for="textArea" class="col-lg-2 control-label">Add comment</label>
+									<div class="col-lg-10">
+										<?php
+											require_once(URL . 'scribe/box.php');
+										?>
+										<div class="scribe" class="form-control"><?php echo (!Input::exists()) ? $report->text : Input::get('text'); ?></div>
+										<input type="hidden" name="text" class="scribe-html" value="<?php echo (!Input::exists()) ? $report->text : Input::get('text'); ?>">
+									</div>
+								</div>
+								<div class="form-group text-center">
+									<input type="hidden" name="id" value="<?php echo $notification->notification_id; ?>">
+									<input class="btn btn-primary" type="submit" value="Submit" name="submit">
+								</div>
+							</form>
+						</div>
+						<br>
+						<br>
+						<br>
+						<br>
+					</div>
+				</div>
+				<?php
 			} else {
 				echo '<div class="row">
 						<p class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-1 well text-center danger" style="font-size:16px;">
@@ -129,4 +159,5 @@ if(Input::exists('get')) {
 
 require_once('../includes/footer.php');
 ?>
+	<script src="../scribe/bower_components/requirejs/require.js" data-main="../scribe/setup.js"></script>
 

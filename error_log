@@ -5659,3 +5659,5 @@ Stack trace:
   thrown in /home/longway1/public_html/vateir/classes/Training.php on line 172
 [16-Jun-2015 22:23:21 Europe/Dublin] PHP Fatal error:  Class 'Training' not found in /home/longway1/public_html/vateir/test.php on line 3
 [16-Jun-2015 22:56:54 Europe/Dublin] PHP Parse error:  syntax error, unexpected '<' in /home/longway1/public_html/vateir/index.php on line 20
+[18-Jun-2015 18:50:24 Europe/Dublin] PHP Warning:  array_rand() expects parameter 1 to be array, null given in /home/longway1/public_html/vateir/index.php on line 24
+[18-Jun-2015 18:50:43 Europe/Dublin] PHP Parse error:  syntax error, unexpected '<' in /home/longway1/public_html/vateir/index.php on line 24

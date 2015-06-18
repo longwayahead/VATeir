@@ -16,7 +16,7 @@ require_once("includes/header.php");
 						
 					?>
 				<div class="panel panel-success">
-					<div class="panel-heading">
+					<div class="panel-heading" id="<?php echo $event->id;?>">
 						<h3 class="panel-title"><?php echo $event->title; ?></h3>
 					</div>
 					<div class="panel-body">
