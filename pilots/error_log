@@ -19,3 +19,17 @@
 [16-Jun-2015 22:31:01 Europe/Dublin] PHP Warning:  Invalid argument supplied for foreach() in /home/longway1/public_html/vateir/pilots/index.php on line 126
 [16-Jun-2015 22:31:36 Europe/Dublin] PHP Warning:  Invalid argument supplied for foreach() in /home/longway1/public_html/vateir/pilots/index.php on line 126
 [16-Jun-2015 22:32:55 Europe/Dublin] PHP Warning:  Invalid argument supplied for foreach() in /home/longway1/public_html/vateir/pilots/index.php on line 126
+[18-Jun-2015 23:13:26 Europe/Dublin] PHP Warning:  file_get_contents(/home/longway1/public_html/vateir/datafiles/bookings.xml): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/classes/Training.php on line 172
+[18-Jun-2015 23:13:26 Europe/Dublin] PHP Fatal error:  Uncaught exception 'Exception' with message 'String could not be parsed as XML' in /home/longway1/public_html/vateir/classes/Training.php:172
+Stack trace:
+#0 /home/longway1/public_html/vateir/classes/Training.php(172): SimpleXMLElement->__construct('')
+#1 /home/longway1/public_html/vateir/pilots/index.php(119): Training->bookings()
+#2 {main}
+  thrown in /home/longway1/public_html/vateir/classes/Training.php on line 172
+[18-Jun-2015 23:13:46 Europe/Dublin] PHP Warning:  file_get_contents(/home/longway1/public_html/vateir/datafiles/bookings.xml): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/classes/Training.php on line 172
+[18-Jun-2015 23:13:46 Europe/Dublin] PHP Fatal error:  Uncaught exception 'Exception' with message 'String could not be parsed as XML' in /home/longway1/public_html/vateir/classes/Training.php:172
+Stack trace:
+#0 /home/longway1/public_html/vateir/classes/Training.php(172): SimpleXMLElement->__construct('')
+#1 /home/longway1/public_html/vateir/pilots/index.php(119): Training->bookings()
+#2 {main}
+  thrown in /home/longway1/public_html/vateir/classes/Training.php on line 172

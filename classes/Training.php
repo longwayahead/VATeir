@@ -168,7 +168,7 @@ class Training {
 	}
 
 	public function bookings() {
-		cacheFile(URL.'datafiles/bookings.json', 'http://vatbook.euroutepro.com/xml.php?fir=EISN');
+		cacheFile(URL.'datafiles/bookings.xml', 'http://vatbook.euroutepro.com/xml.php?fir=EISN');
 		$xml = new SimpleXMLElement(file_get_contents(URL.'datafiles/bookings.xml'));
 		return $xml;
 	}
