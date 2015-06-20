@@ -5661,3 +5661,29 @@ Stack trace:
 [16-Jun-2015 22:56:54 Europe/Dublin] PHP Parse error:  syntax error, unexpected '<' in /home/longway1/public_html/vateir/index.php on line 20
 [18-Jun-2015 18:50:24 Europe/Dublin] PHP Warning:  array_rand() expects parameter 1 to be array, null given in /home/longway1/public_html/vateir/index.php on line 24
 [18-Jun-2015 18:50:43 Europe/Dublin] PHP Parse error:  syntax error, unexpected '<' in /home/longway1/public_html/vateir/index.php on line 24
+[19-Jun-2015 21:00:39 Europe/Dublin] PHP Fatal error:  Call to a member function atcHours() on a non-object in /home/longway1/public_html/vateir/test.php on line 3
+[19-Jun-2015 21:01:09 Europe/Dublin] PHP Catchable fatal error:  Argument 1 passed to User::atcHours() must be an instance of int, integer given, called in /home/longway1/public_html/vateir/test.php on line 3 and defined in /home/longway1/public_html/vateir/classes/User.php on line 162
+[20-Jun-2015 01:50:58 Europe/Dublin] PHP Warning:  file(/home/longway1/public_html/vateir/datafiles/metar.txt): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/functions/functions.php on line 78
+[20-Jun-2015 01:50:58 Europe/Dublin] PHP Warning:  preg_grep() expects parameter 2 to be array, boolean given in /home/longway1/public_html/vateir/functions/functions.php on line 79
+[20-Jun-2015 01:50:58 Europe/Dublin] PHP Warning:  implode(): Invalid arguments passed in /home/longway1/public_html/vateir/functions/functions.php on line 79
+[20-Jun-2015 01:50:58 Europe/Dublin] PHP Warning:  file(/home/longway1/public_html/vateir/datafiles/metar.txt): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/functions/functions.php on line 78
+[20-Jun-2015 01:50:58 Europe/Dublin] PHP Warning:  preg_grep() expects parameter 2 to be array, boolean given in /home/longway1/public_html/vateir/functions/functions.php on line 79
+[20-Jun-2015 01:50:58 Europe/Dublin] PHP Warning:  implode(): Invalid arguments passed in /home/longway1/public_html/vateir/functions/functions.php on line 79
+[20-Jun-2015 01:50:58 Europe/Dublin] PHP Warning:  file(/home/longway1/public_html/vateir/datafiles/metar.txt): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/functions/functions.php on line 78
+[20-Jun-2015 01:50:58 Europe/Dublin] PHP Warning:  preg_grep() expects parameter 2 to be array, boolean given in /home/longway1/public_html/vateir/functions/functions.php on line 79
+[20-Jun-2015 01:50:58 Europe/Dublin] PHP Warning:  implode(): Invalid arguments passed in /home/longway1/public_html/vateir/functions/functions.php on line 79
+[20-Jun-2015 01:50:58 Europe/Dublin] PHP Warning:  file(/home/longway1/public_html/vateir/datafiles/metar.txt): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/functions/functions.php on line 78
+[20-Jun-2015 01:50:58 Europe/Dublin] PHP Warning:  preg_grep() expects parameter 2 to be array, boolean given in /home/longway1/public_html/vateir/functions/functions.php on line 79
+[20-Jun-2015 01:50:58 Europe/Dublin] PHP Warning:  implode(): Invalid arguments passed in /home/longway1/public_html/vateir/functions/functions.php on line 79
+[20-Jun-2015 01:51:49 Europe/Dublin] PHP Warning:  file(/home/longway1/public_html/vateir/datafiles/metar.txt): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/functions/functions.php on line 78
+[20-Jun-2015 01:51:49 Europe/Dublin] PHP Warning:  preg_grep() expects parameter 2 to be array, boolean given in /home/longway1/public_html/vateir/functions/functions.php on line 79
+[20-Jun-2015 01:51:49 Europe/Dublin] PHP Warning:  implode(): Invalid arguments passed in /home/longway1/public_html/vateir/functions/functions.php on line 79
+[20-Jun-2015 01:51:49 Europe/Dublin] PHP Warning:  file(/home/longway1/public_html/vateir/datafiles/metar.txt): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/functions/functions.php on line 78
+[20-Jun-2015 01:51:49 Europe/Dublin] PHP Warning:  preg_grep() expects parameter 2 to be array, boolean given in /home/longway1/public_html/vateir/functions/functions.php on line 79
+[20-Jun-2015 01:51:49 Europe/Dublin] PHP Warning:  implode(): Invalid arguments passed in /home/longway1/public_html/vateir/functions/functions.php on line 79
+[20-Jun-2015 01:51:49 Europe/Dublin] PHP Warning:  file(/home/longway1/public_html/vateir/datafiles/metar.txt): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/functions/functions.php on line 78
+[20-Jun-2015 01:51:49 Europe/Dublin] PHP Warning:  preg_grep() expects parameter 2 to be array, boolean given in /home/longway1/public_html/vateir/functions/functions.php on line 79
+[20-Jun-2015 01:51:49 Europe/Dublin] PHP Warning:  implode(): Invalid arguments passed in /home/longway1/public_html/vateir/functions/functions.php on line 79
+[20-Jun-2015 01:51:49 Europe/Dublin] PHP Warning:  file(/home/longway1/public_html/vateir/datafiles/metar.txt): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/functions/functions.php on line 78
+[20-Jun-2015 01:51:49 Europe/Dublin] PHP Warning:  preg_grep() expects parameter 2 to be array, boolean given in /home/longway1/public_html/vateir/functions/functions.php on line 79
+[20-Jun-2015 01:51:49 Europe/Dublin] PHP Warning:  implode(): Invalid arguments passed in /home/longway1/public_html/vateir/functions/functions.php on line 79

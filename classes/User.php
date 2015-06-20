@@ -95,11 +95,11 @@ class User {
 		return $pull->user->PreviousRatingInt;
 	}
 
-	public function isActive($cid) {
+	public function isActive($cid, $interval = "3 MONTH") {
 		$this->_db->query("SELECT `c`.`id`, `c`.`first_name`, `c`.`last_name`, `c`.`email`, `c`.`rating`, `c`.`pilot_rating`, `c`.`vateir_status`, `c`.`alive`, `c`.`regdate_vatsim`, `c`.`regdate_vateir`, `c`.`grou`, `l`.`cid`, `l`.`datetime`
 			FROM `controllers` AS `c`
 			LEFT JOIN `logins` AS `l` ON `l`.`cid` = `c`.`id`
-			WHERE `l`.`datetime` > DATE_SUB(now(), INTERVAL 3 MONTH)
+			WHERE `l`.`datetime` > DATE_SUB(now(), INTERVAL $interval)
 				AND `c`.`id` = {$cid}");
 		if($this->_db->count()) {
 			return true;
@@ -155,8 +155,14 @@ class User {
 
 	public function getAvatarUrl($options = []) {
 		$size = (isset($options['size'])) ? $options['size'] : '100';
-
 		return 'http://www.gravatar.com/avatar/' . md5($options['email']) . '?s=' . $size . '?d=mm';
+	}
+
+	public function atcHours($cid) {
+		$cid = intval($cid);
+		cacheFile(URL.'datafiles/profiles/' . $cid . '.xml', 'https://cert.vatsim.net/cert/vatsimnet/idstatusrat.php?cid=' . $cid, 604800);
+		$xml = new SimpleXMLElement(file_get_contents(URL.'datafiles/profiles/' . $cid . '.xml'));
+		return o2a($xml->user);
 	}
 
 }

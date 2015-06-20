@@ -109,8 +109,8 @@ switch($directory) {
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <?php echo $user->data()->first_name . ' ' . $user->data()->last_name; ?><b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Controller Profile</a></li>
-          <li><a href="#">My Notifications <span class="badge danger">5</span></a></li>
+          <li><a href="<?php echo BASE_URL . 'controllers/profile.php?id=' . $user->data()->id; ?>"><!-- <span class="glyphicon glyphicon-user" aria-hidden="true"></span> --> Controller Profile</a></li>
+          <!-- <li><a href="#">My Notifications <span class="badge danger">5</span></a></li> -->
           <li class="divider"></li>
           <li><a href=<?php echo BASE_URL . "login/logout.php"; ?>><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a></li>
         </ul>

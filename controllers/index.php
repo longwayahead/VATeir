@@ -35,7 +35,7 @@ try {
 							<td><?php echo $controller->first_name . ' ' . $controller->last_name;?></td>
 							<td><?php echo $controller->long . ' (' . $controller->short . ')';?></td>
 							<td><?php echo $controller->pratingstring;?></td>
-							<td><?php echo '<a class="btn btn-xs btn-warning" href="../profiles/view.php?id=' . $controller->cid . '"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>';?></td>
+							<td><?php echo '<a class="btn btn-xs btn-warning" href="./profile.php?id=' . $controller->cid . '"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>';?></td>
 						</tr>
 					<?php endforeach; ?>
 				</table>
@@ -71,7 +71,7 @@ try {
 							<td><?php echo $controller->first_name . ' ' . $controller->last_name;?></td>
 							<td><?php echo $controller->long . ' (' . $controller->short . ')';?></td>
 							<td><?php echo $controller->pratingstring;?></td>
-							<td><?php echo '<a class="btn btn-xs btn-warning" href="../profiles/view.php?id=' . $controller->cid . '"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>';?></td>
+							<td><?php echo '<a class="btn btn-xs btn-warning" href="./profile.php?id=' . $controller->cid . '"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>';?></td>
 						</tr>
 					<?php endforeach; ?>
 				</table>

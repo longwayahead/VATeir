@@ -52,16 +52,6 @@ try {
 									<td><?php echo date("j-M-Y", strtotime($data->regdate_vatsim)); ?></td>
 								</tr>
 							</table>
-							<div class="text-center">
-								<a class="btn btn-default" href="mailto:<?php echo $data->email ?>">
-									<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-									 Email <?php echo $data->first_name; ?>
-								</a>
-								<a class="btn btn-default" href="#">
-									<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-									 View Profile
-								</a>
-							</div>
 						</div>
 						<div class="col-md-6">
 							<table class="table" style="margin-bottom:0;">
@@ -86,18 +76,44 @@ try {
 								</tr>
 								
 							</table>
-							<div class="text-center">
+							
+						</div>
+						<div class="row text-center">
+							<div class="col-md-3">
 									<a class="btn btn-default" href="view_validations.php?cid=<?php echo $data->cid; ?>">
-									<span class="glyphicon glyphicon-plane" aria-hidden="true"></span>
-									 View Validations
-								</a>
+										<span class="glyphicon glyphicon-plane" aria-hidden="true"></span>
+										 View Validations
+									</a>
+									
+							</div>
+							<div class="col-md-3">
 								<a class="btn btn-default" href="view_available.php?cid=<?php echo $data->cid;?>">
-									<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-									 Availability
-								</a>
+										<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+										 Availability
+									</a>
+									
+							</div>
+
+							<div class="col-md-3">
+
+									<a class="btn btn-default" href="mailto:<?php echo $data->email ?>">
+										<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+										 Email <?php echo $data->first_name; ?>
+									</a>
+									
+								
+								</div>
+							
+
+							<div class="col-md-3">
+								<a class="btn btn-default" href="<?php echo BASE_URL . 'controllers/profile.php?id=' . $data->cid;?>">
+										<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+										 View Profile
+									</a>
+							</div>
 							</div>
 						</div>
-					</div>
+					
 				</div>
 			</div>
 		</div>

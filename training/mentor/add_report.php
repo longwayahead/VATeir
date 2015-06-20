@@ -94,15 +94,15 @@ if(Input::exists()) { //if form submitted!
 		$type = $r->getTypes(0, ['type' => $session->report_type])[0];
 		$positions = $r->getPositionsByProgram($type->program_id); //get all positions for this program level
 		$sliders = $r->getSliders(1, $type->program_id);
-		
+
 		if(!count($type)) {
 			Session::flash('error', 'No report type found for that ID');
 			Redirect::to('./view_student.php?cid=' . $session->student);
 		}
 
-		if(!$user->hasPermission('mentor') || !$user->hasPermission($student->program_permissions)) {
+		if(!$user->hasPermission($session->program_permissions)) {
 			Session::flash('error', 'Insufficient permissions');
-			Redirect::to('./mentor/');
+			Redirect::to('./');
 		}
 	} catch (Exception $e) { 
 		echo $e->getMessage();

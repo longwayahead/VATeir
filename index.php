@@ -151,7 +151,7 @@ if($random == 1) {
 				<div class="tab-pane fade" id="metar">
 					<p>
 					<?php
-						//cacheFile("datafiles/metar.txt", "http://metar.vatsim.net/metar.php?id=EI");
+						cacheFile("datafiles/metar.txt", "http://metar.vatsim.net/metar.php?id=EI");
 						echo '<div class="text-justified"><samp>
 							<p>' . getMetar("EICK") . '</p>
 							<p>' . getMetar("EIDW") . '</p>

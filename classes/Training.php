@@ -173,6 +173,19 @@ class Training {
 		return $xml;
 	}
 
+	public function userBookings($cid) {
+		$bookings = $this->bookings();
+		foreach($bookings->atc as $booking) {
+			if($booking->cid == $cid) {
+				$book[] = $booking;
+			}
+		}
+		if(count($book)) {
+			return $book;
+		}
+		return false;
+	}
+
 
 	public function getSectorTypes($airport) {
 		$positions = $this->positions;
@@ -353,7 +366,7 @@ class Training {
 	}
 
 	public function getMentors() {
-		$mentors = $this->_db->query("SELECT controllers.id as cid, controllers.first_name, controllers.last_name, controllers.grou,
+		$mentors = $this->_db->query("SELECT controllers.id as cid, controllers.first_name, controllers.pratingstring, controllers.last_name, controllers.grou,
 											permissions.id, permissions.name, permissions.sort,
 											ratings.id, ratings.long, ratings.short
 										FROM controllers

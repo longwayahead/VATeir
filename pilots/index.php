@@ -25,7 +25,7 @@ require_once('includes/header.php');
 	  $i++;
 	}
 	?>
-	  <h3 class="text-center">Pilots Home</h3>
+	  <h3 class="text-center">Pilots Home</h3> <br>
 	  <div class="row">
 	  <div class="col-md-6">
 	  		<div class="panel panel-info">
@@ -35,6 +35,7 @@ require_once('includes/header.php');
 			  <div class="panel-body">
 
 				  <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+				  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.1.min.js"></script>
 
 				  <div id="map" class="img-responsive" style="width: 500px; height: 400px;"></div>
 				 
@@ -119,7 +120,7 @@ require_once('includes/header.php');
 				if(count($bookings->atc) > 0) {					
 					echo '<table class="table table-striped table-responsive table-condensed">
 						<tr>
-							<td><strong>Callsign</strong></td>
+							<td><strong>Position</strong></td>
 							<td><strong>Controller</strong></td>
 							<td><strong>From (UTC)</strong></td>
 							<td><strong>Until (UTC)</strong></td>
@@ -147,7 +148,7 @@ require_once('includes/header.php');
 		</div>
 	</div>
 	</div>
-	<div class="row">
+<!-- 	<div class="row">
 
 	<div class="col-md-6">
 		<div class="panel panel-info">
@@ -156,48 +157,48 @@ require_once('includes/header.php');
 			</div>
 			<div class="panel-body">
 				<?php
-				$notams = $a->notams();
-				$i = 1;
-				$icao = array();
-				if(count($notams)) {					
-					echo '<table class="table table-striped table-responsive table-condensed">
-						<tr>
-							<td><strong>ICAO</strong></td>
-							<td><strong>Message</strong></td>
-							<td><strong>From</strong></td>
-							<td><strong>Until</strong></td>
-						</tr>';
-					foreach($notams as $notam) {
-						if(!in_array($notam['icao'], $icao)) {
-							$icao[] = $notam['icao'];
-							if($i <= 7) {
-								echo '<tr><td>';
-									echo $notam['icao'];
-								echo '</td>';
-								echo '<td>';
-									echo $notam['message'];
-								echo '</td><td>';
-									echo date('d-m-y H:i', strtotime($notam['start']));
-								echo '</td><td>';
-									echo date('d-m-y H:i', strtotime($notam['end']));
-								echo '</td></tr>';
-							}
-							$i++;
-						}
-					}
-					echo '</table>';
-				}
+				// $notams = $a->notams();
+				// $i = 1;
+				// $icao = array();
+				// if(count($notams)) {					
+				// 	echo '<table class="table table-striped table-responsive table-condensed">
+				// 		<tr>
+				// 			<td><strong>ICAO</strong></td>
+				// 			<td><strong>Message</strong></td>
+				// 			<td><strong>From</strong></td>
+				// 			<td><strong>Until</strong></td>
+				// 		</tr>';
+				// 	foreach($notams as $notam) {
+				// 		if(!in_array($notam['icao'], $icao)) {
+				// 			$icao[] = $notam['icao'];
+				// 			if($i <= 7) {
+				// 				echo '<tr><td>';
+				// 					echo $notam['icao'];
+				// 				echo '</td>';
+				// 				echo '<td>';
+				// 					echo $notam['message'];
+				// 				echo '</td><td>';
+				// 					echo date('d-m-y H:i', strtotime($notam['start']));
+				// 				echo '</td><td>';
+				// 					echo date('d-m-y H:i', strtotime($notam['end']));
+				// 				echo '</td></tr>';
+				// 			}
+				// 			$i++;
+				// 		}
+				// 	}
+				// 	echo '</table>';
+				// }
 				?>
 			</div>
 			<?php
-			if($i >= 7) {
-				echo '<div class="panel-footer text-right"><a href="notams.php">View All</a></div>';
-			}
+			// if($i >= 7) {
+			// 	echo '<div class="panel-footer text-right"><a href="notams.php">View All</a></div>';
+			// }
 			?>
 		</div>
 
 </div>
-</div>
+</div> -->
 </div>
 
 <?php
