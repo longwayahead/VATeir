@@ -1,4 +1,5 @@
 <?php
+$pagetitle = "Schedule a Session";
 require_once("../includes/header.php");
 $a = new Availability;
 if(Input::exists('post')) {
@@ -17,7 +18,8 @@ if(Input::exists('post')) {
 	  		'from' => array(
 	  			'field_name' => 'Time From',
 	  			'required' => true,
-	  			'time_less' => 'until'
+	  			'time_less' => 'until',
+	  			'time_same' => 'until'
 	  			),
 	  		'until' => array(
 	  			'field_name' => 'Time Until',
@@ -26,9 +28,9 @@ if(Input::exists('post')) {
 	  		));
 	  	if($validation->passed()) {
 	  		$from = new DateTime(Input::get('from'));
-	  		$start = $from->format("Y-m-d H-i-s");
+	  		$start = Input::get('date') . ' ' . $from->format("H:i:s");
 	  		$until = new DateTime(Input::get('until'));
-	  		$finish = $until->format("Y-m-d H-i-s");
+	  		$finish = Input::get('date') . ' ' . $until->format("H:i:s");
 		  $s->add(array(
 	        'student'   => Input::get('student'),
 	        'mentor'  => $user->data()->id,
@@ -69,9 +71,13 @@ $availability = $a->get([
 		'id' => Input::get('id')
 	])[0];
 if(!$user->hasPermission('mentor') || !$user->hasPermission($availability->permissions)) {
-			Session::flash('error', 'Cannot mentor at that level');
-			Redirect::to('./');
-		}
+	Session::flash('error', 'Cannot mentor at that level');
+	Redirect::to('./');
+}
+if($user->data()->id == $availability->cid) {
+	Session::flash('error', 'You cannot mentor yourself!');
+	Redirect::to('./');
+}
 ?>
 <h3 class="text-center">Schedule a session</h3><br>
 <div class="row">
@@ -107,14 +113,13 @@ if(!$user->hasPermission('mentor') || !$user->hasPermission($availability->permi
 									if(count($types)) {
 										$programs = array();
 										foreach($types as $type){
-											if(!in_array($type->pid, $programs)) {
-												$programs[] = $type->pid;
-													echo '<option class="select-dash" disabled="disabled">----</option>';
-												}
+											// if(!in_array($type->pid, $programs)) {
+											// 	$programs[] = $type->pid;
+											// 		echo '<option class="select-dash" disabled="disabled">----</option>';
+											// 	}
 											echo '<option value="' . $type->report_type_id . '">' . $type->ident . ': ' . $type->session_type_name . '</option>';
 										}
 									}
-
 								} catch(Exception $e) {
 									echo '<option>' . $e->getMessage . '</option>';
 								}
@@ -168,6 +173,7 @@ if(!$user->hasPermission('mentor') || !$user->hasPermission($availability->permi
 				    <div class="form-group">
 				      <div class="col-lg-4 col-lg-offset-4">
 				      <input type="hidden" name="availability_id" value="<?php echo Input::get('id');?>">
+				      <input type="hidden" name="date" value="<?php echo $availability->date; ?>">
 				        <button type="submit" class="btn btn-primary">Submit</button>
 				      </div>
 				    </div>

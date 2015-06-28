@@ -33,3 +33,8 @@ Stack trace:
 #1 /home/longway1/public_html/vateir/pilots/index.php(119): Training->bookings()
 #2 {main}
   thrown in /home/longway1/public_html/vateir/classes/Training.php on line 172
+[20-Jun-2015 08:39:30 Europe/Dublin] PHP Warning:  copy(http://api.vateud.net/airports/country/IE.json): failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/longway1/public_html/vateir/functions/functions.php on line 71
+[20-Jun-2015 08:39:31 Europe/Dublin] PHP Warning:  copy(http://api.vateud.net/frequencies/IRL.json): failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in /home/longway1/public_html/vateir/functions/functions.php on line 71
+[26-Jun-2015 17:38:07 Europe/Dublin] PHP Parse error:  syntax error, unexpected 'require_once' (T_REQUIRE_ONCE) in /home/longway1/public_html/vateir/pilots/notams.php on line 3

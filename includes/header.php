@@ -32,7 +32,7 @@ $user = new User;
   </head>
   <body>
 <div class="container">
-<?php if($user->isLoggedIn() && $user->data()->id == 937032) {
+<?php if($user->isLoggedIn() && $user->data()->id == 9370032) {
   ?>
 <div style="color:red; font-size:100px;" class="text-center blink">GO FUCK YOURSELF STEPHEN DONNELLY</div>
 <?php
@@ -84,12 +84,18 @@ switch($directory) {
   <div class="navbar-collapse collapse navbar-responsive-collapse">
     <ul class="nav navbar-nav">
       <li <?php echo ($directory == 0) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL; ?>>Home</a></li>
-      <li <?php echo ($directory == 1) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "training"; ?>>Training</a></li>
+      <?php if($user->isLoggedIn()) { ?><li <?php echo ($directory == 1) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "training"; ?>>Training</a></li> <?php } ?>
       <li <?php echo ($directory == 2) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "events"; ?>>Events</a></li>
       <li <?php echo ($directory == 4) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "pilots"; ?>>Pilots</a></li>
       <li <?php echo ($directory == 5) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "controllers"; ?>>Controllers</a></li>
      <li <?php echo ($directory == 6) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "about"; ?>>About Us</a></li>
-      <li><a href="#">Forum</a></li>
+      <li>
+          <?php if($user->isLoggedIn()) { ?>
+              <a target="_blank" href="<?php echo BASE_URL . 'forum/forum.php'?>">Forum</a>
+            <?php } else { ?>
+              <a target="_blank" href="<?php echo BASE_URL . 'forum/'?>">Forum</a>
+           <?php } ?>
+      </li>
       <?php
       if($user->isLoggedIn() && $user->hasPermission('admin')) {
        echo '<li';
@@ -107,7 +113,7 @@ switch($directory) {
     ?>
       
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <?php echo $user->data()->first_name . ' ' . $user->data()->last_name; ?><b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <div class="hidden-sm" style="display:inline-block;"><?php echo $user->data()->first_name . ' ' . $user->data()->last_name; ?></div><b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li><a href="<?php echo BASE_URL . 'controllers/profile.php?id=' . $user->data()->id; ?>"><!-- <span class="glyphicon glyphicon-user" aria-hidden="true"></span> --> Controller Profile</a></li>
           <!-- <li><a href="#">My Notifications <span class="badge danger">5</span></a></li> -->

@@ -29,8 +29,9 @@ if(Input::exists()) { //if form submitted!
 
 		try {
 			$r = new Reports;
+			$check = (Input::get('check')) ? 1 : 0;
 			$r->addSlider(array(
-				'type'				=> Input::get('check'),
+				'type'				=> $check,
 				'program_id'		=> Input::get('program'),
 				'text'				=> Input::get('textarea')
 			));
@@ -95,14 +96,14 @@ $programs = $t->getPrograms();
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="check" class="col-lg-2 control-label">Slider/Boolean</label>
+									<label for="check" class="col-lg-2 control-label">Is Boolean</label>
 									<div class="col-lg-10">
 										<div class="checkbox">
 											<label>
-												<input style="margin-left:5px;" value="0" type="checkbox" class="checkbox check" id="check">
+												<input name="check" style="margin-left:5px;" value="1" type="checkbox" class="checkbox check" id="check">
 											</label>
 										</div>
-										<span class="help-block">Check for slider. Leave unchekced for boolean.</span>
+										<span class="help-block">Check for boolean. Leave unchekced for slider.</span>
 									</div>
 								</div>
 								<div class="form-group text-center">

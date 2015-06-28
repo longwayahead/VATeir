@@ -152,7 +152,7 @@ try {
 									       		
 												    <div class="card-action">
 												        <div class="row">
-												            <div class="col-md-6 col-sm-6 col-xs-6" style="display:inline-block;">
+												            <div class="col-md-6 col-sm-6 col-xs-6" style="display:inline-block; padding-left:5px;">
 																<div class="text">' . $report->mfname . ' ' . $report->mlname . '<div class="hidden-xs" style="display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;' . date("jS M Y", strtotime($report->submitted_date)) . '</div></div>
 															</div>
 															

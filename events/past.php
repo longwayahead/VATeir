@@ -1,5 +1,5 @@
 <?php
-$pagetitle = "Events Home";
+$pagetitle = "Past Events";
 require_once("includes/header.php");
 ?>
 <div class="row col-md-10 col-md-offset-1">

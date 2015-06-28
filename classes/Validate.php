@@ -32,6 +32,11 @@ class Validate {
 								$this->addError("Cannot have negative time!");
 							}
 						break;
+						case 'time_same':
+							if($value == $source[$rule_value]) {
+								$this->addError("There must be a difference in time!");
+							}
+						break;
 						case 'max':
 							if(strlen($value) > $rule_value) {
 								$this->addError("{$fieldname} must be a maximum of {$rule_value} characters.");

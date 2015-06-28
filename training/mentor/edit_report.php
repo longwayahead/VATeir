@@ -1,21 +1,29 @@
 <?php
+$pagetitle = "Edit Report";
 require_once('../includes/header.php');
 
 if(isset($_GET['id'])) {
 	try {
 		$report = $r->getReport(1, $_GET['id']);
+		//print_r($report);
 		if(!$user->hasPermission('mentor') || !$user->hasPermission($report->permissions)) {
 			Session::flash('error', 'Insufficient permissions');
 			Redirect::to('./');
 		}
-		$types = $r->getTypes(0, ['type' => $report->typ_id]);
 		$positions = $r->getPositionsByProgram($report->program_id);
 		$sliders = $r->getSliders(2, $report->rep_id);
 		$allSliders = $r->getSliders(1, $report->program_id);
+		$answers = array();
 		if($sliders) {
+			
 			foreach($sliders as $s) {
-				$answers[$s->slider_id] = $s->value;
+			//	if($s->value) {
+					echo 'no';
+					$answers[$s->slider_id] = $s->value;
+				//}
+				
 			}
+			var_dump($answers);
 		}
 
 		
@@ -66,7 +74,7 @@ if(isset($_GET['id'])) {
 				
 					
 					Session::flash('success', 'Report Edited');
-					Redirect::to('./view_student.php?cid=' . Input::get("cid"));
+					Redirect::to('./view_student.php?cid=' . Input::get("cid") . '#r' . $report->rep_id);
 
 						
 				} catch (Exception $e) {
@@ -109,11 +117,34 @@ if(isset($_GET['id'])) {
 						<input class="form-control" type="text" id="studentname" placeholder="<?php echo $report->sfname . ' ' . $report->slname;?>" readonly>
 					</div>
 				</div>
+				<!-- <div class="form-group">
+			      <label for="type" class="col-lg-3 control-label">Report Type</label>
+			      <div class="col-lg-4">
+			        <select name="report_type type" id="type" class="form-control tick" required>
+						<?php
+							// try {
+								
+							// 	if(count($types)) {
+							// 		$programs = array();
+							// 		foreach($types as $type){
+							// 			echo '<option value="' . $type->report_type_id . '"';
+							// 			echo ($type->report_type_id == $report->report_type_id) ? ' selected' : '';
+							// 			echo '>' . $type->ident . ': ' . $type->session_type_name . '</option>';
+							// 		}
+							// 	}
+							// } catch(Exception $e) {
+							// 	echo '<option>' . $e->getMessage . '</option>';
+							// }
+						?>
+					</select>
+			      </div>
+			    </div> -->
 				<div class="form-group">
 					<label for="programname" class="col-lg-3 control-label">Report Type</label>
 					<div class="col-lg-4">
 						<select class="form-control tick" name="report_type">
 							<?php
+							$types = $r->getTypes(0, ['program' => $report->program_id]);
 							$programs = array();
 							if(!Input::exists('post')) {
 								$r = $report->typ_id;
@@ -122,10 +153,10 @@ if(isset($_GET['id'])) {
 							}
 
 							foreach($types as $type) {
-								if(!in_array($type->pid, $programs)) {
-									$programs[] = $type->pid;
-									echo '<option class="select-dash" disabled="disabled">----</option>';
-								}
+								// if(!in_array($type->pid, $programs)) {
+								// 	$programs[] = $type->pid;
+								// 	echo '<option class="select-dash" disabled="disabled">----</option>';
+								// }
 								echo '<option value="' . $type->report_type_id . '"';
 								if($type->report_type_id == $r) {
 									echo ' selected';
@@ -188,7 +219,7 @@ if(isset($_GET['id'])) {
 
 							';
 						} elseif($slider->type == 1) {
-	
+							
 							echo '<div class="col-md-6">
 								
 								<div class="radio">
@@ -229,6 +260,8 @@ if(isset($_GET['id'])) {
 							</div>
 
 								';
+
+
 						}
 						echo '</div>';
 					}

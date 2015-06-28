@@ -1,4 +1,5 @@
 <?php
+$pagetitle = 'NOTAMs';
 require_once('includes/header.php');
 	$a = new Airports;
 ?>

@@ -21,7 +21,7 @@ a:hover {
 	<ul class="well nav nav-list nav-list-vivid">
 
 			<li class="active"><a href="<?php echo BASE_URL . 'pilots/'; ?>">Home</a></li>		
-			<li class="active"><a href="<?php echo BASE_URL . 'pilots/notams.php'; ?>">All NOTAMs</a></li>		
+			<li class="active"><a href="<?php echo BASE_URL . 'pilots/notams.php'; ?>">NOTAMs</a></li>		
 			<li class="divider"></li>
 			<br>
 

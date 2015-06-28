@@ -4,7 +4,7 @@ require_once("includes/header.php");
 $t = new Training;
 try {
 	$controllers = $t->getControllers(['active' => 1]);
-	$inactives = $t->getControllers();
+	$inactives = $t->getControllers(['status' => 1]);
 //	print_r($controllers);
 }catch(Exception $e) {
 	echo $e->getMessage();

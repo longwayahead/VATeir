@@ -18,7 +18,7 @@ require_once("includes/header.php");
 	}
 </style>
 <?php
-$greeting = ['Hi there.', 'Fáilte.', 'Hello.', 'Dia dhuit.', 'Welcome.', 'Conas atá cúrsaí?', 'Deas tú a fheiscint.'];
+$greeting = ['Hi there.', 'Fáilte.', 'Hello.', 'Dia dhuit.', 'Welcome.', 'Conas atá cúrsaí?'];
 
 ?>
 <div class="col-md-8 well">
@@ -116,13 +116,13 @@ if($random == 1) {
 								
 								foreach($atcs as $atc) {
 									if(!strpos($atc->callsign, "ATIS")) { //Don't get the ATIS
+
 									echo '<tr>
 											<td>
 										
 											<a tabindex="0" data-container="body" data-trigger="focus" data-toggle="popover" data-placement="left" data-html="true" title="Session Details" data-content="
-												<strong>CID: </strong>' . $atc->cid . '<br>
 												<strong>Rating: </strong>' . $atc->rating . '<br>
-												<strong>Online Since: </strong>' . implode(" ", explode("T", $atc->online_since)) . '<br>
+												<strong>Online Since: </strong>' . date("d\<\s\u\p\>S\<\/\s\u\p\> M H:i", strtotime($atc->online_since)). '<br>
 																						
 											" data-original-title="" title="" aria-describedby="popover148301" style="cursor:pointer">' . $atc->callsign . '</a>
 
@@ -130,7 +130,7 @@ if($random == 1) {
 											<td>';
 
 											if($user->find($atc->cid)) { //link to profile if vateir controller
-												echo '<a href="#">' . $atc->name . '</a>';
+												echo '<a href="' . BASE_URL . 'controllers/profile.php?id=' . $atc->cid . '">' . $atc->name . '</a>';
 											} else {
 												echo $atc->name;
 											}
@@ -255,7 +255,7 @@ if($random == 1) {
 	</div>
 	<div class="panel panel-success">
 			<div class="panel-heading">
-				<h3 class="panel-title">Upcoming Events</h3>
+				<h3 class="panel-title">Events</h3>
 			</div>
 			<div class="panel-body">
 	<?php
@@ -282,7 +282,7 @@ if($random == 1) {
 		
 	<?php
 		} else {
-			echo '<div class="text-danger text-center" style="font-size:16px;"><br>No forthcoming events</div><br>';
+			echo '<div class="text-danger text-center" style="font-size:16px;"><br>No forthcoming events</div></div><br>';
 		}
 	}catch (Exception $e) {
 		echo $e->getMessage();

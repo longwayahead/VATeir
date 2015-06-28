@@ -1,4 +1,5 @@
 <?php
+$pagetitle = "Edit Note";
 require_once('../includes/header.php');
 
 if(isset($_GET['id'])) {
@@ -43,7 +44,7 @@ if(isset($_GET['id'])) {
 				);
 				if($update === true) {
 					Session::flash('success', 'Note Edited');
-					Redirect::to('./view_student.php?cid=' . Input::get("cid"));
+					Redirect::to('./view_student.php?cid=' . Input::get("cid") . '#n' . Input::get('id'));
 				}
 				
 

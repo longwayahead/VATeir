@@ -45,3 +45,12 @@ core/init.php
 core/init1.php
 login/config.php
 login/configdemo.php
+*.sql
+datafiles/bookings.xml
+datafiles/in.json
+datafiles/metar.txt
+datafiles/notams.json
+datafiles/out.json
+*.xml
+*.xml
+email/mail.php

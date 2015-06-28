@@ -1,4 +1,5 @@
 <?php
+$pagetitle = 'Controller Profile';
 require_once('includes/header.php');
 try {
 	$student = $t->getStudent(Input::get('id'));
@@ -68,45 +69,8 @@ try {
 			</div>
 		</div>
 			
+		
 		<div class="col-md-4">
-			<div class="panel panel-warning" style="margin-bottom: 0px;">
-				<div class="panel-heading">
-					<h3 class="panel-title">Logged Hours</h3>
-				</div>
-				<div class="panel-body" style="padding-bottom: 0px;">
-					<table class="table table-striped table-condensed table-responsive">
-						<?php
-						if(!empty($hours)) {
-							foreach($hours as $rating => $time) {
-								if($time != 0 && $rating != '@attributes') {
-									switch($rating) {
-										case($rating == 'atctime'):
-											$rating = 'ATC Time';
-										break;
-										case($rating == 'pilottime') :
-											$rating = 'Pilot Time';
-										break;
-									}
-									$hour = floor($time);
-									$min = round(60*($time-$hour));
-									echo '<tr>
-											<td><strong>' . $rating . '</strong></td>
-											<td>' . $hour . ':' . $min . '</td>
-										</tr>';
-								}
-							}
-						} else {
-							echo '<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">Controller Inactive</div><br>';
-						}
-						?>
-					</table>
-				</div>
-				<div class="panel-footer text-right" style="padding-top:4px; padding-bottom:4px;">
-					<a target="_blank" href="http://stats.vatsim.net/search_id.php?id=<?php echo $student->cid; ?>">More Stats</a>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-8">
 				<div class="panel panel-warning">
 					<div class="panel-heading">
 						<h3 class="panel-title"><?php echo $student->first_name;?>'s Bookings</h3>
@@ -140,6 +104,44 @@ try {
 					</div>
 				</div>
 			</div>
+			<div class="col-md-8">
+			<div class="panel panel-warning">
+				<div class="panel-heading">
+					<h3 class="panel-title">Logged Hours</h3>
+				</div>
+				<div class="panel-body">
+					<table class="table table-striped table-condensed table-responsive">
+						<?php
+						if(!empty($hours)) {
+							foreach($hours as $rating => $time) {
+								if($time != 0 && $rating != '@attributes') {
+									switch($rating) {
+										case($rating == 'atctime'):
+											$rating = 'ATC Time';
+										break;
+										case($rating == 'pilottime') :
+											$rating = 'Pilot Time';
+										break;
+									}
+									$hour = floor($time);
+									$min = round(60*($time-$hour));
+									echo '<tr>
+											<td><strong>' . $rating . '</strong></td>
+											<td>' . $hour . ':' . $min . '</td>
+										</tr>';
+								}
+							}
+						} else {
+							echo '<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">Controller Inactive</div><br>';
+						}
+						?>
+					</table>
+				</div>
+				<div class="panel-footer text-right" style="padding-top:4px; padding-bottom:4px;">
+					<a target="_blank" href="http://stats.vatsim.net/search_id.php?id=<?php echo $student->cid; ?>">More Stats</a>
+				</div>
+			</div>
+		</div>
 		</div>
 	</div>
 </div>

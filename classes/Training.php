@@ -73,6 +73,8 @@ class Training {
 		return false;
 	}
 
+
+
 	public function getStudents($param = null) {
 		if(!empty($param)) {
 			//$data = $this->_db->query("$this->_sql", [["{$s}", 'LIKE', "%{$param}%"]], "ORDER BY `c`.`rating` DESC, `c`.`last_name` ASC"
@@ -108,6 +110,8 @@ class Training {
 		}
 		return false;
 	}
+
+
 
 	public function getAirports($major = true) {
 		$data = $this->_db->query("SELECT `a`.`id`, `a`.`icao`, `a`.`major`, `a`.`name`,
@@ -210,7 +214,11 @@ class Training {
 		} else {
 			$where = "controllers.alive = 0 AND controllers.rating > 0";
 		}
-		$controllers = $this->_db->query("SELECT controllers.id as cid, controllers.first_name, controllers.last_name, controllers.rating, controllers.pilot_rating, controllers.pratingstring, controllers.vateir_status, controllers.alive, controllers.regdate_vatsim, controllers.regdate_vateir,
+		if(isset($options['status'])) {
+				$where .= " AND (controllers.vateir_status <= 2)";
+			
+		}
+		$controllers = $this->_db->query("SELECT controllers.id as cid, controllers.first_name, controllers.last_name, controllers.rating, controllers.pilot_rating, controllers.pratingstring, controllers.vateir_status, controllers.email, controllers.alive, controllers.regdate_vatsim, controllers.regdate_vateir,
 										ratings.id, ratings.short, ratings.long
 										FROM controllers
 										LEFT JOIN ratings ON ratings.id = controllers.rating

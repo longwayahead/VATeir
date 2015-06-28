@@ -79,14 +79,14 @@ try {
 							
 						</div>
 						<div class="row text-center">
-							<div class="col-md-3">
+							<div class="col-md-3 col-sm-6">
 									<a class="btn btn-default" href="view_validations.php?cid=<?php echo $data->cid; ?>">
 										<span class="glyphicon glyphicon-plane" aria-hidden="true"></span>
 										 View Validations
 									</a>
 									
 							</div>
-							<div class="col-md-3">
+							<div class="col-md-3 col-sm-6">
 								<a class="btn btn-default" href="view_available.php?cid=<?php echo $data->cid;?>">
 										<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
 										 Availability
@@ -94,7 +94,7 @@ try {
 									
 							</div>
 
-							<div class="col-md-3">
+							<div class="col-md-3 col-sm-6">
 
 									<a class="btn btn-default" href="mailto:<?php echo $data->email ?>">
 										<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
@@ -105,7 +105,7 @@ try {
 								</div>
 							
 
-							<div class="col-md-3">
+							<div class="col-md-3 col-sm-6">
 								<a class="btn btn-default" href="<?php echo BASE_URL . 'controllers/profile.php?id=' . $data->cid;?>">
 										<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 										 View Profile
@@ -310,7 +310,7 @@ try {
 									       		
 												    <div class="card-action">
 												        <div class="row">
-												            <div class="col-md-6 col-sm-6 col-xs-6" style="display:inline-block;">
+												            <div class="col-md-6 col-sm-6 col-xs-6" style="display:inline-block; padding-left:5px;">
 																<div class="text">' . $report->mfname . ' ' . $report->mlname . '<div class="hidden-xs" style="display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;' . date("jS M Y", strtotime($report->submitted_date)) . '</div></div>
 															</div>
 															<div class="col-md-6 col-sm-6 col-xs-6 text-right" style="display:inline-block;">
@@ -326,11 +326,12 @@ try {
 								';
 							} elseif($card->card_type == 1) { //note
 								$note = $r->getNote($card->link_id);
+
 								echo '<div class="row">
 										<div class="col-md-10 col-md-offset-1">
 											<div id="card" class="card" style="background-color:' . $note->colour . '; color:white;">
 												<div class="nopad">
-													<div class="card-title text-center">
+													<div class="card-title text-center" id="n' . $note->note_id . '">
 														<div class="hidden-xs" style="display:inline-block;"><strong>' . $note->name . ':</strong></div> ' . $note->subject . '
 													</div>';
 											if($note->text) {

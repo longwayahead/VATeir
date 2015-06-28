@@ -24,13 +24,12 @@ if(Input::exists('post')) {
 				$test = $user->update(
 					[
 						'controllers.vateir_status' => '2',
-						'controllers.group' => '3'
+						'controllers.grou' => '10'
 					],
 					[
 						['controllers.id', '=', Input::get('id')]
 					]
 				);
-				die();
 				if(!$t->findStudent(Input::get('id'))) {
 					if($controller->rating > 7) {
 						$rating = $user->getRealRating(Input::get('id'));

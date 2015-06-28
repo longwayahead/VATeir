@@ -122,6 +122,27 @@ class User {
 		}
 	}
 
+	public function checkDupeEmail($email) {
+		$email = $this->_db->query("SELECT * FROM email_unsubscribe WHERE email = ?", [[$email]]);
+		if($email->count()) {
+			return $email->results();
+		} 
+		return false;	
+	}
+
+	public function getEmailable() {
+		$email = $this->_db->query("SELECT c.* FROM controllers c WHERE not exists (SELECT * FROM email_unsubscribe e WHERE e.email = c.email) AND c.email = 'cillianlong@gmail.com'");
+		if($email->count()) {
+			return $email->results();
+		}
+	}
+
+	public function unsubscribeEmail($fields = array()) {
+		if(!$this->_db->insert('email_unsubscribe', $fields)) {
+			throw new Exception('There was a problem unsubscribing you.');
+		}
+	}
+
 	public function getAll() {
 		$this->_db->query("SELECT * FROM controllers");
 		return $this->_db->results();

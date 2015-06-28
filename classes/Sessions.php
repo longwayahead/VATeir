@@ -62,7 +62,7 @@ class Sessions {
 									LEFT JOIN controllers on controllers.id = sessions.student
 									LEFT JOIN controllers as control ON control.id = sessions.mentor
 									WHERE $this->end
-									ORDER BY sessions.start DESC, sessions.finish DESC
+									ORDER BY sessions.start ASC, sessions.finish ASC
 									$this->bits", [$this->where]);
 		// print_r($session);
 		if($session->count()) {

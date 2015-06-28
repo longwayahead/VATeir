@@ -8,7 +8,6 @@ if(!$user->hasPermission('tdstaff')) {
 $r = new Reports;
 
 if(Input::exists()) { //if form submitted!
-	
 	$validate = new Validate();
 	$validation = $validate->check($_POST, array(
 		'textarea' => array(
@@ -28,9 +27,9 @@ if(Input::exists()) { //if form submitted!
 	if($validation->passed()) {
 
 		try {
-			
+			$check = (Input::get('check')) ? 1 : 0;
 			$r->updateS(array(
-				'type'				=> Input::get('check'),
+				'type'				=> $check,
 				'program_id'		=> Input::get('program'),
 				'text'				=> Input::get('textarea')
 			), [['id', '=', Input::get('id')]]);
@@ -85,7 +84,7 @@ $programs = $t->getPrograms();
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="program" class="col-lg-2 control-label">Option text</label>
+									<label for="program" class="col-lg-2 control-label">Programme</label>
 									<div class="col-lg-8">
 										<select class="form-control" id="program" name="program">
 								          <?php foreach($programs as $program): ?>
@@ -102,18 +101,18 @@ $programs = $t->getPrograms();
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="check" class="col-lg-2 control-label">Boolean</label>
+									<label for="check" class="col-lg-2 control-label">Is Boolean</label>
 									<div class="col-lg-10">
 										<div class="checkbox">
 											<label>
-												<input style="margin-left:5px;" value="0" type="checkbox"
+												<input name="check" style="margin-left:5px;" value="1" type="checkbox"
 													<?php if($option->type == 1) {
 														echo 'checked ';
 													} ?>
 												 class="checkbox check" id="check">
 											</label>
 										</div>
-										<span class="help-block">Check for slider. Leave unchekced for boolean.</span>
+										<span class="help-block">Check for boolean. Leave unchekced for slider.</span>
 									</div>
 								</div>
 								<div class="form-group text-center">

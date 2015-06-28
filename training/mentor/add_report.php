@@ -1,4 +1,5 @@
 <?php
+$pagetitle = "Add Report";
 require_once('../includes/header.php');
 
 
@@ -31,7 +32,7 @@ if(Input::exists()) { //if form submitted!
 			$r->addReport(array(
 				'student_cid'		=> Input::get('cid'),
 				'mentor_cid'		=> $user->data()->id,
-				'report_type_id'	=> Input::get('report_type'),
+				'report_type_id'	=> Input::get('type'),
 				'position_id'		=> Input::get('position'),
 				'submitted_date'	=> date("Y-m-d"),
 				'session_date'		=> Input::get('date'),
@@ -119,17 +120,27 @@ if(Input::exists()) { //if form submitted!
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="programname" class="col-lg-3 control-label">Report Type</label>
-				<div class="col-lg-4">
-					<input class="form-control" type="text" id="programname" placeholder="<?php echo $session->program_name;?>" readonly>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="sessionType" class="col-lg-3 control-label">Session Type</label>
-				<div class="col-lg-4">
-					<input class="form-control" type="text" id="sessionType" placeholder="<?php echo $session->session_name;?>" readonly>
-				</div>
-			</div>
+		      <label for="type" class="col-lg-3 control-label">Report Type</label>
+		      <div class="col-lg-4">
+		        <select name="type" id="type" class="form-control tick" required>
+					<?php
+						try {
+							$types = $r->getTypes(0, ['program' => $session->program_id]);
+							if(count($types)) {
+								$programs = array();
+								foreach($types as $type){
+									echo '<option value="' . $type->report_type_id . '"';
+									echo ($type->report_type_id == $session->report_type) ? ' selected' : '';
+									echo '>' . $type->ident . ': ' . $type->session_type_name . '</option>';
+								}
+							}
+						} catch(Exception $e) {
+							echo '<option>' . $e->getMessage . '</option>';
+						}
+					?>
+				</select>
+		      </div>
+		    </div>
           	<div class="form-group">
 				<label for="select" class="col-lg-3 control-label">Position</label>
 				<div class="col-lg-4">

@@ -1,5 +1,7 @@
 <?php
+$pagetitle = "Pilots";
 require_once('includes/header.php');
+
 	$a = new Airports;
 	$all = $a->all();
 	$airports = array();

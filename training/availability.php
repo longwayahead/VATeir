@@ -14,7 +14,8 @@ if(Input::exists()) {
   		'from' => array(
   			'field_name' => 'Time From',
   			'required' => true,
-        'time_less' => 'to'
+        	'time_less' => 'to',
+        	'time_same'	=> 'to'
   			),
   		'to' => array(
   			'field_name' => 'Time Until',
