@@ -34,8 +34,18 @@ require_once("includes/header.php");
 			<?php
 					
 				}
-			} else {
-			echo '<div class="text-danger text-center" style="font-size:16px;"><br>No forthcoming events</div><br>';
+			} else { ?>
+				<div class="panel panel-success">
+					<div class="panel-heading" id="<?php echo $event->id;?>">
+						<h3 class="panel-title">Forthcoming Events</h3>
+					</div>
+					<div class="panel-body">
+
+						<div class="text-danger text-center" style="font-size:16px;"><br>No forthcoming events</div><br>
+
+					</div>
+				</div>
+					<?php
 		}
 	}catch (Exception $e) {
 		echo $e->getMessage();

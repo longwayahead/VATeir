@@ -21,3 +21,15 @@
 [27-Jun-2015 00:43:03 Europe/Dublin] PHP Fatal error:  Call to a member function pilotRating() on a non-object in /home/longway1/public_html/vateir/login/sendapplication.php on line 31
 [27-Jun-2015 00:43:14 Europe/Dublin] PHP Fatal error:  Call to a member function pilotRating() on a non-object in /home/longway1/public_html/vateir/login/sendapplication.php on line 31
 [27-Jun-2015 00:44:13 Europe/Dublin] PHP Fatal error:  Call to a member function pilotRating() on a non-object in /home/longway1/public_html/vateir/login/sendapplication.php on line 31
+[28-Jun-2015 13:12:09 Europe/Dublin] PHP Parse error:  syntax error, unexpected '&&' (T_BOOLEAN_AND) in /home/longway1/public_html/vateir/login/index.php on line 16
+[28-Jun-2015 13:20:24 Europe/Dublin] PHP Fatal error:  Call to a member function getID() on a non-object in /home/longway1/public_html/vateir/login/index.php on line 18
+[28-Jun-2015 13:24:08 Europe/Dublin] PHP Parse error:  syntax error, unexpected 'catch' (T_CATCH) in /home/longway1/public_html/vateir/login/index.php on line 287
+[30-Jun-2015 01:37:19 Europe/Dublin] PHP Notice:  Undefined variable: u in /home/longway1/public_html/vateir/login/index.php on line 119
+[30-Jun-2015 01:37:19 Europe/Dublin] PHP Fatal error:  Call to a member function data() on a non-object in /home/longway1/public_html/vateir/login/index.php on line 119
+[02-Jul-2015 22:44:29 Europe/Dublin] PHP Notice:  Undefined variable: email in /home/longway1/public_html/vateir/login/index.php on line 295
+[02-Jul-2015 22:51:01 Europe/Dublin] PHP Notice:  Undefined variable: email in /home/longway1/public_html/vateir/login/index.php on line 294
+[02-Jul-2015 22:51:01 Europe/Dublin] PHP Notice:  Trying to get property of non-object in /home/longway1/public_html/vateir/login/index.php on line 294
+[02-Jul-2015 22:51:01 Europe/Dublin] PHP Notice:  Trying to get property of non-object in /home/longway1/public_html/vateir/login/index.php on line 294
+[02-Jul-2015 22:52:09 Europe/Dublin] PHP Notice:  Undefined variable: email in /home/longway1/public_html/vateir/login/index.php on line 294
+[02-Jul-2015 22:52:09 Europe/Dublin] PHP Notice:  Trying to get property of non-object in /home/longway1/public_html/vateir/login/index.php on line 294
+[02-Jul-2015 22:52:09 Europe/Dublin] PHP Notice:  Trying to get property of non-object in /home/longway1/public_html/vateir/login/index.php on line 294

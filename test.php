@@ -1,4 +1,5 @@
 <?php
 require_once('includes/header.php');
- 	$rating = $user->getRealRating(1210214);
- 	echo $rating;
+$f = new Forum;
+$un = 'Josh Spinck';
+$update = $f->update(['username' => $un, 'username_clean' => strtolower($un)], [['vatsim_id', '=', 1032602]]);

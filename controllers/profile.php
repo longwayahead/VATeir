@@ -31,31 +31,39 @@ try {
 					<div class="col-md-12">
 						<table class="table table-responsive table-striped">
 							<tr>
-								<td rowspan="2">
+								<td colspan="2"  class="text-center">
 									<img src="<?php echo $avatar; ?>">
 								</td>
+							</tr>
+							<tr>
 								<td>
 									<strong>Rating:</strong>
 								</td>
 								<td>
-									<strong>Pilot Rating:</strong>
+									<?php echo '<div class="hidden-xs" style="display:inline-block;">' . $student->long . ' (</div>' . $student->short . '<div class="hidden-xs" style="display:inline-block;">)</div>';?>
 								</td>
+							</tr>
+						  <tr>
+								<td>
+									<strong>Pilot Rating:</strong>
+									
+								</td>
+								<td>
+									<?php echo $student->pratingstring; ?>
+								</td>
+							</tr>
+							<tr>
 								<td>
 									<strong>Joined:</strong>
 								</td>
 								<td>
-									<strong>Activity Status:</strong>
+									<?php echo date("d-M-Y", strtotime($student->regdate_vatsim)); ?>
+									
 								</td>
 							</tr>
-						  <tr>
+						<tr>
 							<td>
-								<?php echo $student->short;?>
-							</td>
-							<td>
-								<?php echo $student->pratingstring; ?>
-							</td>
-							<td>
-								<?php echo date("d-m-Y", strtotime($student->regdate_vatsim)); ?>
+								<strong>Activity Status:</strong>
 							</td>
 							<td>
 								<a data-toggle="tooltip" data-placement="top" data-original-title="<?php echo ($student->rating > 0) ? 'Active' : 'Inactive'; ?>">VATSIM</a>
@@ -137,7 +145,7 @@ try {
 						?>
 					</table>
 				</div>
-				<div class="panel-footer text-right" style="padding-top:4px; padding-bottom:4px;">
+				<div class="panel-footer text-right">
 					<a target="_blank" href="http://stats.vatsim.net/search_id.php?id=<?php echo $student->cid; ?>">More Stats</a>
 				</div>
 			</div>

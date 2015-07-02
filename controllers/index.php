@@ -26,15 +26,14 @@ try {
 					<tr>
 						<td><strong>Name</strong></td>
 						<td><strong>Rating</strong></td>
-						<td><strong>Pilot Rating</strong></td>
+						<td class="hidden-xs"><strong>Pilot Rating</strong></td>
 						<td><strong>Profile</strong></td>
 					</tr>
 					<?php foreach($controllers as $controller): ?>
 						
 						<tr>
 							<td><?php echo $controller->first_name . ' ' . $controller->last_name;?></td>
-							<td><?php echo $controller->long . ' (' . $controller->short . ')';?></td>
-							<td><?php echo $controller->pratingstring;?></td>
+							<td><?php echo '<div class="hidden-xs" style="display:inline-block;">' . $controller->long . ' (</div>' . $controller->short . '<div class="hidden-xs" style="display:inline-block;">)</div>';?></td>							<td class="hidden-xs"><?php echo $controller->pratingstring;?></td>
 							<td><?php echo '<a class="btn btn-xs btn-warning" href="./profile.php?id=' . $controller->cid . '"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>';?></td>
 						</tr>
 					<?php endforeach; ?>
@@ -62,15 +61,15 @@ try {
 					<tr>
 						<td><strong>Name</strong></td>
 						<td><strong>Rating</strong></td>
-						<td><strong>Pilot Rating</strong></td>
+						<td class="hidden-xs"><strong>Pilot Rating</strong></td>
 						<td><strong>Profile</strong></td>
 					</tr>
 					<?php foreach($inactives as $controller): ?>
 						
 						<tr>
 							<td><?php echo $controller->first_name . ' ' . $controller->last_name;?></td>
-							<td><?php echo $controller->long . ' (' . $controller->short . ')';?></td>
-							<td><?php echo $controller->pratingstring;?></td>
+							<td><?php echo '<div class="hidden-xs" style="display:inline-block;">' . $controller->long . ' (</div>' . $controller->short . '<div class="hidden-xs" style="display:inline-block;">)</div>';?></td>
+							<td class="hidden-xs"><?php echo $controller->pratingstring;?></td>
 							<td><?php echo '<a class="btn btn-xs btn-warning" href="./profile.php?id=' . $controller->cid . '"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>';?></td>
 						</tr>
 					<?php endforeach; ?>

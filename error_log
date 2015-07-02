@@ -5687,3 +5687,227 @@ Stack trace:
 [20-Jun-2015 01:51:49 Europe/Dublin] PHP Warning:  file(/home/longway1/public_html/vateir/datafiles/metar.txt): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/functions/functions.php on line 78
 [20-Jun-2015 01:51:49 Europe/Dublin] PHP Warning:  preg_grep() expects parameter 2 to be array, boolean given in /home/longway1/public_html/vateir/functions/functions.php on line 79
 [20-Jun-2015 01:51:49 Europe/Dublin] PHP Warning:  implode(): Invalid arguments passed in /home/longway1/public_html/vateir/functions/functions.php on line 79
+[22-Jun-2015 12:03:10 Europe/Dublin] PHP Parse error:  syntax error, unexpected '.' in /home/longway1/public_html/vateir/index.php on line 127
+[22-Jun-2015 12:03:12 Europe/Dublin] PHP Parse error:  syntax error, unexpected '.' in /home/longway1/public_html/vateir/index.php on line 127
+[22-Jun-2015 12:03:18 Europe/Dublin] PHP Fatal error:  Call to a member function format() on a non-object in /home/longway1/public_html/vateir/index.php on line 127
+[24-Jun-2015 16:54:05 Europe/Dublin] PHP Warning:  require_once(../phpBB3/common.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/test.php on line 50
+[24-Jun-2015 16:54:05 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '../phpBB3/common.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/test.php on line 50
+[24-Jun-2015 16:55:43 Europe/Dublin] PHP Parse error:  syntax error, unexpected '﻿' (T_STRING) in /home/longway1/public_html/vateir/test.php on line 29
+[24-Jun-2015 16:56:00 Europe/Dublin] PHP Parse error:  syntax error, unexpected '﻿' (T_STRING) in /home/longway1/public_html/vateir/test.php on line 29
+[24-Jun-2015 16:56:02 Europe/Dublin] PHP Parse error:  syntax error, unexpected '﻿' (T_STRING) in /home/longway1/public_html/vateir/test.php on line 29
+[24-Jun-2015 16:56:28 Europe/Dublin] PHP Parse error:  syntax error, unexpected '﻿' (T_STRING) in /home/longway1/public_html/vateir/test.php on line 29
+[24-Jun-2015 16:56:30 Europe/Dublin] PHP Parse error:  syntax error, unexpected '﻿' (T_STRING) in /home/longway1/public_html/vateir/test.php on line 29
+[24-Jun-2015 17:00:59 Europe/Dublin] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/longway1/public_html/vateir/test.php:1) in /home/longway1/public_html/vateir/forum/phpbb/session.php on line 1072
+[24-Jun-2015 17:00:59 Europe/Dublin] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/longway1/public_html/vateir/test.php:1) in /home/longway1/public_html/vateir/forum/phpbb/session.php on line 1072
+[24-Jun-2015 17:00:59 Europe/Dublin] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/longway1/public_html/vateir/test.php:1) in /home/longway1/public_html/vateir/forum/phpbb/session.php on line 1072
+[24-Jun-2015 17:00:59 Europe/Dublin] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/longway1/public_html/vateir/test.php:1) in /home/longway1/public_html/vateir/forum/phpbb/session.php on line 1072
+[24-Jun-2015 17:00:59 Europe/Dublin] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/longway1/public_html/vateir/test.php:1) in /home/longway1/public_html/vateir/forum/phpbb/session.php on line 1072
+[24-Jun-2015 17:00:59 Europe/Dublin] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/longway1/public_html/vateir/test.php:1) in /home/longway1/public_html/vateir/forum/phpbb/session.php on line 1072
+[24-Jun-2015 17:15:17 Europe/Dublin] PHP Warning:  mysql_select_db(): Access denied for user 'root'@'localhost' (using password: NO) in /home/longway1/public_html/vateir/test1.php on line 3
+[24-Jun-2015 17:15:17 Europe/Dublin] PHP Warning:  mysql_select_db(): A link to the server could not be established in /home/longway1/public_html/vateir/test1.php on line 3
+[24-Jun-2015 17:16:45 Europe/Dublin] PHP Warning:  mysqli_connect(): (28000/1045): Access denied for user 'my_user'@'localhost' (using password: YES) in /home/longway1/public_html/vateir/test1.php on line 2
+[24-Jun-2015 17:16:45 Europe/Dublin] PHP Warning:  mysqli_select_db() expects parameter 1 to be mysqli, boolean given in /home/longway1/public_html/vateir/test1.php on line 12
+[24-Jun-2015 17:23:22 Europe/Dublin] PHP Parse error:  syntax error, unexpected ';' in /home/longway1/public_html/vateir/test1.php on line 15
+[24-Jun-2015 17:29:51 Europe/Dublin] PHP Parse error:  syntax error, unexpected '﻿' (T_STRING) in /home/longway1/public_html/vateir/test.php on line 29
+[24-Jun-2015 17:30:19 Europe/Dublin] PHP Parse error:  syntax error, unexpected 'append_sid' (T_STRING) in /home/longway1/public_html/vateir/test.php on line 29
+[24-Jun-2015 17:30:24 Europe/Dublin] PHP Parse error:  syntax error, unexpected 'append_sid' (T_STRING) in /home/longway1/public_html/vateir/test.php on line 29
+[24-Jun-2015 17:30:26 Europe/Dublin] PHP Parse error:  syntax error, unexpected '﻿' (T_STRING) in /home/longway1/public_html/vateir/test.php on line 29
+[24-Jun-2015 17:31:05 Europe/Dublin] PHP Parse error:  syntax error, unexpected '﻿' (T_STRING) in /home/longway1/public_html/vateir/test.php on line 28
+[24-Jun-2015 17:31:07 Europe/Dublin] PHP Parse error:  syntax error, unexpected '﻿' (T_STRING) in /home/longway1/public_html/vateir/test.php on line 28
+[24-Jun-2015 17:31:20 Europe/Dublin] PHP Parse error:  syntax error, unexpected '﻿' (T_STRING) in /home/longway1/public_html/vateir/test.php on line 28
+[24-Jun-2015 17:31:21 Europe/Dublin] PHP Parse error:  syntax error, unexpected '﻿' (T_STRING) in /home/longway1/public_html/vateir/test.php on line 30
+[24-Jun-2015 17:33:44 Europe/Dublin] PHP Parse error:  syntax error, unexpected '﻿' (T_STRING) in /home/longway1/public_html/vateir/test.php on line 28
+[24-Jun-2015 17:35:41 Europe/Dublin] PHP Parse error:  syntax error, unexpected '﻿' (T_STRING) in /home/longway1/public_html/vateir/test.php on line 28
+[24-Jun-2015 17:35:42 Europe/Dublin] PHP Parse error:  syntax error, unexpected '﻿' (T_STRING) in /home/longway1/public_html/vateir/test.php on line 28
+[24-Jun-2015 17:35:44 Europe/Dublin] PHP Parse error:  syntax error, unexpected '﻿' (T_STRING) in /home/longway1/public_html/vateir/test.php on line 28
+[24-Jun-2015 17:56:03 Europe/Dublin] PHP Warning:  require_once(../forum/common.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/test2.php on line 5
+[24-Jun-2015 17:56:03 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '../forum/common.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/test2.php on line 5
+[24-Jun-2015 18:06:50 Europe/Dublin] PHP Parse error:  syntax error, unexpected 'unset' (T_UNSET) in /home/longway1/public_html/vateir/test.php on line 26
+[24-Jun-2015 18:12:55 Europe/Dublin] PHP Fatal error:  Call to a member function session_kill() on a non-object in /home/longway1/public_html/vateir/test.php on line 2
+[24-Jun-2015 18:21:58 Europe/Dublin] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/longway1/public_html/vateir/test.php:1) in /home/longway1/public_html/vateir/test.php on line 2
+[24-Jun-2015 18:22:04 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/core/init.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/includes/header.php on line 6
+[24-Jun-2015 18:22:04 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/core/init.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/includes/header.php on line 6
+[24-Jun-2015 18:22:04 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/core/init.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/includes/header.php on line 6
+[24-Jun-2015 18:22:04 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/core/init.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/includes/header.php on line 6
+[24-Jun-2015 18:24:23 Europe/Dublin] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/longway1/public_html/vateir/test.php:1) in /home/longway1/public_html/vateir/test.php on line 2
+[24-Jun-2015 18:40:11 Europe/Dublin] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in /home/longway1/public_html/vateir/test2.php on line 17
+[24-Jun-2015 18:44:28 Europe/Dublin] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/longway1/public_html/vateir/test2.php on line 18
+[24-Jun-2015 18:44:37 Europe/Dublin] PHP Warning:  require_once(.\/forum\/common.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/test2.php on line 24
+[24-Jun-2015 18:44:37 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '.\/forum\/common.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/test2.php on line 24
+[24-Jun-2015 18:44:43 Europe/Dublin] PHP Warning:  require_once(.\/forum\/common.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/test2.php on line 24
+[24-Jun-2015 18:44:43 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '.\/forum\/common.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/test2.php on line 24
+[24-Jun-2015 18:44:45 Europe/Dublin] PHP Fatal error:  Call to a member function get() on a non-object in /home/longway1/public_html/vateir/forum/phpbb/session.php on line 917
+[24-Jun-2015 19:18:57 Europe/Dublin] PHP Fatal error:  Class 'phpbb\session' not found in /home/longway1/public_html/vateir/forum/phpbb/user.php on line 23
+[24-Jun-2015 19:19:22 Europe/Dublin] PHP Fatal error:  Class 'phpbb\session' not found in /home/longway1/public_html/vateir/forum/phpbb/user.php on line 23
+[24-Jun-2015 19:19:28 Europe/Dublin] PHP Parse error:  syntax error, unexpected end of file in /home/longway1/public_html/vateir/forum/phpbb/session.php on line 606
+[24-Jun-2015 19:29:08 Europe/Dublin] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO), expecting function (T_FUNCTION) in /home/longway1/public_html/vateir/forum/phpbb/session.php on line 906
+[24-Jun-2015 19:57:39 Europe/Dublin] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/longway1/public_html/vateir/test.php:1) in /home/longway1/public_html/vateir/test.php on line 2
+[24-Jun-2015 20:07:13 Europe/Dublin] PHP Fatal error:  Call to a member function session_kill() on a non-object in /home/longway1/public_html/vateir/test2.php on line 7
+[25-Jun-2015 19:30:17 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/core/init.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/includes/header.php on line 6
+[25-Jun-2015 19:30:17 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/core/init.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/includes/header.php on line 6
+[25-Jun-2015 20:49:31 Europe/Dublin] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in /home/longway1/public_html/vateir/test2.php on line 17
+[25-Jun-2015 22:07:40 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:07:40 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:08:04 Europe/Dublin] PHP Warning:  require_once(../../../forum/common.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:08:04 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '../../../forum/common.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:08:20 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:08:20 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:10:20 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:10:20 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:10:24 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:10:24 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:12:13 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:12:13 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:12:18 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:12:18 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:12:34 Europe/Dublin] PHP Warning:  require_once(../public_html/vateir/forum/common.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:12:34 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '../public_html/vateir/forum/common.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:12:52 Europe/Dublin] PHP Warning:  require_once(../public_html/vateir/forum/common.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:12:52 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '../public_html/vateir/forum/common.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:12:54 Europe/Dublin] PHP Warning:  require_once(../longway1/public_html/vateir/forum/common.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:12:54 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '../longway1/public_html/vateir/forum/common.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:13:12 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:13:12 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:13:17 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:13:17 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:13:24 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:13:24 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:13:25 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:13:25 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:13:27 Europe/Dublin] PHP Warning:  require_once(../public_html/vateir/forum/common.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:13:27 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '../public_html/vateir/forum/common.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:13:45 Europe/Dublin] PHP Warning:  require_once(../public_html/vateir/forum/common.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:13:45 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '../public_html/vateir/forum/common.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:13:47 Europe/Dublin] PHP Warning:  require_once(public_html/vateir/forum/common.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:13:47 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required 'public_html/vateir/forum/common.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:13:57 Europe/Dublin] PHP Warning:  require_once(longway1/public_html/vateir/forum/common.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:13:57 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required 'longway1/public_html/vateir/forum/common.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:14:19 Europe/Dublin] PHP Warning:  require_once(longway1/public_html/vateir/forum/common.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:14:19 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required 'longway1/public_html/vateir/forum/common.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:14:21 Europe/Dublin] PHP Warning:  require_once(longway1/public_html/vateir/forum/common.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:14:21 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required 'longway1/public_html/vateir/forum/common.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:14:23 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:14:23 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:14:30 Europe/Dublin] PHP Warning:  require_once(../forum/common.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:14:30 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '../forum/common.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:14:36 Europe/Dublin] PHP Warning:  require_once(../forum/common.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:14:36 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '../forum/common.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:14:38 Europe/Dublin] PHP Warning:  require_once(../../forum/common.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:14:38 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '../../forum/common.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:14:39 Europe/Dublin] PHP Warning:  require_once(../../forum/common.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:14:39 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '../../forum/common.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:14:42 Europe/Dublin] PHP Warning:  require_once(../../forum/common.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:14:42 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '../../forum/common.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:14:43 Europe/Dublin] PHP Warning:  require_once(../../../forum/common.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:14:43 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '../../../forum/common.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:14:57 Europe/Dublin] PHP Warning:  require_once(../forum/common.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:14:57 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '../forum/common.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:14:59 Europe/Dublin] PHP Warning:  require_once(../forum/common.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:14:59 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '../forum/common.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:15:26 Europe/Dublin] PHP Warning:  require_once(../forum/common.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:15:26 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '../forum/common.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:15:27 Europe/Dublin] PHP Warning:  require_once(../forum/common.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:15:27 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '../forum/common.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:15:28 Europe/Dublin] PHP Warning:  require_once(../forum/common.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:15:28 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '../forum/common.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:16:39 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:16:39 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:17:10 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:17:10 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:17:11 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:17:11 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:17:22 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:17:22 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:17:23 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:17:23 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:17:24 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:17:24 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:17:25 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:17:25 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:17:48 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:17:48 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:18:23 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:18:23 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:18:37 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:18:37 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:18:38 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:18:38 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:18:43 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:18:43 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
+[25-Jun-2015 22:19:23 Europe/Dublin] PHP Notice:  Use of undefined constant URL - assumed 'URL' in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:19:23 Europe/Dublin] PHP Warning:  require_once(URLforum/common.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:19:23 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required 'URLforum/common.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/login.php on line 6
+[25-Jun-2015 22:48:03 Europe/Dublin] PHP Parse error:  syntax error, unexpected '}', expecting ';' in /home/longway1/public_html/vateir/forum.php on line 58
+[25-Jun-2015 22:48:13 Europe/Dublin] PHP Fatal error:  Call to a member function session_begin() on a non-object in /home/longway1/public_html/vateir/forum.php on line 31
+[25-Jun-2015 22:48:47 Europe/Dublin] PHP Fatal error:  Call to a member function session_begin() on a non-object in /home/longway1/public_html/vateir/forum.php on line 31
+[25-Jun-2015 22:50:56 Europe/Dublin] PHP Fatal error:  Call to a member function session_begin() on a non-object in /home/longway1/public_html/vateir/forum.php on line 31
+[25-Jun-2015 22:51:56 Europe/Dublin] PHP Fatal error:  Call to a member function session_begin() on a non-object in /home/longway1/public_html/vateir/forum.php on line 31
+[25-Jun-2015 22:52:02 Europe/Dublin] PHP Fatal error:  Call to a member function session_begin() on a non-object in /home/longway1/public_html/vateir/forum.php on line 31
+[25-Jun-2015 22:53:48 Europe/Dublin] PHP Fatal error:  Call to a member function session_begin() on a non-object in /home/longway1/public_html/vateir/forum.php on line 31
+[25-Jun-2015 22:55:21 Europe/Dublin] PHP Fatal error:  Call to undefined function phpbbAutoLogin() in /home/longway1/public_html/vateir/forum.php on line 6
+[25-Jun-2015 22:55:47 Europe/Dublin] PHP Fatal error:  Call to undefined function phpbbAutoLogin() in /home/longway1/public_html/vateir/forum.php on line 6
+[25-Jun-2015 22:58:58 Europe/Dublin] PHP Fatal error:  Call to undefined function phpbbAutoLogin() in /home/longway1/public_html/vateir/forum.php on line 7
+[25-Jun-2015 22:59:15 Europe/Dublin] PHP Fatal error:  Call to undefined function phpbbAutoLogin() in /home/longway1/public_html/vateir/forum.php on line 8
+[25-Jun-2015 23:00:27 Europe/Dublin] PHP Warning:  Missing argument 1 for Forum::get(), called in /home/longway1/public_html/vateir/forum.php on line 4 and defined in /home/longway1/public_html/vateir/classes/Forum.php on line 8
+[25-Jun-2015 23:00:27 Europe/Dublin] PHP Fatal error:  Call to undefined function phpbbAutoLogin() in /home/longway1/public_html/vateir/forum.php on line 8
+[25-Jun-2015 23:00:39 Europe/Dublin] PHP Warning:  Missing argument 1 for Forum::get(), called in /home/longway1/public_html/vateir/forum.php on line 4 and defined in /home/longway1/public_html/vateir/classes/Forum.php on line 8
+[25-Jun-2015 23:00:39 Europe/Dublin] PHP Fatal error:  Call to undefined function phpbbAutoLogin() in /home/longway1/public_html/vateir/forum.php on line 8
+[25-Jun-2015 23:00:40 Europe/Dublin] PHP Fatal error:  Call to undefined function phpbbAutoLogin() in /home/longway1/public_html/vateir/forum.php on line 8
+[25-Jun-2015 23:00:50 Europe/Dublin] PHP Fatal error:  Call to undefined function phpbbAutoLogin() in /home/longway1/public_html/vateir/forum.php on line 8
+[25-Jun-2015 23:01:16 Europe/Dublin] PHP Fatal error:  Call to undefined function phpbbAutoLogin() in /home/longway1/public_html/vateir/forum.php on line 8
+[25-Jun-2015 23:10:42 Europe/Dublin] PHP Fatal error:  Call to undefined function append_sid() in /home/longway1/public_html/vateir/forum.php on line 29
+[25-Jun-2015 23:10:51 Europe/Dublin] PHP Fatal error:  Call to undefined function append_sid() in /home/longway1/public_html/vateir/forum.php on line 29
+[25-Jun-2015 23:10:58 Europe/Dublin] PHP Fatal error:  Call to undefined function append_sid() in /home/longway1/public_html/vateir/forum.php on line 29
+[25-Jun-2015 23:11:36 Europe/Dublin] PHP Fatal error:  Call to undefined function append_sid() in /home/longway1/public_html/vateir/forum.php on line 30
+[25-Jun-2015 23:12:38 Europe/Dublin] PHP Fatal error:  Call to undefined function append_sid() in /home/longway1/public_html/vateir/forum.php on line 30
+[25-Jun-2015 23:12:44 Europe/Dublin] PHP Fatal error:  Call to undefined function append_sid() in /home/longway1/public_html/vateir/forum.php on line 30
+[25-Jun-2015 23:13:20 Europe/Dublin] PHP Fatal error:  Call to undefined function append_sid() in /home/longway1/public_html/vateir/forum.php on line 30
+[25-Jun-2015 23:13:34 Europe/Dublin] PHP Fatal error:  Call to undefined function append_sid() in /home/longway1/public_html/vateir/forum.php on line 30
+[25-Jun-2015 23:13:46 Europe/Dublin] PHP Fatal error:  Call to undefined function append_sid() in /home/longway1/public_html/vateir/forum.php on line 30
+[25-Jun-2015 23:14:05 Europe/Dublin] PHP Fatal error:  Call to undefined function append_sid() in /home/longway1/public_html/vateir/forum.php on line 30
+[25-Jun-2015 23:14:40 Europe/Dublin] PHP Fatal error:  Class 'Input' not found in /home/longway1/public_html/vateir/login.php on line 7
+[25-Jun-2015 23:14:49 Europe/Dublin] PHP Fatal error:  Class 'Input' not found in /home/longway1/public_html/vateir/login.php on line 7
+[25-Jun-2015 23:17:21 Europe/Dublin] PHP Fatal error:  Call to undefined function append_sid() in /home/longway1/public_html/vateir/forum.php on line 30
+[25-Jun-2015 23:18:16 Europe/Dublin] PHP Fatal error:  Call to undefined function append_sid() in /home/longway1/public_html/vateir/forum.php on line 30
+[25-Jun-2015 23:18:43 Europe/Dublin] PHP Fatal error:  Call to undefined function append_sid() in /home/longway1/public_html/vateir/forum.php on line 30
+[25-Jun-2015 23:19:10 Europe/Dublin] PHP Fatal error:  Call to undefined function append_sid() in /home/longway1/public_html/vateir/forum.php on line 30
+[25-Jun-2015 23:19:44 Europe/Dublin] PHP Fatal error:  Call to undefined function append_sid() in /home/longway1/public_html/vateir/forum.php on line 30
+[25-Jun-2015 23:20:21 Europe/Dublin] PHP Fatal error:  Call to undefined function append_sid() in /home/longway1/public_html/vateir/forum.php on line 30
+[26-Jun-2015 12:56:47 Europe/Dublin] PHP Fatal error:  Uncaught exception 'Exception' with message 'There was a problem creating an account.' in /home/longway1/public_html/vateir/classes/User.php:63
+Stack trace:
+#0 /home/longway1/public_html/vateir/test.php(16): User->create(Array)
+#1 {main}
+  thrown in /home/longway1/public_html/vateir/classes/User.php on line 63
+[26-Jun-2015 12:57:06 Europe/Dublin] PHP Fatal error:  Uncaught exception 'Exception' with message 'There was a problem creating an account.' in /home/longway1/public_html/vateir/classes/User.php:63
+Stack trace:
+#0 /home/longway1/public_html/vateir/test.php(16): User->create(Array)
+#1 {main}
+  thrown in /home/longway1/public_html/vateir/classes/User.php on line 63
+[26-Jun-2015 12:58:44 Europe/Dublin] PHP Fatal error:  Uncaught exception 'Exception' with message 'There was a problem creating an account.' in /home/longway1/public_html/vateir/classes/User.php:63
+Stack trace:
+#0 /home/longway1/public_html/vateir/test.php(6): User->create(Array)
+#1 {main}
+  thrown in /home/longway1/public_html/vateir/classes/User.php on line 63
+[26-Jun-2015 12:59:34 Europe/Dublin] PHP Fatal error:  Cannot use object of type User as array in /home/longway1/public_html/vateir/test.php on line 4
+[26-Jun-2015 13:00:03 Europe/Dublin] PHP Fatal error:  Uncaught exception 'Exception' with message 'There was a problem creating an account.' in /home/longway1/public_html/vateir/classes/User.php:63
+Stack trace:
+#0 /home/longway1/public_html/vateir/test.php(29): User->create(Array)
+#1 {main}
+  thrown in /home/longway1/public_html/vateir/classes/User.php on line 63
+[26-Jun-2015 15:54:15 Europe/Dublin] PHP Fatal error:  Uncaught exception 'Exception' with message 'There was a problem creating an account.' in /home/longway1/public_html/vateir/classes/User.php:63
+Stack trace:
+#0 /home/longway1/public_html/vateir/test.php(17): User->create(Array)
+#1 {main}
+  thrown in /home/longway1/public_html/vateir/classes/User.php on line 63
+[26-Jun-2015 22:39:26 Europe/Dublin] PHP Fatal error:  Uncaught exception 'Exception' with message 'There was a problem creating an account.' in /home/longway1/public_html/vateir/classes/User.php:63
+Stack trace:
+#0 /home/longway1/public_html/vateir/test.php(17): User->create(Array)
+#1 {main}
+  thrown in /home/longway1/public_html/vateir/classes/User.php on line 63
+[26-Jun-2015 23:09:46 Europe/Dublin] PHP Parse error:  syntax error, unexpected '<' in /home/longway1/public_html/vateir/privacy.php on line 3
+[27-Jun-2015 00:48:13 Europe/Dublin] PHP Fatal error:  Uncaught exception 'Exception' with message 'There was a problem creating an account.' in /home/longway1/public_html/vateir/classes/User.php:63
+Stack trace:
+#0 /home/longway1/public_html/vateir/test.php(17): User->create(Array)
+#1 {main}
+  thrown in /home/longway1/public_html/vateir/classes/User.php on line 63
+[02-Jul-2015 23:49:47 Europe/Dublin] PHP Parse error:  syntax error, unexpected end of file in /home/longway1/public_html/vateir/index.php on line 136

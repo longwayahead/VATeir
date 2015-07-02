@@ -12,23 +12,7 @@
     <script src=<?php echo BASE_URL . "datetimepicker/moment.js";?>></script>
     <script src=<?php echo BASE_URL . "datetimepicker/bootstrap-datetimepicker.min.js";?>></script>
     
-<?php if(isset($user) && $user->isLoggedIn() && $user->data()->id == 937032) {
-    ?>
-        <script>
-        function pulse() {
-            $('.blink').fadeIn(300);
-            $('.blink').fadeOut(500);
-        }
-        setInterval(pulse, 2000);
-		</script>
-        <?php
-        }
-        ?>
-        <script>
-            jQuery(document).ready(function() {
-              jQuery("time.timeago").timeago();
-            });
-        </script>
+
         
     </div>
   </body>

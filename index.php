@@ -18,7 +18,7 @@ require_once("includes/header.php");
 	}
 </style>
 <?php
-$greeting = ['Hi there.', 'Fáilte.', 'Hello.', 'Dia dhuit.', 'Welcome.', 'Conas atá cúrsaí?'];
+$greeting = ['Hi there.', 'Fáilte.', 'Hello.', 'Dia dhuit.', 'Welcome.'];
 
 ?>
 <div class="col-md-8 well">
@@ -33,28 +33,17 @@ if($random == 1) {
 ?>
 <br>
 <br>
-<p>Tá an-fáilte romhat go suíomh lárionad fíorúil urlámhas na hÉireann.</p>
-
-<p>Ar an gcéad dul síos agus más ball den ghrúpa VATéir thú, sínigh isteach sa suíomh chun úsáid a bhaint as na h-áiseanna atá ar fáil duit mar rialatheoir.</p>
-
-<p>É sin ráite, más pílóta amháin thú, tabhar sreac-fhéachaint ar na h-áiseanna uile atá ar fáil duit ar an suíomh agus ag eitilt in Eirinn atá tú.</p>
-
-<p>Tá súil againn go mbaineann tú úsáid as na h-áiseanna atá cuirthe ar fáil duit.</p>
-
-<p>Le gach dea-ghuí, an fhoireann VATéir</p>
-
-
-
-
-
-
+	<p>Ready for content.</p>
 </div>
+
+
 <div class="col-md-4 well">
 	<div class="panel panel-primary">
 		<div class="panel-heading">
 				<h3 class="panel-title">VATeir Live</h3>
 			</div>
 			<div class="panel-body">
+
 		<ul class="nav nav-tabs">
 			<li class="active">
 				<a href="#atc" data-toggle="tab" aria-expanded="true">
@@ -171,7 +160,7 @@ if($random == 1) {
 							
 								echo '<tr>
 										<td>Callsign</td>
-										<td>Name</td>
+										<td class="hidden-xs">Name</td>
 										<td>From</td>
 										<td>To</td>
 									</tr>';
@@ -185,7 +174,7 @@ if($random == 1) {
 									}
 									echo '<tr>
 											<td>
-												<a tabindex="0" data-container="body" data-trigger="focus" data-toggle="popover" data-placement="left" data-html="true" title="Flight Details" data-content="
+												<a tabindex="0" data-container="body" data-trigger="focus" data-toggle="popover" data-placement="bottom" data-html="true" title="Flight Details" data-content="
 												<strong>Route: </strong>' . $pilot->route . '<br>
 												<strong>Aircraft: </strong>' . $pilot->aircraft . '<br>
 												<strong>Altitude: </strong>' . number_format($pilot->altitude) . ' ft (' . $planAlt . ')<br>
@@ -193,7 +182,7 @@ if($random == 1) {
 												<a target=\'_blank\' href=\'' .htmlentities($pilot->gcmap).'\'><img src=\'' . htmlentities($pilot->gcmap) . '\' class=\'img-responsive\'></a>	
 											" data-original-title="" title="" aria-describedby="popover148301" style="cursor:pointer">' . $pilot->callsign . '</a>
 											</td>
-											<td>' . $pilot->name . '</td>
+											<td class="hidden-xs">' . $pilot->name . '</td>
 											<td>' . $pilot->origin . '</td>
 											<td>' . $pilot->destination . '</td>
 										</tr>';
@@ -215,7 +204,7 @@ if($random == 1) {
 							
 								echo '<tr>
 										<td>Callsign</td>
-										<td>Name</td>
+										<td class="hidden-xs">Name</td>
 										<td>From</td>
 										<td>To</td>
 									</tr>';
@@ -229,7 +218,7 @@ if($random == 1) {
 									//<strong>Map: </strong><a target=\'_blank\' href=\''.htmlentities($pilot->gcmap).'\'>Click</a><br>
 									echo '<tr>
 											<td>
-												<a tabindex="0" data-container="body" data-trigger="focus" data-toggle="popover" data-placement="left" data-html="true" title="Flight Details" data-content="
+												<a tabindex="0" data-container="body" data-trigger="focus" data-toggle="popover" data-placement="bottom" data-html="true" title="Flight Details" data-content="
 												<strong>Route: </strong>' . $pilot->route . '<br>
 												<strong>Aircraft: </strong>' . $pilot->aircraft . '<br>
 												<strong>Altitude: </strong>' . number_format($pilot->altitude) . ' ft (' . $planAlt . ')<br>
@@ -238,7 +227,7 @@ if($random == 1) {
 												<a target=\'_blank\' href=\'' .htmlentities($pilot->gcmap).'\'><img src=\'' . htmlentities($pilot->gcmap) . '\' class=\'img-responsive\'></a>		
 											" data-original-title="" title="" aria-describedby="popover148301" style="cursor:pointer">' . $pilot->callsign . '</a>
 											</td>
-											<td>' . $pilot->name . '</td>
+											<td class="hidden-xs">' . $pilot->name . '</td>
 											<td>' . $pilot->origin . '</td>
 											<td>' . $pilot->destination . '</td>
 										</tr>';

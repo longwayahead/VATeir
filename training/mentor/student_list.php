@@ -6,19 +6,13 @@ require_once("../includes/header.php");
 
 <?php
 echo '<br><div class="col-md-10 col-md-offset-1">
-			<div class="pull-right">';
-				if(!isset($_GET['a']) || ($_GET['a'] != 1)) {
-					echo '<a href="student_list.php?a=1">By List</a> <br>';
-				} else {
-					echo '<a href="student_list.php">By Program</a>';
-				}
-		echo '	</div>
+
 	<div class="row">
-  <div class="col-md-6" style="margin-bottom:4px;">
+  <div class="col-md-9 col-sm-10" style="margin-bottom:4px;">
   <form action="student_list.php" method="get">
   
     <div class="input-group">
-      <input type="text" class="form-control" name="search" autocomplete="off" value="' . Input::get('search') . '" placeholder="Search name/CID/email" style="padding-left:10px; padding-right:10px;">
+      <input type="text" class="form-control" name="search" autocomplete="off" value="' . Input::get('search') . '" placeholder="Search..." style="padding-left:10px; padding-right:10px;">
       <span class="input-group-btn">
       <input type="hidden" name="a" value="1">
         <input class="btn btn-primary" type="submit" value="Go!">
@@ -26,7 +20,18 @@ echo '<br><div class="col-md-10 col-md-offset-1">
       </span>
     </div><!-- /input-group -->
     </form>
-  </div><!-- /.col-lg-6 -->
+  </div><!-- /.col-lg-9 -->
+  <div class="col-md-3 col-sm-2">
+
+			<div class="pull-right">';
+				if(!isset($_GET['a']) || ($_GET['a'] != 1)) {
+					echo '<a href="student_list.php?a=1">By List</a> <br>';
+				} else {
+					echo '<a href="student_list.php">By Program</a>';
+				}
+		echo '	</div>
+
+  </div>
 </div><!-- /.row -->';
 if(!isset($_GET['c']) && (!isset($_GET['a'])) || isset($_GET['c'])) {
 	try {

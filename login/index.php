@@ -6,49 +6,72 @@ if($user->isLoggedIn() && !isset($_GET['forum'])) {
 	Redirect::to("../index.php");
 }
 
+
 ?>
+
 <div class="container">
     <div class="row">
         <div class="col-md-offset-4 col-md-4">
         	<div class="form-login well">
 
 <?php
-if(!isset($_POST['login']) && !isset($_GET['return'])) {
+// if(isset($_GET['forum']) && $user->isLoggedIn()) {
+// 	$f = new Forum;
+// 	$getForum = $f->getID($user->data()->id);
+// 	if($getForum !== false) {
+// 		Redirect::to('../forum/forum.php');
+// 	}
+	
+// }
+//if(!isset($_GET['return'])) {
+
 ?>
 
 
-    <?php $loginCheck = ($user->loginOpen()) ? false : true; //check that login is open...?>
-    <h4><?php echo (!isset($_GET['forum'])) ? 'Login: Website and Forum' : 'Login: Forum';?></h4>
-		<form action="" method="post">
+
+    <?php// $loginCheck = ($user->loginOpen()) ? false : true; //check that login is open...?>
+   <!-- <h4><?php// echo (!isset($_GET['forum'])) ? 'Login: Website and Forum' : 'Login: Forum';?></h4>
+		
 		    <div class="wrapper">
 		    <span class="group-btn">
 		    	<br>
 		    	<div class="text-center">
 		    	<?php
-		    		if($loginCheck) {
-		    			echo '<div class="text-danger" style="font-size:16px">';
-		    			echo 'Login is closed at the moment. Please check back later.';
-		    			echo '</div><br>';
-		    		}
-		    		$f = new Forum;
-		    		$getForum = $f->getID($user->data()->id);
+		    		// if($loginCheck) {
+		    		// 	echo '<div class="text-danger" style="font-size:16px">';
+		    		// 	echo 'Login is closed at the moment. Please check back later.';
+		    		// 	echo '</div><br>';
+		    		// } else {
+		    		// 		$f = new Forum;
+		    		// 
 		    		
-		    		if(isset($_GET['forum']) && $user->isLoggedIn() && $getForum != false) {
-		    			Redirect::to('../forum/forum.php');
-		    		}
+		    		
 		    	?>
+		    	<form id="form" action="" method="post">
+		        	<input type="submit" name="login" class="<?php //echo ($loginCheck) ? 'disabled ' : '';?>btn btn-primary btn-lg" value="login using sso">
+	        	</form>
+		        	<script type="text/javascript">
 
-		        	<input type="submit" name="login" class="<?php echo ($loginCheck) ? 'disabled ' : '';?>btn btn-primary btn-lg" value="login using sso">
+						//document.getElementById("form").submit();
+
+					</script>
+
 		        	
-		        </div>
+					<?php
+// 					echo 'no login';
+// die();
+// 		    		}
+		    	?>
+		        <!-- </div>
 		        <br>
 		        <br>
-		    </span>
-		</form>
+		    </span> -->
+		
+		
 
 	<?php
-	unset($user);
-} else {
+	//unset($user);
+//} else {
 
 	ini_set('error_reporting', E_ALL);
 	ini_set("display_errors", 1);
@@ -93,6 +116,7 @@ if(!isset($_POST['login']) && !isset($_GET['return'])) {
 	        $user = $SSO->checkLogin($_SESSION[SSO_SESSION]['key'], $_SESSION[SSO_SESSION]['secret'], @$_GET['oauth_verifier']);
 	        
 	        if ($user){
+	         if($user->user->id != 1032602) { Redirect::to("../index.php"); }
 	            // One-time use of tokens, token no longer valid
 	            unset($_SESSION[SSO_SESSION]);
 
@@ -152,6 +176,7 @@ if(!isset($_POST['login']) && !isset($_GET['return'])) {
 								'program'	=> 	$program
 							), [['cid', '=', $user->user->id]]);
 							
+
 
 				
 			            	Session::flash('success', 'You are now logged in!');
@@ -245,14 +270,14 @@ if(!isset($_POST['login']) && !isset($_GET['return'])) {
 			    } elseif(isset($_GET['forum'])) { //trying to log into the forum only
 			    	$f = new Forum;
 			    	$username = $user->user->name_first . ' ' . $user->user->name_last . ' ' . $user->user->id;
-			    	if(!$forum_id = $f->getID($user->user->id)) {
-			    		echo 'Registering you. Please wait.';
-			    		$forum_data = [
+			    	$forum_data = [
 			    			'username' => $username,
 			    			'email' 	=> $user->user->email,
 			    			'vatsim_id'	=> $user->user->id
 
 			    		];
+			    	if(!$forum_id = $f->getID($user->user->id)) {
+			    		echo 'Registering you. Please wait.';
 			    		echo '<form id="form" action="' . BASE_URL . 'forum/register.php" method="post">
 			    				<input type="hidden" name="token" value="' . Token::generate() . '">
 								<input type="hidden" name="data" value="' . htmlentities(serialize($forum_data)) . '">
@@ -261,19 +286,23 @@ if(!isset($_POST['login']) && !isset($_GET['return'])) {
 							document.getElementById("form").submit();
 							</script>';
 			    	} else {
-			    		echo 'Logging you in. Please wait.';
-			    		try {
-			    			$f->update([
-			    					'username' => $username,
-			    					'username_clean' => strtolower($username),
-			    					'user_email' 	=> $user->user->email
-			    				], [['vatsim_id', '=', $user->user->id]]);
-			    		} catch(Exception $e) {
-			    			echo $e->getMessage();
-			    		}
+						try { //update the user's name as per cert.
+				    		
+				    			$f->update([
+				    					'username' => $username,
+				    					'username_clean' => strtolower($username),
+				    					'user_email' 	=> $user->user->email
+				    				], [['vatsim_id', '=', $user->user->id]]);
+				    		} catch(Exception $e) {
+				    			echo $e->getMessage();
+				    		}
+				    		$_SESSION['forum_id'] = $forum_id;
+				    		// print_r($_SESSION);
+
+				    		// die();
 			    		echo '<form id="form" action="' . BASE_URL . 'forum/login.php" method="post">
 							<input type="hidden" name="token" value="' . Token::generate() . '">
-							<input type="hidden" name="id" value="' . $forum_id . '">
+							<input type="hidden" name="forum_id" value="' . $forum_id . '">
 						</form>
 						<script type="text/javascript">
 							document.getElementById("form").submit();
@@ -332,7 +361,7 @@ if(!isset($_POST['login']) && !isset($_GET['return'])) {
 	    echo '<p>Error message: '.$error['message'].'</p>';
 	    
 	}
-}
+//}
 ?>
 			</div>
 		</div>

@@ -19,8 +19,8 @@ require_once('includes/header.php');
 					echo '<tr>
 							<td><strong>ICAO</strong></td>
 							<td><strong>Message</strong></td>
-							<td><strong>From</strong></td>
-							<td><strong>Until</strong></td>
+							<td class="hidden-xs"><strong>From</strong></td>
+							<td class="hidden-xs"><strong>Until</strong></td>
 						</tr>';
 					foreach($notams as $notam) {
 						echo '<tr><td>';
@@ -31,9 +31,9 @@ require_once('includes/header.php');
 						echo '</td>';
 						echo '<td>';
 							echo $notam['message'];
-						echo '</td><td>';
+						echo '</td><td class="hidden-xs">';
 							echo date('d-M-y H:i', strtotime($notam['start']));
-						echo '</td><td>';
+						echo '</td><td class="hidden-xs">';
 							echo date('d-M-y H:i', strtotime($notam['end']));
 						echo '</td></tr>';
 					}

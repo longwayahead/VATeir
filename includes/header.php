@@ -32,12 +32,6 @@ $user = new User;
   </head>
   <body>
 <div class="container">
-<?php if($user->isLoggedIn() && $user->data()->id == 9370032) {
-  ?>
-<div style="color:red; font-size:100px;" class="text-center blink">GO FUCK YOURSELF STEPHEN DONNELLY</div>
-<?php
-}
-?>
 <div class="masthead">
 	<h3 class="text-muted" style="display:inline;">
     <a href="<?php echo BASE_URL;?>">
@@ -90,11 +84,11 @@ switch($directory) {
       <li <?php echo ($directory == 5) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "controllers"; ?>>Controllers</a></li>
      <li <?php echo ($directory == 6) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "about"; ?>>About Us</a></li>
       <li>
-          <?php if($user->isLoggedIn()) { ?>
-              <a target="_blank" href="<?php echo BASE_URL . 'forum/forum.php'?>">Forum</a>
-            <?php } else { ?>
+          <?php //if($user->isLoggedIn()) { ?>
+              <!-- <a target="_blank" href="<?php echo BASE_URL . 'login/index.php?forum'?>">Forum</a> -->
+            <?php //} else { ?>
               <a target="_blank" href="<?php echo BASE_URL . 'forum/'?>">Forum</a>
-           <?php } ?>
+           <?php //} ?>
       </li>
       <?php
       if($user->isLoggedIn() && $user->hasPermission('admin')) {

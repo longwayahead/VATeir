@@ -1,15 +1,12 @@
 <?php
-if($_SESSION['token'] == $_GET['token']) {
-        $id = $_POST['id'];
-
-
+session_start();
+if(($_SESSION['token'] == $_POST['token']) && ($_SESSION['forum_id'] == $_POST['forum_id'])) {
+    $id = ($_POST['forum_id']);
 
     define('IN_PHPBB', true);
     $phpbb_root_path = './';    //Path to forum
     $phpEx = substr(strrchr(__FILE__, '.'), 1);
     include($phpbb_root_path . 'common.' . $phpEx);
-
-
 
     function phpbbAutoLogin($id) //User id from phpbb users table
     {
@@ -35,5 +32,7 @@ if($_SESSION['token'] == $_GET['token']) {
     echo '<pre>';
     print_r($user);
     echo '</pre>';
+} else {
+    header("Location: ../index.php");
 }
 ?>
