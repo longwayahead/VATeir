@@ -14,64 +14,27 @@ if($user->isLoggedIn() && !isset($_GET['forum'])) {
         <div class="col-md-offset-4 col-md-4">
         	<div class="form-login well">
 
-<?php
-// if(isset($_GET['forum']) && $user->isLoggedIn()) {
-// 	$f = new Forum;
-// 	$getForum = $f->getID($user->data()->id);
-// 	if($getForum !== false) {
-// 		Redirect::to('../forum/forum.php');
-// 	}
-	
-// }
-//if(!isset($_GET['return'])) {
+    <?php $loginCheck = ($user->loginOpen()) ? false : true; //check that login is open...
+		if($loginCheck == true && (!isset($_GET['or']) || !isset($_GET['return']))) {
+			echo '<div class="panel panel-danger">
+					<div class="panel-heading">
+						<h3 class="panel-title">Login status</h3>
+					</div>
+					<div class="panel-body text-center">
+						
+							Login is closed at the moment.<br>Please check back later.
+						
+					</div>
+				</div>
 
-?>
-
-
-
-    <?php// $loginCheck = ($user->loginOpen()) ? false : true; //check that login is open...?>
-   <!-- <h4><?php// echo (!isset($_GET['forum'])) ? 'Login: Website and Forum' : 'Login: Forum';?></h4>
+			<br>';
+			die();
+		}
 		
-		    <div class="wrapper">
-		    <span class="group-btn">
-		    	<br>
-		    	<div class="text-center">
-		    	<?php
-		    		// if($loginCheck) {
-		    		// 	echo '<div class="text-danger" style="font-size:16px">';
-		    		// 	echo 'Login is closed at the moment. Please check back later.';
-		    		// 	echo '</div><br>';
-		    		// } else {
-		    		// 		$f = new Forum;
-		    		// 
 		    		
 		    		
-		    	?>
-		    	<form id="form" action="" method="post">
-		        	<input type="submit" name="login" class="<?php //echo ($loginCheck) ? 'disabled ' : '';?>btn btn-primary btn-lg" value="login using sso">
-	        	</form>
-		        	<script type="text/javascript">
 
-						//document.getElementById("form").submit();
-
-					</script>
-
-		        	
-					<?php
-// 					echo 'no login';
-// die();
-// 		    		}
-		    	?>
-		        <!-- </div>
-		        <br>
-		        <br>
-		    </span> -->
-		
-		
-
-	<?php
-	//unset($user);
-//} else {
+	unset($user);
 
 	ini_set('error_reporting', E_ALL);
 	ini_set("display_errors", 1);
@@ -116,7 +79,11 @@ if($user->isLoggedIn() && !isset($_GET['forum'])) {
 	        $user = $SSO->checkLogin($_SESSION[SSO_SESSION]['key'], $_SESSION[SSO_SESSION]['secret'], @$_GET['oauth_verifier']);
 	        
 	        if ($user){
-	         if($user->user->id != 1032602) { Redirect::to("../index.php"); }
+	       		$u = new User;
+	        	if($loginCheck == true && $user->user->id != 1032602) {
+	        		Session::flash('error', 'Sorry, login to VATeir is closed at the moment.');
+	        		Redirect::to("../index.php");
+	        	}
 	            // One-time use of tokens, token no longer valid
 	            unset($_SESSION[SSO_SESSION]);
 
@@ -131,12 +98,12 @@ if($user->isLoggedIn() && !isset($_GET['forum'])) {
 			            // echo '</pre>';
 			            // die();
 			            //See if the user is a vateir member and try to log them in
-			            $u = new User;
+			            
 			            $t = new Training;
 			            try {
 			            	$siteLogin = $u->login($user->user->id);
 			        	} catch(Exception $l) {
-			        		echo $e->getMessage();
+			        		echo $l->getMessage();
 			        	}
 			            if($siteLogin) {
 			            	if($user->user->rating->id > 7) { //get the CID's real rating (instead of SUP/ADM/INS etc)
