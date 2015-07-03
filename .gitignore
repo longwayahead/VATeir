@@ -54,3 +54,10 @@ datafiles/out.json
 *.xml
 *.xml
 email/mail.php
+about/error_log
+login/error_log
+training/mentor/error_log
+*.txt
+*.json
+*.xml
+training/mentor/error_log

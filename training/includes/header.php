@@ -25,8 +25,8 @@ $s = new Sessions;
 		My Training
 			<li class="active"><a href="<?php echo BASE_URL . 'training/'; ?>">Home</a></li>
 			<li><a href="<?php echo BASE_URL . 'training/history.php'; ?>">History</a></li>
-			<li><a href="<?php echo BASE_URL . 'training/sessions.php'; ?>">Sessions <?php echo ($ses = $s->countStudent($user->data()->id) > 0) ? '<span class="badge danger">'.$ses.'</span>' : '';?></a></li>
-			<li><a href="<?php echo BASE_URL . 'training/availability.php'; ?>">Availability</a></li>
+			<li><a href="<?php echo BASE_URL . 'training/sessions.php'; ?>">Sessions <?php echo ($sesh = $s->countSessions($user->data()->id)) ? '<span class="badge danger">'. $sesh .'</span>' : '';?></a></li>
+			<li><a href="<?php echo BASE_URL . 'training/availability.php'; ?>">Availability <?php echo ($avails = $s->countAvailabilities($user->data()->id)) ? '<span class="badge danger">'. $avails .'</span>' : '';?></a></li>
 			<li><a href="<?php echo BASE_URL . 'training/validations.php'; ?>">Validations</a></li>
 			<li><a href="<?php echo BASE_URL . 'training/token.php'; ?>">Exam Tokens</a></li>
 			
@@ -40,7 +40,7 @@ $s = new Sessions;
 			<li>
 				<a href="<?php echo BASE_URL . 'training/mentor/'; ?>">
 					Home
-					<span class="badge"></span>
+					<?php echo ($ment = $s->countMentor($user->data()->id)) ? '<span class="badge danger">'. $ment .'</span>' : '';?>
 				</a>
 			</li>
 			<li><a href="<?php echo BASE_URL . 'training/mentor/student_list.php'; ?>">Student List</a></li>

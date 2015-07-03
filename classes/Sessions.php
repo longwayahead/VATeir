@@ -52,7 +52,7 @@ class Sessions {
 										programs.id, programs.permissions as program_permissions, programs.name as program_name, programs.ident, programs.sort AS program_sort,
 										position_list.id, position_list.airport_list_id, position_list.callsign, position_list.freq, position_list.name as position_name,
 										card_types.id, card_types.name as session_name,
-										controllers.id, controllers.first_name AS sfname, controllers.last_name AS slname,
+										controllers.id, controllers.email, controllers.first_name AS sfname, controllers.last_name AS slname,
 										control.id, control.first_name AS mfname, control.last_name AS mlname
 									FROM sessions
 									LEFT JOIN report_types on report_types.id = sessions.report_type
@@ -78,8 +78,42 @@ class Sessions {
 		return true;
 	}
 
-	public function countStudent($cid) {
+	public function max() {
+		$max = $this->_db->query("SELECT MAX(id) as session_id FROM sessions");
+		if($max->count()) {
+			return $max->first()->session_id;
+		}
+	}
+
+	public function countSessions($cid) {
 		return $this->_db->query("SELECT * FROM sessions WHERE student = ? AND sessions.start >= CURDATE()", [[$cid]])->count();
+	}
+
+	public function countAvailabilities($cid) {
+		return $this->_db->query("SELECT * FROM availability WHERE cid = ? AND time_until >= CURDATE() AND deleted = 0", [[$cid]])->count();
+	}
+
+	public function countMentor($cid) {
+		$count = $this->_db->query("SELECT COUNT(id) as session,
+			(	
+				SELECT COUNT(id)
+					FROM sessions 
+					WHERE mentor = ? 
+						AND finish <= CURDATE()
+						AND report_id = null
+			) as without,
+			(
+				SELECT COUNT(id)
+					FROM availability
+					WHERE date >= CURDATE()
+						AND deleted = 0
+			) as available
+		FROM sessions 
+		WHERE mentor = ? 
+			AND start >= CURDATE()", [[$cid, $cid]]);
+		if($count->count()) {
+			return $count->first()->session + $count->first()->without + $count->first()->available;
+		}
 	}
 
 }

@@ -48,7 +48,7 @@ $s = new Sessions;
 						</tr>
 					
 						<?php foreach($sessions as $session): ?>
-							<tr>
+							<tr id="s<?php echo $session->session_id; ?>">
 								<td>
 									<?php echo $session->mfname . ' ' . $session->mlname; ?> 
 								</td>
@@ -102,7 +102,7 @@ $s = new Sessions;
 					if(!empty($sess)) {
 					?>
 					<table class="table table-condensed table-striped">
-						<tr>
+						<tr id="s<?php echo $sess->session_id; ?>">
 							<td>
 								<strong>Mentor</strong>
 							</td>

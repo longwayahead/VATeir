@@ -14,8 +14,8 @@ if($user->isLoggedIn() && !isset($_GET['forum'])) {
         <div class="col-md-offset-4 col-md-4">
         	<div class="form-login well">
 
-    <?php $loginCheck = ($user->loginOpen()) ? false : true; //check that login is open...
-		if($loginCheck == true && (!isset($_GET['or']) || !isset($_GET['return']))) {
+    <?php $loginCheck = ($user->loginOpen()) ? false : true; //check that login is closed...
+		if($loginCheck == true && (!isset($_GET['or']) && !isset($_GET['return']))) {
 			echo '<div class="panel panel-danger">
 					<div class="panel-heading">
 						<h3 class="panel-title">Login status</h3>
@@ -80,7 +80,12 @@ if($user->isLoggedIn() && !isset($_GET['forum'])) {
 	        
 	        if ($user){
 	       		$u = new User;
-	        	if($loginCheck == true && $user->user->id != 1032602) {
+	       		$allowed = [
+	       					1032602,
+	       					931070, //Martin
+	       					1031024 //Adam,
+	       				];
+	        	if($loginCheck == true && !in_array($user->user->id, $allowed)) {
 	        		Session::flash('error', 'Sorry, login to VATeir is closed at the moment.');
 	        		Redirect::to("../index.php");
 	        	}

@@ -37,6 +37,14 @@ try {
 							</tr>
 							<tr>
 								<td>
+									<strong>CID:</strong>
+								</td>
+								<td>
+									<?php echo $student->cid; ?>
+								</td>
+							</tr>
+							<tr>
+								<td>
 									<strong>Rating:</strong>
 								</td>
 								<td>

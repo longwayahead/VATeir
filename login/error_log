@@ -1,35 +1,7 @@
-[25-Jun-2015 22:03:06 Europe/Dublin] PHP Warning:  require_once(./forum/common.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/login/index.php on line 151
-[25-Jun-2015 22:03:06 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required './forum/common.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/login/index.php on line 151
-[25-Jun-2015 22:03:32 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
-[25-Jun-2015 22:03:32 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
-[25-Jun-2015 22:04:09 Europe/Dublin] PHP Parse error:  syntax error, unexpected ''Y-m-d' (T_ENCAPSED_AND_WHITESPACE), expecting ')' in /home/longway1/public_html/vateir/login/index.php on line 217
-[25-Jun-2015 22:04:20 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
-[25-Jun-2015 22:04:20 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
-[25-Jun-2015 22:05:28 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
-[25-Jun-2015 22:05:28 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
-[25-Jun-2015 22:06:52 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
-[25-Jun-2015 22:06:52 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
-[26-Jun-2015 13:14:05 Europe/Dublin] PHP Parse error:  syntax error, unexpected '$results' (T_VARIABLE) in /home/longway1/public_html/vateir/classes/Forum.php on line 13
-[26-Jun-2015 13:17:42 Europe/Dublin] PHP Parse error:  syntax error, unexpected end of file in /home/longway1/public_html/vateir/login/index.php on line 353
-[26-Jun-2015 13:18:18 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir/core/init.php on line 32
-[26-Jun-2015 13:18:18 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir/classes/phpbb\config_php_file.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir/core/init.php on line 32
-[26-Jun-2015 13:44:11 Europe/Dublin] PHP Notice:  Array to string conversion in /home/longway1/public_html/vateir/login/index.php on line 250
-[26-Jun-2015 14:26:47 Europe/Dublin] PHP Notice:  Undefined variable: token in /home/longway1/public_html/vateir/login/index.php on line 267
-[26-Jun-2015 14:26:47 Europe/Dublin] PHP Fatal error:  Call to a member function generate() on a non-object in /home/longway1/public_html/vateir/login/index.php on line 267
-[26-Jun-2015 14:31:38 Europe/Dublin] PHP Parse error:  syntax error, unexpected '$user' (T_VARIABLE) in /home/longway1/public_html/vateir/login/index.php on line 243
-[26-Jun-2015 16:46:38 Europe/Dublin] PHP Fatal error:  Call to a member function isLoggedIn() on a non-object in /home/longway1/public_html/vateir/includes/footer.php on line 15
-[27-Jun-2015 00:43:03 Europe/Dublin] PHP Fatal error:  Call to a member function pilotRating() on a non-object in /home/longway1/public_html/vateir/login/sendapplication.php on line 31
-[27-Jun-2015 00:43:14 Europe/Dublin] PHP Fatal error:  Call to a member function pilotRating() on a non-object in /home/longway1/public_html/vateir/login/sendapplication.php on line 31
-[27-Jun-2015 00:44:13 Europe/Dublin] PHP Fatal error:  Call to a member function pilotRating() on a non-object in /home/longway1/public_html/vateir/login/sendapplication.php on line 31
-[28-Jun-2015 13:12:09 Europe/Dublin] PHP Parse error:  syntax error, unexpected '&&' (T_BOOLEAN_AND) in /home/longway1/public_html/vateir/login/index.php on line 16
-[28-Jun-2015 13:20:24 Europe/Dublin] PHP Fatal error:  Call to a member function getID() on a non-object in /home/longway1/public_html/vateir/login/index.php on line 18
-[28-Jun-2015 13:24:08 Europe/Dublin] PHP Parse error:  syntax error, unexpected 'catch' (T_CATCH) in /home/longway1/public_html/vateir/login/index.php on line 287
-[30-Jun-2015 01:37:19 Europe/Dublin] PHP Notice:  Undefined variable: u in /home/longway1/public_html/vateir/login/index.php on line 119
-[30-Jun-2015 01:37:19 Europe/Dublin] PHP Fatal error:  Call to a member function data() on a non-object in /home/longway1/public_html/vateir/login/index.php on line 119
-[02-Jul-2015 22:44:29 Europe/Dublin] PHP Notice:  Undefined variable: email in /home/longway1/public_html/vateir/login/index.php on line 295
-[02-Jul-2015 22:51:01 Europe/Dublin] PHP Notice:  Undefined variable: email in /home/longway1/public_html/vateir/login/index.php on line 294
-[02-Jul-2015 22:51:01 Europe/Dublin] PHP Notice:  Trying to get property of non-object in /home/longway1/public_html/vateir/login/index.php on line 294
-[02-Jul-2015 22:51:01 Europe/Dublin] PHP Notice:  Trying to get property of non-object in /home/longway1/public_html/vateir/login/index.php on line 294
-[02-Jul-2015 22:52:09 Europe/Dublin] PHP Notice:  Undefined variable: email in /home/longway1/public_html/vateir/login/index.php on line 294
-[02-Jul-2015 22:52:09 Europe/Dublin] PHP Notice:  Trying to get property of non-object in /home/longway1/public_html/vateir/login/index.php on line 294
-[02-Jul-2015 22:52:09 Europe/Dublin] PHP Notice:  Trying to get property of non-object in /home/longway1/public_html/vateir/login/index.php on line 294
+[03-Jul-2015 00:57:35 Europe/Dublin] PHP Parse error:  syntax error, unexpected '{' in /home/longway1/public_html/vateir/login/index.php on line 18
+[03-Jul-2015 00:57:36 Europe/Dublin] PHP Parse error:  syntax error, unexpected '{' in /home/longway1/public_html/vateir/login/index.php on line 18
+[03-Jul-2015 01:09:13 Europe/Dublin] PHP Parse error:  syntax error, unexpected ')' in /home/longway1/public_html/vateir/login/index.php on line 18
+[03-Jul-2015 19:39:37 Europe/Dublin] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/longway1/public_html/vateir/login/index.php on line 84
+[03-Jul-2015 19:39:41 Europe/Dublin] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/longway1/public_html/vateir/login/index.php on line 84
+[03-Jul-2015 20:10:40 Europe/Dublin] PHP Parse error:  syntax error, unexpected '1231276' (T_LNUMBER), expecting ']' in /home/longway1/public_html/vateir/login/index.php on line 87
+[03-Jul-2015 20:10:48 Europe/Dublin] PHP Parse error:  syntax error, unexpected '1231276' (T_LNUMBER), expecting ']' in /home/longway1/public_html/vateir/login/index.php on line 87

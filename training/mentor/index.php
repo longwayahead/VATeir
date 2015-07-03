@@ -41,24 +41,28 @@ if(!$user->hasPermission('mentor')) {
 							</td> -->
 						</tr>
 					
-						<?php foreach($sessions as $session): ?>
-							<tr>
-								<td>
-									<?php echo '<a href="view_student.php?cid=' . $session->student . '">' . $session->sfname . ' ' . $session->slname . '</a>'; ?> 
-								</td>
-								<td>
-									<?php echo $session->callsign; ?> 
-								</td>
-								<td>
-									<?php echo date("j-M-y", strtotime($session->start)); ?> 
-								</td>
-								<td>
-									<?php echo date("H:i", strtotime($session->start)); ?> 
-								</td><!-- 
-								<td>
-									<?php //echo '<a class="btn btn-xs btn-primary" href="view_session.php?id=' . $session->session_id . '"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>' ?> 
-								</td> -->
-							</tr>
+						<?php $i=1; foreach($sessions as $session): ?>
+							<?php if($i <= 5) { ?>
+								<?php $i++; ?>
+							
+								<tr>
+									<td>
+										<?php echo '<a href="view_student.php?cid=' . $session->student . '">' . $session->sfname . ' ' . $session->slname . '</a>'; ?> 
+									</td>
+									<td>
+										<?php echo $session->callsign; ?> 
+									</td>
+									<td>
+										<?php echo date("j-M-y", strtotime($session->start)); ?> 
+									</td>
+									<td>
+										<?php echo date("H:i", strtotime($session->start)); ?> 
+									</td><!-- 
+									<td>
+										<?php //echo '<a class="btn btn-xs btn-primary" href="view_session.php?id=' . $session->session_id . '"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>' ?> 
+									</td> -->
+								</tr>
+							<?php } ?>
 
 						<?php endforeach; ?>
 
