@@ -18,7 +18,8 @@ $s = new Sessions;
 				try {
 					$sessions = $s->get(array(
 							'student' => $user->data()->id,
-							'future' => 1
+							'future' => 1,
+							'cancelled'	=> 1
 						));
 					if(!empty($sessions)) {
 					?>
@@ -45,6 +46,9 @@ $s = new Sessions;
 							<td>
 								<strong>Finish</strong>
 							</td>
+							<td>
+								<strong>Cancel</strong>
+							</td>
 						</tr>
 					
 						<?php foreach($sessions as $session): ?>
@@ -69,6 +73,9 @@ $s = new Sessions;
 								</td>
 								<td>
 									<?php echo date("H:i", strtotime($session->finish)); ?> 
+								</td>
+								<td>
+									<a href="cancel_session.php?id=<?php echo $session->session_id; ?>" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 								</td>
 							</tr>
 
@@ -97,7 +104,8 @@ $s = new Sessions;
 				try {
 					$sess = $s->get(array(
 							'student' => $user->data()->id,
-							'future' => 2
+							'future' => 2,
+							'cancelled' => 1
 						));
 					if(!empty($sess)) {
 					?>

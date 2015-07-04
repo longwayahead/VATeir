@@ -43,6 +43,11 @@ class Sessions {
 			$this->end .=" AND sessions.finish < CURDATE()";
 		}
 
+		if(isset($options['cancelled']) && $options['cancelled'] = 1) {
+			$this->end .= " AND sessions.deleted = 0";
+		}
+		//echo $this->end;
+
 		if(isset($options['limit'])) {
 			$limit = $options['limit'];
 			$this->bits = " LIMIT $limit";
@@ -67,6 +72,7 @@ class Sessions {
 		// print_r($session);
 		if($session->count()) {
 			return $session->results();
+		//	print_r($session->results());
 		}
 		return false;
 	}
@@ -86,7 +92,7 @@ class Sessions {
 	}
 
 	public function countSessions($cid) {
-		return $this->_db->query("SELECT * FROM sessions WHERE student = ? AND sessions.start >= CURDATE()", [[$cid]])->count();
+		return $this->_db->query("SELECT * FROM sessions WHERE student = ? AND sessions.start >= CURDATE() AND sessions.deleted = 0", [[$cid]])->count();
 	}
 
 	public function countAvailabilities($cid) {
@@ -110,7 +116,8 @@ class Sessions {
 			) as available
 		FROM sessions 
 		WHERE mentor = ? 
-			AND start >= CURDATE()", [[$cid, $cid]]);
+			AND start >= CURDATE()
+			AND deleted = 0", [[$cid, $cid]]);
 		if($count->count()) {
 			return $count->first()->session + $count->first()->without + $count->first()->available;
 		}

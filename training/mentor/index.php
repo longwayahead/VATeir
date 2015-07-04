@@ -18,8 +18,10 @@ if(!$user->hasPermission('mentor')) {
 				try {
 					$sessions = $s->get(array(
 							'mentor' => $user->data()->id,
-							'future' => 1
+							'future' => 1,
+							'cancelled' => 1
 						));
+				//	print_r($sessions);
 					if(!empty($sessions)) {
 					?>
 					<table class="table table-condensed table-striped">

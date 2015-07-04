@@ -34,9 +34,12 @@ $user = new User;
 <div class="container">
 <div class="masthead">
 	<h3 class="text-muted" style="display:inline;">
-    <a href="<?php echo BASE_URL;?>">
+    <a style="text-decoration:none;" href="<?php echo BASE_URL;?>">
       <img class="img-responsive" style="display:inline;" width="200px" src=<?php echo BASE_URL . "img/logo.png"; ?> \>
+    <div style="display:inline-block; margin-left:-53px; margin-bottom:-4px"><span style="position:absolute; font-size:10px;" class="label label-danger">Beta!</span></div>
+    
     </a>
+      
 	</h3>
 </div>
 <?php

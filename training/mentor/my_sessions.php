@@ -48,7 +48,7 @@ $s = new Sessions;
 						</tr>
 					
 						<?php foreach($sessions as $session): ?>
-							<tr>
+							<tr <?php echo ($session->session_deleted == 1) ? 'class="danger"' : '' ; ?>>
 								<td>
 									<?php echo $session->sfname . ' ' . $session->slname; ?> 
 								</td>
@@ -95,7 +95,8 @@ $s = new Sessions;
 					$noreport = $s->get(array(
 							'mentor' => $user->data()->id,
 							'noreport' => 1,
-							'future' => 2
+							'future' => 2,
+							'cancelled' => 1
 						));
 				}catch(Exception $e) {
 					echo $e->getMessage();
@@ -108,7 +109,7 @@ $s = new Sessions;
 			<div class="panel-heading">
 				<h3 class="panel-title">Sessions without reports</h3>
 			</div>
-			<div class="panel-body" style="padding:0px;">
+			<div class="panel-body">
 			
 					<table class="table table-condensed table-striped">
 						<tr>
@@ -157,9 +158,9 @@ $s = new Sessions;
 						<?php endforeach; ?>
 
 					</table>
-			</div>
 				</div>
-	</div>
+			</div>
+		</div>
 	</div>
 
 			<?php
@@ -174,7 +175,7 @@ $s = new Sessions;
 			<div class="panel-heading">
 				<h3 class="panel-title">Past Sessions</h3>
 			</div>
-			<div class="panel-body" style="padding:0px;">
+			<div class="panel-body">
 				<?php
 				try {
 					$sessions = $s->get(array(
@@ -209,7 +210,7 @@ $s = new Sessions;
 						</tr>
 					
 						<?php foreach($sessions as $session): ?>
-							<tr>
+							<tr <?php echo ($session->session_deleted == 1) ? 'class="danger"' : '' ; ?>>
 								<td>
 									<?php echo $session->sfname . ' ' . $session->slname; ?> 
 								</td>
