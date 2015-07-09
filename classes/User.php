@@ -100,9 +100,9 @@ class User {
 			FROM `controllers` AS `c`
 			LEFT JOIN `logins` AS `l` ON `l`.`cid` = `c`.`id`
 			WHERE `l`.`datetime` > DATE_SUB(now(), INTERVAL $interval)
-				AND `c`.`id` = {$cid}");
+				AND `c`.`id` = ?", [[$cid]]);
 		if($this->_db->count()) {
-			return true;
+			return $this->_db->first();
 		}
 	}
 
@@ -186,4 +186,28 @@ class User {
 		return o2a($xml->user);
 	}
 
+	public function terms($type, $cid) { //Ooh, an anti-join...
+		$terms = $this->_db->query("SELECT t.id, t.name, t.text, t.date, t.deleted
+									FROM terms_and_conditions t
+									WHERE NOT EXISTS 
+										(
+											SELECT *
+											FROM terms_agreed a
+											WHERE a.term_id = t.id
+												AND a.cid = ?
+										)
+										AND t.type = ?
+										AND t.deleted = 0
+									", [[$cid, $type]]);
+		if($terms->count()) {
+			return $terms->results();
+		}
+		return false;
+	}
+
+	public function term_agree($fields = array()) {
+		if(!$this->_db->insert('terms_agreed', $fields)) {
+			throw new Exception('There was a problem accepting a term.');
+		}
+	}
 }

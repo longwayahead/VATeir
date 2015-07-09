@@ -47,7 +47,7 @@ try {
 	</div>
 </div>
 <br>
-<div class="row">
+<!-- <div class="row">
 	<div class="col-md-10 col-md-offset-1">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -75,12 +75,12 @@ try {
 					<?php endforeach; ?>
 				</table>
 			<?php	}  else {
-				echo '<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No controllers</div><br>';
+				//echo '<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No controllers</div><br>';
 				} ?>
 				
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
 </div>
 <?php require_once('../includes/footer.php');

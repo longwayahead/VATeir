@@ -32,8 +32,12 @@ if($random == 1) {
 }
 ?>
 <br>
-<br>
-	<p>Ready for content.</p>
+
+	<p>Firstly, can I welcome you to vACC Ireland. Nestled within the confines of Oceanic, British and French airspace, the Shannon FIR is home to all that the Republic of Ireland has to offer in the aviation sector. Our goal is to provide an enjoyable and challenging environment in which to participate in the widest range of virtual aviation activities. Please take the time to look around our website, and if you have any questions, please get in touch.</p>
+
+<p>Best regards,<br>
+Adam Arkley - 1031024<br>
+Director - vACC Ireland </p>
 </div>
 
 
@@ -119,7 +123,7 @@ if($random == 1) {
 											<td>';
 
 											if($user->find($atc->cid)) { //link to profile if vateir controller
-												echo '<a href="' . BASE_URL . 'controllers/profile.php?id=' . $atc->cid . '">' . $atc->name . '</a>';
+												echo '<a target="_blank" href="' . BASE_URL . 'controllers/profile.php?id=' . $atc->cid . '">' . $atc->name . '</a>';
 											} else {
 												echo $atc->name;
 											}
@@ -263,7 +267,7 @@ if($random == 1) {
 					</div>
 					<div class="caption">
 						<h4><?php echo $event->title;?><small><br><?php echo $event->starts_date . ' ' . $event->starts_time;?>&ndash;<?php echo $event->ends_time;?></small></h4>
-						<p><?php echo $event->short_description; ?></p>
+						<p><?php echo strip_tags($event->short_description); ?></p>
 						<p><div class="text-right"><a href="events/index.php#<?php echo $event->id; ?>" class="btn btn-success" role="button">Read More</a></div></p>
 					</div>
 				</div>

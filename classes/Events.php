@@ -12,7 +12,7 @@ class Events {
 			$starts_time = date('H:i', strtotime($event->starts));
 			$ends_date = date('j-M-y', strtotime($event->ends));
 			$ends_time = date('H:i', strtotime($event->ends));
-			if(date('Y-m-d') > strtotime($event->ends) && $ends_time > date('H:i')) {
+			if(date('Y-m-d') < date('Y-m-d', (strtotime($event->ends)))) {
 				$this->current[$event->id] = array(
 					'id' => $event->id,
 					'title' => $event->title,

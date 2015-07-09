@@ -33,6 +33,6 @@ if(($_SESSION['token'] == $_POST['token']) && ($_SESSION['forum_id'] == $_POST['
     print_r($user);
     echo '</pre>';
 } else {
-    header("Location: ../index.php");
+    header("Location: ./index.php");
 }
 ?>

@@ -4,6 +4,7 @@ require_once('includes/header.php');
 	$a = new Airports;
 ?>
 	  <h3 class="text-center">NOTAMs</h3>
+	  <div class="text-danger text-center" style="font-size:16px; margin-top:8px;">Not for real world use</div>
 	  <br>
 	<div class="col-md-10 col-md-offset-1">
 		<div class="panel panel-info">

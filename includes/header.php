@@ -1,8 +1,9 @@
 <?php
+ini_set('display_errors', 1);
 session_start();
 ob_start();
 define ('URL', realpath($_SERVER['DOCUMENT_ROOT']) . '/'); // go to /training/includes/ and update the soft coded link too
-define ('BASE_URL', 'http://'.$_SERVER['HTTP_HOST'].'/');
+ define ('BASE_URL', 'http://'.$_SERVER['HTTP_HOST'].'/');
 require_once(URL . "core/init.php");
 $user = new User;
 
@@ -16,7 +17,7 @@ $user = new User;
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo (isset($pagetitle) ? 'VATeir | ' . $pagetitle : 'VATeir');?></title>
 
-    <!-- Bootstrap -->
+    <!-- Bootstrap
     <!-- <link href=<?php //echo BASE_URL . "css/bootstrap.min.css"; ?> rel="stylesheet"> -->
     <link href=<?php echo BASE_URL . "css/paper.css"; ?> rel="stylesheet">
     <link href=<?php echo BASE_URL . "css/custom.css"; ?> rel="stylesheet">
@@ -30,7 +31,7 @@ $user = new User;
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>
+<body>
 <div class="container">
 <div class="masthead">
 	<h3 class="text-muted" style="display:inline;">
@@ -100,11 +101,11 @@ switch($directory) {
        echo '><a href="'. BASE_URL . 'admin/">Admin</a></li>';
       }
       ?>
-    </ul>
+   </ul>
     <ul class="nav navbar-nav navbar-right">
     <?php
     if(!$user->isLoggedIn()) {
-        echo '<li><a href="' . BASE_URL . 'login/">Login</a></li>';
+        echo '<li><a href="' . BASE_URL . 'login/index.php?forum">Login</a></li>';
     } else {
 
     ?>

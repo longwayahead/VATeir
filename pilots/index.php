@@ -82,7 +82,7 @@ require_once('includes/header.php');
 
 				      markers.push(marker);
 
-				      google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
+				     google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
 				        return function() {
 				          infowindow.setContent(locations[i][0]);
 				          infowindow.open(map, marker);

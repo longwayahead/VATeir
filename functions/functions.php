@@ -67,6 +67,7 @@ function a2o($array) {
 }
 
 function cacheFile($localFile, $remoteFile, $delayTime = 1800) {
+//	set_time_limit(2);
 	if(!file_exists($localFile) || time()-filemtime($localFile) > $delayTime) { //Checking to make sure the file is > the time allocated above. If yes, it rewrites the file already stored on disk. If not, it just reads the stored file. Change line 14 if you want more frequent updates but be reasonable, you don't want your server IP blocked from the server after all...
 			if(!copy($remoteFile, $localFile)) {
 				echo "Could not download datafile from the server";

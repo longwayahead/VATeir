@@ -1,6 +1,10 @@
 <?php
 $pagetitle = "Admin Home";
 require_once("includes/header.php");
+if(!$user->hasPermission('admin')) {
+	Session::flash('error', 'Invalid permissions.');
+	Redirect::to('../index.php');
+}
 $a = new Admin;
 $t = new Training;
 $incoming = $a->incoming();
@@ -13,7 +17,7 @@ $incoming = $a->incoming();
 			<div class="panel-heading">
 				<h3 class="panel-title">Pending Incoming Students</h3>
 			</div>
-			<div class="panel-body" style="padding:0px;">
+			<div class="panel-body">
 			<?php
 			if($incoming) {
 				?>
@@ -52,6 +56,38 @@ $incoming = $a->incoming();
 						echo '<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No pending requests</div><br>';
 					}
 					?>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Latest 5 Updates</h3>
+			</div>
+			<div class="panel-body">
+			<?php
+				$c = new Crons;
+				$crons = $c->limit();
+				//print_r($crons);
+				if(!empty($crons)) {
+			?>
+
+				<table class="table table-striped table-responsive table-condensed">
+					<tr>
+						<td><strong>Date</strong></td>
+						<td><strong>Details</strong></td>
+					</tr>
+					<?php foreach($crons as $cron): ?>
+						<tr>
+							<td><?php echo date("j M y", strtotime($cron->date)); ?></td>
+							<td><a class="btn btn-xs btn-primary" href="cron.php?id=<?php echo $cron->id; ?>"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a></td>
+						</tr>
+
+					<?php endforeach; ?>
+				</table>
+				<?php } else { //if empty crons ?>
+					<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No crons</div><br>
+			<?php } ?>
 			</div>
 		</div>
 	</div>

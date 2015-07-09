@@ -1,0 +1,134 @@
+<?php
+require_once("includes/header.php");
+
+$t = new Training;
+
+
+////CONNECTING TO VATEUD API////
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_URL, Config::get('vateud/vaccmembers')); //Set the URL here
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($curl, CURLINFO_HEADER_OUT, true); //Set a custom header for auth token
+
+
+curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+	'Authorization: Token token="' . Config::get('vateud/apitoken') . '"'
+));
+
+
+$get = curl_exec($curl); //Get the data from vateud
+curl_close($curl);
+
+////CONNECTION CLOSED////
+
+$controllers = json_decode($get);
+$register = array();
+// echo '<pre>', print_r($controllers), '</pre>';
+foreach($controllers as $controller) {	//Register users if they aren't already in the VATeir database.
+	try {
+		if(!$user->find($controller->cid)) { //CID not already in database. New member - register them!
+
+			if($controller->rating > 7) {
+				$rating = $user->getRealRating($controller->cid);
+			} else {
+				$rating = $controller->rating;
+			}
+
+			//$pilotRating = $t->pilotRating($controller->pilot_rating);
+			$make = $user->create(array(
+				'id' 				=> $controller->cid,
+				'first_name' 		=> $controller->firstname,
+				'last_name' 		=> $controller->lastname,
+				'email' 			=> $controller->email,
+				'rating' 			=> $rating,
+				'pilot_rating' 		=> $controller->pilot_rating,
+				'pratingstring'		=> $controller->humanized_pilot_rating,
+				'regdate_vatsim' 	=> date("Y-m-d H:i:s", strtotime($controller->reg_date)),
+				'regdate_vateir' 	=> date('Y-m-d H:i:s'),
+				'vateir_status'		=> 1
+			));
+			
+			if(!$t->findStudent($controller->cid)) {
+				$program = $t->program($rating);
+				$studentMake = $t->createStudent(array(
+					'cid'		=> $controller->cid,
+					'program'	=> 	$program
+				));
+			}
+			
+			$register["registered"][] = $controller->cid;
+		}
+	} catch (Exception $e) {
+		echo $e->getMessage();
+		$register["regfail"][$controller->cid] = $e->getMessage();
+	}
+
+
+/////UPDATING DATA FOR USERS THAT ARE ACTIVE//////
+
+
+	if(empty($register["registered"]) || !in_array($controller->cid, $register["registered"])) { //CID hasn't just registered above...or no one has registered at all
+		try { //update active user's data
+			if($data = $user->isActive($controller->cid)) { //check if the user is active
+				$change = [];
+
+				if($data->first_name != $controller->firstname) {
+					$change['first_name'] = $controller->firstname;
+				}
+				if($data->last_name != $controller->lastname) {
+					$change['last_name'] = $controller->lastname;
+				}
+				if($data->email != $controller->email) {
+					$change['email'] = $controller->email;
+				}
+				if($data->rating != $controller->rating && $data->rating <= 7) {
+					$change['rating'] = $controller->rating;
+				}
+				if($data->pilot_rating != $controller->pilot_rating) {
+					$change['pilot_rating'] = $controller->pilot_rating;
+					$change['prating_string'] = $controller->humanized_pilot_rating;
+				}
+				if($data->vateir_status != 1) {
+					$change['vateir_status'] = 1;
+				}
+				
+				// if($controller->rating > 7) {
+				// 	$rating = $user->getRealRating($controller->cid);
+				// } else {
+				// 	$rating = $controller->rating;
+				// }
+				if(!empty($change)) {
+					$update = $user->update((
+						$change
+					), [['id', '=', $controller->cid]]);
+					if(isset($change['rating'])) { //only change the student's programme if their rating has changed. new rating = new training programme.
+						$program = $t->program($rating);
+
+						$studentUpdate = $t->updateStudent(array(
+							'program'	=> 	$program
+						), [['cid', '=', $controller->cid]]);
+					}
+					$register["updated"][$controller->cid] = $change;
+				}
+								
+			} elseif($user->isAlive($controller->cid) && !$user->isActive($controller->cid)) { //Gets all "active" users, checks to make sure they're active and for those that aren't, changes their status to 0
+				$update = $user->update(array(
+					'alive' => 0
+				), [['id', '=', $controller->cid]]);
+				$register["setasinactive"][] = $controller->cid;
+			}
+		} catch (Exception $f) {
+			echo $f->getMessage();
+			$register["updatefail"][$controller->cid] = $f->getMessage();
+		}	
+			
+	}
+	
+unset($change);
+
+}
+$crons = new Crons;
+$json = (!empty($register)) ? json_encode($register) : '';
+$crons->add([	'date' => date("Y-m-d H:i:s"),
+				'data' => $json
+			]);

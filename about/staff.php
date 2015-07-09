@@ -48,6 +48,56 @@ $staff = json_decode(file_get_contents("../datafiles/staff.json"));
 		</div>
 	</div>
 </div>
+<?php
+try {
+	$t = new Training;
+	$controllers = $t->getMentors();
+	//print_r($controllers);
+}catch(Exception $e) {
+	echo $e->getMessage();
+}
+//print_r($controllers);
+?>
+<h3 class="text-center">Training Department</h3>
+<br>
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Mentor List</h3>
+			</div>
+		<div class="panel-body">
+		<?php
+			if(count($controllers)) {
+				//print_r($controllers);
+				?>
+				<table class="table table-responsive table-striped table-condensed">
+					<tr>
+						<td><strong>Name</strong></td>
+						<td class="hidden-xs"><strong>Rating</strong></td>
+						<td class="hidden-xs"><strong>Pilot Rating</strong></td>
+						<td><strong>Role</strong></td>
+						<td><strong>Profile</strong></td>
+					</tr>
+					<?php foreach($controllers as $controller): ?>
+						
+						<tr>
+							<td><?php echo $controller->first_name . ' ' . $controller->last_name;?></td>
+							<td class="hidden-xs"><?php echo $controller->long . ' (' . $controller->short . ')';?></td>
+							<td class="hidden-xs"><?php echo $controller->pratingstring;?></td>
+							<td><?php echo $controller->name;?></td>
+							<td><?php echo '<a class="btn btn-xs btn-primary" href="../controllers/profile.php?id=' . $controller->cid . '"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>';?></td>
+						</tr>
+					<?php endforeach; ?>
+				</table>
+			<?php	} else {
+				echo '<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No mentors</div><br>';
+				} ?>
+				
+			</div>
+		</div>
+	</div>
+</div>
 
 </div>
 <?php require_once('../includes/footer.php');

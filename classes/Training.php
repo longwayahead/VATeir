@@ -381,9 +381,13 @@ class Training {
 										LEFT JOIN permissions ON permissions.id = controllers.grou
 										LEFT JOIN ratings ON ratings.id = controllers.rating
 										WHERE controllers.grou >= 11 AND controllers.grou <= 15
-										ORDER BY permissions.sort ASC");
+										ORDER BY permissions.sort DESC, ratings.id DESC");
 		if($mentors->count()) {
-			return $mentors->results();
+			$return = $mentors->results();
+			// $return[] = a2o(['id' => 1, 'long' => 'Enroute Controller', 'short' => 'C1', 'name' => 'C1 Mentor', 'sort' => 2, 'cid' => 1032602, 'first_name' => 'Cillian', 'last_name' => 'Long', 'pratingstring' => 'P0', 'controllers.grou' => 14]);
+			// print_r($return);
+			// sortArray($return, 'sort', 'DESC', 'id', 'DESC');
+			return $return;
 		}
 	}
 

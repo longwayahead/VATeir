@@ -53,8 +53,8 @@ if(Input::exists()) {
 }
 
 ?>
-  <div class="row">
-  <div class="col-md-10 col-md-offset-1">
+<div class="row">
+<div class="col-md-10 col-md-offset-1">
  <h3 class="text-center">My Availability</h3><br>
     <div class="panel panel-default">
       <div class="panel-heading">Add Availability</div>
@@ -112,7 +112,7 @@ if(Input::exists()) {
         </form>
       </div>
       <?php } else { ?>
-        <div class="text-danger text-center" style="font-size:16px;"><br>Your training is finished.</div><br>
+        <div class="text-danger text-center" style="font-size:16px;"><br>Rating too high!</div><br>
       <?php } ?>
       </div>
     </div>
