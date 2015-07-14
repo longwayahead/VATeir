@@ -6,6 +6,7 @@ if(!$user->hasPermission('admin')) {
 	Session::flash('danger', 'Insufficient permissions');
 	Redirect::to('../');
 }
+$a = new Admin;
 ?>
 <div class="row">
 
@@ -15,6 +16,8 @@ if(!$user->hasPermission('admin')) {
 	<ul class="well nav nav-list nav-list-vivid">
 	Admin
 			<li><a href="<?php echo BASE_URL . 'admin/'; ?>">Home</a></li>
+			<li><a href="<?php echo BASE_URL . 'admin/terms.php'; ?>">T&Cs</a></li>
+			<li><a href="<?php echo BASE_URL . 'admin/allow.php'; ?>">Allow</a></li>
 
 	</ul>
 

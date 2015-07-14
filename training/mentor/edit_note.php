@@ -75,7 +75,7 @@ if(isset($_GET['id'])) {
 
 
 	<div class="col-md-10 col-md-offset-1 well">
-		<form class="form-horizontal" method="post" action="">
+		<form class="form-horizontal" method="post" action="" onsubmit="document.getElementById('submit').disabled=true; document.getElementById('submit').value='Editing...';">
 	        <fieldset>
 	          <legend>Edit Note</legend>
 	          	<div class="form-group">
@@ -127,7 +127,7 @@ if(isset($_GET['id'])) {
 					<div class="col-lg-10 col-md-offset-1">
 					<input type="hidden" name="cid" value="<?php echo $note->student_cid;?>"></input>
 					<input type="hidden" name="id" value="<?php echo $note->note_id;?>"></input>
-					<button type="submit" name="submit" class="btn btn-primary">Submit</button>
+					<button type="submit" name="submit" id="submit" class="btn btn-primary">Submit</button>
 					</div>
 				</div>
 			</fieldset>

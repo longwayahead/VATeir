@@ -37,9 +37,9 @@ if(Input::exists('get')) {
 										<form method="get" action="close.php">
 											<input type="hidden" name="id" value="' . Input::get('id') . '">';
 									if($notification->status == 0) {
-										echo '<button type="submit" name="close" value="1" class="btn btn-danger">Close Task</button>';
+										echo '<button type="submit" name="close" value="1" class="btn btn-danger">Close</button>';
 									} else {
-										echo '<button type="submit" name="open" value="1" class="btn btn-success">Reopen Task</button>';
+										echo '<button type="submit" name="open" value="1" class="btn btn-success">Reopen</button>';
 									}
 									echo '</form>
 									</div>
@@ -78,7 +78,7 @@ if(Input::exists('get')) {
 
 							<br>';
 					} elseif($comment->submitted_by != $notification->from) {
-						$date = date("j-M-y H:i:s", strtotime($comment->submitted));
+						$date = date("j-M-y H:i", strtotime($comment->submitted));
 						$datetime = new DateTime($date);
 						$commentTime = $datetime->format(DateTime::ISO8601);
 
@@ -122,12 +122,12 @@ if(Input::exists('get')) {
 										<?php
 											require_once(URL . 'scribe/box.php');
 										?>
-										<div class="scribe" class="form-control"><?php echo (!Input::exists()) ? $report->text : Input::get('text'); ?></div>
-										<input type="hidden" name="text" class="scribe-html" value="<?php echo (!Input::exists()) ? $report->text : Input::get('text'); ?>">
+										<div class="scribe" class="form-control"><?php echo (Input::exists('post')) ? Input::get('text') : ''; ?></div>
+										<input type="hidden" name="text" class="scribe-html" value="<?php echo (Input::exists('post')) ? Input::get('text') : ''; ?>">
 									</div>
 								</div>
 								<div class="form-group text-center">
-									<input type="hidden" name="id" value="<?php echo $notification->notification_id; ?>">
+									<input type="hidden" name="nid" value="<?php echo $notification->notification_id; ?>">
 									<input class="btn btn-primary" type="submit" value="Submit" name="submit">
 								</div>
 							</form>

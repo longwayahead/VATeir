@@ -37,6 +37,11 @@ class Validate {
 								$this->addError("There must be a difference in time!");
 							}
 						break;
+						case 'time_now':
+							if($rule_value < date('Y-m-d H:i:s')) {
+								$this->addError("{$fieldname} cannot be in the past!");
+							}
+						break;
 						case 'max':
 							if(strlen($value) > $rule_value) {
 								$this->addError("{$fieldname} must be a maximum of {$rule_value} characters.");

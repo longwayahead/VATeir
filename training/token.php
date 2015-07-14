@@ -25,7 +25,7 @@ if(Input::exists()) {
 					'submitted'			=> date("Y-m-d H:i:s"),
 					'submitted_by'		=> 0,
 					'text'				=> 
-					'<p>ATSimTest Theory token requested.</p><p><strong>Next Rating: </strong>' . $rating->short . ' (' . $rating->long . ')</p><p><strong>Admin Link: </strong><a target="_blank" class="btn btn-xs btn-primary" href="https://www.atsimtest.com/index.php?cmd=admin&sub=memberdetail&memberid=' . $user->data()->id . '">ATSimTest</a></p>'
+					'<p>ATSimTest theory token requested.</p><p><strong>Next Rating: </strong>' . $rating->short . ' (' . $rating->long . ')</p><p><strong>Admin Link: </strong><a target="_blank" class="btn btn-xs btn-primary" href="https://www.atsimtest.com/index.php?cmd=admin&sub=memberdetail&memberid=' . $user->data()->id . '">ATSimTest</a></p>'
 					));
 
 			Session::flash('success', 'A theory token has been requested. Please allow 24 hours.');
@@ -42,7 +42,11 @@ if(Input::exists()) {
 <h3 class="text-center">My ATSimTest Token</h3><br>
 	<div class="col-md-10 col-md-offset-1">
 	<div class="panel panel-primary">
-      <div class="panel-heading">ATSimTest Token</div>
+      <div class="panel-heading">
+      	<h3 class="panel-title">
+      		ATSimTest Token
+      	</h3>
+      </div>
       	<div class="panel-body text-center">
 		
 		
@@ -52,8 +56,8 @@ if(Input::exists()) {
 		<?php
 			if(!$not = $n->exists(1, $user->data()->id)) {
 				?>
-				<form action="" method="post">
-					<button type="submit" name="button" class="btn btn-lg btn-primary">
+				<form action="" method="post" onsubmit="document.getElementById('submit').disabled=true; document.getElementById('submit').value='Submitting...';">
+					<button type="submit" id="submit" name="button" class="btn btn-lg btn-primary">
 					Click to Request
 					</button>
 				</form>

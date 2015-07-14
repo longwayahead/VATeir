@@ -21,7 +21,7 @@ if(Input::exists('post')) {
 			<div class="panel-heading">
 				<h3 class="panel-title">Training Department Mentors</h3>
 			</div>
-			<form action="" method="post">
+			<form action="" method="post" onsubmit="document.getElementById('submit').disabled=true; document.getElementById('submit').value='Submitting...';">
 				<div class="panel-body">
 				<?php
 				$mentors = $t->getMentors();
@@ -67,7 +67,7 @@ if(Input::exists('post')) {
 				<div class="panel-footer">
 					<div class="text-right">
 						<button type="reset" class="btn btn-default">Reset</button>
-						<button type="submit" name="update" class="btn btn-primary">Update</button>
+						<button type="submit" id="submit" name="update" class="btn btn-primary">Update</button>
 					</div>
 					<?php
 				} else {

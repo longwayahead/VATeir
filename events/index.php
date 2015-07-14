@@ -25,7 +25,7 @@ require_once("includes/header.php");
 								<img class="img-responsive" data-src="holder.js/300x300" src="<?php echo $event->banner_url;?>" alt="...">
 							</div>
 							<div class="caption">
-								<h4><?php echo $event->title;?> <small>(<?php echo $event->subtitle; ?>)</small><small><br><?php echo $event->starts_date . ' ' . $event->starts_time;?>&ndash;<?php echo $event->ends_time;?></small></h4>
+								<h4><?php echo $event->title;?><small><br><?php echo $event->starts_date . ' ' . $event->starts_time;?>&ndash;<?php echo $event->ends_time;?></small></h4>
 								<p><?php echo $event->description; ?></p>
 							</div>
 						</div>

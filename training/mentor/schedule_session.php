@@ -31,20 +31,28 @@ if(Input::exists('post')) {
 	  		$start = Input::get('date') . ' ' . $from->format("H:i:s");
 	  		$until = new DateTime(Input::get('until'));
 	  		$finish = Input::get('date') . ' ' . $until->format("H:i:s");
+	  		if(Input::get('comment')) {
+	  			$comment = Input::get('comment');
+	  			$commentEmail = 'A comment was left with the above booking:<br><br><i>' . $comment . '</i><br><br>';
+	  		} else {
+	  			$comment = null;
+	  		}
 			  $s->add(array(
 		        'student'   => Input::get('student'),
 		        'mentor'  => $user->data()->id,
 		        'position_id'  => Input::get('position'),
 		        'report_type'  => Input::get('type'),
 		        'start'  => $start,
-		        'finish'  => $finish
+		        'finish'  => $finish,
+		        'comment' => $comment,
 		      ));
 		      $max_id = $s->max();
 		      $sess = $s->get(['id' => $max_id])[0];
 		      $a->edit([
-		      		'deleted' => 1
+		      		'deleted' => 1,
+		      		'session_id' => $max_id,
 		      	],
-		      		[['id', '=', Input::get('availability_id')]]
+		      		[['id', '=', Input::get('id')]]
 		      	);
 		      	$name = $sess->sfname;
 		      	$email = $sess->email;
@@ -74,7 +82,7 @@ if(Input::exists('post')) {
 				<div class="content" style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; max-width: 600px; display: block; margin: 0 auto; padding: 15px;">
 				<table bgcolor="#999999" style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; width: 100%; margin: 0; padding: 0;">
 					<tr style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; margin: 0; padding: 0;">
-						<td style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; margin: 0; padding: 0;"><img style="max-width: 200px; font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; margin: 0; padding: 0;" src="http://training.vateir.org/img/logo.png" /></td>
+						<td style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; margin: 0; padding: 0;"><img style="max-width: 200px; font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; margin: 0; padding: 0;" src="http://www.vateir.org/img/logo.png" /></td>
 					</tr>
 				</table>
 				</div>
@@ -114,7 +122,7 @@ if(Input::exists('post')) {
 										Time:
 									</td>
 									<td style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; margin: 0; padding: 0;">
-										' . date("H:i", strtotime($start)) . '&ndash;' . date("H:i", strtotime($finish)) . '
+										' . date("H:i", strtotime($start)) . '&ndash;' . date("H:i", strtotime($finish)) . ' (IST)
 									</td>
 								</tr>
 								<tr style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; margin: 0; padding: 0;">
@@ -162,7 +170,8 @@ if(Input::exists('post')) {
 						</p>
 						
 						<p class="callout" style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; font-weight: normal; font-size: 14px; line-height: 1.6; background-color: #ECF8FF; margin: 0 0 15px; padding: 15px;">
-							View session: <a href="http://vateir.org/training/sessions.php#s' . $sess->session_id . '" style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; color: #2BA6CB; font-weight: bold; margin: 0; padding: 0;">Click it! &raquo;</a>
+							' . $commentEmail . '
+							View session: <a href="http://www.vateir.org/training/sessions.php#s' . $sess->session_id . '" style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; color: #2BA6CB; font-weight: bold; margin: 0; padding: 0;">Click it! &raquo;</a>
 						</p>
 						<p style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; font-weight: normal; font-size: 14px; line-height: 1.6; margin: 0 0 10px; padding: 0;">If your mentor has prescribed \'homework\' for you to do, please make sure to have it completed before your session.</p>	
 						<p style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; font-weight: normal; font-size: 14px; line-height: 1.6; margin: 0 0 10px; padding: 0;">Good luck!</p>
@@ -188,7 +197,7 @@ if(Input::exists('post')) {
 				<tr style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; margin: 0; padding: 0;">
 					<td align="center" style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; margin: 0; padding: 0;">
 						<p style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; font-weight: normal; font-size: 14px; line-height: 1.6; margin: 0 0 10px; padding: 0;">
-							<a href="http://vateir.org/privacy.php" style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; color: #2BA6CB; margin: 0; padding: 0;">Privacy</a>
+							<a href="http://www.vateir.org/privacy.php" style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; color: #2BA6CB; margin: 0; padding: 0;">Privacy</a>
 
 						</p>
 					</td>
@@ -235,14 +244,16 @@ body { -webkit-font-smoothing: antialiased !important; -webkit-text-size-adjust:
 $availability = $a->get([
 		'id' => Input::get('id')
 	])[0];
-if(!$user->hasPermission('mentor') || !$user->hasPermission($availability->permissions)) {
+//print_r($availability);
+
+if(!$user->hasPermission("$availability->permissions")) {
 	Session::flash('error', 'Cannot mentor at that level');
 	Redirect::to('./');
 }
-// if($user->data()->id == $availability->cid) {
-// 	Session::flash('error', 'You cannot mentor yourself!');
-// 	Redirect::to('./');
-// }
+if($user->data()->id == $availability->cid) {
+	Session::flash('error', 'You cannot mentor yourself!');
+	Redirect::to('./');
+}
 ?>
 <h3 class="text-center">Schedule a session</h3><br>
 <div class="row">
@@ -252,7 +263,7 @@ if(!$user->hasPermission('mentor') || !$user->hasPermission($availability->permi
 				<h3 class="panel-title">Schedule</h3>
 			</div>
 			<div class="panel-body">
-				<form class="form-horizontal" action="" method="post">
+				<form class="form-horizontal" action="" method="post" onsubmit="document.getElementById('submit').disabled=true; document.getElementById('submit').value='Submitting...';">
 				  <fieldset>
 				    <div class="form-group">
 				      <label for="name" class="col-lg-2 control-label">Student Name</label>
@@ -278,10 +289,6 @@ if(!$user->hasPermission('mentor') || !$user->hasPermission($availability->permi
 									if(count($types)) {
 										$programs = array();
 										foreach($types as $type){
-											// if(!in_array($type->pid, $programs)) {
-											// 	$programs[] = $type->pid;
-											// 		echo '<option class="select-dash" disabled="disabled">----</option>';
-											// 	}
 											echo '<option value="' . $type->report_type_id . '">' . $type->ident . ': ' . $type->session_type_name . '</option>';
 										}
 									}
@@ -334,12 +341,18 @@ if(!$user->hasPermission('mentor') || !$user->hasPermission($availability->permi
 							</div>
 						</div>
 					</div>
-					<br>			    
+					<span class="help-block text-center">Times are in 24h IST.</span>
+					<div class="form-group">
+						<label for="comment" class="col-lg-2 control-label">Comment</label>
+						<div class="col-lg-10">
+							<textarea class="form-control" rows="3" id="comment" name="comment" placeholder="To do before session"></textarea>
+						</div>
+					</div>	    
 				    <div class="form-group">
 				      <div class="col-lg-4 col-lg-offset-4">
-				      <input type="hidden" name="availability_id" value="<?php echo Input::get('id');?>">
+				      <input type="hidden" name="id" value="<?php echo Input::get('id');?>">
 				      <input type="hidden" name="date" value="<?php echo $availability->date; ?>">
-				        <button type="submit" class="btn btn-primary">Submit</button>
+				        <button type="submit" id="submit" class="btn btn-primary">Schedule</button>
 				      </div>
 				    </div>
 				  </fieldset>

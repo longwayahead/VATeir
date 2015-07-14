@@ -22,7 +22,8 @@ $user = new User;
     <link href=<?php echo BASE_URL . "css/paper.css"; ?> rel="stylesheet">
     <link href=<?php echo BASE_URL . "css/custom.css"; ?> rel="stylesheet">
     <link href=<?php echo BASE_URL . "css/slider.css"; ?> rel="stylesheet">
-    <link href=<?php echo BASE_URL . "datetimepicker/bootstrap-datetimepicker.css"; ?> rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.14.30/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <!-- <link href=<?php //echo BASE_URL . "datetimepicker/bootstrap-datetimepicker.css"; ?> rel="stylesheet"> -->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -30,6 +31,32 @@ $user = new User;
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+<!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+<script type="text/javascript">
+    window.cookieconsent_options = {
+      "message":"This website uses cookies to ensure you get the best experience on it",
+      "dismiss":"Grand!",
+      "learnMore":"More info",
+      "link":"<?php echo BASE_URL . 'privacy.php'; ?>",
+      "theme":"light-top"
+    };
+</script>
+
+<script type="text/javascript" src="//s3.amazonaws.com/cc.silktide.com/cookieconsent.latest.min.js"></script>
+<!-- End Cookie Consent plugin -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-65017894-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
   </head>
 <body>
 <div class="container">
@@ -82,7 +109,18 @@ switch($directory) {
   <div class="navbar-collapse collapse navbar-responsive-collapse">
     <ul class="nav navbar-nav">
       <li <?php echo ($directory == 0) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL; ?>>Home</a></li>
-      <?php if($user->isLoggedIn()) { ?><li <?php echo ($directory == 1) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "training"; ?>>Training</a></li> <?php } ?>
+      <?php if($user->isLoggedIn()) { ?>
+          <li <?php echo ($directory == 1) ? 'class="active"' : '' ;?>>
+          <?php
+            if($user->hasPermission("mentor")) {
+              $trainingurl = BASE_URL . "training/mentor";
+            } else {
+              $trainingurl = BASE_URL . "training";
+            }
+            
+          ?>
+          <a href="<?php echo $trainingurl; ?>"; ?>Training</a></li>
+      <?php } ?>
       <li <?php echo ($directory == 2) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "events"; ?>>Events</a></li>
       <li <?php echo ($directory == 4) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "pilots"; ?>>Pilots</a></li>
       <li <?php echo ($directory == 5) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "controllers"; ?>>Controllers</a></li>
@@ -105,7 +143,7 @@ switch($directory) {
     <ul class="nav navbar-nav navbar-right">
     <?php
     if(!$user->isLoggedIn()) {
-        echo '<li><a href="' . BASE_URL . 'login/index.php?forum">Login</a></li>';
+        echo '<li><a href="' . BASE_URL . 'login/index.php">Login</a></li>';
     } else {
 
     ?>

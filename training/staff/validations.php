@@ -22,7 +22,7 @@ if((!isset($_GET['e'])) && (!isset($_POST['e']))) {
 				}
 			}
 			$t->generateValFile();
-			Session::flash('success', 'Validations Extended!');
+			Session::flash('success', 'Validations Approved!');
 			Redirect::to('./validations.php');
 		} elseif(isset($_POST['reject'])) {
 			foreach(Input::get('validations') as $key => $val) {

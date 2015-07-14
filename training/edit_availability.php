@@ -52,7 +52,7 @@ $availability = $a->get(['id' => Input::get('id')])[0];
       <div class="panel-body">
 
         <div class="col-md-8 col-md-offset-2">
-        <form class="form-horizontal" action="" method="post">
+        <form class="form-horizontal" action="" method="post" onsubmit="document.getElementById('submit').disabled=true; document.getElementById('submit').value='Submitting...';">
           <fieldset>
             <div class="form-group">
               <label for="inputEmail" class="col-lg-2 control-label">Date</label>
@@ -96,7 +96,7 @@ $availability = $a->get(['id' => Input::get('id')])[0];
             <div class="form-group">
                   <div class="col-lg-10 col-lg-offset-4">
                   	<input type="hidden" name="id" value="<?php echo $availability->availability_id; ?>">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" id="submit" class="btn btn-primary">Submit</button>
                   </div>
                 </div>
           </fieldset>

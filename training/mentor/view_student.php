@@ -130,7 +130,7 @@ try {
 								<?php $perms = $t->getPermissions(); ?>
 								
 								<div class="col-md-3">
-								Status:
+									Permissions:
 								</div>
 								<div class="col-md-9">
 									
@@ -151,7 +151,31 @@ try {
 										</select>
 									</form>
 								</div>
-							
+							</div>
+							<div class="col-md-6">
+								<?php $progs = $t->getPrograms("all"); ?>
+								<div class="col-md-3">
+									Programme:
+								</div>
+								<div class="col-md-9">
+									
+									<form action="../staff/change_program.php" method="post">
+										<select class="col-md-6 text-left form-control tick" onchange="this.form.submit()" name="data[<?php echo $data->cid;?>]">
+											<?php foreach($progs as $prog):	?>
+												
+												<?php echo '<option value="' . $prog->id . '"';
+												if($prog->id == $data->program) {
+													echo 'selected="" ';
+												}
+												echo '>';
+												echo $prog->name;
+												echo '</option>';
+												?>
+												
+											<?php endforeach;?>
+										</select>
+									</form>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -386,7 +410,7 @@ try {
 <?php
 require_once("../../includes/footer.php");
 ?>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Readmore.js/2.0.5/readmore.min.js"></script>
 <script>$('article').readmore({
 	collapsedHeight: 58,
 	speed:200,

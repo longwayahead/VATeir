@@ -92,7 +92,7 @@ if(Input::exists()) { //if form submitted!
 
 
 			<div class="col-md-10 col-md-offset-1 well">
-				<form class="form-horizontal" method="post" action="add_note.php">
+				<form class="form-horizontal" method="post" action="add_note.php" onsubmit="document.getElementById('submit').disabled=true; document.getElementById('submit').value='Submitting...';">
 	                <fieldset>
 	                  <legend>Add Note</legend>
 	                  	<div class="form-group">
@@ -154,7 +154,7 @@ if(Input::exists()) { //if form submitted!
 							<input type="hidden" name="cid" value="<?php echo Input::get('cid');?>"></input>
 							<input type="hidden" name="type" value="<?php echo Input::get('type');?>"></input>
 							<input type="hidden" name="mentorcid" value="<?php echo $user->data()->id;?>"></input>
-							<button type="submit" name="submit" class="btn btn-primary">Submit</button>
+							<button type="submit" name="submit" id="submit" class="btn btn-primary">Submit</button>
 							</div>
 						</div>
 					</fieldset>

@@ -22,7 +22,7 @@ if($user->isLoggedIn() && !isset($_GET['forum'])) {
 					</div>
 					<div class="panel-body text-center">
 						
-						Login is closed at the moment to add a feature.<br>Please check back soon.
+						Login to the site is closed at the moment. Please check back later or log into our forum.
 						
 					</div>
 				</div>

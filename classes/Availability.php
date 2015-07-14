@@ -21,7 +21,7 @@ class Availability {
 		$this->end="";
 		$this->limitstr = null;
 		if(!empty($options)) {
-			$this->end = " WHERE availability.date >= CURDATE() ";
+			$this->end = " WHERE CONCAT(availability.date, ' ', availability.time_from) >= NOW()";
 		}
 
 		if(isset($options['limit'])) {

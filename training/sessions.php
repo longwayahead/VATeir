@@ -47,6 +47,9 @@ $s = new Sessions;
 								<strong>Finish</strong>
 							</td>
 							<td>
+								<strong>Comment</strong>
+							</td>
+							<td>
 								<strong>Cancel</strong>
 							</td>
 						</tr>
@@ -73,6 +76,12 @@ $s = new Sessions;
 								</td>
 								<td>
 									<?php echo date("H:i", strtotime($session->finish)); ?> 
+								</td>
+								<td>
+									<?php if($session->comment != null) :?>
+										<button title="" data-original-title="" type="button" class="btn btn-xs btn-default" data-container="body" data-toggle="popover" data-placement="bottom" data-content="<?php echo $session->comment; ?>" style="cursor:pointer; text-decoration:none;"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></button>
+									<?php endif; ?>
+									
 								</td>
 								<td>
 									<a href="cancel_session.php?id=<?php echo $session->session_id; ?>" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
@@ -133,6 +142,9 @@ $s = new Sessions;
 								<strong>Finish</strong>
 							</td>
 							<td>
+								<strong>Comment</strong>
+							</td>
+							<td>
 								<strong>Report</strong>
 							</td>
 						</tr>
@@ -159,6 +171,12 @@ $s = new Sessions;
 								</td>
 								<td>
 									<?php echo date("H:i", strtotime($session->finish)); ?> 
+								</td>
+								<td>
+									<?php if($session->comment != null) :?>
+										<button title="" data-original-title="" type="button" class="btn btn-xs btn-default" data-container="body" data-toggle="popover" data-placement="bottom" data-content="<?php echo $session->comment; ?>" style="cursor:pointer; text-decoration:none;"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></button>
+									<?php endif; ?>
+									
 								</td>
 								<td>
 									<?php if($session->report_id != null) { echo '<a href="history.php#r' . $session->report_id .'" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>'; }?>

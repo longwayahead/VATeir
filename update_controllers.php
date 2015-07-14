@@ -81,8 +81,23 @@ foreach($controllers as $controller) {	//Register users if they aren't already i
 				if($data->email != $controller->email) {
 					$change['email'] = $controller->email;
 				}
-				if($data->rating != $controller->rating && $data->rating <= 7) {
+				
+				//get real rating
+				if($controller->rating > 7) {
+					$rating = $user->getRealRating($controller->cid);
+				} else {
+					$rating = $controller->rating;
+				}
+				//end get real rating
+
+
+				if($data->rating != $rating) {
 					$change['rating'] = $controller->rating;
+				}
+
+				$programChange = false;
+				if($data->rating != $rating) {
+					$programChange = true;
 				}
 				if($data->pilot_rating != $controller->pilot_rating) {
 					$change['pilot_rating'] = $controller->pilot_rating;
@@ -92,16 +107,12 @@ foreach($controllers as $controller) {	//Register users if they aren't already i
 					$change['vateir_status'] = 1;
 				}
 				
-				// if($controller->rating > 7) {
-				// 	$rating = $user->getRealRating($controller->cid);
-				// } else {
-				// 	$rating = $controller->rating;
-				// }
+				
 				if(!empty($change)) {
 					$update = $user->update((
 						$change
 					), [['id', '=', $controller->cid]]);
-					if(isset($change['rating'])) { //only change the student's programme if their rating has changed. new rating = new training programme.
+					if($programChange === true) { //only change the student's programme if their rating has changed. new rating = new training programme.
 						$program = $t->program($rating);
 
 						$studentUpdate = $t->updateStudent(array(

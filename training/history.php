@@ -224,7 +224,7 @@ try {
 <?php
 require_once("../includes/footer.php");
 ?>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Readmore.js/2.0.5/readmore.min.js"></script>
 <script>$('article').readmore({
 	collapsedHeight: 58,
 	speed:200,

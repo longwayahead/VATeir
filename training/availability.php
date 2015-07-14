@@ -1,9 +1,9 @@
 <?php
 $pagetitle = "My Availability";
 require_once('includes/header.php');
+$student = $t->getStudent($user->data()->id);
 $a = new Availability;
 if(Input::exists()) {
-
   try{
   	$validate = new Validate;
   	$validation = $validate->check($_POST, array(
@@ -14,12 +14,13 @@ if(Input::exists()) {
   		'from' => array(
   			'field_name' => 'Time From',
   			'required' => true,
-        	'time_less' => 'to',
-        	'time_same'	=> 'to'
+      	'time_less' => 'to',
+      	'time_same'	=> 'to',
+        'time_now' => Input::get('date') . ' ' . Input::get('from') . ':00',
   			),
   		'to' => array(
   			'field_name' => 'Time Until',
-  			'required' => true
+  			'required' => true,
   			)
   		));
   	if($validation->passed()) {
@@ -51,7 +52,7 @@ if(Input::exists()) {
     echo $e->getMessage();
   }
 }
-
+// print_r($student);
 ?>
 <div class="row">
 <div class="col-md-10 col-md-offset-1">
@@ -59,9 +60,9 @@ if(Input::exists()) {
     <div class="panel panel-default">
       <div class="panel-heading">Add Availability</div>
       <div class="panel-body">
-      <?php if($user->data()->rating < 5) { ?>
+      <?php if($student->program > 1) { ?>
         <div class="col-md-8 col-md-offset-2">
-        <form class="form-horizontal" action="" method="post">
+        <form class="form-horizontal" action="" method="post" onsubmit="document.getElementById('submit').disabled=true; document.getElementById('submit').value='Submitting...';">
           <fieldset>
             <div class="form-group">
               <label for="inputEmail" class="col-lg-2 control-label">Date</label>
@@ -84,7 +85,7 @@ if(Input::exists()) {
                           <span class="glyphicon glyphicon-time"></span>
                       </span>
                   </div>
-
+                  
                 </div>
                 <div class="col-md-2">
                 to
@@ -100,19 +101,21 @@ if(Input::exists()) {
                 <br>
                 
               </div>
+
             </div>
+            <span class="help-block text-center">Times are in 24h IST.</span>
             <br>
             <div class="form-group">
                   <div class="col-lg-10 col-lg-offset-3">
                     <button type="reset" class="btn btn-default">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" id="submit" class="btn btn-primary">Submit</button>
                   </div>
                 </div>
           </fieldset>
         </form>
       </div>
       <?php } else { ?>
-        <div class="text-danger text-center" style="font-size:16px;"><br>Rating too high!</div><br>
+        <div class="text-danger text-center" style="font-size:16px;"><br>No sessions available</div><br>
       <?php } ?>
       </div>
     </div>
@@ -161,7 +164,7 @@ if(Input::exists()) {
         } else {
           echo '<br><div class="row">
                 <div class="col-md-6 col-md-offset-3">
-              <div class="text-danger text-center" style="font-size:16px;">No Availability</div><br>
+              <div class="text-danger text-center" style="font-size:16px;">No availability</div><br>
       
               </div></div>';}
       } catch(Exception $e) {

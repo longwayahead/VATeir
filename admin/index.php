@@ -1,11 +1,7 @@
 <?php
 $pagetitle = "Admin Home";
 require_once("includes/header.php");
-if(!$user->hasPermission('admin')) {
-	Session::flash('error', 'Invalid permissions.');
-	Redirect::to('../index.php');
-}
-$a = new Admin;
+
 $t = new Training;
 $incoming = $a->incoming();
 ?>
@@ -59,10 +55,10 @@ $incoming = $a->incoming();
 			</div>
 		</div>
 	</div>
-	<div class="col-md-6">
+	<div class="col-md-3">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h3 class="panel-title">Latest 5 Updates</h3>
+				<h3 class="panel-title">Crons</h3>
 			</div>
 			<div class="panel-body">
 			<?php
@@ -88,6 +84,23 @@ $incoming = $a->incoming();
 				<?php } else { //if empty crons ?>
 					<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No crons</div><br>
 			<?php } ?>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Site Config</h3>
+			</div>
+			<div class="panel-body">
+				<div class="col-md-6">
+					Login:
+				</div>
+				<div class="col-md-6">
+				<?php
+					echo ($user->loginOpen()) ? '<a href="config.php?login=0">Close</a>' : '<a href="config.php?login=1">Open</a>';
+				?>
+				</div>
 			</div>
 		</div>
 	</div>

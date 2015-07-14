@@ -47,7 +47,7 @@ if(!$user->hasPermission('tdstaff')) {
 			<div class="panel-heading">
 				<h3 class="panel-title">Sessions without reports</h3>
 			</div>
-			<div class="panel-body" style="padding:0px;">
+			<div class="panel-body">
 			<?php
 				try {
 					$s = new Sessions;
@@ -120,6 +120,16 @@ if(!$user->hasPermission('tdstaff')) {
 				echo '<div class="panel-footer text-right"><a href="no_reports.php">View All</a></div>';
 			}
 			?>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Pixels not aligned?</h3>
+			</div>
+			<div class="panel-body">
+				<img src="http://media.giphy.com/media/13W8faVLb4bo3u/giphy.gif">
+			</div>
 		</div>
 	</div>
 <!-- 	<div class="col-md-6">

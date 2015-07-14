@@ -52,7 +52,7 @@ echo '<div class="col-md-10 col-md-offset-1">';
 												}
 												echo '</h3>
 											</div>
-										<div class="panel-body" style="padding:0px;">
+										<div class="panel-body">
 											<table class="table table-responsive table-condensed table-hover table-striped">
 												<tr>
 													<td><strong>Controller</strong></td>
@@ -121,7 +121,7 @@ echo '<div class="col-md-10 col-md-offset-1">';
 											<div class="panel-heading">
 												<h3 class="panel-title">' . $position->callsign . '</h3>
 											</div>
-											<div class="panel-body" style="padding:0px;">
+											<div class="panel-body">
 												<table class="table table-responsive table-condensed table-hover table-striped">
 													<tr>
 														<td><strong>Controller</strong></td>

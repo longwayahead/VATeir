@@ -54,8 +54,13 @@ class Training {
 		$this->_db = DB::getInstance();
 	}
 	
-	public function getPrograms() {
-		$data = $this->_db->query("SELECT * FROM programs WHERE name != 'completed' ORDER BY sort ASC");
+	public function getPrograms($where = null) {
+		if(!isset($where)) {
+			 $where = "WHERE name != 'completed'";
+		} else {
+			$where = null;
+		}
+		$data = $this->_db->query("SELECT * FROM programs $where ORDER BY sort ASC");
 		if($data->count()) {
 			$this->_data = $data->results();
 			return $this->_data;
@@ -174,6 +179,17 @@ class Training {
 	public function bookings() {
 		cacheFile(URL.'datafiles/bookings.xml', 'http://vatbook.euroutepro.com/xml.php?fir=EISN');
 		$xml = new SimpleXMLElement(file_get_contents(URL.'datafiles/bookings.xml'));
+		$i = 0;
+		
+		foreach($xml->atc as $x) {
+			$bookings[$i]['callsign'] = $x->callsign;
+			$bookings[$i]['name'] = $x->name;
+			$bookings[$i]['time_start'] = $x->time_start;
+			$bookings[$i]['time_end'] = $x->time_end;
+			$bookings[$i]['cid'] = $x->cid;
+			$bookings[$i]['added'] = $x->added;
+			$i++;
+		}
 		return $xml;
 	}
 

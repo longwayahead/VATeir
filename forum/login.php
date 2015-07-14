@@ -13,7 +13,7 @@ if(($_SESSION['token'] == $_POST['token']) && ($_SESSION['forum_id'] == $_POST['
         global $phpbb_root_path, $phpEx, $user;
 
         $user->session_begin(); //Start Session
-        $user->session_create($id); //Create Session
+        $user->session_create($id, false, true, true); //User id////persist login//view online//
 
         //Check if User has successfully Logged in
         if($user->data['is_registered']==1 && $user->data['user_type'] != USER_INACTIVE && $user->data['user_type'] != USER_IGNORE)

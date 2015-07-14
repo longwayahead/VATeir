@@ -19,6 +19,11 @@ function sortArray($array, $orderBy1, $direction1, $orderBy2, $direction2){ //so
 		return $array;
 }
 
+function sortFunction( $a, $b ) {
+    return strtotime($a["starts_date"]) - strtotime($b["starts_end"]);
+}
+
+
 function array_search_partial($arr, $keyword) {
     foreach($arr as $index => $string) {
         if (strpos($string, $keyword) !== FALSE) 
@@ -78,4 +83,26 @@ function cacheFile($localFile, $remoteFile, $delayTime = 1800) {
 function getMetar($ICAO = "EI") {
 	$metarFile = file(URL . "datafiles/metar.txt");
 	return implode("", preg_grep("/$ICAO/", $metarFile)); //preg_grep does a partial string match against the array for the ICAO and puts it in a temp array
+}
+
+function convertTime($dec)
+{
+    // start by converting to seconds
+    $seconds = ($dec * 3600);
+    // we're given hours, so let's get those the easy way
+    $hours = floor($dec);
+    // since we've "calculated" hours, let's remove them from the seconds variable
+    $seconds -= $hours * 3600;
+    // calculate minutes left
+    $minutes = floor($seconds / 60);
+    // remove those from seconds as well
+    $seconds -= $minutes * 60;
+    // return the time formatted HH:MM:SS
+    return lz($hours).":".lz($minutes).":".lz(floor($seconds));
+}
+
+// lz = leading zero
+function lz($num)
+{
+    return (strlen($num) < 2) ? "0{$num}" : $num;
 }

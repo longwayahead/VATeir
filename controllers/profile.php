@@ -139,11 +139,11 @@ try {
 											$rating = 'Pilot Time';
 										break;
 									}
-									$hour = floor($time);
-									$min = round(60*($time-$hour));
+
+									$newTime = convertTime($time);
 									echo '<tr>
 											<td><strong>' . $rating . '</strong></td>
-											<td>' . $hour . ':' . $min . '</td>
+											<td>' . $newTime . '</td>
 										</tr>';
 								}
 							}

@@ -40,6 +40,7 @@ require_once("includes/header.php");
 		</div>
 	</div>
 </div>
+
 <?php
 echo '</div>';
 require_once("../includes/footer.php");

@@ -23,7 +23,7 @@ if(isset($_GET['id'])) {
 				//}
 				
 			}
-			var_dump($answers);
+			//var_dump($answers);
 		}
 
 		
@@ -108,7 +108,7 @@ if(isset($_GET['id'])) {
 
 
 	<div class="col-md-10 col-md-offset-1 well">
-		<form class="form-horizontal" method="post" action="">
+		<form class="form-horizontal" method="post" action=""  onsubmit="document.getElementById('submit').disabled=true; document.getElementById('submit').value='Editing...';">
 	        <fieldset>
 	          <legend>Edit Report</legend>
 	          	<div class="form-group">
@@ -288,7 +288,7 @@ if(isset($_GET['id'])) {
 					<div class="col-lg-10 col-md-offset-1">
 					<input type="hidden" name="id" value="<?php echo Input::get('id');?>"></input>
 					<input type="hidden" name="cid" value="<?php echo $report->student_cid;?>"></input>
-					<button type="submit" name="submit" class="btn btn-primary">Submit</button>
+					<button type="submit" id="submit" name="submit" class="btn btn-primary">Submit</button>
 					</div>
 				</div>
 			</fieldset>
@@ -300,6 +300,7 @@ if(isset($_GET['id'])) {
 	echo '</div>';
 	require_once("../../includes/footer.php");
 ?>
+	<script src=<?php echo BASE_URL . "js/jquery.nouislider.all.min.js";?>></script>
 	<script>
 		<?php
 		if($allSliders) {
@@ -336,5 +337,6 @@ if(isset($_GET['id'])) {
 
 	</script>
 	<script src="../../scribe/bower_components/requirejs/require.js" data-main="../../scribe/setup.js"></script>
+
 	<?php
 }

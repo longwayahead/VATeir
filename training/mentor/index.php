@@ -5,6 +5,14 @@ if(!$user->hasPermission('mentor')) {
 	Session::flash('error', 'Insufficient permissions');
 	Redirect::to('../');
 }
+$g = new Graph;
+$m = $g->mm($user->data()->id);
+$show = false;
+foreach($m as $j) {
+	if($j > 0) {
+		$show = true;
+	}
+}
 ?>
 <h3 class="text-center">Mentor Dashboard</h3><br>
 <div class="row">
@@ -37,10 +45,10 @@ if(!$user->hasPermission('mentor')) {
 							</td>
 							<td>
 								<strong>Starts</strong>
-							</td><!-- 
+							</td>
 							<td>
-								View
-							</td> -->
+								<strong>Edit</strong>
+							</td>
 						</tr>
 					
 						<?php $i=1; foreach($sessions as $session): ?>
@@ -59,10 +67,10 @@ if(!$user->hasPermission('mentor')) {
 									</td>
 									<td>
 										<?php echo date("H:i", strtotime($session->start)); ?> 
-									</td><!-- 
+									</td>
 									<td>
-										<?php //echo '<a class="btn btn-xs btn-primary" href="view_session.php?id=' . $session->session_id . '"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>' ?> 
-									</td> -->
+										<?php echo '<a class="btn btn-xs btn-primary" href="edit_session.php?id=' . $session->session_id . '"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>' ?> 
+									</td>
 								</tr>
 							<?php } ?>
 
@@ -164,8 +172,9 @@ if(!$user->hasPermission('mentor')) {
 		</div>
 	</div>
 </div>
+<br>
 <div class="row">
-	<div class="col-md-6">
+	<div class="col-md-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">Available Students</h3>
@@ -185,17 +194,17 @@ if(!$user->hasPermission('mentor')) {
 				<td>
 					<strong>Name</strong>
 				</td>
-				<td>
+				<td class="hidden-xs">
 					<strong>Programme</strong>
 				</td>
-				<td>
+				<td style="white-space:nowrap;">
 					<strong>Date</strong>
 				</td>
 				<td>
-					<strong>Time From</strong>
+					<strong>From</strong>
 				</td>
 				<td>
-					<strong>Time Until</strong>
+					<strong>Until</strong>
 				</td>
 				<td>
 					<strong>Book</strong>
@@ -204,17 +213,18 @@ if(!$user->hasPermission('mentor')) {
             <?php foreach($availabilities as $availability): ?>
               <tr>
               	<td><?php echo '<a href="view_student.php?cid=' . $availability->cid . '">' . $availability->first_name . ' ' . $availability->last_name . '</a>';?></td>
-              	<td><?php echo $availability->program_name;?></td>
-                <td><?php echo date("j-M-y", strtotime($availability->date));?></td>
+              	<td class="hidden-xs"><?php echo $availability->program_name;?></td>
+                <td style="white-space:nowrap;"><?php echo date("j M y", strtotime($availability->date));?></td>
                 <td><?php echo date("H:i", strtotime($availability->time_from));?></td>
                 <td><?php echo date("H:i", strtotime($availability->time_until));?></td>
              	<td><?php echo '<a class="btn btn-xs btn-default" href="schedule_session.php?id=' . $availability->availability_id . '"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>' ?></td>
-              </tr>
+            	
+			 </tr>
             <?php endforeach; ?>
           </table>
           <?php
         } else {
-          echo '<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No availability</div><br>';
+          echo '<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No availabile students</div><br>';
         }
       } catch(Exception $e) {
         echo $e->getMessage();
@@ -229,6 +239,124 @@ if(!$user->hasPermission('mentor')) {
 		</div>
 	</div>
 </div>
+<br>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">My Mentoring: Past 6 Months</h3>
+			</div>
+			<div class="panel-body">
+				<?php if($show === true): ?>
+					<canvas id="mm" style="padding-left:-20px; padding-right:20px;"></canvas>
+				<?php else: ?>
+					<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No sessions</div><br>
+				<?php endif; ?>
+				
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Completed Sessions</h3>
+			</div>
+			<div class="panel-body">
+				<canvas id="overview" style="padding-left:-20px; padding-right:20px;"></canvas>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+<?php
+$graph = $g->sbm();
+?>
+var radarData = {
+    labels: [
+	    <?php
+	    foreach($graph as $name => $value) {
+			echo '"' . $name . '",';
+		}
+		?>
+    ],
+    datasets: [
+        {
+            label: "This Month",
+            fillColor: "rgba(151,187,205,0.2)",
+            strokeColor: "rgba(151,187,205,1)",
+            pointColor: "rgba(151,187,205,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(151,187,205,1)",
+            data: [
+            	<?php
+            	foreach($graph as $name=>$value) {
+					echo $value['this'] . ',';
+				}
+            	?>
+           	]
+        },
+        {
+            label: "Last Month",
+            fillColor: "rgba(220,220,220,0.2)",
+            strokeColor: "rgba(220,220,220,1)",
+            pointColor: "rgba(220,220,220,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data: [
+            	<?php
+            	foreach($graph as $name=>$value) {
+					echo $value['last'] . ',';
+				}
+            	?>
+           	]
+        },
+    ]
+};
+<?php
+
+?>
+var progSessions = [
+    {
+        value: <?php echo $m['S1'];?>,
+        color:"#F7464A",
+        highlight: "#FF5A5E",
+        label: "OBS-S1"
+    },
+    {
+        value: <?php echo $m['S2'];?>,
+        color: "#46BFBD",
+        highlight: "#5AD3D1",
+        label: "S1-S2"
+    },
+    {
+        value: <?php echo $m['S3'];?>,
+        color: "#FDB45C",
+        highlight: "#FFC870",
+        label: "S2-S3"
+    },
+    {
+        value: <?php echo $m['C1'];?>,
+        color: "#949FB1",
+        highlight: "#A8B3C5",
+        label: "S3-C1"
+    }
+
+];
+window.onload = function(){
+	var cty = document.getElementById("overview").getContext("2d");
+	window.myRadar = new Chart(cty).Radar(radarData, {
+		responsive: true,
+		multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+	});
+	var ctz = document.getElementById("mm").getContext("2d");
+	window.myProg = new Chart(ctz).PolarArea(progSessions, {
+		responsive: true
+	});
+}
+</script>
 
 <?php
 echo '</div>';

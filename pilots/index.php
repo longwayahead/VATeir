@@ -119,7 +119,11 @@ require_once('includes/header.php');
 				<?php
 				$t = new Training;
 				$bookings = $t->bookings();
-				if(count($bookings->atc) > 0) {					
+				// echo '<pre>';
+				// print_r($bookings);
+				// echo '</pre>';
+
+				if(count($bookings->atc) > 0) {		
 					echo '<table class="table table-striped table-responsive table-condensed">
 						<tr>
 							<td><strong>Position</strong></td>
@@ -128,17 +132,18 @@ require_once('includes/header.php');
 							<td><strong>Until (UTC)</strong></td>
 						</tr>';
 					foreach($bookings->atc as $booking) {
-
-								echo '<tr><td>';
-									echo $booking->callsign;
-								echo '</td>';
-								echo '<td>';
-									echo $booking->name;
-								echo '</td><td>';
-									echo date('d-m-y H:i', strtotime($booking->time_start));
-								echo '</td><td>';
-									echo date('d-m-y H:i', strtotime($booking->time_end));
-								echo '</td></tr>';
+						if(date('d-m-y H:i', strtotime($booking->time_end)) > date('d-m-y H:i')) {
+							echo '<tr><td>';
+								echo $booking->callsign;
+							echo '</td>';
+							echo '<td>';
+								echo $booking->name;
+							echo '</td><td>';
+								echo date('j F H:i', strtotime($booking->time_start));
+							echo '</td><td>';
+								echo date('j F H:i', strtotime($booking->time_end));
+							echo '</td></tr>';
+						}
 
 					}
 					echo '</table>';

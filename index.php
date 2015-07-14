@@ -36,8 +36,8 @@ if($random == 1) {
 	<p>Firstly, can I welcome you to vACC Ireland. Nestled within the confines of Oceanic, British and French airspace, the Shannon FIR is home to all that the Republic of Ireland has to offer in the aviation sector. Our goal is to provide an enjoyable and challenging environment in which to participate in the widest range of virtual aviation activities. Please take the time to look around our website, and if you have any questions, please get in touch.</p>
 
 <p>Best regards,<br>
-Adam Arkley - 1031024<br>
-Director - vACC Ireland </p>
+Adam Arkley &ndash; 1031024<br>
+Director &ndash; vACC Ireland </p>
 </div>
 
 
@@ -113,7 +113,7 @@ Director - vACC Ireland </p>
 									echo '<tr>
 											<td>
 										
-											<a tabindex="0" data-container="body" data-trigger="focus" data-toggle="popover" data-placement="left" data-html="true" title="Session Details" data-content="
+											<a tabindex="0" data-container="body" data-trigger="focus" data-toggle="popover" data-placement="bottom" data-html="true" title="Session Details" data-content="
 												<strong>Rating: </strong>' . $atc->rating . '<br>
 												<strong>Online Since: </strong>' . date("d\<\s\u\p\>S\<\/\s\u\p\> M H:i", strtotime($atc->online_since)). '<br>
 																						
@@ -270,6 +270,7 @@ Director - vACC Ireland </p>
 						<p><?php echo strip_tags($event->short_description); ?></p>
 						<p><div class="text-right"><a href="events/index.php#<?php echo $event->id; ?>" class="btn btn-success" role="button">Read More</a></div></p>
 					</div>
+				</div>
 				</div>
 			
 		

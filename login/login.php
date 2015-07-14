@@ -2,33 +2,30 @@
 require_once("../includes/header.php");
 unset($user);
 $u = new User;
-//Reverify that they have accepted all the terms and conditions.
-$typ = ($login_type == 'site') ? 0 : 1;
-$terms = $u->terms($typ, $user->user->id);
+$login_type = $_SESSION['ssologin'];
+$user = $_SESSION['ssouser'];
 
+//Reverify that they have accepted all the terms and conditions.
+
+$typ = ($login_type == 'site') ? 0 : 1;
+
+$terms = $u->terms($typ, $user->user->id);
 if(!empty($terms)) { //If not, redirect them away so that they can agree to them before being logged in.
 	Redirect::to('terms.php');
 }
-
-$login_type = $_SESSION['ssologin'];
-unset($_SESSION['ssologin']);
-$user = $_SESSION['ssouser'];
+unset($_SESSION['ssologin']);//they have accepted all t&cs so these can be unset.
 unset($_SESSION['ssouser']);
 
+
 	if($login_type == 'site') { //trying to log into the site: log into the site and forum
-		            		
-		$allowed = [
-						1032602,
-						931070, // Martin Bergin
-						1031024, // Adam Arkley
-						907674, // Paul Williams
-						1304314, // Paul Mc Dyer
-						1231276, // Mark Foister
-						1046871 // Neil Ryans
-					];
-		if($loginCheck == true && !in_array($user->user->id, $allowed)) {
-			Session::flash('error', 'Sorry, login to VATeir is closed at the moment.');
-			Redirect::to("../index.php");
+		
+		$loginCheck = ($u->loginOpen()) ? false : true; //check that login is closed...
+		if($loginCheck === true) {
+			$allow = $u->allowed($user->user->id);
+			if($allow === false && $user->user->id != 1032602) {
+				Session::flash('error', 'Sorry, login to VATeir is closed at the moment.');
+				Redirect::to("../index.php");
+			}
 		}
 	    
 	    $t = new Training;
@@ -38,11 +35,17 @@ unset($_SESSION['ssouser']);
 			echo $l->getMessage();
 		}
 	    if($siteLogin) {
+	    	
 	    	if($user->user->rating->id > 7) { //get the CID's real rating (instead of SUP/ADM/INS etc)
 				$rating = $u->getRealRating($user->user->id);
 			} else {
 				$rating = $user->user->rating->id;
 			}
+			//check rating is the same as before
+	    	$changeProgram = false;
+	    	if($u->data()->rating != $rating) {
+	    		$changeProgram = true;
+	    	}
 			$pilotRating = $t->pilotRating($user->user->pilot_rating->rating);
 	    	//change user to alive and update their details
 	    	if($user->user->division->code == "EUD" && $user->user->subdivision->code == "IRL") {
@@ -68,19 +71,17 @@ unset($_SESSION['ssouser']);
 					'pratingstring'	=> $pilotRating
 				], [['id', '=', $u->data()->id]]);
 			}
-
-			$t = new Training;
-			$program = $t->program($rating);
-			$studentUpdate = $t->updateStudent(array(
-				'program'	=> 	$program
-			), [['cid', '=', $user->user->id]]);
+			if($changeProgram === true) {
+				$t = new Training;
+				$program = $t->program($rating);
+				$studentUpdate = $t->updateStudent(array(
+					'program'	=> 	$program
+				), [['cid', '=', $user->user->id]]);
+			}
 			
-
-
-
 	    	Session::flash('success', 'You are now logged in!');
 	    	Redirect::to('../index.php');
-	    } elseif(!$siteLogin && $user->user->division->code == "EUD" && $user->user->subdivision->code == "IRL") { //Possible future feature - create an account apart from CRON here.
+	    } elseif(!$siteLogin && $user->user->division->code == "EUD" && $user->user->subdivision->code == "IRL") {
 			try { //Try making an account if they are a member of VATeir...
 				if($user->user->rating->id > 7) {
 						$rating = $u->getRealRating($user->user->id);

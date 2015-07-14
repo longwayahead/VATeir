@@ -110,7 +110,7 @@ if(Input::exists()) { //if form submitted!
 	}
 	?>
 <div class="col-md-10 col-md-offset-1 well">
-	<form class="form-horizontal" method="post" action="add_report.php">
+	<form class="form-horizontal" method="post" action="add_report.php" onsubmit="document.getElementById('submit').disabled=true; document.getElementById('submit').value='Submitting...';">
         <fieldset>
           <legend>Add Report</legend>
           	<div class="form-group">
@@ -252,7 +252,7 @@ if(Input::exists()) { //if form submitted!
 				<input type="hidden" name="cid" value="<?php echo $session->student;?>">
 				<input type="hidden" name="report_type" value="<?php echo $session->report_type;?>">
 				<input type="hidden" name="s" value="<?php echo Input::get('s');?>">
-				<button type="submit" name="submit" class="btn btn-primary">Submit</button>
+				<button type="submit" id="submit" name="submit" class="btn btn-primary">Submit</button>
 				</div>
 			</div>
 		</fieldset>
@@ -265,6 +265,7 @@ if(Input::exists()) { //if form submitted!
 echo '</div>';
 require_once("../../includes/footer.php");
 ?>
+<script src=<?php echo BASE_URL . "js/jquery.nouislider.all.min.js";?>></script>
 <script>
 	<?php
 	if($sliders) {

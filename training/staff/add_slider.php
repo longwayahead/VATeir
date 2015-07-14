@@ -78,7 +78,7 @@ $programs = $t->getPrograms();
 							<h3 class="panel-title">Add</h3>
 						</div>
 						<div class="panel-body">
-							<form class="form-horizontal" action="" method="post">
+							<form class="form-horizontal" action="" method="post" onsubmit="document.getElementById('submit').disabled=true; document.getElementById('submit').value='Submitting...';">
 								<div class="form-group">
 									<label for="textarea" class="col-lg-2 control-label">Option text</label>
 									<div class="col-lg-8">
@@ -107,7 +107,7 @@ $programs = $t->getPrograms();
 									</div>
 								</div>
 								<div class="form-group text-center">
-									<input type="submit" name="submit" value="Submit" class="btn btn-primary">
+									<input type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary">
 								</div>
 							</form>
 						</div>

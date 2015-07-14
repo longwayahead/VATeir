@@ -20,9 +20,10 @@ class Airports{
 
 		cacheFile(URL.'datafiles/frequencies.json', 'http://api.vateud.net/frequencies/IRL.json', 2592000);
 		$this->_positions = json_decode(file_get_contents(URL.'datafiles/frequencies.json'), true);
-		
+		//print_r($this->_positions);
 		foreach($this->_positions as $position) {
 			if(strpos($position['callsign'], "ATIS") == false) {
+				//echo $position['callsign'];
 				$icao = substr($position['callsign'], 0, 4);
 				$pos = substr($position['callsign'], -3);
 				switch($pos) {
@@ -49,18 +50,23 @@ class Airports{
 				$positions[$icao][] = $position;
 			}
 		}
+
 		
 
 		foreach(array_reverse($this->_airports) as $airport) {
 			$this->airports[$airport['icao']] = $airport;
-			$this->airports[$airport['icao']]['positions'] = $positions[$airport->icao];
+			$this->airports[$airport['icao']]['positions'] = $positions[$airport['icao']];
+
 		}
+		
 
 		$this->airports['EISN']['icao'] = 'EISN';
 		$this->airports['EISN']['major'] = 1;
 		$this->airports['EISN']['data']['name'] = 'SHANNON CONTROL';
 		$this->airports['EISN']['positions'] = $positions['EISN'];
-
+		// 	echo '<pre>';
+		// print_r($this->airports);
+		// echo '</pre>';
 		return $this->airports;
 	}
 

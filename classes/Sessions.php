@@ -38,9 +38,9 @@ class Sessions {
 		}
 
 		if(isset($options['future']) && $options['future'] == 1) {
-			$this->end .= " AND sessions.finish >= CURDATE()";
+			$this->end .= " AND sessions.start >= NOW()";
 		} elseif(isset($options['future']) && $options['future'] == 2) {
-			$this->end .=" AND sessions.finish < CURDATE()";
+			$this->end .=" AND sessions.start < NOW()";
 		}
 
 		if(isset($options['cancelled']) && $options['cancelled'] = 1) {
@@ -52,10 +52,10 @@ class Sessions {
 			$limit = $options['limit'];
 			$this->bits = " LIMIT $limit";
 		}
-		$session = $this->_db->query("SELECT sessions.id as session_id, sessions.student, sessions.mentor, sessions.report_id, sessions.position_id, sessions.report_type, sessions.start, sessions.finish, sessions.deleted as session_deleted,
-										report_types.id, report_types.program_id, report_types.session_type, report_types.deleted as report_deleted,
-										programs.id, programs.permissions as program_permissions, programs.name as program_name, programs.ident, programs.sort AS program_sort,
-										position_list.id, position_list.airport_list_id, position_list.callsign, position_list.freq, position_list.name as position_name,
+		$session = $this->_db->query("SELECT sessions.id as session_id, sessions.student, sessions.mentor, sessions.report_id, sessions.position_id, sessions.report_type, sessions.comment, sessions.start, sessions.finish, sessions.deleted as session_deleted,
+										report_types.id as report_type_id, report_types.program_id, report_types.session_type, report_types.deleted as report_deleted,
+										programs.id as program_id, programs.permissions as program_permissions, programs.name as program_name, programs.ident, programs.sort AS program_sort,
+										position_list.id as position_id, position_list.airport_list_id, position_list.callsign, position_list.freq, position_list.name as position_name,
 										card_types.id, card_types.name as session_name,
 										controllers.id, controllers.email, controllers.first_name AS sfname, controllers.last_name AS slname,
 										control.id, control.first_name AS mfname, control.last_name AS mlname
@@ -92,11 +92,11 @@ class Sessions {
 	}
 
 	public function countSessions($cid) {
-		return $this->_db->query("SELECT * FROM sessions WHERE student = ? AND sessions.start >= CURDATE() AND sessions.deleted = 0", [[$cid]])->count();
+		return $this->_db->query("SELECT * FROM sessions WHERE student = ? AND sessions.start >= NOW() AND sessions.deleted = 0", [[$cid]])->count();
 	}
 
 	public function countAvailabilities($cid) {
-		return $this->_db->query("SELECT * FROM availability WHERE cid = ? AND time_until >= CURDATE() AND deleted = 0", [[$cid]])->count();
+		return $this->_db->query("SELECT * FROM availability WHERE cid = ? AND CONCAT(date, ' ', time_from) >= NOW() AND deleted = 0", [[$cid]])->count();
 	}
 
 	public function countMentor($cid) {
@@ -105,18 +105,18 @@ class Sessions {
 				SELECT COUNT(id)
 					FROM sessions 
 					WHERE mentor = ? 
-						AND finish <= CURDATE()
+						AND finish <= NOW()
 						AND report_id = null
 			) as without,
 			(
 				SELECT COUNT(id)
 					FROM availability
-					WHERE date >= CURDATE()
+					WHERE CONCAT(date, ' ', time_from) >= NOW()
 						AND deleted = 0
 			) as available
 		FROM sessions 
 		WHERE mentor = ? 
-			AND start >= CURDATE()
+			AND start >= NOW()
 			AND deleted = 0", [[$cid, $cid]]);
 		if($count->count()) {
 			return $count->first()->session + $count->first()->without + $count->first()->available;

@@ -1,16 +1,12 @@
 </div> <!-- Container -->
-<p class="text-center">Tógtha ag Cillian Ó Lúing, 2014&ndash;2015.</p>
+<p class="text-center">Tógtha ag Cillian Ó Lúing 2014&ndash;2015.</p>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src=<?php echo BASE_URL . "js/bootstrap.min.js";?>></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src=<?php echo BASE_URL . "js/global.js";?>></script>
-    <script src=<?php echo BASE_URL . "js/jquery.nouislider.all.min.js";?>></script>
-    <script src=<?php echo BASE_URL . "js/jquery.flip.js";?>></script>
-    <script src=<?php echo BASE_URL . "js/readmore.min.js";?>></script>
-    <script src=<?php echo BASE_URL . "js/timeago.js";?>></script>
-    <script src=<?php echo BASE_URL . "datetimepicker/moment.js";?>></script>
-    <script src=<?php echo BASE_URL . "datetimepicker/bootstrap-datetimepicker.min.js";?>></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.14.30/js/bootstrap-datetimepicker.min.js"></script>
     
 
         

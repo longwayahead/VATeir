@@ -35,7 +35,8 @@ class User {
 
 			if($data->count()) {
 				$this->_data = $data->first();
-				return true;
+			//	return true;
+				return $this->_data;
 			}
 		}
 		return false;
@@ -186,8 +187,15 @@ class User {
 		return o2a($xml->user);
 	}
 
+	public function getTerms() {
+		$terms = $this->_db->query("SELECT * FROM terms_and_conditions WHERE deleted = 0 ORDER BY type ASC");
+		if($terms->count()) {
+			return $terms->results();
+		}
+	}
+
 	public function terms($type, $cid) { //Ooh, an anti-join...
-		$terms = $this->_db->query("SELECT t.id, t.name, t.text, t.date, t.deleted
+		$terms = $this->_db->query("SELECT t.id, t.type, t.name, t.text, t.date, t.deleted
 									FROM terms_and_conditions t
 									WHERE NOT EXISTS 
 										(
@@ -203,6 +211,26 @@ class User {
 			return $terms->results();
 		}
 		return false;
+	}
+
+	public function allowed($cid) {
+		$allowed = $this->_db->query("SELECT * FROM allowed where cid = ?", [[$cid]]);
+		if($allowed->count()) {
+			return true;
+		}
+		return false;
+	}
+
+	public function updateTerm($fields = array(), $where) {
+		if(!$this->_db->update('terms_and_conditions', $fields, $where)) {
+			throw new Exception('There was a problem updating a term.');
+		}
+	}
+
+	public function addTerm($fields = array()) {
+		if(!$this->_db->insert('terms_and_conditions', $fields)) {
+			throw new Exception('There was a problem adding a term.');
+		}
 	}
 
 	public function term_agree($fields = array()) {
