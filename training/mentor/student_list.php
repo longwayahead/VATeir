@@ -27,7 +27,7 @@ echo '<br><div class="col-md-10 col-md-offset-1">
 				if(!isset($_GET['a']) || ($_GET['a'] != 1)) {
 					echo '<a href="student_list.php?a=1">By List</a> <br>';
 				} else {
-					echo '<a href="student_list.php">By Program</a>';
+					echo '<a href="student_list.php">By Programme</a>';
 				}
 		echo '	</div>
 
@@ -42,14 +42,14 @@ if(!isset($_GET['c']) && (!isset($_GET['a'])) || isset($_GET['c'])) {
 							<h3 class="panel-title">' . $p->name . ' Programme</h3>
 						</div>
 					<div class="panel-body">';
-				echo '<table class="table table-condensed table-responsive table-striped table-hover">';
+				echo '<table class="table table-condensed table-responsive table-striped">';
 					$students = $t->getStudentsProgram($p->id);
 					if($students) {			
 
 						echo '<tr>
-									<td><strong>Student Name</strong></td>
-									<td><strong>CID</strong></td>
-									<td class="hidden-xs"><strong>ATC Rating</strong></td>
+									<td><strong>Name</strong></td>
+									<td class="hidden-xs"><strong>CID</strong></td>
+									<td><strong><div class="hidden-xs" style="display:inline-block;">ATC</div> Rating</strong></td>
 									<td class="hidden-xs"><strong>Pilot Rating</strong></td>
 									<td><strong>View</strong></td>
 								</tr>';
@@ -57,8 +57,8 @@ if(!isset($_GET['c']) && (!isset($_GET['a'])) || isset($_GET['c'])) {
 						foreach($students as $student) {
 							echo '<tr>
 									<td>' . $student->first_name . ' ' . $student->last_name . '</td>
-									<td>' . $student->cid . '</td>
-									<td class="hidden-xs">' . $student->long . ' (' . $student->short . ')</td>
+									<td class="hidden-xs">' . $student->cid . '</td>
+									<td><div class="hidden-xs" style="display:inline-block;">' . $student->long . ' (</div>' . $student->short . '<div class="hidden-xs" style="display:inline-block;">)</div></td>
 									<td class="hidden-xs">' . $student->pratingstring . '</td>
 									<td>
 										<a href="view_student.php?cid=' . $student->cid . '" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
@@ -92,22 +92,22 @@ if(!isset($_GET['c']) && (!isset($_GET['a'])) || isset($_GET['c'])) {
 						<h3 class="panel-title">Student List</h3>
 					</div>
 					<div class="panel-body">';
-					echo '<table class="table"><tr>
-							<td><strong>Student Name</strong></td>
-							<td><strong>CID</strong></td>
-							<td><strong>ATC Rating</strong></td>
-							<td><strong>Pilot Rating</strong></td>
-							<td><strong>Programme</strong></td>
+					echo '<table class="table table-responsive table-striped table-condensed"><tr>
+							<td><strong>Name</strong></td>
+							<td class="hidden-xs"><strong>CID</strong></td>
+							<td><strong><div class="hidden-xs" style="display:inline-block;">ATC </div>Rating</strong></td>
+							<td class="hidden-xs"><strong>Pilot Rating</strong></td>
+							<td class="hidden-xs"><strong>Programme</strong></td>
 							<td><strong>View</strong></td>
 						</tr>';
 
 			foreach($students as $student) {
 				echo '<tr>
 						<td>' . $student->first_name . ' ' . $student->last_name . '</td>
-						<td>' . $student->cid . '</td>
-						<td>' . $student->long . ' (' . $student->short . ')</td>
-						<td>' . $student->pratingstring . '</td>
-						<td>' . $student->name . '</td>
+						<td class="hidden-xs">' . $student->cid . '</td>
+						<td><div class="hidden-xs" style="display:inline-block;">' . $student->long . ' (</div>' . $student->short . '<div class="hidden-xs" style="display:inline-block;">)</div></td>
+						<td class="hidden-xs">' . $student->pratingstring . '</td>
+						<td class="hidden-xs">' . $student->name . '</td>
 						<td>
 							<a href="view_student.php?cid=' . $student->cid . '" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
 						</td>

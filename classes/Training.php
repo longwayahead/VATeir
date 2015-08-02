@@ -491,4 +491,12 @@ class Training {
 		}
 	}
 
+	public function getSliderCategories() {
+		$data = $this->_db->query("SELECT * FROM report_slider_categories ORDER BY sort ASC");
+		if($data->count()) {
+			return $data->results();
+		}
+		return false;
+	}
+
 }

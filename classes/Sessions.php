@@ -56,8 +56,8 @@ class Sessions {
 										report_types.id as report_type_id, report_types.program_id, report_types.session_type, report_types.deleted as report_deleted,
 										programs.id as program_id, programs.permissions as program_permissions, programs.name as program_name, programs.ident, programs.sort AS program_sort,
 										position_list.id as position_id, position_list.airport_list_id, position_list.callsign, position_list.freq, position_list.name as position_name,
-										card_types.id, card_types.name as session_name,
-										controllers.id, controllers.email, controllers.first_name AS sfname, controllers.last_name AS slname,
+										card_types.id, card_types.name as session_name, card_types.exam as isexam,
+										controllers.id, controllers.email, controllers.first_name AS sfname, controllers.last_name AS slname, controllers.rating,
 										control.id, control.first_name AS mfname, control.last_name AS mlname
 									FROM sessions
 									LEFT JOIN report_types on report_types.id = sessions.report_type

@@ -116,11 +116,15 @@ class Reports {
 
 	public function getSliders($type, $id) { //Get all the sliders for a particular program
 		if($type === 1) { //program get questions
-			$sliders = $this->_db->db("SELECT `s`.`id`, `s`.`program_id`, `s`.`text`, `s`.`deleted`, `s`.`type`
-				FROM `report_slider_questions` AS `s`",
+			$sliders = $this->_db->query("SELECT `s`.`id` AS `sid`, `s`.`program_id`, `s`.`text`, `s`.`deleted`, `s`.`type`, `s`.`category`,
+				`c`.`id`, `c`.`name`, `c`.`sort`
+				FROM `report_slider_questions` AS `s`
+				LEFT JOIN `report_slider_categories` AS `c` ON `c`.`id` = `s`.`category`
+				WHERE `s`.`program_id` = ?
+					AND `s`.`deleted` = 0
+				ORDER BY `c`.`sort` ASC",
 				[
-					['`s`.`program_id`', '=', $id],
-					['`s`.`deleted`', '=', 0]
+					[$id]
 				]
 			);
 		} elseif($type === 2) { //report get answers
@@ -321,13 +325,17 @@ class Reports {
 	}
 
 	public function getSliderAnswers($report_id) {
-		$sliders = $this->_db->db("SELECT `s`.`id`, `s`.`report_id`, `s`.`slider_id`, `s`.`value`,
-			`q`.`id`, `q`.`text`, `q`.`type`
+		$sliders = $this->_db->query("SELECT `s`.`id`, `s`.`report_id`, `s`.`slider_id`, `s`.`value`,
+			`q`.`id`, `q`.`text`, `q`.`type`, `q`.`category`,
+			`c`.`id`, `c`.`name`, `c`.`sort`
 			FROM `report_slider_answers` AS `s`
 			LEFT JOIN `report_slider_questions` AS `q` ON `q`.`id` = `s`.`slider_id`
+			LEFT JOIN `report_slider_categories` AS `c` ON `c`.`id` = `q`.`category`
+			WHERE `s`.`report_id` = ?
+			ORDER BY `c`.`sort` ASC
 		",
 			[
-				['`s`.`report_id`', '=', $report_id]
+				[$report_id]
 			]
 		);
 		if($sliders->count()) {

@@ -10,7 +10,7 @@ class Crons {
 		}
 	}
 	public function limit() {
-		$cron = $this->_db->query("SELECT * FROM crons WHERE data IS NOT NULL ORDER BY date DESC LIMIT 5");
+		$cron = $this->_db->query("SELECT * FROM crons WHERE data <> '' ORDER BY date DESC LIMIT 5");
 		if($cron->count()) {
 			return $cron->results();
 		}

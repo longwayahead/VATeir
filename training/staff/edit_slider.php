@@ -31,7 +31,8 @@ if(Input::exists()) { //if form submitted!
 			$r->updateS(array(
 				'type'				=> $check,
 				'program_id'		=> Input::get('program'),
-				'text'				=> Input::get('textarea')
+				'text'				=> Input::get('textarea'),
+				'category'			=> Input::get('cat')
 			), [['id', '=', Input::get('id')]]);
 
 			Session::flash('success', 'Option added');
@@ -65,6 +66,7 @@ $option = $r->getSlider(Input::get('id'));
 
 $t = new Training;
 $programs = $t->getPrograms();
+$categories = $t->getSliderCategories();
 ?>
 <h3 class="text-center">Add a breakdown option</h3><br>
 <div class="row">
@@ -96,6 +98,23 @@ $programs = $t->getPrograms();
 								          			} ?> >
 								          				
 								          	<?php echo $program->name; ?></option>
+								          <?php endforeach; ?>
+								        </select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="cat" class="col-lg-2 control-label">Category</label>
+									<div class="col-lg-8">
+										<select class="form-control" id="cat" name="cat">
+								          <?php foreach($categories as $category): ?>
+								          	<option value="<?php echo $category->id; ?>"
+								          	<?php if(isset($_GET['cat']) && ($_GET['cat'] == $option->category)) { 
+								          				echo 'selected';
+								          			} elseif($option->category == $category->id) {
+								          				echo 'selected';
+								          			} ?> >
+								          				
+								          	<?php echo $category->name; ?></option>
 								          <?php endforeach; ?>
 								        </select>
 									</div>

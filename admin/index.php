@@ -21,10 +21,7 @@ $incoming = $a->incoming();
 					<tr>
 						<td><strong>Name</strong></td>
 						<td><strong>Type</strong></td>
-						<td><strong>CID</strong></td>
 						<td><strong>Rating</strong></td>
-						<td><strong>Pilot Rating</strong></td>
-						<td><strong>Registered</strong></td>
 						<td><strong>Options</strong></td>
 					</tr>
 					<?php
@@ -35,11 +32,7 @@ $incoming = $a->incoming();
 							<tr>
 								<td><?php echo $controller->first_name . ' ' . $controller->last_name;?></td>
 								<td><?php echo $controller->status;?></td>
-								<td><?php echo $controller->cid;?></td>
 								<td><?php echo $controller->short;?></td>
-								<td><?php echo $pilot; ?></td>
-								<td><?php echo date('j-M-Y', strtotime($controller->regdate_vatsim)); ?></td>
-							
 								<td><a href="incoming.php?id=<?php echo $controller->cid;?>" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a></td>
 							</tr>
 							<?php

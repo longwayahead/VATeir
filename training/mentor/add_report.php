@@ -62,6 +62,34 @@ if(Input::exists()) { //if form submitted!
 				'link_id'	=> $reportID,
 				'submitted'	=> date('Y-m-d H:i:s')
 			));
+
+			if(isset($_POST['pass'])) {
+				if(!$n->exists(2, Input::get('cid'))) {
+
+					$rat = Input::get('rating');
+					if($rat > 0 && $rat < 5) {
+						$rating = $t->getRating(++$rat);
+					}
+
+					$id = $n->add(array(
+							'type' 		=> 2,
+							'from' 		=> Input::get('cid'),
+							'to_type' 	=> 1,
+							'to' 		=> 3,
+							'submitted' => date("Y-m-d H:i:s"),
+							'status'	=> 0
+						));
+				
+					$comment = $n->addComment(array(
+							'notification_id'	=> $id,
+							'submitted'			=> date("Y-m-d H:i:s"),
+							'submitted_by'		=> 0,
+							'text'				=> 
+							'<p>Exam passed. Student requires upgrade.</p><p><strong>Next Rating:</strong>' . $rating->long . ' (' . $rating->short . ')<br><strong>Report: </strong>a target="_blank" class="btn btn-xs btn-default" href="' . BASE_URL . 'training/mentor/view_student.php?cid=' . Input::get('cid') . '#r' . $reportID . '">View</a><br><strong>Upgrade Link: </strong><a target="_blank" class="btn btn-xs btn-primary" href="https://www.atsimtest.com/index.php?cmd=admin&sub=memberdetail&memberid=' . Input::get('cid') . '">ATSimTest</a></p>'
+							));
+				}	
+			}
+			
 			
 			Session::flash('success', 'Report Added');
 			Redirect::to('./view_student.php?cid=' . Input::get('cid') . '#r' . $reportID);
@@ -167,18 +195,26 @@ if(Input::exists()) { //if form submitted!
 			<br>
 			<?php
 			if($sliders) {
+				$sliderCat = [];
 				foreach($sliders as $slider) {
+					if(!in_array($slider->category, $sliderCat)) {
+						$sliderCat[] = $slider->category;
+						if(key($sliderCat) != 0) {
+							echo '<br><br>';
+						}
+						echo '<p class="text-center">' . $slider->name . '</p>';
+					}
 					echo '<div class="form-group">
-							<label for="slider' . $slider->id . '" class="col-lg-3 control-label">' . $slider->text . '</label>
+							<label for="slider' . $slider->sid . '" class="col-lg-3 control-label">' . $slider->text . '</label>
 							';
 					if($slider->type == 0) { //is a slider
 						echo '
 						<div class="col-md-6">
-							<div class="slider slider-material-blue" id="slider' . $slider->id . '"></div>
-								<input type="hidden" id="slider' . $slider->id . '-value" name="slider[' . $slider->id . ']"></input>
+							<div class="slider slider-material-blue" id="slider' . $slider->sid . '"></div>
+								<input type="hidden" id="slider' . $slider->sid . '-value" name="slider[' . $slider->sid . ']"></input>
 							</div>
 							<div class="col-lg-1">
-								<div id="slider' . $slider->id . '-value-text" style="display: inline"></div>
+								<div id="slider' . $slider->sid . '-value-text" style="display: inline"></div>
 							</div>
 						
 
@@ -189,8 +225,8 @@ if(Input::exists()) { //if form submitted!
 								<div class="radio">
 									
 										<label>
-											<input type="radio" name=slider[' . $slider->id . '] value="0"';
-											if(!Input::exists() || Input::get('slider')[$slider->id] == 0) {
+											<input type="radio" name=slider[' . $slider->sid . '] value="0"';
+											if(!Input::exists() || Input::get('slider')[$slider->sid] == 0) {
 												echo ' checked';
 											}
 											echo '>
@@ -200,8 +236,8 @@ if(Input::exists()) { //if form submitted!
 										&nbsp;&nbsp;&nbsp;&nbsp;
 									
 										<label>
-											<input type="radio" name=slider[' . $slider->id . '] value="1"';
-											if(Input::exists() && Input::get('slider')[$slider->id] == 1) {
+											<input type="radio" name=slider[' . $slider->sid . '] value="1"';
+											if(Input::exists() && Input::get('slider')[$slider->sid] == 1) {
 												echo ' checked';
 											}
 											echo '>
@@ -211,8 +247,8 @@ if(Input::exists()) { //if form submitted!
 										&nbsp;&nbsp;&nbsp;&nbsp;
 									
 										<label>
-											<input type="radio" name=slider[' . $slider->id . '] value="2"';
-											if(Input::exists() && Input::get('slider')[$slider->id] == 2) {
+											<input type="radio" name=slider[' . $slider->sid . '] value="2"';
+											if(Input::exists() && Input::get('slider')[$slider->sid] == 2) {
 												echo ' checked';
 											}
 											echo '>
@@ -247,10 +283,24 @@ if(Input::exists()) { //if form submitted!
 					<span class="help-block">This field supports <a target="_blank" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Markdown</a>!.</span> -->
 				</div>
 			</div>
+			<?php if($session->isexam == 1) : ?>
+				<div class="form-group">
+					<label for="pass" class="col-lg-3 control-label">Pass</label>
+					<div class="col-lg-2">
+						<div class="checkbox">
+							<label>
+								<input name="pass" style="margin-left:5px;" value="1" type="checkbox" class="checkbox check" id="pass">
+							</label>
+						</div>
+						<span class="help-block">Exam passed.</span>
+					</div>
+				</div>
+			<?php endif; ?>
 			<div class="form-group text-center">
 				<div class="col-lg-10 col-md-offset-1">
 				<input type="hidden" name="cid" value="<?php echo $session->student;?>">
 				<input type="hidden" name="report_type" value="<?php echo $session->report_type;?>">
+				<input type="hidden" name="rating" value="<?php echo $session->rating;?>">
 				<input type="hidden" name="s" value="<?php echo Input::get('s');?>">
 				<button type="submit" id="submit" name="submit" class="btn btn-primary">Submit</button>
 				</div>
@@ -271,10 +321,10 @@ require_once("../../includes/footer.php");
 	if($sliders) {
 		foreach($sliders as $slider) {
 			if($slider->type == 0) {
-				echo '$("#slider' . $slider->id . '").noUiSlider({
+				echo '$("#slider' . $slider->sid . '").noUiSlider({
 						start: [';
 						if(Input::get("slider")) {
-							echo Input::get("slider")[$slider->id];
+							echo Input::get("slider")[$slider->sid];
 						} else {
 							echo '0';
 						}
@@ -288,8 +338,8 @@ require_once("../../includes/footer.php");
 							decimals: 0
 						})
 					});
-					$("#slider' . $slider->id . '").Link("lower").to($("#slider' . $slider->id . '-value"));
-					$("#slider' . $slider->id . '").Link("lower").to($("#slider' . $slider->id . '-value-text"));';
+					$("#slider' . $slider->sid . '").Link("lower").to($("#slider' . $slider->sid . '-value"));
+					$("#slider' . $slider->sid . '").Link("lower").to($("#slider' . $slider->sid . '-value-text"));';
 			}		
 		}
 	}

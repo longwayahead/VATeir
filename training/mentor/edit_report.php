@@ -17,10 +17,10 @@ if(isset($_GET['id'])) {
 		if($sliders) {
 			
 			foreach($sliders as $s) {
-			//	if($s->value) {
-					echo 'no';
+				if($s->value) {
+					//echo 'no';
 					$answers[$s->slider_id] = $s->value;
-				//}
+				}
 				
 			}
 			//var_dump($answers);
@@ -202,18 +202,18 @@ if(isset($_GET['id'])) {
 					
 					foreach($allSliders as $slider) {
 						echo '<div class="form-group">
-								<label for="slider' . $slider->id . '" class="col-lg-3 control-label">' . $slider->text . '</label>';
+								<label for="slider' . $slider->sid . '" class="col-lg-3 control-label">' . $slider->text . '</label>';
 						if($slider->type == 0) {
 						
 							echo '
 							
 								<div class="col-md-6">
-									<div class="slider slider-material-blue" id="slider' . $slider->id . '"></div>
-										<input type="hidden" id="slider' . $slider->id . '-value" name="slider[' . $slider->id . ']"></input>
+									<div class="slider slider-material-blue" id="slider' . $slider->sid . '"></div>
+										<input type="hidden" id="slider' . $slider->sid . '-value" name="slider[' . $slider->sid . ']"></input>
 								
 								</div>
 								<div class="col-lg-1">
-									<div id="slider' . $slider->id . '-value-text" style="display: inline"></div>
+									<div id="slider' . $slider->sid . '-value-text" style="display: inline"></div>
 								</div>
 						
 
@@ -226,8 +226,8 @@ if(isset($_GET['id'])) {
  
 
 										<label>
-											<input type="radio" name=slider[' . $slider->id . '] value="0"';
-											if(!array_key_exists($slider->id, $answers) || $answers[$slider->id] == 0 || (Input::exists() && Input::get('slider')[$slider->id] == 0)) {
+											<input type="radio" name=slider[' . $slider->sid . '] value="0"';
+											if(!array_key_exists($slider->sid, $answers) || $answers[$slider->sid] == 0 || (Input::exists() && Input::get('slider')[$slider->sid] == 0)) {
 												echo ' checked';
 											}
 											echo '>
@@ -237,8 +237,8 @@ if(isset($_GET['id'])) {
 										&nbsp;&nbsp;&nbsp;&nbsp;
 									
 										<label>
-											<input type="radio" name=slider[' . $slider->id . '] value="1"';
-											if((array_key_exists($slider->id, $answers) && $answers[$slider->id] == 1) || (Input::exists() && Input::get('slider')[$slider->id] == 1)) {
+											<input type="radio" name=slider[' . $slider->sid . '] value="1"';
+											if((array_key_exists($slider->sid, $answers) && $answers[$slider->sid] == 1) || (Input::exists() && Input::get('slider')[$slider->sid] == 1)) {
 												echo ' checked';
 											}
 											echo '>
@@ -248,8 +248,8 @@ if(isset($_GET['id'])) {
 										&nbsp;&nbsp;&nbsp;&nbsp;
 									
 										<label>
-											<input type="radio" name=slider[' . $slider->id . '] value="2"';
-											if(array_key_exists($slider->id, $answers) && ($answers[$slider->id] == 2) || (Input::exists() && Input::get('slider')[$slider->id] == 2)) {
+											<input type="radio" name=slider[' . $slider->sid . '] value="2"';
+											if(array_key_exists($slider->sid, $answers) && ($answers[$slider->sid] == 2) || (Input::exists() && Input::get('slider')[$slider->sid] == 2)) {
 												echo ' checked';
 											}
 											echo '>
@@ -306,13 +306,13 @@ if(isset($_GET['id'])) {
 		if($allSliders) {
 			foreach($allSliders as $slider) {
 				if($slider->type == 0) {
-					echo '$("#slider' . $slider->id . '").noUiSlider({
+					echo '$("#slider' . $slider->sid . '").noUiSlider({
 							start: [';
 							if(Input::get("slider")) {
-								echo Input::get("slider")[$slider->id];
+								echo Input::get("slider")[$slider->sid];
 							} else {
-								if(isset($answers[$slider->id])) {
-									echo $answers[$slider->id];
+								if(isset($answers[$slider->sid])) {
+									echo $answers[$slider->sid];
 								} else {
 									echo '0';
 								}
@@ -328,8 +328,8 @@ if(isset($_GET['id'])) {
 								decimals: 0
 							})
 						});
-						$("#slider' . $slider->id . '").Link("lower").to($("#slider' . $slider->id . '-value"));
-						$("#slider' . $slider->id . '").Link("lower").to($("#slider' . $slider->id . '-value-text"));';
+						$("#slider' . $slider->sid . '").Link("lower").to($("#slider' . $slider->sid . '-value"));
+						$("#slider' . $slider->sid . '").Link("lower").to($("#slider' . $slider->sid . '-value-text"));';
 				}
 			}
 		}

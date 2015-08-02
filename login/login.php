@@ -52,23 +52,23 @@ unset($_SESSION['ssouser']);
 				$u->update([
 					'alive' 		=> 1,
 					'vateir_status' => 1,
-					'first_name' 	=> $user->user->name_first,
-					'last_name' 	=> $user->user->name_last,
-					'email'			=> $user->user->email,
-					'rating'		=> $rating,
-					'pilot_rating'	=> $user->user->pilot_rating->rating,
-					'pratingstring'	=> $pilotRating
+					//'first_name' 	=> $user->user->name_first,
+					//'last_name' 	=> $user->user->name_last,
+					//'email'			=> $user->user->email,
+					//'rating'		=> $rating,
+					//'pilot_rating'	=> $user->user->pilot_rating->rating,
+					//'pratingstring'	=> $pilotRating
 				], [['id', '=', $u->data()->id]]);
 			} else {
 				$u->update([
 					'alive' 		=> 1,
 					'vateir_status' => 2,
-					'first_name' 	=> $user->user->name_first,
-					'last_name' 	=> $user->user->name_last,
-					'email'			=> $user->user->email,
-					'rating'		=> $rating,
-					'pilot_rating'	=> $user->user->pilot_rating->rating,
-					'pratingstring'	=> $pilotRating
+					//'first_name' 	=> $user->user->name_first,
+					//'last_name' 	=> $user->user->name_last,
+					//'email'			=> $user->user->email,
+					//'rating'		=> $rating,
+					//'pilot_rating'	=> $user->user->pilot_rating->rating,
+					//'pratingstring'	=> $pilotRating
 				], [['id', '=', $u->data()->id]]);
 			}
 			if($changeProgram === true) {

@@ -13,14 +13,14 @@ if(!$user->hasPermission('tdstaff')) {
 			<div class="panel-heading">
 				<h3 class="panel-title">Staff Tasks</h3>
 			</div>
-			<div class="panel-body" style="padding:0px;">
+			<div class="panel-body">
 				<table class="table table-responsive table-striped table-condensed">
 					<?php
 					$notifications = $n->getList(1, 3);
 					if($notifications) {
 						echo '<tr>
 								<td><strong>Type</strong></td>
-								<td><strong>Submitted By</strong></td>
+								<td><strong>Controller</strong></td>
 								<td><strong>Submitted On</strong></td>
 								<td><strong>View</strong></td>
 							</tr>';

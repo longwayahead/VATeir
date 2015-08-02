@@ -95,7 +95,7 @@ if((!isset($_GET['e'])) && (!isset($_POST['e']))) {
 												</form>
 											';
 								} else {
-									echo '<div class="text-danger text-center" style="font-size:16px">No Validations to approve</div>';
+									echo '<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No validations to approve</div><br>';
 								} //no validations
 								echo '
 								
@@ -191,7 +191,7 @@ if((!isset($_GET['e'])) && (!isset($_POST['e']))) {
 
 							} else { //no validations
 
-								echo '<div class="text-danger text-center" style="font-size:16px">No Validations to extend</div>';
+								echo '<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No validations to extend</div><br>';
 						}
 echo '</div></div>
 					</div>

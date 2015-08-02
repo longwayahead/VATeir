@@ -48,19 +48,19 @@ try {
 									<td><?php echo $data->pratingstring; ?></td>
 								</tr>
 								<tr>
-									<td style="width:45%;">VATSIM Reg Date:</td>
-									<td><?php echo date("j-M-Y", strtotime($data->regdate_vatsim)); ?></td>
+									<td style="width:45%;">VATSIM Reg:</td>
+									<td><?php echo date("j\<\s\u\p\>S\<\/\s\u\p\> M Y", strtotime($data->regdate_vatsim)); ?></td>
 								</tr>
 							</table>
 						</div>
 						<div class="col-md-6">
 							<table class="table" style="margin-bottom:0;">
 								<tr>
-									<td style="width:45%;">VATeir Reg Date:</td>
-									<td><?php echo date("j-M-Y", strtotime($data->regdate_vateir)); ?></td>
+									<td style="width:45%;">VATeir Reg:</td>
+									<td><?php echo date("j\<\s\u\p\>S\<\/\s\u\p\> M Y", strtotime($data->regdate_vateir)); ?></td>
 								</tr>
 								<tr>
-									<td style="width:45%;">Activity Status:</td>
+									<td style="width:45%;">Activity:</td>
 									<td>
 										<a data-toggle="tooltip" data-placement="top" data-original-title="<?php echo ($data->rating > 0) ? 'Active' : 'Inactive'; ?>">VATSIM</a>
 										<a data-toggle="tooltip" data-placement="top" data-original-title="<?php echo ($data->alive != 0) ? 'Active' : 'Inactive'; ?>">VATeir</a>
@@ -71,7 +71,7 @@ try {
 									<td><?php echo $data->name; ?></td>
 								</tr>
 								<tr>
-									<td style="width:45%;">Controller Type:</td>
+									<td style="width:45%;">Controller:</td>
 									<td><?php echo $data->status; ?></td>
 								</tr>
 								
@@ -279,7 +279,7 @@ try {
 											<div id="card" class="card" style="background-color:' . $report->colour . '; color:white;">
 												<div class="nopad">
 													<div class="card-title text-center" id="r' . $report->rep_id . '">
-														<div class="hidden-xs" style="display:inline-block;"><strong>' . $report->sessname . ':</strong></div> ' . $report->callsign . ' on ' . date("jS M Y", strtotime($report->session_date)) . '
+														<div class="hidden-xs" style="display:inline-block;"><strong>' . $report->sessname . ':</strong></div> ' . $report->callsign . ' <div class="hidden-xs" style="display:inline-block;"> on ' . date("j\<\s\u\p\>S\<\/\s\u\p\> M Y", strtotime($report->session_date)) . '</div><div class="visible-xs" style="font-size:15px">' . date("j\<\s\u\p\>S\<\/\s\u\p\> M Y", strtotime($report->session_date)) . '</div>
 														</div>
 												</div>
 												
@@ -302,16 +302,30 @@ try {
 																	// echo '<pre>';
 																	// print_r($sliders);
 																	// echo '</pre>';
+																	$sliderCat = [];
 																	foreach($sliders as $slider) {
+																		if(!in_array($slider->category, $sliderCat)) {
+																			$sliderCat[] = $slider->category;
+																			if(key($sliderCat) != 0) {
+																				echo '<br>';
+																			}
+																			echo '<p class="text-center">' . $slider->name . '</p>';
+																		}
 																		echo '<div class="row">
-																					<div class="col-xs-12 col-sm-12 col-md-4 text-left">' . $slider->text . '</div>
-																					<div class="col-xs-12  col-sm-12 col-md-8 text-left" style="height:20px;">';
+																					<div class="col-xs-9 col-sm-8 col-md-8 text-left">' . $slider->text . '...</div>
+																					<div class="col-xs-3 col-sm-4 col-md-4 text-left" style="height:20px;">';
 																		if($slider->type == 0) {
-																			echo '																				
-																						<div class="progress progress-striped active" style="margin-top:10px;">
-																						  <div class="progress-bar" style="width: ' . $slider->value . '0%; vertical-align:bottom;"></div>
-																						</div>
-
+																		echo '
+																		<div class="hidden-xs">
+																		<a style="cursor:pointer;" data-toggle="tooltip" data-placement="top" title="' . $slider->value . '0%">																		
+																				<div class="progress progress-striped active" style="margin-top:10px;">
+																					<div class="progress-bar" style="width: ' . $slider->value . '0%; vertical-align:bottom;"></div>
+																				</div>
+																			</a>
+																		</div>
+																		<div class="visible-xs">
+																		' . $slider->value . '0%
+																		</div>
 																			';
 																		} elseif($slider->type == 1) {
 																			if($slider->value == 2) {
@@ -414,7 +428,7 @@ require_once("../../includes/footer.php");
 <script>$('article').readmore({
 	collapsedHeight: 58,
 	speed:200,
-	moreLink: '<div class="text-right" style="padding-right:25px; margin-bottom:4px;"><a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> More</a></div>',
-	lessLink: '<div class="text-right" style="padding-right:25px; margin-bottom:4px;"><a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Less</a></div>'
+	moreLink: '<div class="text-left" style="padding-top:10px; padding-left:15px; margin-bottom:4px;"><a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> More</a></div>',
+	lessLink: '<div class="text-left" style="padding-top:10px; padding-left:15px; margin-bottom:4px;"><a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Less</a></div>'
 });
 </script>

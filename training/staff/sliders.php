@@ -5,7 +5,7 @@ if(!$user->hasPermission('tdstaff')) {
 	Redirect::to(BASE_URL . 'training');
 }
 ?>
-<h3 class="text-center">Sliders: Breakdown Options</h3><br>
+<h3 class="text-center">Breakdown Options</h3><br>
 <div class="row">
 	<div class="col-md-12">
 		<?php
@@ -27,6 +27,7 @@ if(!$user->hasPermission('tdstaff')) {
 								if($sliders !== false) {
 									?>
 									<tr>
+										<td class="hidden-xs"><strong>Category</strong></td>
 										<td><strong>Text</strong></td>
 										<td><strong>Type</strong></td>
 										<td><strong>Edit</strong></td>
@@ -36,10 +37,11 @@ if(!$user->hasPermission('tdstaff')) {
 									foreach($sliders as $slider):
 										?>
 										<tr>
+											<td class="hidden-xs"><?php echo $slider->name; ?></td>
 											<td><?php echo $slider->text; ?></td>
 											<td><?php echo ($slider->type == 0) ? 'Slider' : 'Boolean'; ?></td>
-											<td><a href="edit_slider.php?id=<?php echo $slider->id; ?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></td>
-											<td><a href="delete_slider.php?id=<?php echo $slider->id; ?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
+											<td><a href="edit_slider.php?id=<?php echo $slider->sid; ?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></td>
+											<td><a href="delete_slider.php?id=<?php echo $slider->sid; ?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
 										</tr>
 										
 										<?php
