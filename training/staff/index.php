@@ -21,14 +21,14 @@ if(!$user->hasPermission('tdstaff')) {
 						echo '<tr>
 								<td><strong>Type</strong></td>
 								<td><strong>Controller</strong></td>
-								<td><strong>Submitted On</strong></td>
+								<td class="nowrap"><strong>Submitted On</strong></td>
 								<td><strong>View</strong></td>
 							</tr>';
 						foreach($notifications as $notification) {
 							echo '<tr>
 									<td>' . $notification->type_name . '</td>
 									<td><a href="../mentor/view_student.php?cid=' . $notification->from . '">' . $notification->first_name . ' ' . $notification->last_name . '</a></td>
-									<td>' . date("j-M-Y", strtotime($notification->submitted)) . '</td>
+									<td class="nowrap">' . date("j-M-Y", strtotime($notification->submitted)) . '</td>
 									<td><a href="../../notifications/view.php?id=' . $notification->notification_id . '" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a></td>
 								</tr>';
 						}
@@ -72,12 +72,6 @@ if(!$user->hasPermission('tdstaff')) {
 							<td>
 								<strong>Date</strong>
 							</td>
-							<td>
-								<strong>Started</strong>
-							</td>
-							<td>
-								<strong>Finished</strong>
-							</td>
 						</tr>
 					
 						<?php $i=1; foreach($noreport as $session): ?>
@@ -94,12 +88,6 @@ if(!$user->hasPermission('tdstaff')) {
 								</td>
 								<td>
 									<?php echo date("j-M-y", strtotime($session->start)); ?> 
-								</td>
-								<td>
-									<?php echo date("H:i", strtotime($session->start)); ?> 
-								</td>
-								<td>
-									<?php echo date("H:i", strtotime($session->finish)); ?> 
 								</td>
 							</tr>
 							<?php } ?>

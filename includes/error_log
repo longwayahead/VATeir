@@ -1,0 +1,2 @@
+[08-Jul-2015 11:21:22 Europe/Dublin] PHP Warning:  require_once(/home/longway1/public_html/vateir1/core/init.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir1/includes/header.php on line 7
+[08-Jul-2015 11:21:22 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required '/home/longway1/public_html/vateir1/core/init.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir1/includes/header.php on line 7

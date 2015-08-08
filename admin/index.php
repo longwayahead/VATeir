@@ -91,7 +91,7 @@ $incoming = $a->incoming();
 				</div>
 				<div class="col-md-6">
 				<?php
-					echo ($user->loginOpen()) ? '<a href="config.php?login=0">Close</a>' : '<a href="config.php?login=1">Open</a>';
+					echo ($user->loginOpen()) ? '<a href="config.php?login=0">Close Login</a>' : '<a href="config.php?login=1">Reopen</a>';
 				?>
 				</div>
 			</div>

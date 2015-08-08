@@ -1,0 +1,2 @@
+[08-Jul-2015 11:10:26 Europe/Dublin] PHP Warning:  require_once(URLfunctions/functions.php): failed to open stream: No such file or directory in /home/longway1/public_html/vateir1/core/init.php on line 26
+[08-Jul-2015 11:10:26 Europe/Dublin] PHP Fatal error:  require_once(): Failed opening required 'URLfunctions/functions.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/longway1/public_html/vateir1/core/init.php on line 26

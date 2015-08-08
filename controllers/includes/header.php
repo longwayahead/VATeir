@@ -22,10 +22,12 @@ a:hover {
 	
 
 		Controllers
-			<li class="active"><a href="<?php echo BASE_URL . 'controllers/'; ?>">Roster</a></li>
+			<li><a href="<?php echo BASE_URL . 'controllers/'; ?>">Roster</a></li>
 			<li><a href="<?php echo BASE_URL . 'controllers/validations.php'; ?>">Validations</a></li>
-			<li class="active"><a href="<?php echo BASE_URL . 'controllers/mentors.php'; ?>">Mentors</a></li>
-			
+			<li><a href="<?php echo BASE_URL . 'controllers/mentors.php'; ?>">Mentors</a></li>
+			<?php if($user->isLoggedIn()) {	?>	
+				<li><a href="<?php echo BASE_URL . 'controllers/downloads.php'; ?>">Downloads</a></li>
+			<?php } ?>
 			<li class="divider"></li>
 			<br>
 

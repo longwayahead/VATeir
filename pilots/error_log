@@ -38,3 +38,240 @@ Stack trace:
 [20-Jun-2015 08:39:31 Europe/Dublin] PHP Warning:  copy(http://api.vateud.net/frequencies/IRL.json): failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
  in /home/longway1/public_html/vateir/functions/functions.php on line 71
 [26-Jun-2015 17:38:07 Europe/Dublin] PHP Parse error:  syntax error, unexpected 'require_once' (T_REQUIRE_ONCE) in /home/longway1/public_html/vateir/pilots/notams.php on line 3
+[10-Jul-2015 19:12:23 Europe/Dublin] PHP Parse error:  syntax error, unexpected 'theme' (T_STRING) in /home/longway1/public_html/vateir/includes/header.php on line 40
+[11-Jul-2015 17:36:22 Europe/Dublin] PHP Fatal error:  Cannot redeclare Events::__construct() in /home/longway1/public_html/vateir/classes/Events.php on line 13
+[11-Jul-2015 21:03:53 Europe/Dublin] PHP Fatal error:  Class 'Training' not found in /home/longway1/public_html/vateir/pilots/index.php on line 120
+[11-Jul-2015 21:03:55 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 178
+[11-Jul-2015 21:03:55 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 179
+[11-Jul-2015 21:03:55 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 180
+[11-Jul-2015 21:03:55 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:03:55 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:03:55 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:03:55 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 178
+[11-Jul-2015 21:03:55 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 179
+[11-Jul-2015 21:03:55 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 180
+[11-Jul-2015 21:03:55 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:03:55 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:03:55 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:03:55 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 178
+[11-Jul-2015 21:03:55 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 179
+[11-Jul-2015 21:03:55 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 180
+[11-Jul-2015 21:03:55 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:03:55 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:03:55 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:03:59 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 178
+[11-Jul-2015 21:03:59 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 179
+[11-Jul-2015 21:03:59 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 180
+[11-Jul-2015 21:03:59 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:03:59 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:03:59 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:03:59 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 178
+[11-Jul-2015 21:03:59 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 179
+[11-Jul-2015 21:03:59 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 180
+[11-Jul-2015 21:03:59 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:03:59 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:03:59 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:03:59 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 178
+[11-Jul-2015 21:03:59 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 179
+[11-Jul-2015 21:03:59 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 180
+[11-Jul-2015 21:03:59 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:03:59 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:03:59 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:04:56 Europe/Dublin] PHP Fatal error:  Class 'Training' not found in /home/longway1/public_html/vateir/pilots/index.php on line 120
+[11-Jul-2015 21:07:02 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 180
+[11-Jul-2015 21:07:02 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:07:02 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:07:02 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:07:02 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 184
+[11-Jul-2015 21:07:02 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 185
+[11-Jul-2015 21:07:02 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 180
+[11-Jul-2015 21:07:02 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:07:02 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:07:02 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:07:02 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 184
+[11-Jul-2015 21:07:02 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 185
+[11-Jul-2015 21:07:02 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 180
+[11-Jul-2015 21:07:02 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:07:02 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:07:02 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:07:02 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 184
+[11-Jul-2015 21:07:02 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 185
+[11-Jul-2015 21:07:05 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 180
+[11-Jul-2015 21:07:05 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:07:05 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:07:05 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:07:05 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 184
+[11-Jul-2015 21:07:05 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 185
+[11-Jul-2015 21:07:05 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 180
+[11-Jul-2015 21:07:05 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:07:05 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:07:05 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:07:05 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 184
+[11-Jul-2015 21:07:05 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 185
+[11-Jul-2015 21:07:05 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 180
+[11-Jul-2015 21:07:05 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:07:05 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:07:05 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:07:05 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 184
+[11-Jul-2015 21:07:05 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 185
+[11-Jul-2015 21:07:12 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 180
+[11-Jul-2015 21:07:12 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:07:12 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:07:12 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:07:12 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 184
+[11-Jul-2015 21:07:12 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 185
+[11-Jul-2015 21:07:12 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 180
+[11-Jul-2015 21:07:12 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:07:12 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:07:12 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:07:12 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 184
+[11-Jul-2015 21:07:12 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 185
+[11-Jul-2015 21:07:12 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 180
+[11-Jul-2015 21:07:12 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:07:12 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:07:12 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:07:12 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 184
+[11-Jul-2015 21:07:12 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 185
+[11-Jul-2015 21:07:15 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 180
+[11-Jul-2015 21:07:15 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:07:15 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:07:15 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:07:15 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 184
+[11-Jul-2015 21:07:15 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 185
+[11-Jul-2015 21:07:15 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 180
+[11-Jul-2015 21:07:15 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:07:15 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:07:15 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:07:15 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 184
+[11-Jul-2015 21:07:15 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 185
+[11-Jul-2015 21:07:15 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 180
+[11-Jul-2015 21:07:15 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:07:15 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:07:15 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:07:15 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 184
+[11-Jul-2015 21:07:15 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 185
+[11-Jul-2015 21:07:27 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 180
+[11-Jul-2015 21:07:27 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:07:27 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:07:27 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:07:27 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 184
+[11-Jul-2015 21:07:27 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 185
+[11-Jul-2015 21:07:27 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 180
+[11-Jul-2015 21:07:27 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:07:27 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:07:27 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:07:27 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 184
+[11-Jul-2015 21:07:27 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 185
+[11-Jul-2015 21:07:27 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 180
+[11-Jul-2015 21:07:27 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:07:27 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:07:27 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:07:27 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 184
+[11-Jul-2015 21:07:27 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 185
+[11-Jul-2015 21:07:45 Europe/Dublin] PHP Parse error:  syntax error, unexpected end of file, expecting variable (T_VARIABLE) or ${ (T_DOLLAR_OPEN_CURLY_BRACES) or {$ (T_CURLY_OPEN) in /home/longway1/public_html/vateir/classes/Training.php on line 407
+[11-Jul-2015 21:07:45 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 180
+[11-Jul-2015 21:07:45 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:07:45 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:07:45 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:07:45 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 184
+[11-Jul-2015 21:07:45 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 185
+[11-Jul-2015 21:07:45 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 180
+[11-Jul-2015 21:07:45 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:07:45 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:07:45 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:07:45 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 184
+[11-Jul-2015 21:07:45 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 185
+[11-Jul-2015 21:07:45 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 180
+[11-Jul-2015 21:07:45 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:07:45 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:07:45 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:07:45 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 184
+[11-Jul-2015 21:07:45 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 185
+[11-Jul-2015 21:08:01 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 180
+[11-Jul-2015 21:08:01 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:08:01 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:08:01 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:08:01 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 184
+[11-Jul-2015 21:08:01 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 185
+[11-Jul-2015 21:08:01 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 180
+[11-Jul-2015 21:08:01 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:08:01 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:08:01 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:08:01 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 184
+[11-Jul-2015 21:08:01 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 185
+[11-Jul-2015 21:08:01 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 180
+[11-Jul-2015 21:08:01 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:08:01 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:08:01 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:08:01 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 184
+[11-Jul-2015 21:08:01 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 185
+[11-Jul-2015 21:08:10 Europe/Dublin] PHP Parse error:  syntax error, unexpected end of file, expecting variable (T_VARIABLE) or '$' in /home/longway1/public_html/vateir/classes/Training.php on line 291
+[11-Jul-2015 21:08:14 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:08:14 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:08:14 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:08:14 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 184
+[11-Jul-2015 21:08:14 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 185
+[11-Jul-2015 21:08:14 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 186
+[11-Jul-2015 21:08:14 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:08:14 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:08:14 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:08:14 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 184
+[11-Jul-2015 21:08:14 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 185
+[11-Jul-2015 21:08:14 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 186
+[11-Jul-2015 21:08:14 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:08:14 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:08:14 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:08:14 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 184
+[11-Jul-2015 21:08:14 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 185
+[11-Jul-2015 21:08:14 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 186
+[11-Jul-2015 21:08:29 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:08:29 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:08:29 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:08:29 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 184
+[11-Jul-2015 21:08:29 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 185
+[11-Jul-2015 21:08:29 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 186
+[11-Jul-2015 21:08:29 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:08:29 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:08:29 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:08:29 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 184
+[11-Jul-2015 21:08:29 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 185
+[11-Jul-2015 21:08:29 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 186
+[11-Jul-2015 21:08:29 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 181
+[11-Jul-2015 21:08:29 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 182
+[11-Jul-2015 21:08:29 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 183
+[11-Jul-2015 21:08:29 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 184
+[11-Jul-2015 21:08:29 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 185
+[11-Jul-2015 21:08:29 Europe/Dublin] PHP Warning:  Illegal offset type in /home/longway1/public_html/vateir/classes/Training.php on line 186
+[11-Jul-2015 21:11:10 Europe/Dublin] PHP Warning:  Invalid argument supplied for foreach() in /home/longway1/public_html/vateir/pilots/index.php on line 132
+[11-Jul-2015 21:11:25 Europe/Dublin] PHP Parse error:  syntax error, unexpected '$booking' (T_VARIABLE) in /home/longway1/public_html/vateir/pilots/index.php on line 132
+[11-Jul-2015 21:11:52 Europe/Dublin] PHP Parse error:  syntax error, unexpected 'print_r' (T_STRING), expecting ',' or ';' in /home/longway1/public_html/vateir/pilots/index.php on line 123
+[11-Jul-2015 21:11:53 Europe/Dublin] PHP Parse error:  syntax error, unexpected 'print_r' (T_STRING), expecting ',' or ';' in /home/longway1/public_html/vateir/pilots/index.php on line 123
+[07-Aug-2015 08:07:07 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[07-Aug-2015 11:22:34 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[07-Aug-2015 13:16:30 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[07-Aug-2015 14:23:25 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[07-Aug-2015 14:23:46 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[07-Aug-2015 17:48:19 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[07-Aug-2015 18:41:12 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[07-Aug-2015 21:41:02 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[07-Aug-2015 21:53:24 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[07-Aug-2015 22:50:30 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[08-Aug-2015 01:40:39 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[08-Aug-2015 02:46:06 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[08-Aug-2015 03:28:41 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[08-Aug-2015 03:28:48 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[08-Aug-2015 03:42:53 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[08-Aug-2015 06:13:33 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[08-Aug-2015 07:19:47 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[08-Aug-2015 07:44:36 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[08-Aug-2015 07:47:02 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[08-Aug-2015 10:22:08 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[08-Aug-2015 13:01:56 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[08-Aug-2015 15:49:28 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[08-Aug-2015 16:10:49 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[08-Aug-2015 16:43:35 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[08-Aug-2015 20:16:44 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[08-Aug-2015 21:25:46 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[08-Aug-2015 23:41:55 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[09-Aug-2015 00:22:27 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0
+[09-Aug-2015 00:23:33 Europe/Dublin] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/imagick.so' - libMagickWand.so.2: cannot open shared object file: No such file or directory in Unknown on line 0

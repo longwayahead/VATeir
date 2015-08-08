@@ -40,7 +40,7 @@ foreach($m as $j) {
 							<td>
 								<strong>Position</strong>
 							</td>
-							<td>
+							<td class="nowrap">
 								<strong>Date</strong>
 							</td>
 							<td>
@@ -62,7 +62,7 @@ foreach($m as $j) {
 									<td>
 										<?php echo $session->callsign; ?> 
 									</td>
-									<td>
+									<td class="nowrap">
 										<?php echo date("j-M-y", strtotime($session->start)); ?> 
 									</td>
 									<td>
@@ -116,14 +116,8 @@ foreach($m as $j) {
 							<td>
 								<strong>Position</strong>
 							</td>
-							<td>
+							<td class="nowrap">
 								<strong>Date</strong>
-							</td>
-							<td>
-								<strong>Started</strong>
-							</td>
-							<td>
-								<strong>Finished</strong>
 							</td>
 							<td>
 								<strong>View</strong>
@@ -138,14 +132,8 @@ foreach($m as $j) {
 								<td>
 									<?php echo $session->callsign; ?> 
 								</td>
-								<td>
+								<td class="nowrap">
 									<?php echo date("j-M-y", strtotime($session->start)); ?> 
-								</td>
-								<td>
-									<?php echo date("H:i", strtotime($session->start)); ?> 
-								</td>
-								<td>
-									<?php echo date("H:i", strtotime($session->finish)); ?> 
 								</td>
 								<td>
 									<?php echo '<a class="btn btn-xs btn-primary" href="add_report.php?s=' . $session->session_id . '"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>' ?> 
@@ -197,7 +185,7 @@ foreach($m as $j) {
 				<td class="hidden-xs">
 					<strong>Programme</strong>
 				</td>
-				<td style="white-space:nowrap;">
+				<td class="nowrap">
 					<strong>Date</strong>
 				</td>
 				<td>
@@ -214,7 +202,7 @@ foreach($m as $j) {
               <tr>
               	<td><?php echo '<a href="view_student.php?cid=' . $availability->cid . '">' . $availability->first_name . ' ' . $availability->last_name . '</a>';?></td>
               	<td class="hidden-xs"><?php echo $availability->program_name;?></td>
-                <td style="white-space:nowrap;"><?php echo date("j M y", strtotime($availability->date));?></td>
+                <td class="nowrap"><?php echo date("j M y", strtotime($availability->date));?></td>
                 <td><?php echo date("H:i", strtotime($availability->time_from));?></td>
                 <td><?php echo date("H:i", strtotime($availability->time_until));?></td>
              	<td><?php echo '<a class="btn btn-xs btn-default" href="schedule_session.php?id=' . $availability->availability_id . '"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>' ?></td>

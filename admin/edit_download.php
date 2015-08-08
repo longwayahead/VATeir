@@ -1,46 +1,27 @@
 <?php
-$pagetitle = "Add T&C";
+$pagetitle = "Add Download";
 require_once("includes/header.php");
 
-$t = new Terms;
+$d = new Download;
 if(Input::exists()) { //if form submitted!
+	$file = $d->file($_FILES['file']);
 	$validate = new Validate();
 	$validation = $validate->check($_POST, array(
 		'name' => array(
 			'field_name' => 'Name',
 			'required' => true,
-		),
-		'type' => array(
-			'field_name' => 'Type',
-			'required' => true,
-		),
-		'text' => array(
-			'field_name' => 'Description',
-			'required' => true,
-		),
+		)
 	));
 
 	if($validation->passed()) {
 
 		try {
-			$typ = Input::get('type');
-			switch($typ) {
-				case($typ == 1):
-					$type = 0;
-				break;
-				case($typ == 2):
-					$type = 1;
-				break;
-			}
-			$t->add(array(
-				'type'			=> $type,
-				'name'			=> Input::get('name'),
-				'text'			=> Input::get('text'),
-				'date'			=> date("y-m-d H:i:s"),
-			));
+			$d->edit('download_files', array(
+				'name'				=> Input::get('name'),
+			), [['id', '=', Input::get('id')]]);
 
-			Session::flash('success', 'T&C Added');
-			Redirect::to('./terms.php');
+			Session::flash('success', 'Download Edited');
+			Redirect::to('./downloads.php');
 
 				
 		} catch (Exception $e) {
@@ -65,39 +46,32 @@ if(Input::exists()) { //if form submitted!
 }
 }
 
+
+try {
+	$download = $d->get(Input::get('id'), "id")[0];
+} catch(Exception $e) {
+	echo $e->getMessage();
+}
+
 ?>
-<h3 class="text-center">Add a T&C</h3><br>
+<h3 class="text-center">Edit a Download</h3><br>
 <div class="row">
 	<div class="col-md-12">
 			<div class="row">
 				<div class="col-md-10 col-md-offset-1">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
-							<h3 class="panel-title">Add</h3>
+							<h3 class="panel-title">Edit</h3>
 						</div>
 						<div class="panel-body">
 							<form class="form-horizontal" action="" method="post" enctype="multipart/form-data" onsubmit="document.getElementById('submit').disabled=true; document.getElementById('submit').value='Submitting...';">
 								<div class="form-group">
-							      <label for="type" class="col-lg-2 control-label">Type</label>
-							      <div class="col-lg-10">
-							        <select class="form-control" id="type" name="type">
-							          <option value="1">Website</option>
-							          <option value="2">Forum</option>
-							        </select>
-							      </div>
-							    </div>
-								<div class="form-group">
 									<label for="name" class="col-lg-2 control-label">Name</label>
 									<div class="col-lg-8">
-										<input required id="name" name="name" type="input" value="<?php echo (Input::get('name')) ? Input::get('name'): '';?>" class="form-control">
+										<input id="name" name="name" type="input" value="<?php echo (Input::get('name')) ? Input::get('name'): $download->name;?>" class="form-control">
 									</div>
 								</div>
-								<div class="form-group">
-							      <label for="text" class="col-lg-2 control-label">Description</label>
-							      <div class="col-lg-10">
-							        <textarea required class="form-control" name="text" rows="3" id="text"><?php echo (Input::get('text')) ? Input::get('text'): '';?></textarea>
-							      </div>
-							    </div>
+								<input type="hidden" value="<?php echo Input::get('id'); ?>" name="sub_category">
 								<div class="form-group text-center">
 									<input type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary">
 								</div>

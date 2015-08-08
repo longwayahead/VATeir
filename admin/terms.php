@@ -1,12 +1,12 @@
 <?php
-$pagetitle = "Add a T&C";
+$pagetitle = "T&Cs";
 require_once('includes/header.php');
 ?>
-<h3 class="text-center">Add T&Cs</h3><br>
+<h3 class="text-center">Terms and Conditions</h3><br>
 <?php
 $terms = $user->getTerms();
 echo '<div class="col-md-10 col-md-offset-1">
-<div class="text-right" style="margin-bottom:5px;"><a href="add_term.php" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</a></div>
+
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title">Terms and Conditions</h3>
@@ -25,20 +25,20 @@ echo '<div class="col-md-10 col-md-offset-1">
 						<td>
 							<strong>Description</strong>
 						</td>
-						<td>
-							<strong>Date Effected</strong>
+						<td style="white-space:nowrap;">
+							<strong>Date</strong>
 						</td>
 						<td>
-							<strong>Edit</strong>
+							<strong></strong>
 						</td>
 						<td>
-							<strong>Delete</strong>
+							<strong></strong>
 						</td>
 					</tr>';
 					foreach($terms as $term) {
 							echo '<tr>
 									<td>';
-										echo ($term->type == 0) ? 'Site' : 'Forum';
+										echo ($term->type == 0) ? 'Website' : 'Forum';
 									echo '</td>
 
 									<td>
@@ -47,15 +47,15 @@ echo '<div class="col-md-10 col-md-offset-1">
 									<td>
 										' . $term->text . '
 									</td>
-									<td>
+									<td style="white-space:nowrap;">
 										' . date("j M y", strtotime($term->date)) . '
 									</td>
 									<td>
-										<a href="edit_term.php?id=' . $term->id . '" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+										<a href="edit_term.php?id=' . $term->id . '" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
 									</td>
 									
 									<td>
-										<a href="delete_term.php?id=' . $term->id . '" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+										<a href="delete_term.php?id=' . $term->id . '" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 									</td>
 								</tr>';
 						}
@@ -63,6 +63,9 @@ echo '<div class="col-md-10 col-md-offset-1">
 					echo '<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No terms and conditions</div><br>';
 				}
 			echo '</table>
+			</div>
+			<div class="panel-footer text-right">
+				<a href="'. BASE_URL . 'admin/add_term.php" data-toggle="tooltip" data-placement="left" title="Add Term">Add</a>
 			</div>
 		</div>
 	</div>';

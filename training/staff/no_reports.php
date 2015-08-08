@@ -21,7 +21,7 @@ if(!empty($noreport)) {
 			<div class="panel-heading">
 				<h3 class="panel-title">Sessions without reports</h3>
 			</div>
-			<div class="panel-body" style="padding:0px;">
+			<div class="panel-body">
 			
 					<table class="table table-condensed table-striped">
 						<tr>

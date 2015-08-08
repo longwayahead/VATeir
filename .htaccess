@@ -1,0 +1,5 @@
+<FilesMatch "\.htaccess|update_controllers\.php">
+	Order Allow,Deny
+   	Require all denied
+
+</FilesMatch>

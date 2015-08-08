@@ -2,7 +2,8 @@
 class Validate {
 	private $_passed = false,
 			$_errors = array(),
-			$_db = null;
+			$_db = null,
+			$_fileTypes = [];
 
 	public function __construct() {
 		$this->_db = DB::getInstance();
@@ -20,7 +21,7 @@ class Validate {
 				if($rule === 'required' && $rule_value === true && empty($value)) {
 					$this->addError("{$fieldname} is required.");
 				} else if (!empty($value)) {
-
+					
 					switch($rule) {
 						case 'min':
 							if(strlen($value) < $rule_value) {
@@ -67,6 +68,17 @@ class Validate {
 							$check = $this->_db->get('users', array($item, '=', $value));
 							if($check->count()) {
 								$this->addError("{$fieldname} is already taken.");
+							}
+						break;
+						case 'fileError':
+							if($rule_value != 0) {
+								$this->addError("There was an error uploading the file.");
+							}
+						break;
+						case 'fileType':
+							$types = ['application/zip', 'application/x-rar-compressed'];
+							if(!in_array($rule_value, $types)) {
+								$this->addError("File must be a ZIP or a RAR.");
 							}
 						break;
 					}

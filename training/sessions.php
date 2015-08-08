@@ -96,7 +96,6 @@ $s = new Sessions;
 						echo '<br><div class="row">
 								<div class="col-md-6 col-md-offset-3">
 							<div class="text-danger text-center" style="font-size:16px;">No Sessions</div><br>
-			
 							</div></div>';}
 				} catch(Exception $e) {
 					echo $e->getMessage();

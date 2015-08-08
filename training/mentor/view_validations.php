@@ -56,8 +56,8 @@ try {
 								<td>' . date("j-M-Y", strtotime($validation->valid_from)) . '</td>
 								<td>' . date("j-M-Y", strtotime($validation->valid_until)) . '</td>';
 								if($user->hasPermission("tdstaff")) {
-									echo '<td><a href="./validate.php?t=r&cid=' . $validation->cid . '&pos=' . $validation->position_id . '" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></a></td>
-											<td><a href="./validate.php?t=d&cid=' . $validation->cid . '&pos=' . $validation->position_id . '" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>';
+									echo '<td><a href="./validate.php?t=r&cid=' . $validation->cid . '&pos=' . $validation->position_id . '" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></a></td>
+											<td><a href="./validate.php?t=d&cid=' . $validation->cid . '&pos=' . $validation->position_id . '" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>';
 								}
 								
 								echo '</tr>';

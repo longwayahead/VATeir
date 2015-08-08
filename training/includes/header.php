@@ -3,8 +3,7 @@ $url = realpath($_SERVER['DOCUMENT_ROOT']) . '/'; //Update me!
 require_once($url . 'includes/header.php');
 unset($url);
 if(!$user->isLoggedIn()) {
-	Session::flash('info', 'Please login to access the training section');
-	Redirect::to('../login/');
+	Redirect::to(BASE_URL . 'login/');
 }
 $t = new Training;
 $r = new Reports;
