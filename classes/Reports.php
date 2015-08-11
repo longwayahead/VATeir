@@ -9,30 +9,33 @@ class Reports {
 
 	public function getTypes($type = 0, $options = array()) { //Get all the types of session. OBS-S1: Live. OBS-S1:Sweatbox etc. //type = 0 for session. = 1 for note
 		if($type === 0) {
-			$value = null;
+			$value = [];
 			$idwhere = "";
 			if(isset($options['program'])) {
 				switch($options['program']) {
 					case($options['program'] >0):
-						$idwhere = '`p`.`id` = ?';
+						$idwhere = ' AND  `p`.`id` = ?';
 						$value[] = $options['program'];
 					break;
 					case($options['program'] == 0):
-						$idwhere = '`p`.`id` > 0';
+						$idwhere = ' AND  `p`.`id` > ?';
+						$value = 0;
 					break;
 				}
 				
 			} elseif(isset($options['type'])) {
+				
 				switch($options['type']) {
-					case($options['type']>0):
-						$idwhere = '`t`.`id` = ?';
+					case($options['type'] > 0):
+						$idwhere = ' AND  `t`.`id` = ?';
 						$value[] = $options['type'];
 					break;
 					case($options['type'] == 0):
-						$idwhere = '`t`.`id` > 0';
+						$idwhere = '`t`.`id` = 0';
 					break;
 				}
 			}
+			//print_r($idwhere);
 			
 
 			$types = $this->_db->query("SELECT `t`.`id` AS `report_type_id`, `t`.`program_id`, `t`.`session_type`, `t`.`deleted`,
@@ -44,10 +47,11 @@ class Reports {
 				WHERE `s`.`type` = 0
 						AND `s`.`deleted` = 0
 						AND `t`.`deleted` = 0
-						AND $idwhere
+						$idwhere
 				ORDER BY `p`.`sort` ASC, `s`.`sort` ASC",
 				[$value]
 			);
+		//	print_r($types);
 		} elseif($type === 1) {
 				$types = $this->_db->db("SELECT 
 				`s`.`id`, `s`.`type`, `s`.`name`, `s`.`colour`, `s`.`sort` AS `notesort`
@@ -114,13 +118,23 @@ class Reports {
 
 
 
-	public function getSliders($type, $id) { //Get all the sliders for a particular program
-		if($type === 1) { //program get questions
+	public function getSliders($type, $id, $options = null) {
+		$where = "";
+		if(!isset($options)) {
+			$where = '`rt`.`id` = ?';
+		} else {
+			$where = '`rt`.`program_id` = ?';
+		}
+		if($type === 1) { //get by report_type
 			$sliders = $this->_db->query("SELECT `s`.`id` AS `sid`, `s`.`program_id`, `s`.`text`, `s`.`deleted`, `s`.`type`, `s`.`category`,
-				`c`.`id`, `c`.`name`, `c`.`sort`
+				`c`.`id`, `c`.`name`, `c`.`sort`,
+				`d`.`name` AS `type_name`,
+				`rt`.*
 				FROM `report_slider_questions` AS `s`
 				LEFT JOIN `report_slider_categories` AS `c` ON `c`.`id` = `s`.`category`
-				WHERE `s`.`program_id` = ?
+				LEFT JOIN `report_types` AS `rt` ON `rt`.`id` = `s`.`report_type`
+				LEFT JOIN `card_types` AS `d` ON `d`.`id` = `rt`.`session_type`
+				WHERE $where
 					AND `s`.`deleted` = 0
 				ORDER BY `c`.`sort` ASC",
 				[

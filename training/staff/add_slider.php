@@ -8,23 +8,22 @@ if(!$user->hasPermission('tdstaff')) {
 
 
 if(Input::exists()) { //if form submitted!
-	
 	$validate = new Validate();
 	$validation = $validate->check($_POST, array(
 		'textarea' => array(
-			'field_name' => 'Text',
-			'required' => true
+			'field_name' => 'Option Text',
+			'required' => true,
+			'max' => 50,
 		),
-		'program' => array(
-			'field_name' => 'Program Name',
-			'required' => false
+		'type' => array(
+			'field_name' => 'Report Type',
+			'required' => true
 		),
 		'check' => array(
 			'field_name' => 'Slider/Boolean',
 			'required' => false
 		)
 	));
-
 	if($validation->passed()) {
 
 		try {
@@ -32,7 +31,7 @@ if(Input::exists()) { //if form submitted!
 			$check = (Input::get('check')) ? 1 : 0;
 			$r->addSlider(array(
 				'type'				=> $check,
-				'program_id'		=> Input::get('program'),
+				'report_type'		=> Input::get('type'),
 				'text'				=> Input::get('textarea'),
 				'category'			=> Input::get('cat')
 			));
@@ -63,12 +62,10 @@ if(Input::exists()) { //if form submitted!
 	}
  }
 
-
-
-
 $t = new Training;
 $programs = $t->getPrograms();
 $categories = $t->getSliderCategories();
+$types = $r->getTypes(0, $a = null);
 ?>
 <h3 class="text-center">Add a breakdown option</h3><br>
 <div class="row">
@@ -88,15 +85,46 @@ $categories = $t->getSliderCategories();
 									</div>
 								</div>
 								<div class="form-group">
+									<label for="typeSelect" class="control-label col-lg-2">Report Type:</label>
+									<div class="col-lg-8">
+										<select name="type" id="typeSelect" class="form-control tick">
+											<option value="">Select Type</option>
+											<?php
+												try {
+													
+													if($types) {
+														$programs = array();
+														foreach($types as $type){
+															if(!in_array($type->pid, $programs)) {
+																$programs[] = $type->pid;
+																	echo '<option class="select-dash" disabled="disabled">----</option>';
+																}
+															echo '<option value="' . $type->report_type_id . '"';
+															if(Input::get('type')) {
+																echo (Input::get('type') == $type->report_type_id) ? ' selected' : '';
+															}
+															echo '>' . $type->ident . ': ' . $type->session_type_name . '</option>';
+														}
+													}
+
+												} catch(Exception $e) {
+													echo '<option>' . $e->getMessage . '</option>';
+												}
+											?>
+										</select>
+
+									</div>
+								</div>
+								<!-- <div class="form-group">
 									<label for="program" class="col-lg-2 control-label">Programme</label>
 									<div class="col-lg-8">
 										<select class="form-control" id="program" name="program">
-								          <?php foreach($programs as $program): ?>
-								          	<option value="<?php echo $program->id; ?>" <?php echo ($program->id == Input::get('id')) ? 'selected' : '';?>><?php echo $program->name; ?></option>
-								          <?php endforeach; ?>
+								          <?php //foreach($programs as $program): ?>
+								          	<option value="<?php //echo $program->id; ?>" <?php //echo ($program->id == Input::get('id')) ? 'selected' : '';?>><?php //echo $program->name; ?></option>
+								          <?php //endforeach; ?>
 								        </select>
 									</div>
-								</div>
+								</div> -->
 								<div class="form-group">
 									<label for="cat" class="col-lg-2 control-label">Category</label>
 									<div class="col-lg-8">

@@ -11,6 +11,10 @@ if(Input::exists()) { //if form submitted!
 			'field_name' => 'Name',
 			'required' => true,
 		),
+		'description' => array(
+			'field_name' => 'Description',
+			'required' => true,
+		),
 		'textfile' => array(
 			'field_name' => 'File',
 			'required' 	=> true,
@@ -25,6 +29,7 @@ if(Input::exists()) { //if form submitted!
 			$d->upload($file->tmp_name);
 			$d->add('download_files', array(
 				'name'				=> Input::get('name'),
+				'description'				=> Input::get('description'),
 				'sub_category'		=> Input::get('sub_category'),
 				'date_added'		=> Input::get('date_added'),
 				'added_by'			=> $user->data()->id,
@@ -87,7 +92,13 @@ try {
 								<div class="form-group">
 									<label for="name" class="col-lg-2 control-label">Name</label>
 									<div class="col-lg-8">
-										<input id="name" name="name" type="input" value="<?php echo (Input::get('name')) ? Input::get('name'): '';?>" class="form-control">
+										<input required id="name" name="name" type="input" value="<?php echo (Input::get('name')) ? Input::get('name'): '';?>" class="form-control">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="description" class="col-lg-2 control-label">Description</label>
+									<div class="col-lg-10">
+										<textarea class="form-control" rows="3" id="description" name="description" required><?php echo (Input::get('description')) ? Input::get('description'): '';?></textarea>
 									</div>
 								</div>
 								<div class="form-group">

@@ -76,9 +76,9 @@ class Validate {
 							}
 						break;
 						case 'fileType':
-							$types = ['application/zip', 'application/x-rar-compressed'];
+							$types = ['application/zip'];
 							if(!in_array($rule_value, $types)) {
-								$this->addError("File must be a ZIP or a RAR.");
+								$this->addError("File must be a ZIP.");
 							}
 						break;
 					}

@@ -10,6 +10,10 @@ if(Input::exists()) { //if form submitted!
 		'name' => array(
 			'field_name' => 'Name',
 			'required' => true,
+		),
+		'description' => array(
+			'field_name' => 'Description',
+			'required' => true,
 		)
 	));
 
@@ -18,6 +22,7 @@ if(Input::exists()) { //if form submitted!
 		try {
 			$d->edit('download_files', array(
 				'name'				=> Input::get('name'),
+				'description'				=> Input::get('description'),
 			), [['id', '=', Input::get('id')]]);
 
 			Session::flash('success', 'Download Edited');
@@ -71,7 +76,13 @@ try {
 										<input id="name" name="name" type="input" value="<?php echo (Input::get('name')) ? Input::get('name'): $download->name;?>" class="form-control">
 									</div>
 								</div>
-								<input type="hidden" value="<?php echo Input::get('id'); ?>" name="sub_category">
+								<div class="form-group">
+									<label for="description" class="col-lg-2 control-label">Description</label>
+									<div class="col-lg-10">
+										<textarea class="form-control" rows="3" id="description" name="description" required><?php echo (Input::get('description')) ? Input::get('description'): $download->description;?></textarea>
+									</div>
+								</div>
+<!-- 								<input type="hidden" value="<?php //echo Input::get('id'); ?>" name="sub_category"> -->
 								<div class="form-group text-center">
 									<input type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary">
 								</div>

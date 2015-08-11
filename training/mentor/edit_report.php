@@ -12,7 +12,7 @@ if(isset($_GET['id'])) {
 		}
 		$positions = $r->getPositionsByProgram($report->program_id);
 		$sliders = $r->getSliders(2, $report->rep_id);
-		$allSliders = $r->getSliders(1, $report->program_id);
+		$allSliders = $r->getSliders(1, $report->typ_id);
 		$answers = array();
 		if($sliders) {
 			
@@ -142,7 +142,7 @@ if(isset($_GET['id'])) {
 				<div class="form-group">
 					<label for="programname" class="col-lg-3 control-label">Report Type</label>
 					<div class="col-lg-4">
-						<select class="form-control tick" name="report_type">
+						<select class="form-control tick" name="report_type" disabled>
 							<?php
 							$types = $r->getTypes(0, ['program' => $report->program_id]);
 							$programs = array();
@@ -153,10 +153,6 @@ if(isset($_GET['id'])) {
 							}
 
 							foreach($types as $type) {
-								// if(!in_array($type->pid, $programs)) {
-								// 	$programs[] = $type->pid;
-								// 	echo '<option class="select-dash" disabled="disabled">----</option>';
-								// }
 								echo '<option value="' . $type->report_type_id . '"';
 								if($type->report_type_id == $r) {
 									echo ' selected';
@@ -199,8 +195,19 @@ if(isset($_GET['id'])) {
 				<br>
 				<?php
 				if($allSliders) {
-					
+					$sliderCat = [];
 					foreach($allSliders as $slider) {
+						if(!in_array($slider->category, $sliderCat)) {
+							$sliderCat[] = $slider->category;
+
+							echo '<p class="text-center">'; 
+							if(count($sliderCat) > 1) {
+								echo '<br><br>';
+							}
+							echo '<h6 class="text-center">';
+							echo $slider->name . '</h6></p>';
+						}
+
 						echo '<div class="form-group">
 								<label for="slider' . $slider->sid . '" class="col-lg-3 control-label">' . $slider->text . '</label>';
 						if($slider->type == 0) {
@@ -271,7 +278,7 @@ if(isset($_GET['id'])) {
 					</div>';
 				}
 				?>
-				<br>
+				<br><br><br>
 				<div class="form-group">
 					<label for="textArea" class="col-lg-3 control-label">Report Text</label>
 					<div class="col-lg-8">

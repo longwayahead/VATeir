@@ -122,7 +122,7 @@ if(Input::exists()) { //if form submitted!
 		$session = $s->get(['id' => Input::get('s')])[0];
 		$type = $r->getTypes(0, ['type' => $session->report_type])[0];
 		$positions = $r->getPositionsByProgram($type->program_id); //get all positions for this program level
-		$sliders = $r->getSliders(1, $type->program_id);
+		$sliders = $r->getSliders(1, $session->report_type);
 
 		if(!count($type)) {
 			Session::flash('error', 'No report type found for that ID');
@@ -150,7 +150,7 @@ if(Input::exists()) { //if form submitted!
 			<div class="form-group">
 		      <label for="type" class="col-lg-3 control-label">Report Type</label>
 		      <div class="col-lg-4">
-		        <select name="type" id="type" class="form-control tick" required>
+		        <select name="type" id="type" class="form-control tick" disabled>
 					<?php
 						try {
 							$types = $r->getTypes(0, ['program' => $session->program_id]);
@@ -199,10 +199,13 @@ if(Input::exists()) { //if form submitted!
 				foreach($sliders as $slider) {
 					if(!in_array($slider->category, $sliderCat)) {
 						$sliderCat[] = $slider->category;
-						if(key($sliderCat) != 0) {
+						
+						echo '<p class="text-center">'; 
+						if(count($sliderCat) > 1) {
 							echo '<br><br>';
 						}
-						echo '<p class="text-center">' . $slider->name . '</p>';
+						echo '<h6 class="text-center">';
+						echo $slider->name . '</h6></p>';
 					}
 					echo '<div class="form-group">
 							<label for="slider' . $slider->sid . '" class="col-lg-3 control-label">' . $slider->text . '</label>
@@ -270,7 +273,7 @@ if(Input::exists()) { //if form submitted!
 				</div>';
 			}
 			?>
-			<br>
+			<br><br><br>
 			<div class="form-group">
 				<label for="text" class="col-lg-3 control-label">Report Text</label>
 				<div class="col-lg-8">

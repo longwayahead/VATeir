@@ -257,7 +257,7 @@ try {
 											</div>
 											<input type="hidden" name="cid" value="<?php echo $data->cid;?>"></input>
 										</form>
-									</div> -->
+									</div> <---->
 								</div>
 							</div>
 

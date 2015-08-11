@@ -29,19 +29,17 @@ foreach($d->cats() as $cat) {
 							?>
 							<table class="table table-responsive table-striped table-condensed">
 								<tr>
-									<td><strong>Name</strong></td>
-									<td><strong>Date</strong></td>
-									<td><strong>Added By</strong></td>
-									<td><strong>File Size</strong></td>
+									<td class="nowrap"><strong>Name</strong></td>
+									<td><strong>Description</strong></td>
+									<td class="nowrap"><strong>Date</strong></td>
 									<td><strong></strong></td>
 									<td><strong></strong></td>
 								</tr>
 								<?php foreach($files as $file) : ?>
 									<tr>
-										<td><?php echo '<a href="' . BASE_URL . 'uploads/' .$file->file_name . '">' . $file->name . '</a>'; ?></td>
-										<td><?php echo date("j M y", strtotime($file->date_added)); ?></td>
-										<td><?php echo $file->first_name . ' ' . $file->last_name; ?></td>
-										<td><?php echo $file->file_size; ?></td>
+										<td class="nowrap"><?php echo '<a href="' . BASE_URL . 'uploads/' .$file->file_name . '">' . $file->name . '</a>'; ?></td>
+										<td><?php echo $file->description; ?></td>
+										<td class="nowrap"><?php echo date("j M y", strtotime($file->date_added)); ?></td>
 										<td><?php echo '<a class="btn btn-xs btn-default" href="edit_download.php?id=' . $file->id . '" data-toggle="tooltip" data-placement="top" title="Edit Download"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>'; ?></td>
 										<td><?php echo '<a class="btn btn-xs btn-default" href="delete_download.php?id=' . $file->id . '" data-toggle="tooltip" data-placement="top" title="Delete Download"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>'; ?></td>
 									</tr>

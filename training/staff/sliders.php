@@ -23,10 +23,11 @@ if(!$user->hasPermission('tdstaff')) {
 						<div class="panel-body">
 							<table class="table table-striped table-condensed table-responsive">
 							<?php
-								$sliders = $r->getSliders(1, $program->id);
+								$sliders = $r->getSliders(1, $program->id, 1);
 								if($sliders !== false) {
 									?>
 									<tr>
+										<td class="hidden-xs"><strong>Session Type</strong></td>
 										<td class="hidden-xs"><strong>Category</strong></td>
 										<td><strong>Text</strong></td>
 										<td><strong>Type</strong></td>
@@ -37,6 +38,7 @@ if(!$user->hasPermission('tdstaff')) {
 									foreach($sliders as $slider):
 										?>
 										<tr>
+											<td class="hidden-xs"><?php echo $slider->type_name; ?></td>
 											<td class="hidden-xs"><?php echo $slider->name; ?></td>
 											<td><?php echo $slider->text; ?></td>
 											<td><?php echo ($slider->type == 0) ? 'Slider' : 'Boolean'; ?></td>
