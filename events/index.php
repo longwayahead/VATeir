@@ -2,18 +2,18 @@
 $pagetitle = "Events Home";
 require_once("includes/header.php");
 ?>
+<h3 class="text-center">Events Home</h3> <br>
 <div class="row col-md-10 col-md-offset-1">
-	
+
 		<?php
-		$ev = new Events;
 		try{
 		$events = $ev->future();
-		
+
 			if(!empty($events)) {
 				foreach($events as $id => $eventa) {
 					$event = a2o($eventa);
 		//	print_r($event);
-						
+
 					?>
 				<div class="panel panel-success">
 					<div class="panel-heading" id="<?php echo $event->id;?>">
@@ -32,7 +32,7 @@ require_once("includes/header.php");
 					</div>
 				</div>
 			<?php
-					
+
 				}
 			} else { ?>
 				<div class="panel panel-success">
@@ -52,6 +52,6 @@ require_once("includes/header.php");
 	}
 	?>
 
-	
+
 </div>
 <?php require_once('../includes/footer.php');

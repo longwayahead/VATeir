@@ -2,8 +2,7 @@
 $pagetitle = "Admin Home";
 require_once("includes/header.php");
 
-$t = new Training;
-$incoming = $a->incoming();
+$t = new Training;$a = new Admin;$incoming = $a->incoming();
 ?>
 
 <div class="row">
@@ -25,19 +24,19 @@ $incoming = $a->incoming();
 						<td><strong>Options</strong></td>
 					</tr>
 					<?php
-					
+
 						foreach($incoming as $controller):
-							$pilot = $t->pilotRating($controller->pilot_rating);
+
 							?>
 							<tr>
-								<td><?php echo $controller->first_name . ' ' . $controller->last_name;?></td>
+								<td><a target="_blank" href="https://cert.vatsim.net/cert/vatsimnet/idstatus.php?cid=<?php echo $controller->cid; ?>"><?php echo $controller->first_name . ' ' . $controller->last_name;?></a></td>
 								<td><?php echo $controller->status;?></td>
 								<td><?php echo $controller->short;?></td>
 								<td><a href="incoming.php?id=<?php echo $controller->cid;?>" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a></td>
 							</tr>
 							<?php
 						endforeach;
-					
+
 					?>
 				</table>
 				<?php
@@ -91,7 +90,7 @@ $incoming = $a->incoming();
 				</div>
 				<div class="col-md-6">
 				<?php
-					echo ($user->loginOpen()) ? '<a href="config.php?login=0">Close Login</a>' : '<a href="config.php?login=1">Reopen</a>';
+					echo ($user->loginOpen()) ? '<a href="config.php?login=0">Close</a>' : '<a href="config.php?login=1">Reopen</a>';
 				?>
 				</div>
 			</div>

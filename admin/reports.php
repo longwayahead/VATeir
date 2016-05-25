@@ -77,7 +77,11 @@ require_once('includes/header.php');
 	// var highlightStrokePurple="rgba(114, 124, 182, 1)";
 		var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
 		var lineChartData = {
-			labels : ["January","February","March","April","May","June"],
+			<?php
+			$g = new Graph;
+			$pop = $g->sa();
+			?>
+			labels : [<?php foreach($pop as $month => $result) { echo '"' . $month . '", ';}?>],
 			datasets : [
 				{
 					label: "Sessions",
@@ -87,7 +91,7 @@ require_once('includes/header.php');
 					pointStrokeColor : "#fff",
 					pointHighlightFill : "#fff",
 					pointHighlightStroke : "rgba(220,220,220,1)",
-					data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+					data : [<?php foreach($pop as $month => $result) { echo $result['sessions'] . ',';}?>]
 				},
 				{
 					label: "Availabilities",
@@ -97,7 +101,7 @@ require_once('includes/header.php');
 					pointStrokeColor : "#fff",
 					pointHighlightFill : "#fff",
 					pointHighlightStroke : "rgba(151,187,205,1)",
-					data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+					data : [<?php foreach($pop as $month => $result) { echo $result['availability'] . ',';}?>]
 				}
 			]
 
@@ -208,7 +212,8 @@ require_once('includes/header.php');
 		var ctx = document.getElementById("canvas").getContext("2d");
 		window.myLine = new Chart(ctx).Line(lineChartData, {
 			responsive: true,
-			multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>"
+			multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
+			scaleBeginAtZero: true
 		});
 		var cty = document.getElementById("radar").getContext("2d");
 		window.myRadar = new Chart(cty).Radar(radarData, {

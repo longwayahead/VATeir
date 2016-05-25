@@ -43,9 +43,9 @@ try {
 							echo '<td><strong></strong></td>
 									<td><strong></strong></td>';
 						}
-						
+
 						foreach($validations as $validation) {
-						
+
 							echo '<tr';
 								if($validation->approved == 0) {
 									echo ' class="warning"';
@@ -59,13 +59,13 @@ try {
 									echo '<td><a href="./validate.php?t=r&cid=' . $validation->cid . '&pos=' . $validation->position_id . '" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></a></td>
 											<td><a href="./validate.php?t=d&cid=' . $validation->cid . '&pos=' . $validation->position_id . '" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>';
 								}
-								
+
 								echo '</tr>';
 						}
 				echo '
 					</table>';
 
-			
+
 		} else {
 			echo '<div class="text-danger text-center" style="font-size:16px;"><br>No Validations</div><br>';
 		}
@@ -79,6 +79,7 @@ try {
 				    <h3 class="panel-title">Validate up to...</h3>
 				  </div>
 				  <div class="panel-body">';
+				  echo '<h5>Validate Solo</h5>';
 				  	$airports = $t->getAirports();
 				  	if(count($airports)) {
 				  		foreach($airports as $airport) {
@@ -90,7 +91,19 @@ try {
 				  			echo '<br>';
 				  		}
 				  	}
-				  	
+				  	// echo '<h5>Validate Major</h5>';
+				  	// $airports = $t->getAirports();
+				  	// if(count($airports)) {
+				  	// 	foreach($airports as $airport) {
+				  	// 		echo $airport->name . '<br>';
+				  	// 		$sectorTypes = $t->getSectorTypes($airport->icao); //at the major
+				  	// 		foreach($sectorTypes as $sectorType => $call) {
+				  	// 			echo '<a class="btn btn-xs btn-default" href="validate.php?t=s&m&cid=' . $data->cid . '&icao=' . $airport->icao . '&sector=' . $sectorType . '">' .  $call . '</a>  ';
+				  	// 		}
+				  	// 		echo '<br>';
+				  	// 	}
+				  	// }
+
 				  echo '
 				  </div>
 				</div>';
@@ -109,14 +122,14 @@ try {
 		// 		  			}
 		// 		  		}
 		// 		  	}
-				  	
+
 		// 		  echo '
 		// 		  </div>
 		// 		</div>';
 
 
 
-	echo '</div>'; //col-md-4	
+	echo '</div>'; //col-md-4
 	echo '</div>';
 } catch(Exception $e) {
 	echo $e->getMessage();

@@ -1,8 +1,8 @@
 <?php
 require_once('../includes/header.php');
-		if(!$user->hasPermission('admin')) {
-			Session::flash('error', 'Insufficient permissions');
-			Redirect::to('./mentor/');
+		if(!$user->hasPermission('superadmin')) {
+			Session::flash('error', 'Insufficient permissions.');
+			Redirect::to('./view_student.php?cid=' . Input::get("cid"));
 		}
 if(Input::exists('get')) {
 	try{

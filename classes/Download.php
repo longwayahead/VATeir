@@ -1,7 +1,8 @@
 <?php
 class Download {
 	private $_db;
-	public $f = [];
+	public $f = [],
+					$oadURL = 'https://api.openaviationdata.com/';
 
 	public function __construct() {
 		$this->_db = DB::getInstance();
@@ -21,7 +22,7 @@ class Download {
 		if($upload === true) {
 			return true;
 		} else {
-			throw new Exception("There was a problem uploading a file");	
+			throw new Exception("There was a problem uploading a file");
 		}
 	}
 
@@ -111,5 +112,53 @@ class Download {
 		} else {
 			throw new Exception("There was a problem deleting a download");
 		}
+	}
+
+	public function cacheFile($file_name, $url) {
+		cacheFile(URL . "datafiles/".$file_name, $url);
+		$data = json_decode(file_get_contents(BASE_URL . "datafiles/".$file_name));
+		return $data;
+	}
+
+	public function oadAPI($call = null, $options = null) {
+		$apiToken = Config::get('oad/apitoken');
+		$url = null;
+		$bits = null;
+		if(isset($options)) {
+			if(isset($options['station'])) {
+				$bits .= '&station=' . $options['station'];
+			}
+		}
+		switch($call) {
+			case($call == 'tracks'):
+				$url = 'v2/routing/oceanic';
+				break;
+			case($call == 'airac'):
+				$url =  'v2/airac/current';
+				break;
+			case($call == 'metar'):
+				$url = 'v1/metar';
+				break;
+			case($call == 'taf'):
+				$url = 'v1/taf';
+				break;
+			default:
+				throw new Exception("Could not get dataset.");
+				break;
+		}
+		if($url != null) {
+			if(isset($options['cache'])) {
+				$request = $this->cacheFile($call . '.json', $this->oadURL . $url . '?key=' . $apiToken . $bits);
+			} else {
+				$request = json_decode(file_get_contents($this->oadURL . $url . '?key=' . $apiToken . $bits));
+			}
+			
+			if($request->code == 200) {
+				return $request->data;
+			} else {
+				throw new Exception("Could not get data.");
+			}
+		}
+		
 	}
 }

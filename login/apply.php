@@ -16,7 +16,6 @@ if(isset($_POST["data"])) {
 							<br>
 						</p>
 					</div>
-				</div>
 	<?php
 			
 

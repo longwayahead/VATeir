@@ -2,6 +2,7 @@
 require_once("includes/header.php");
 
 $t = new Training;
+$user = new User;
 
 
 ////CONNECTING TO VATEUD API////
@@ -22,9 +23,12 @@ curl_close($curl);
 ////CONNECTION CLOSED////
 
 $controllers = json_decode($get);
+
 $register = array();
-// echo '<pre>', print_r($controllers), '</pre>';
+$listCID = array();
+//echo '<pre>', print_r($controllers), '</pre>';
 foreach($controllers as $controller) {	//Register users if they aren't already in the VATeir database.
+	$listCID[] = $controller->cid;
 	try {
 		if(!$user->find($controller->cid)) { //CID not already in database. New member - register them!
 
@@ -33,30 +37,46 @@ foreach($controllers as $controller) {	//Register users if they aren't already i
 			} else {
 				$rating = $controller->rating;
 			}
-
-			//$pilotRating = $t->pilotRating($controller->pilot_rating);
-			$make = $user->create(array(
-				'id' 				=> $controller->cid,
-				'first_name' 		=> $controller->firstname,
-				'last_name' 		=> $controller->lastname,
-				'email' 			=> $controller->email,
-				'rating' 			=> $rating,
-				'pilot_rating' 		=> $controller->pilot_rating,
-				'pratingstring'		=> $controller->humanized_pilot_rating,
-				'regdate_vatsim' 	=> date("Y-m-d H:i:s", strtotime($controller->reg_date)),
-				'regdate_vateir' 	=> date('Y-m-d H:i:s'),
-				'vateir_status'		=> 1
+			$pilotRating = $t->pilotRating($controller->pilot_rating);
+			$make = $user->create(array(			//
+				'id' 				=> $controller->cid,			//
+				'first_name' 		=> $controller->firstname,			//
+				'last_name' 		=> $controller->lastname,			//
+				'email' 			=> $controller->email,			//
+				'rating' 			=> $rating,			//
+				'pilot_rating' 		=> $controller->pilot_rating,			//
+				'pratingstring'		=> $controller->humanized_pilot_rating,			//
+				'regdate_vatsim' 	=> date("Y-m-d H:i:s", strtotime($controller->reg_date)),			//
+				'regdate_vateir' 	=> date('Y-m-d H:i:s'),			//
+				'vateir_status'		=> 1			//
 			));
-			
 			if(!$t->findStudent($controller->cid)) {
 				$program = $t->program($rating);
-				$studentMake = $t->createStudent(array(
-					'cid'		=> $controller->cid,
-					'program'	=> 	$program
+				$studentMake = $t->createStudent(array(				//
+					'cid'		=> $controller->cid,				//
+					'program'	=> 	$program				//
 				));
 			}
-			
+
 			$register["registered"][] = $controller->cid;
+		} else { //status of user's account has changed since first created
+			// if($controller->rating > 7) {
+			// 	$rating = $user->getRealRating($controller->cid);
+			// } else {
+			// 	$rating = $controller->rating;
+			// }
+			//echo $controller->cid;
+			// $user->update([
+			// 		'alive' 		=> 1,
+			// 		'vateir_status' => 1,
+			// 	], [['id', '=', $controller->cid]]);
+			// if(!$t->findStudent($controller->cid)) {
+			// 	$program = $t->program($rating);
+			// 	$studentMake = $t->createStudent(array(				//
+			// 		'cid'		=> $controller->cid,				//
+			// 		'program'	=> 	$program				//
+			// 	));
+			// }
 		}
 	} catch (Exception $e) {
 		echo $e->getMessage();
@@ -81,7 +101,7 @@ foreach($controllers as $controller) {	//Register users if they aren't already i
 				if($data->email != $controller->email) {
 					$change['email'] = $controller->email;
 				}
-				
+
 				//get real rating
 				if($controller->rating > 7) {
 					$rating = $user->getRealRating($controller->cid);
@@ -92,7 +112,7 @@ foreach($controllers as $controller) {	//Register users if they aren't already i
 
 
 				if($data->rating != $rating) {
-					$change['rating'] = $controller->rating;
+					$change['rating'] = $rating;
 				}
 
 				$programChange = false;
@@ -101,17 +121,19 @@ foreach($controllers as $controller) {	//Register users if they aren't already i
 				}
 				if($data->pilot_rating != $controller->pilot_rating) {
 					$change['pilot_rating'] = $controller->pilot_rating;
-					$change['prating_string'] = $controller->humanized_pilot_rating;
+					$change['pratingstring'] = $controller->humanized_pilot_rating;
 				}
 				if($data->vateir_status != 1) {
 					$change['vateir_status'] = 1;
 				}
-				
-				
 				if(!empty($change)) {
-					$update = $user->update((
+					print_r($change);
+				}
+
+				if(!empty($change)) {
+					$update = $user->update(
 						$change
-					), [['id', '=', $controller->cid]]);
+					, [['id', '=', $controller->cid]]);
 					if($programChange === true) { //only change the student's programme if their rating has changed. new rating = new training programme.
 						$program = $t->program($rating);
 
@@ -121,7 +143,7 @@ foreach($controllers as $controller) {	//Register users if they aren't already i
 					}
 					$register["updated"][$controller->cid] = $change;
 				}
-								
+
 			} elseif($user->isAlive($controller->cid) && !$user->isActive($controller->cid)) { //Gets all "active" users, checks to make sure they're active and for those that aren't, changes their status to 0
 				$update = $user->update(array(
 					'alive' => 0
@@ -131,15 +153,31 @@ foreach($controllers as $controller) {	//Register users if they aren't already i
 		} catch (Exception $f) {
 			echo $f->getMessage();
 			$register["updatefail"][$controller->cid] = $f->getMessage();
-		}	
-			
-	}
-	
+		}
+
+	}	
+
 unset($change);
 
 }
-$crons = new Crons;
-$json = (!empty($register)) ? json_encode($register) : '';
-$crons->add([	'date' => date("Y-m-d H:i:s"),
-				'data' => $json
-			]);
+//print_r($listCID);
+
+
+$crons = new Crons;//
+try{
+	// $select = $crons->deleteNonVATeir($listCID);
+	// echo '<pre>';
+	// print_r($select);
+	// echo '</pre>';
+	// $register["deleted"] = $listCID;
+
+
+	 $json = (!empty($register)) ? json_encode($register) : '';
+
+	// $crons->add([	'date' => date("Y-m-d H:i:s"),//
+	// 				'data' => $json//
+	// 			]);
+}catch(Exception $q) {
+	$register["deletefail"] = $q->getMessage();
+}
+

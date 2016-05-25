@@ -2,56 +2,107 @@
 class User {
 	private $_db,
 			$_sessionName = null,
+
 			$_data = array(),
+
 			$_isLoggedIn = false;
 
+
+
 	public function __construct($user = null) {
+
 		$this->_db = DB::getInstance();
+
+
 
 		$this->_sessionName = Config::get('session/session_name');
 
+
+
 		//Checking for a session
+
 		if(Session::exists($this->_sessionName) && !$user) { //If $_SESSION is set...and if login is open
+
 			$user = Session::get($this->_sessionName);
+
 			 //&& ($this->loginOpen() || ((isset($this->_data) && $this->_data->id == "1032602"))) for next line check login is open
+
 			if($this->find($user)) {
+
 				$this->_isLoggedIn = true;
+
 			} else {
+
 				$this->logout();
+
 			}
+
 		} else {
+
 			$this->find($user);
 		}
+
 	}
+
+
 
 	public function exists() {
+
 		return (!empty($this->_data)) ? true :false;
+
 	}
 
-	public function find($user = null) {
+	public function find($user = null, $approved = null) { //approved will only login home or visiting controllers
+
 
 		if($user) {
-			$data = $this->_db->get('controllers', [['id', '=', $user], ['vateir_status', '<>', 3], ['vateir_status', '<>', 4]]); //1=home controller/2=visitingcontroller/3=transfer request/4=visiting request
+			if(!isset($approved)) {
+				$data = $this->_db->get('controllers', [['id', '=', $user]]); //1=home controller/2=visitingcontroller/3=transfer request/4=visiting request
+			} else {
+				$data = $this->_db->get('controllers', [['id', '=', $user], ['vateir_status', '<>', 3], ['vateir_status', '<>', 4]]);
+			}
+
+
 
 			if($data->count()) {
+
 				$this->_data = $data->first();
+
 			//	return true;
+
 				return $this->_data;
+
 			}
+
 		}
+
 		return false;
+
 	}
 
-	public function login($cid = null) {
+
+
+	public function login($cid = null, $approved = null) {
+
 
 			if($this->exists()) {
+
 				Session::put($this->_sessionName, $this->data()->id);
+
 			} else {
-				$user = $this->find($cid);
+
+				$user = $this->find($cid, 'approved');
+
+
+
 				if($user) {
+
 					//Store the login and ip address of user
+
 					$this->_db->insert('logins', ['cid' => $this->data()->id, 'ip' => $_SERVER['REMOTE_ADDR'], 'datetime' => date("Y-m-d H-i-s")]);
+
 					Session::put($this->_sessionName, $this->data()->id);
+
 					return true;
 				}
 			}
@@ -127,12 +178,12 @@ class User {
 		$email = $this->_db->query("SELECT * FROM email_unsubscribe WHERE email = ?", [[$email]]);
 		if($email->count()) {
 			return $email->results();
-		} 
-		return false;	
+		}
+		return false;
 	}
 
 	public function getEmailable() {
-		$email = $this->_db->query("SELECT c.* FROM controllers c WHERE not exists (SELECT * FROM email_unsubscribe e WHERE e.email = c.email) AND c.email = 'cillianlong@gmail.com'");
+		$email = $this->_db->query("SELECT c.* FROM controllers c WHERE not exists (SELECT * FROM email_unsubscribe e WHERE e.email = c.email) AND c.vateir_status <> 3 AND c.vateir_status <> 4");
 		if($email->count()) {
 			return $email->results();
 		}
@@ -147,6 +198,20 @@ class User {
 	public function getAll() {
 		$this->_db->query("SELECT * FROM controllers");
 		return $this->_db->results();
+	}
+
+	public function innerjoin() { //for use if 
+		$this->_db->query("SELECT c.id, c.rating, s.cid FROM controllers c LEFT JOIN students s ON s.cid = c.id WHERE s.cid is null AND first_name <> 'SYSTEM'");
+		$ij = $this->_db->results();
+		//training class must be initialised
+		foreach($ij as $i) {
+			$program = Training::program($i->rating);
+			$studentMake = Training::createStudent(array(
+				'cid'		=> $i->id,	
+				'program'	=> 	$program	
+			));
+		}
+
 	}
 
 	public function hasPermission($key) {
@@ -197,7 +262,7 @@ class User {
 	public function terms($type, $cid) { //Ooh, an anti-join...
 		$terms = $this->_db->query("SELECT t.id, t.type, t.name, t.text, t.date, t.deleted
 									FROM terms_and_conditions t
-									WHERE NOT EXISTS 
+									WHERE NOT EXISTS
 										(
 											SELECT *
 											FROM terms_agreed a

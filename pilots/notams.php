@@ -33,9 +33,9 @@ require_once('includes/header.php');
 						echo '<td>';
 							echo $notam['message'];
 						echo '</td><td class="hidden-xs">';
-							echo date('d-M-y H:i', strtotime($notam['start']));
+							echo '<a data-toggle="tooltip" data-placement="top" data-original-title="' . date('j M Y H:i', strtotime($notam['start'])) . '">Start</a>';
 						echo '</td><td class="hidden-xs">';
-							echo date('d-M-y H:i', strtotime($notam['end']));
+							echo '<a data-toggle="tooltip" data-placement="top" data-original-title="' . date('j M Y H:i', strtotime($notam['end'])) . '">End</a>';
 						echo '</td></tr>';
 					}
 				}

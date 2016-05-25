@@ -28,7 +28,7 @@ if(Input::exists()) { //if form submitted!
 
 	if($validation->passed()) {
 		try {
-		
+
 			$r->addReport(array(
 				'student_cid'		=> Input::get('cid'),
 				'mentor_cid'		=> $user->data()->id,
@@ -50,7 +50,7 @@ if(Input::exists()) { //if form submitted!
 							'value'		=> $slideVal
 						));
 					}
-				}				
+				}
 			}
 
 			$s = new Sessions;
@@ -79,22 +79,22 @@ if(Input::exists()) { //if form submitted!
 							'submitted' => date("Y-m-d H:i:s"),
 							'status'	=> 0
 						));
-				
+
 					$comment = $n->addComment(array(
 							'notification_id'	=> $id,
 							'submitted'			=> date("Y-m-d H:i:s"),
 							'submitted_by'		=> 0,
-							'text'				=> 
+							'text'				=>
 							'<p>Exam passed. Student requires upgrade.</p><p><strong>Next Rating:</strong>' . $rating->long . ' (' . $rating->short . ')<br><strong>Report: </strong>a target="_blank" class="btn btn-xs btn-default" href="' . BASE_URL . 'training/mentor/view_student.php?cid=' . Input::get('cid') . '#r' . $reportID . '">View</a><br><strong>Upgrade Link: </strong><a target="_blank" class="btn btn-xs btn-primary" href="https://www.atsimtest.com/index.php?cmd=admin&sub=memberdetail&memberid=' . Input::get('cid') . '">ATSimTest</a></p>'
 							));
-				}	
+				}
 			}
-			
-			
+
+
 			Session::flash('success', 'Report Added');
 			Redirect::to('./view_student.php?cid=' . Input::get('cid') . '#r' . $reportID);
 
-				
+
 		} catch (Exception $e) {
 			die($e->getMessage());
 		}
@@ -113,7 +113,7 @@ if(Input::exists()) { //if form submitted!
 			</div>
 		</div>
 		';
-			
+
 	}
  }// else {
 
@@ -133,7 +133,7 @@ if(Input::exists()) { //if form submitted!
 			Session::flash('error', 'Insufficient permissions');
 			Redirect::to('./');
 		}
-	} catch (Exception $e) { 
+	} catch (Exception $e) {
 		echo $e->getMessage();
 	}
 	?>
@@ -150,7 +150,7 @@ if(Input::exists()) { //if form submitted!
 			<div class="form-group">
 		      <label for="type" class="col-lg-3 control-label">Report Type</label>
 		      <div class="col-lg-4">
-		        <select name="type" id="type" class="form-control tick" disabled>
+		        <select name="type" id="type" class="form-control tick" readonly>
 					<?php
 						try {
 							$types = $r->getTypes(0, ['program' => $session->program_id]);
@@ -199,8 +199,8 @@ if(Input::exists()) { //if form submitted!
 				foreach($sliders as $slider) {
 					if(!in_array($slider->category, $sliderCat)) {
 						$sliderCat[] = $slider->category;
-						
-						echo '<p class="text-center">'; 
+
+						echo '<p class="text-center">';
 						if(count($sliderCat) > 1) {
 							echo '<br><br>';
 						}
@@ -219,14 +219,14 @@ if(Input::exists()) { //if form submitted!
 							<div class="col-lg-1">
 								<div id="slider' . $slider->sid . '-value-text" style="display: inline"></div>
 							</div>
-						
+
 
 						';
 					} elseif($slider->type == 1) { //is a radio button
 						echo '<div class="col-md-6">
-								
+
 								<div class="radio">
-									
+
 										<label>
 											<input type="radio" name=slider[' . $slider->sid . '] value="0"';
 											if(!Input::exists() || Input::get('slider')[$slider->sid] == 0) {
@@ -235,9 +235,9 @@ if(Input::exists()) { //if form submitted!
 											echo '>
 											N/A
 										</label>
-								
+
 										&nbsp;&nbsp;&nbsp;&nbsp;
-									
+
 										<label>
 											<input type="radio" name=slider[' . $slider->sid . '] value="1"';
 											if(Input::exists() && Input::get('slider')[$slider->sid] == 1) {
@@ -246,9 +246,9 @@ if(Input::exists()) { //if form submitted!
 											echo '>
 											Poor
 										</label>
-									
+
 										&nbsp;&nbsp;&nbsp;&nbsp;
-									
+
 										<label>
 											<input type="radio" name=slider[' . $slider->sid . '] value="2"';
 											if(Input::exists() && Input::get('slider')[$slider->sid] == 2) {
@@ -257,7 +257,7 @@ if(Input::exists()) { //if form submitted!
 											echo '>
 											Grand
 										</label>
-									
+
 								</div>
 							</div>
 
@@ -343,7 +343,7 @@ require_once("../../includes/footer.php");
 					});
 					$("#slider' . $slider->sid . '").Link("lower").to($("#slider' . $slider->sid . '-value"));
 					$("#slider' . $slider->sid . '").Link("lower").to($("#slider' . $slider->sid . '-value-text"));';
-			}		
+			}
 		}
 	}
 	?>
@@ -351,8 +351,8 @@ require_once("../../includes/footer.php");
 </script>
 <script src="../../scribe/bower_components/requirejs/require.js" data-main="../../scribe/setup.js"></script>
 
-   
-  
+
+
 
 <?php
 // }

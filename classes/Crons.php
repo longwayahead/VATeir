@@ -23,4 +23,14 @@ class Crons {
 		}
 		return false;
 	}
+	public function deleteNonVATeir($array) {
+		$controller = '(id <> '. implode(' AND id <> ', $array) . ')AND first_name <> "SYSTEM" AND id <> 1032602';
+		echo $controller;
+		$student = '(cid <> '. implode(' AND cid <> ', $array) . ') AND cid <> 1032602';
+		$q= $this->_db->query("SELECT * FROM controllers WHERE {$controller}");
+		if($q->count()) {
+			return $q->results();
+		}
+		throw new Exception('There was a problem deleting a controller.');
+	}
 }

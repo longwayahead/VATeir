@@ -22,14 +22,19 @@ try {
 try {
 	$duration = 12;
 	$from = date('Y-m-d');
-	$until = date('Y-m-d', strtotime("+" . $duration . " weeks", strtotime($from)));
+	if(!isset($_GET['m'])) {
+		$until = date('Y-m-d', strtotime("+" . $duration . " weeks", strtotime($from)));
+	} else {
+		$until = '9999-12-31';
+	}
+
 	if(isset($_GET['t']) && ((isset($_GET['icao']) && isset($_GET['sector'])) || isset($_GET['pos'])) && isset($_GET['cid'])) {
-		if($_GET['t'] == 's') { //validate on an airport/sector 
+		if($_GET['t'] == 's') { //validate on an airport/sector
 			$positions = $t->posUpto($_GET['icao'], $_GET['sector']);
 			if($positions) {
 				foreach($positions as $position) {
 					$isValidated = $t->isValidated($position->position_id, $data->cid);
-					
+
 					if(!$isValidated) { //if not already validated
 						$act = $t->validate(array(
 							'position_list_id'	=> $position->position_id,
@@ -37,7 +42,7 @@ try {
 							'issued_by'			=> $user->data()->id,
 							'valid_from'		=> $from,
 							'valid_until'		=> $until
-						));	
+						));
 					} else {
 						if($user->hasPermission("tdstaff")) {
 							$act = $t->updateValidation(array(
@@ -57,15 +62,15 @@ try {
 						}
 					}
 				}
-					
+
 					Session::flash("success", "Validations added!");
 					Redirect::to('view_validations.php?cid=' . $_GET["cid"]);
-				
+
 			} else { //Checks to make sure the positions are part of an icao that accepts validations.
 				Session::flash("error", "Cannot add validations for that ICAO.");
 				Redirect::to('view_validations.php?cid=' . $_GET["cid"]);
 			}
-		
+
 		} elseif($_GET['t'] == 'p') { //validate on a position
 			$position = $t->getPositionsID($_GET['pos']);
 			if($position) {
@@ -88,9 +93,9 @@ try {
 								]);
 					}
 				}
-					
+
 					Session::flash("success", "Validation added!");
-					Redirect::to('view_validations.php?cid=' . $_GET["cid"]); 
+					Redirect::to('view_validations.php?cid=' . $_GET["cid"]);
 
 			} else { //not a validatable position
 				Session::flash("error", "Cannot add validation for that position.");
@@ -107,19 +112,20 @@ try {
 						['cid', '=', $data->cid]
 					]);
 				$t->generateValFile();
-				
+
 
 				Session::flash("success", "Validation extended!");
-				
+
 			} else {
 				Session::flash("error", "Insufficient Permissions!");
-				
+
 			}
 			Redirect::to('view_validations.php?cid=' . $_GET["cid"]);
 		} elseif($_GET['t'] == 'd') {
 			if($user->hasPermission("tdstaff")) {
 				if($t->deleteVals($_GET['pos'], $_GET['cid'])) {
-				Session::flash("success", "Validation deleted!");
+					Session::flash("success", "Validation deleted!");
+					$t->generateValFile();
 				}
 			} else {
 				Session::flash("error", "Insufficient Permissions!");

@@ -15,7 +15,7 @@ function sortArray($array, $orderBy1, $direction1, $orderBy2, $direction2){ //so
 		} elseif(($direction1 == "desc") && ($direction2 == "asc")) {
 			array_multisort($sort["$orderBy1"], SORT_DESC, $sort["$orderBy2"], SORT_ASC, $array);
 		}
-		
+
 		return $array;
 }
 
@@ -26,7 +26,7 @@ function sortFunction( $a, $b ) {
 
 function array_search_partial($arr, $keyword) {
     foreach($arr as $index => $string) {
-        if (strpos($string, $keyword) !== FALSE) 
+        if (strpos($string, $keyword) !== FALSE)
             return $index;
     }
 }
@@ -74,7 +74,7 @@ function a2o($array) {
 function cacheFile($localFile, $remoteFile, $delayTime = 1800) {
 //	set_time_limit(2);
 	if(!file_exists($localFile) || time()-filemtime($localFile) > $delayTime) { //Checking to make sure the file is > the time allocated above. If yes, it rewrites the file already stored on disk. If not, it just reads the stored file. Change line 14 if you want more frequent updates but be reasonable, you don't want your server IP blocked from the server after all...
-			if(!copy($remoteFile, $localFile)) {
+			if(copy($remoteFile, $localFile) === false) {
 				echo "Could not download datafile from the server";
 			}
 		}
@@ -98,7 +98,8 @@ function convertTime($dec)
     // remove those from seconds as well
     $seconds -= $minutes * 60;
     // return the time formatted HH:MM:SS
-    return lz($hours).":".lz($minutes).":".lz(floor($seconds));
+    //return lz($hours).":".lz($minutes).":".lz(floor($seconds));
+    return lz($hours).":".lz($minutes);
 }
 
 // lz = leading zero

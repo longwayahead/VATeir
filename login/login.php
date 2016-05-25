@@ -18,7 +18,7 @@ unset($_SESSION['ssouser']);
 
 
 	if($login_type == 'site') { //trying to log into the site: log into the site and forum
-		
+
 		$loginCheck = ($u->loginOpen()) ? false : true; //check that login is closed...
 		if($loginCheck === true) {
 			$allow = $u->allowed($user->user->id);
@@ -27,15 +27,19 @@ unset($_SESSION['ssouser']);
 				Redirect::to("../index.php");
 			}
 		}
-	    
+
 	    $t = new Training;
+
 	    try {
+
 	    	$siteLogin = $u->login($user->user->id);
 		} catch(Exception $l) {
+
 			echo $l->getMessage();
 		}
+
 	    if($siteLogin) {
-	    	
+
 	    	if($user->user->rating->id > 7) { //get the CID's real rating (instead of SUP/ADM/INS etc)
 				$rating = $u->getRealRating($user->user->id);
 			} else {
@@ -46,7 +50,7 @@ unset($_SESSION['ssouser']);
 	    	if($u->data()->rating != $rating) {
 	    		$changeProgram = true;
 	    	}
-			$pilotRating = $t->pilotRating($user->user->pilot_rating->rating);
+			//$pilotRating = $t->pilotRating($user->user->pilot_rating->rating);
 	    	//change user to alive and update their details
 	    	if($user->user->division->code == "EUD" && $user->user->subdivision->code == "IRL") {
 				$u->update([
@@ -78,35 +82,27 @@ unset($_SESSION['ssouser']);
 					'program'	=> 	$program
 				), [['cid', '=', $user->user->id]]);
 			}
-			
+
 	    	Session::flash('success', 'You are now logged in!');
 	    	Redirect::to('../index.php');
 	    } elseif(!$siteLogin && $user->user->division->code == "EUD" && $user->user->subdivision->code == "IRL") {
-			try { //Try making an account if they are a member of VATeir...
-				if($user->user->rating->id > 7) {
-						$rating = $u->getRealRating($user->user->id);
-					} else {
-						$rating = $user->user->rating->id;
-					}
-					
-					$pilotRating = $t->pilotRating($user->user->pilot_rating->rating);
-				
-				$make = $u->create(array(
-					'id' 				=> $user->user->id,
-					'alive'				=> 1,
-					'first_name' 		=> $user->user->name_first,
-					'last_name' 		=> $user->user->name_last,
-					'email' 			=> $user->user->email,
-					'rating' 			=> $rating,
-					'pilot_rating' 		=> $user->user->pilot_rating->rating,
-					'pratingstring'		=> $pilotRating,
-					'regdate_vatsim' 	=> date("Y-m-d H:i:s", strtotime($user->user->reg_date)),
-					'regdate_vateir' 	=> date('Y-m-d H:i:s'),
-					'grou'				=> 10
-				));
-
-				
+	    	echo '1';
+	    	//check to see if they already have an account
+	    	if($u->find($user->user->id)) { //the status of their account has changed since their account was created
+	    		echo '2';
+	    		$u->update([
+					'alive' 		=> 1,
+					'vateir_status' => 1,
+				], [['id', '=', $u->data()->id]]);
+	    		if($user->user->rating->id > 7) {
+	    			echo '3';
+					$rating = $u->getRealRating($user->user->id);
+				} else {
+					echo '4';
+					$rating = $user->user->rating->id;
+				}
 				if(!$t->getStudent($user->user->id)) {
+					echo '5';
 					$program = $t->program($rating);
 
 					$studentMake = $t->createStudent(array(
@@ -114,45 +110,81 @@ unset($_SESSION['ssouser']);
 						'program'	=> 	$program
 					));
 				}
-				
-			
+	    	} else {
+echo '6';
 
-				$u->login($user->user->id);
+				try { //Try making an account if they are a member of VATeir...
+					echo '7';
+					if($user->user->rating->id > 7) {
 
-			
+						$rating = $u->getRealRating($user->user->id);
+					} else {
+						$rating = $user->user->rating->id;
+					}
 
-				Session::flash('success', 'You are now logged in!');
-				Redirect::to('../index.php');
-			} catch (Exception $x) {
-				echo $x->getMessage();
+						$pilotRating = $t->pilotRating($user->user->pilot_rating->rating);
+						echo '8';
+					$make = $u->create(array(
+						'id' 				=> $user->user->id,
+						'alive'				=> 1,
+						'first_name' 		=> $user->user->name_first,
+						'last_name' 		=> $user->user->name_last,
+						'email' 			=> $user->user->email,
+						'rating' 			=> $rating,
+						'pilot_rating' 		=> $user->user->pilot_rating->rating,
+						'pratingstring'		=> $pilotRating,
+						'regdate_vatsim' 	=> date("Y-m-d H:i:s", strtotime($user->user->reg_date)),
+						'regdate_vateir' 	=> date('Y-m-d H:i:s'),
+						'grou'				=> 10
+					));
+
+					if(!$t->findStudent($user->user->id)) {
+						$program = $t->program($rating);
+						$studentMake = $t->createStudent(array(			
+							'cid'		=> $controller->cid,			
+							'program'	=> 	$program			
+						));
+					}
+
+
+
+
+					$u->login($user->user->id);
+
+
+
+					Session::flash('success', 'You are now logged in!');
+					Redirect::to('../index.php');
+				} catch (Exception $x) {
+					echo $x->getMessage();
+				}
 			}
 	    } else {
 	    	$notAllowed = ($user->user->rating->id > 2) ? false : true; //Set the rating to be S2 and above for visiting controller applications
 				echo "<h4>Hey " . $user->user->name_first . ",</h4>";
-	    
+
 	    ?>
 	    	<div style="font-size:16px">
-				<p>It looks like you're not a member of VATeir.<br>
-					Don't fret though, it's super simple to become a visiting controller or to transfer!</p>
-				<p>Select from one of the options below to get started on your application!</p>
+				<p>Unfortunately, it looks as though you're not a member of VATeir.<br></p>
+				<p><div class="text-danger">The ability to make a visiting controller request through the website is not offered at present.</div></p>
 				<?php
 					if ($notAllowed === true) {
-						echo '<p><div class="text-danger">One thing though: you must be at least an S2 to become a visiting controller in VATeir</div></p>';
+						echo '<p><div class="text-danger">One thing though: you must be at least an S2 to become a visiting controller in VATeir.</div></p>';
 					}
 			?>
 			</div>
-				<form method="post" action="apply.php">
+				<!-- <form method="post" action="apply.php">
 				    <div class="wrapper">
 				    <span class="group-btn">
 				    	<br>
 				    	<div class="row">
 				    		<div class="text-center">
-								<button type="submit" name="visiting" class="<?php echo ($notAllowed === true) ? 'disabled ' : '' ;?>btn btn-success btn-lg">
+								<button disabled type="submit" name="visiting" class="<?php echo ($notAllowed === true) ? 'disabled ' : '' ;?>btn btn-success btn-lg">
 									<span class="glyphicon glyphicon-plane" aria-hidden="true"></span> Become a visiting <?php echo $user->user->rating->short; ?>
 								</button>
 								<br>
 								<br>
-								<button type="submit" name="transfer" class="btn btn-warning btn-lg">
+								<button disabled type="submit" name="transfer" class="btn btn-warning btn-lg">
 									<span class="glyphicon glyphicon-road" aria-hidden="true"></span> Transfer to VATeir
 				        		</button>
 				        	</div>
@@ -160,12 +192,12 @@ unset($_SESSION['ssouser']);
 				        <br>
 				    </span>
 				    <input type="hidden" name="data" value="<?php echo htmlspecialchars(serialize($user->user), ENT_QUOTES); ?>">
-				</form>
-		
+				</form> -->
+
 		<?php
 
 	    }
-	        
+
 
 	} elseif($login_type == 'forum') { //trying to log into the forum only
 		$f = new Forum;
@@ -187,7 +219,7 @@ unset($_SESSION['ssouser']);
 				</script>';
 		} else {
 			try { //update the user's name as per cert.
-	    		
+
 	    			$f->update([
 	    					'username' => $username,
 	    					'username_clean' => strtolower($username),

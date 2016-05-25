@@ -20,7 +20,7 @@ class Graph {
 								WHERE c.id = ?
 								AND s.report_id is not null
 								AND DATE(s.finish) BETWEEN DATE_SUB(now(), interval $first month) AND $second", [[$cid]]);
-		
+
 		if($r->count()) {
 			return $r->results();
 		}
@@ -55,5 +55,39 @@ class Graph {
 			$programs[$m->ident] = $this->myMentoring($cid, $m->id)->count;
 		}
 		return $programs;
+	}
+
+	public function sa() {
+		foreach($this->months() as $month) {
+			$datehere = $month->m;
+			$dateObj = DateTime::createFromFormat('!n', $datehere);
+			$dt = $dateObj->format('F');
+			$data = $this->_db->query("SELECT count(id) as sessions FROM sessions
+											WHERE MONTH(finish) = ? AND YEAR(finish) = ?
+										GROUP BY MONTH(finish)", [[$month->m], [$month->y]]);
+			if($data->count()) {
+				$output[$dt]['sessions'] = $data->first()->sessions;
+			}
+			$da= $this->_db->query("SELECT count(id) as availability FROM availability
+											WHERE MONTH(date) = ? AND YEAR(date) = ?
+										GROUP BY MONTH(date)", [[$month->m], [$month->y]]);
+
+			if($da->count()) {
+				$output[$dt]['availability'] = $da->first()->availability;
+			}
+			unset($datehere);
+			unset($dateObj);
+			unset($monthName);
+		}
+		return $output;
+	}
+	public function months() {
+		$data = $this->_db->query("SELECT MONTH(date) as m, YEAR(date) as y FROM availability
+									WHERE date >= CURDATE() - INTERVAL 6 MONTH AND date < CURDATE()
+									GROUP BY MONTH(date), YEAR(date)
+									ORDER BY y ASC, m ASC");
+		if($data->count()) {
+			return $data->results();
+		}
 	}
 }

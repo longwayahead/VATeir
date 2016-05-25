@@ -14,7 +14,7 @@ class Events {
 		$sessions = $this->sessions();
 		if(!empty($sessions)) {
 			foreach($sessions as $session) {
-				if($session->session_type_name == 'Live') {
+				if($session->card_id == 1) {
 					$session_name = 'Mentoring Session';
 					$prep = ' a ';
 				} else {
@@ -80,13 +80,13 @@ class Events {
 		if(!empty($this->current)) {
 				return $this->current;
 		}
-		return false;		
+		return false;
 	}
 	public function sessions() {
-		$sessions = $this->_db->query("SELECT c.id, c.type, c.name as session_type_name, 
+		$sessions = $this->_db->query("SELECT c.id as card_id, c.type, c.name as session_type_name,
 										r.*,  u.*,
 										s.id as session_id, s.student, s.position_id, s.report_type, s.start, s.finish, s.deleted,
-										p.id, p.name as program_name,	
+										p.id, p.name as program_name,
 										pos.id, pos.position_type_id, pos.airport_list_id, pos.callsign, pos.freq, pos.name as position_name
 										FROM card_types c
 										LEFT JOIN report_types r ON r.session_type = c.id
@@ -108,7 +108,7 @@ class Events {
 			return array_reverse($this->past);
 
 		}
-		return false;		
+		return false;
 	}
 
 	public function random() {

@@ -37,7 +37,7 @@ class DB {
 		if($this->_query = $this->_pdo->prepare($sql)) {
 			$x = 1;
 			if(count($params)) {
-				
+
 				foreach($params as $param) {
 					foreach($param as $value) {
 						$this->_query->bindValue($x, $value);
@@ -45,7 +45,7 @@ class DB {
 					}
 				}
 			}
-			
+
 			if($this->_query->execute()) {
 				$this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
 				$this->_count = $this->_query->rowCount();
@@ -53,7 +53,7 @@ class DB {
 				$this->_error = true;
 			}
 		}
-		
+
 		return $this;
 	}
 
@@ -67,10 +67,10 @@ class DB {
 	}
 
 	public function action($action, $table, $whereArr = array()) { //Same as $this->db but without need for table joins etc
-		
+
 		$where = $this->where($whereArr);
-		
-		
+
+
 		$sql = "{$action} FROM {$table} WHERE {$where[0]}";
 		if(!$this->query($sql, array($where[1]))->error()) {
 			//print_r($this);

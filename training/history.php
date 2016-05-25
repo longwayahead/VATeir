@@ -63,9 +63,9 @@ try {
 									<td style="width:45%;">Controller:</td>
 									<td><?php echo $data->status; ?></td>
 								</tr>
-								
+
 							</table>
-						</div>					
+						</div>
 					</div>
 				</div>
 			</div>
@@ -78,7 +78,7 @@ try {
 						    <h3 class="panel-title">Training History</h3>
 						  </div>
 							<div class="panel-body">
-							 
+
 
 
 				<?php
@@ -92,7 +92,7 @@ try {
 							if($card->card_type == 0) {//mentoring report
 								$report = $r->getReport(1, $card->link_id);
 								echo '
-								
+
 									<div class="row">
 										<div class="col-md-10 col-md-offset-1">
 											<div id="card" class="card" style="background-color:' . $report->colour . '; color:white;">
@@ -101,22 +101,22 @@ try {
 														<div class="hidden-xs" style="display:inline-block;"><strong>' . $report->sessname . ':</strong></div> ' . $report->callsign . ' <div class="hidden-xs" style="display:inline-block;"> on ' . date("j\<\s\u\p\>S\<\/\s\u\p\> M Y", strtotime($report->session_date)) . '</div><div class="visible-xs" style="font-size:15px">' . date("j\<\s\u\p\>S\<\/\s\u\p\> M Y", strtotime($report->session_date)) . '</div>
 														</div>
 												</div>
-												
-												
+
+
 													<article>
 														<div class="card-content">
 															<div style="padding-left:10px;">
-															
-																	
+
+
 																			' . $report->text;
 													$sliders = $r->getSliderAnswers($report->rep_id);
 													if($sliders) {
-														echo '								
-										<br><h4 style="color:white;">Breakdowns</h4>	
+														echo '
+										<br><h4 style="color:white;">Breakdowns</h4>
 															';
 
-																
-												
+
+
 														// echo '<pre>';
 														// print_r($sliders);
 														// echo '</pre>';
@@ -124,17 +124,18 @@ try {
 														foreach($sliders as $slider) {
 															if(!in_array($slider->category, $sliderCat)) {
 																$sliderCat[] = $slider->category;
+																end($sliderCat);
 																if(key($sliderCat) != 0) {
-																	echo '<br>';
+																	echo '<br><br>';
 																}
-																echo '<p class="text-center">' . $slider->name . '</p>';
+																echo '<p class="text-center text-uppercase"><u>' . $slider->name . '</u></p>';
 															}
 															echo '<div class="row">
 																	<div class="col-xs-9 col-sm-8 col-md-8 text-left">' . $slider->text . '...</div>
 																	<div class="col-xs-3 col-sm-4 col-md-4 text-left" style="height:20px;">';
 															if($slider->type == 0) {
 															echo '<div class="hidden-xs">
-																	<a style="cursor:pointer;" data-toggle="tooltip" data-placement="top" title="' . $slider->value . '0%">																		
+																	<a style="cursor:pointer;" data-toggle="tooltip" data-placement="top" title="' . $slider->value . '0%">
 																	<div class="progress progress-striped active" style="margin-top:10px;">
 																		<div class="progress-bar" style="width: ' . $slider->value . '0%; vertical-align:bottom;"></div>
 																	</div>
@@ -154,23 +155,23 @@ try {
 																</div>';
 														}
 													}
-												
+
 
 													//end back  vv
 												echo '</div>
 							        		</div>
 							        	</article>
-										        
-									       		
+
+
 												    <div class="card-action">
 												        <div class="row">
 												            <div class="col-md-6 col-sm-6 col-xs-6" style="display:inline-block; padding-left:5px;">
 																<div class="text">' . $report->mfname . ' ' . $report->mlname . '<div class="hidden-xs" style="display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;' . date("jS M Y", strtotime($report->submitted_date)) . '</div></div>
 															</div>
-															
+
 														</div>
 													</div>
-												
+
 												</div>
 											</div>
 										</div>
@@ -190,13 +191,13 @@ try {
 													'. $note->text .'
 													</div></article>';
 											}
-													
+
 											 echo '<div class="card-action" style="margin-top:0px;">
 												        <div class="row">
 												            <div class="col-md-6 col-sm-6 col-xs-6" style="display:inline-block;">
 																<div class="text">' . $note->mfname . ' ' . $note->mlname . '<div class="hidden-xs" style="display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;' . date("jS M Y", strtotime($note->submitted_date)) . '</div></div>
 															</div>
-															
+
 														</div>
 													</div>
 												</div>
@@ -210,11 +211,11 @@ try {
 						echo '<br><div class="row">
 								<div class="col-md-6 col-md-offset-3">
 							<div class="text-danger text-center" style="font-size:16px;">No History</div><br>
-			
+
 							</div></div>';
 
 					}
-					
+
 
 
 				?>

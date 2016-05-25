@@ -2,10 +2,14 @@
 ini_set('display_errors', 1);
 session_start();
 ob_start();
-define ('URL', realpath($_SERVER['DOCUMENT_ROOT']) . '/'); // go to /training/includes/ and update the soft coded link too
- define ('BASE_URL', 'http://'.$_SERVER['HTTP_HOST'].'/');
-require_once(URL . "core/init.php");
-$user = new User;
+try {
+  define ('URL', realpath($_SERVER['DOCUMENT_ROOT']) . '/'); // go to /training/includes/ and update the soft coded link too
+  define ('BASE_URL', 'http://'.$_SERVER['HTTP_HOST'].'/');
+  require_once(URL . "core/init.php");
+  $user = new User;
+} catch (Exception $e) {
+  echo $e->getMessage();
+}
 
 ?>
 
@@ -15,6 +19,44 @@ $user = new User;
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The Irish vACC of the VATSIM Network!"/>
+
+    <meta name="keywords" content="VATSIM VATeir Virtual ATC Air Traffic Control Virtual Air Traffic Simulation Network Ireland Dublin">
+
+    <meta name="author" content="Cillian Long">
+
+    <!--Facebook Optimisation-->
+
+    <meta property="og:title" content="VATeir"/>
+
+    <meta property="og:type" content="website"/>
+
+    <meta property="og:image" content="http://vateir.org/img/logo.png"/>
+
+    <meta property="og:url" content="www.vateir.org"/>
+
+    <meta property="og:description" content="The Irish vACC of the VATSIM Network!"/>
+
+    <!--Twitter Optimisation-->
+
+    <meta name="twitter:card" content="summary"/>
+
+    <meta name="twitter:url" content="www.vateir.org"/>
+
+    <meta name="twitter:title" content="VATeir"/>
+
+    <meta name="twitter:description" content="The Irish vACC of the VATSIM Network!"/>
+
+    <meta name="twitter:image" content="http://vateir.org/img/logo.png"/>
+
+    <!--Safari Optimisation-->
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="format-detection" content="telephone=no">
+
     <title><?php echo (isset($pagetitle) ? 'VATeir | ' . $pagetitle : 'VATeir');?></title>
 
     <!-- Bootstrap
@@ -32,19 +74,19 @@ $user = new User;
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-<!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
-<script type="text/javascript">
-    window.cookieconsent_options = {
-      "message":"This website uses cookies to ensure you get the best experience on it",
-      "dismiss":"Grand!",
-      "learnMore":"More info",
-      "link":"<?php echo BASE_URL . 'privacy.php'; ?>",
-      "theme":"light-top"
-    };
-</script>
+    <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+    <script type="text/javascript">
+        window.cookieconsent_options = {
+          "message":"This website uses cookies to ensure you get the best experience on it",
+          "dismiss":"Grand!",
+          "learnMore":"More",
+          "link":"<?php echo BASE_URL . 'privacy.php'; ?>",
+          "theme":"light-top"};
+    </script>
 
-<script type="text/javascript" src="//s3.amazonaws.com/cc.silktide.com/cookieconsent.latest.min.js"></script>
-<!-- End Cookie Consent plugin -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
+    <!-- End Cookie Consent plugin -->
+
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -64,10 +106,20 @@ $user = new User;
 	<h3 class="text-muted" style="display:inline;">
     <a style="text-decoration:none;" href="<?php echo BASE_URL;?>">
       <img class="img-responsive" style="display:inline;" width="200px" src=<?php echo BASE_URL . "img/logo.png"; ?> \>
-    <div style="display:inline-block; margin-left:-53px; margin-bottom:-4px"><span style="position:absolute; font-size:10px;" class="label label-danger">Beta!</span></div>
-    
+    	<?php
+    	if(!$user || !$user->isLoggedIn()) {
+    		?>
+    		<div style="display:inline-block; margin-left:-53px; margin-bottom:-4px"><span style="position:absolute; font-size:10px;" class="label label-danger"></span></div>
+    		<?php
+    	} else {
+
+    		?>
+    		<div style="display:inline-block; margin-left:-53px; margin-bottom:-4px"><span style="position:absolute; font-size:10px;" class="label label-danger"></span></div>
+    		<?php
+    	}
+    	?>
     </a>
-      
+
 	</h3>
 </div>
 <?php
@@ -115,9 +167,9 @@ switch($directory) {
             if($user->hasPermission("mentor")) {
               $trainingurl = BASE_URL . "training/mentor";
             } else {
-              $trainingurl = BASE_URL . "training";
+              $trainingurl = BASE_URL . "training/history.php";
             }
-            
+
           ?>
           <a href="<?php echo $trainingurl; ?>"; ?>Training</a></li>
       <?php } ?>
@@ -125,6 +177,7 @@ switch($directory) {
       <li <?php echo ($directory == 4) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "pilots"; ?>>Pilots</a></li>
       <li <?php echo ($directory == 5) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "controllers"; ?>>Controllers</a></li>
      <li <?php echo ($directory == 6) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "about"; ?>>About Us</a></li>
+     <li><a href="https://www.twitch.tv/vatsim_atc/profile" target="_blank">Streams</a></li>
       <li>
           <?php //if($user->isLoggedIn()) { ?>
               <!-- <a target="_blank" href="<?php echo BASE_URL . 'login/index.php?forum'?>">Forum</a> -->
@@ -147,7 +200,7 @@ switch($directory) {
     } else {
 
     ?>
-      
+
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <div class="hidden-sm" style="display:inline-block;"><?php echo $user->data()->first_name . ' ' . $user->data()->last_name; ?></div><b class="caret"></b></a>
         <ul class="dropdown-menu">

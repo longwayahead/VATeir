@@ -47,11 +47,11 @@ if(Input::exists('post')) {
 				        'finish'  => $finish,
 				        'comment' => $comment,
 				      ), [['id', '=', Input::get('id')]]);
-				      
+
 			     	Session::flash('success', 'Session edited.');
 			    	Redirect::to('./');
 
-		  		
+
 	    } else {
 			echo '<div class="row">
 			<div class="col-md-6 col-md-offset-3">
@@ -67,7 +67,7 @@ if(Input::exists('post')) {
 				</div>
 			</div></div>
 			';
-				
+
 		}
   } catch(Exception $e) {
     echo $e->getMessage();
@@ -76,7 +76,7 @@ if(Input::exists('post')) {
 $session = $s->get([
 		'id' => Input::get('id')
 	])[0];
-//print_r($session);
+print_r($session);
 if(!$user->hasPermission($session->program_permissions) || !$user->hasPermission("admin")) {
 	Session::flash('error', 'Cannot mentor at that level');
 	Redirect::to('./');
@@ -176,14 +176,14 @@ if(!$user->hasPermission($session->program_permissions) || !$user->hasPermission
 						<div class="col-lg-10">
 							<textarea class="form-control" rows="3" id="comment" name="comment"><?php echo $session->comment; ?></textarea>
 						</div>
-					</div>			    
+					</div>
 				    <div class="form-group">
 				      <div class="col-lg-6 col-lg-offset-3">
 				      <input type="hidden" name="id" value="<?php echo Input::get('id');?>">
 				      <input type="hidden" name="date" value="<?php echo date("Y-m-d", strtotime($session->start));?>">
 				      	<a href="cancel_session.php?id=<?php echo Input::get('id'); ?>" class="btn btn-danger">Cancel Session</a>
 				        <button type="submit" id="submit" name="edit" class="btn btn-primary">Edit Session</button>
-				      	
+
 				      </div>
 				    </div>
 				  </fieldset>

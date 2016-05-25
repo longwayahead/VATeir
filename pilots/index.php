@@ -11,15 +11,14 @@ require_once('includes/header.php');
 	  }
 	}
 	$i = 1;
-
 	foreach($all as $air) {
 	  if($air['icao'] != 'EISN') {
 	    $str .= '[\'' . $air['data']['name'] . '\', '; //0
 	    $str .= $air['data']['lat'] . ', '; //1
 	    $str .= $air['data']['lon'] . ', ';//2
 	    $str .= $i . ', '; //3
-	    $str .= '\'http://www.iaa.ie/safe_reg/iaip/aip_' . strtolower($air['icao']) . '_charts.htm\']'; //4
-	   
+	    $str .= '\'http://iaip.iaa.ie/iaip/aip_' . strtolower($air['icao']) . '_charts.htm\']'; //4
+
 	    if($air['icao'] != end($airports)) {
 	      $str .= ', ';
 	    }
@@ -27,7 +26,7 @@ require_once('includes/header.php');
 	  $i++;
 	}
 	?>
-	  <h3 class="text-center">Pilots Home</h3> <br>
+	  <h3 class="text-center">Pilots' Home</h3> <br>
 	  <div class="row">
 	  <div class="col-md-6">
 	  		<div class="panel panel-info">
@@ -40,7 +39,7 @@ require_once('includes/header.php');
 				  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.1.min.js"></script>
 
 				  <div id="map" class="img-responsive" style="width: 500px; height: 400px;"></div>
-				 
+
 				  <script type="text/javascript">
 				    var locations = [
 				      <?php echo $str; ?>
@@ -71,7 +70,7 @@ require_once('includes/header.php');
 				        coords: [4, 7, 10, 7, 16, 3, 23, 7, 29, 7, 29, 32, 4, 32, 4, 7],
 				        type: 'poly'
 				    };
-				    for (i = 0; i < locations.length; i++) {  
+				    for (i = 0; i < locations.length; i++) {
 				      marker = new google.maps.Marker({
 				        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
 				        map: map,
@@ -105,11 +104,11 @@ require_once('includes/header.php');
 				    }
 				    AutoCenter();
 
-				  </script> 
+				  </script>
 			  </div>
 			</div>
 	</div>
-	
+
 	<div class="col-md-6">
 		<div class="panel panel-info">
 			<div class="panel-heading">
@@ -123,7 +122,7 @@ require_once('includes/header.php');
 				// print_r($bookings);
 				// echo '</pre>';
 
-				if(count($bookings->atc) > 0) {		
+				if(count($bookings->atc) > 0) {
 					echo '<table class="table table-striped table-responsive table-condensed">
 						<tr>
 							<td><strong>Position</strong></td>
@@ -153,6 +152,28 @@ require_once('includes/header.php');
 				?>
 			</div>
 		</div>
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title">Current AIRAC</h3>
+			</div>
+			<div class="panel-body">
+				<?php
+				$d = new Download;
+				try {
+					$airac = 	$d->oadAPI('airac', ['cache' => 1]);
+					$start = new DateTime($airac->start);
+					echo '<font size="200"><strong>' . $airac->cycle . '</strong></font>';
+					echo '<br>Valid from: ' . $start->format('jS F Y H:i') . '<br>';
+					echo '<a href="https://www.navigraph.com/FmsDataManualInstall.aspx" target="_blank">Navigraph   <span class="badge">Payware</span></a>';
+					echo '<br><br>AIRAC cycles provide accurate and up-to-date navigational information to flight crews. It is important that your FMC or FMGS is up to date in order to accept ATC routing instructions.';
+					//print_r($airac);
+				} catch(Exception $e) {
+					echo $e->getMessage();
+				}
+
+				?>
+			</div>
+		</div>
 	</div>
 	</div>
 <!-- 	<div class="row">
@@ -167,7 +188,7 @@ require_once('includes/header.php');
 				// $notams = $a->notams();
 				// $i = 1;
 				// $icao = array();
-				// if(count($notams)) {					
+				// if(count($notams)) {
 				// 	echo '<table class="table table-striped table-responsive table-condensed">
 				// 		<tr>
 				// 			<td><strong>ICAO</strong></td>

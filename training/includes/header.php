@@ -15,7 +15,7 @@ $s = new Sessions;
 
 
 <div class="col-sm-3 col-md-2">
-	
+
 	<ul class="well nav nav-list nav-list-vivid">
 	<?php
 	if($user->hasPermission('student')) {
@@ -27,8 +27,8 @@ $s = new Sessions;
 			<li><a href="<?php echo BASE_URL . 'training/sessions.php'; ?>">Sessions <?php echo ($sesh = $s->countSessions($user->data()->id)) ? '<span class="badge danger">'. $sesh .'</span>' : '';?></a></li>
 			<li><a href="<?php echo BASE_URL . 'training/validations.php'; ?>">Validations</a></li>
 			<li><a href="<?php echo BASE_URL . 'training/history.php'; ?>">History</a></li>
-			<li><a href="<?php echo BASE_URL . 'training/token.php'; ?>">Exam Tokens</a></li>
-			
+			<li><a href="<?php echo BASE_URL . 'training/token.php'; ?>">Tokens</a></li>
+
 			<li class="divider"></li>
 			<br>
 <?php
@@ -42,10 +42,10 @@ $s = new Sessions;
 					<?php echo ($ment = $s->countMentor($user->data()->id)) ? '<span class="badge danger">'. $ment .'</span>' : '';?>
 				</a>
 			</li>
-			<li><a href="<?php echo BASE_URL . 'training/mentor/student_list.php'; ?>">Student List</a></li>
-			<li><a href="<?php echo BASE_URL . 'training/mentor/validation_list.php'; ?>">Validation List</a></li>
+			<li><a href="<?php echo BASE_URL . 'training/mentor/student_list.php'; ?>">Students</a></li>
+			<li><a href="<?php echo BASE_URL . 'training/mentor/validation_list.php'; ?>">Validations</a></li>
 			<br>
-	
+
 <?php
 	}
 	if($user->hasPermission('tdstaff')) {

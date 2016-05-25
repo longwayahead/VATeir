@@ -16,7 +16,7 @@ $data = json_decode($cron->data, true);
 
 <div class="row">
 	<h3 class="text-center">Cron Job&mdash;<?php echo date("j F Y", strtotime($cron->date)); ?></h3><br>
-	<div class="col-md-6">
+	<div class="col-md-3">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title">Updated Users</h3>
@@ -96,6 +96,30 @@ $data = json_decode($cron->data, true);
 			</div>
 		</div>
 	</div>
+	<div class="col-md-3">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Deleted</h3>
+			</div>
+			<div class="panel-body">
+			<?php if(isset($data['deleted'])) { ?>
+				<table class="table table-striped table-responsive table-condensed">
+					<tr>
+						<td><strong>CID</strong></td>
+					</tr>
+					<?php foreach($data['deleted'] as $id): ?>
+						<tr>
+							<td><a target="_blank" href="../controllers/profile.php?id=<?php echo $id; ?>"><?php echo $id; ?></td>
+						</tr>
+
+					<?php endforeach; ?>
+				</table>
+			<?php } else { ?>
+						<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No users</div><br>
+			<?php } ?>
+			</div>
+		</div>
+	</div>
 </div>
 <br>
 <div class="row">
@@ -132,6 +156,30 @@ $data = json_decode($cron->data, true);
 			<?php if(isset($data['regfail'])) { ?>
 				<table class="table table-striped table-responsive table-condensed">
 					<?php foreach($data['regfail'] as $cid => $msg): ?>
+						<tr>
+							<td><a target="_blank" href="https://cert.vatsim.net/cert/vatsimnet/idstatus.php?cid=<?php echo $cid; ?>"><?php echo $cid; ?></td>
+							<td>
+								<?php echo $msg; ?>
+							</td>
+						</tr>
+
+					<?php endforeach; ?>
+				</table>
+			<?php } else { ?>
+						<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No users</div><br>
+			<?php } ?>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="panel panel-danger">
+			<div class="panel-heading">
+				<h3 class="panel-title">Deletion failed</h3>
+			</div>
+			<div class="panel-body">
+			<?php if(isset($data['deletefail'])) { ?>
+				<table class="table table-striped table-responsive table-condensed">
+					<?php foreach($data['deletefail'] as $cid => $msg): ?>
 						<tr>
 							<td><a target="_blank" href="https://cert.vatsim.net/cert/vatsimnet/idstatus.php?cid=<?php echo $cid; ?>"><?php echo $cid; ?></td>
 							<td>

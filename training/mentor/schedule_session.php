@@ -67,10 +67,10 @@ if(Input::exists('post')) {
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Session Booked</title>
-	
+
 
 </head>
- 
+
 <body bgcolor="#FFFFFF" style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; width: 100% !important; height: 100%; margin: 0; padding: 0;">
 
 
@@ -78,7 +78,7 @@ if(Input::exists('post')) {
 	<tr style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; margin: 0; padding: 0;">
 		<td style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; margin: 0; padding: 0;"></td>
 		<td class="header container" style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; display: block !important; max-width: 600px !important; clear: both !important; margin: 0 auto; padding: 0;">
-				
+
 				<div class="content" style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; max-width: 600px; display: block; margin: 0 auto; padding: 15px;">
 				<table bgcolor="#999999" style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; width: 100%; margin: 0; padding: 0;">
 					<tr style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; margin: 0; padding: 0;">
@@ -86,7 +86,7 @@ if(Input::exists('post')) {
 					</tr>
 				</table>
 				</div>
-				
+
 		</td>
 		<td style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; margin: 0; padding: 0;"></td>
 	</tr>
@@ -166,21 +166,21 @@ if(Input::exists('post')) {
 									</td>
 								</tr>
 							</table>
-							 
+
 						</p>
-						
+
 						<p class="callout" style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; font-weight: normal; font-size: 14px; line-height: 1.6; background-color: #ECF8FF; margin: 0 0 15px; padding: 15px;">
 							' . $commentEmail . '
 							View session: <a href="http://www.vateir.org/training/sessions.php#s' . $sess->session_id . '" style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; color: #2BA6CB; font-weight: bold; margin: 0; padding: 0;">Click it! &raquo;</a>
 						</p>
-						<p style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; font-weight: normal; font-size: 14px; line-height: 1.6; margin: 0 0 10px; padding: 0;">If your mentor has prescribed \'homework\' for you to do, please make sure to have it completed before your session.</p>	
+						<p style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; font-weight: normal; font-size: 14px; line-height: 1.6; margin: 0 0 10px; padding: 0;">If your mentor has prescribed \'homework\' for you to do, please make sure to have it completed before your session.</p>
 						<p style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; font-weight: normal; font-size: 14px; line-height: 1.6; margin: 0 0 10px; padding: 0;">Good luck!</p>
-						<p style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; font-weight: normal; font-size: 14px; line-height: 1.6; margin: 0 0 10px; padding: 0;"><i style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; margin: 0; padding: 0;">VATeir Training Department</i></p>				
+						<p style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; font-weight: normal; font-size: 14px; line-height: 1.6; margin: 0 0 10px; padding: 0;"><i style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; margin: 0; padding: 0;">VATeir Training Department</i></p>
 					</td>
 				</tr>
 			</table>
 			</div>
-									
+
 		</td>
 	</tr>
 </table>
@@ -190,8 +190,8 @@ if(Input::exists('post')) {
 	<tr style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; margin: 0; padding: 0;">
 		<td style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; margin: 0; padding: 0;"></td>
 		<td class="container" style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; display: block !important; max-width: 600px !important; clear: both !important; margin: 0 auto; padding: 0;">
-			
-				
+
+
 				<div class="content" style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; max-width: 600px; display: block; margin: 0 auto; padding: 15px;">
 				<table style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; width: 100%; margin: 0; padding: 0;">
 				<tr style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; margin: 0; padding: 0;">
@@ -204,7 +204,7 @@ if(Input::exists('post')) {
 				</tr>
 			</table>
 				</div>
-				
+
 		</td>
 		<td style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; margin: 0; padding: 0;"></td>
 	</tr>
@@ -235,7 +235,7 @@ body { -webkit-font-smoothing: antialiased !important; -webkit-text-size-adjust:
 				</div>
 			</div></div>
 			';
-				
+
 		}
   } catch(Exception $e) {
     echo $e->getMessage();
@@ -285,7 +285,7 @@ if($user->data()->id == $availability->cid) {
 							<option value="">Select Type</option>
 							<?php
 								try {
-									$types = $r->getTypes(0, ['program' => $availability->program]);
+									$types = $r->getTypes(0, ['program' => $availability->program]); //by the program the student is set as
 									if(count($types)) {
 										$programs = array();
 										foreach($types as $type){
@@ -347,7 +347,7 @@ if($user->data()->id == $availability->cid) {
 						<div class="col-lg-10">
 							<textarea class="form-control" rows="3" id="comment" name="comment" placeholder="To do before session"></textarea>
 						</div>
-					</div>	    
+					</div>
 				    <div class="form-group">
 				      <div class="col-lg-4 col-lg-offset-4">
 				      <input type="hidden" name="id" value="<?php echo Input::get('id');?>">
@@ -375,7 +375,7 @@ echo $u = $until->format("Y-m-d H:i:s");
 $(function () {
     $('#datetimepicker1').datetimepicker({
       format: 'HH:mm',
-      stepping: '60',
+      stepping: '15',
       defaultDate: '<?php echo $f;?>',
       minDate: '<?php echo $f;?>',
       maxDate: '<?php echo $u;?>'
@@ -384,7 +384,7 @@ $(function () {
 $(function () {
     $('#datetimepicker2').datetimepicker({
       format: 'HH:mm',
-      stepping: '60',
+      stepping: '15',
       defaultDate: '<?php echo $u;?>',
       minDate: '<?php echo $f;?>',
       maxDate: '<?php echo $u;?>'

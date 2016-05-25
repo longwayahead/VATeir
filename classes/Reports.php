@@ -22,9 +22,9 @@ class Reports {
 						$value = 0;
 					break;
 				}
-				
+
 			} elseif(isset($options['type'])) {
-				
+
 				switch($options['type']) {
 					case($options['type'] > 0):
 						$idwhere = ' AND  `t`.`id` = ?';
@@ -36,24 +36,12 @@ class Reports {
 				}
 			}
 			//print_r($idwhere);
-			
 
-			$types = $this->_db->query("SELECT `t`.`id` AS `report_type_id`, `t`.`program_id`, `t`.`session_type`, `t`.`deleted`,
-				`s`.`id`, `s`.`type`, `s`.`name` AS `session_type_name`, `s`.`colour`, `s`.`sort` AS `typesort`,
-				`p`.`id` AS `pid`, `p`.`name` AS `program_name`, `p`.`ident`, `p`.`sort` AS `programsort`
-				FROM `report_types` AS `t`
-				LEFT JOIN `card_types` AS `s` ON `s`.`id` = `t`.`session_type`
-				LEFT JOIN `programs` AS `p` ON `p`.`id` = `t`.`program_id`
-				WHERE `s`.`type` = 0
-						AND `s`.`deleted` = 0
-						AND `t`.`deleted` = 0
-						$idwhere
-				ORDER BY `p`.`sort` ASC, `s`.`sort` ASC",
-				[$value]
-			);
+
+			$types = $this->_db->query("SELECT `t`.`id` AS `report_type_id`, `t`.`program_id`, `t`.`session_type`, `t`.`deleted`,				`s`.`id` as `card_id`, `s`.`type`, `s`.`name` AS `session_type_name`, `s`.`colour`, `s`.`sort` AS `typesort`,				`p`.`id` AS `pid`, `p`.`name` AS `program_name`, `p`.`ident`, `p`.`sort` AS `programsort`				FROM `report_types` AS `t`				LEFT JOIN `card_types` AS `s` ON `s`.`id` = `t`.`session_type`				LEFT JOIN `programs` AS `p` ON `p`.`id` = `t`.`program_id`				WHERE `s`.`type` = 0						AND `s`.`deleted` = 0						AND `t`.`deleted` = 0						$idwhere				ORDER BY `p`.`sort` ASC, `s`.`sort` ASC",				[$value]			);
 		//	print_r($types);
 		} elseif($type === 1) {
-				$types = $this->_db->db("SELECT 
+				$types = $this->_db->db("SELECT
 				`s`.`id`, `s`.`type`, `s`.`name`, `s`.`colour`, `s`.`sort` AS `notesort`
 				FROM `card_types` AS `s`",
 				[
@@ -67,14 +55,14 @@ class Reports {
 		if($types->count()) {
 
 			return($types->results());
-			
-			
+
+
 		}
 		return false;
 	}
 
 
-	// 
+	//
 	public function getPositionsByProgram($program) {
 		$positions = $this->_db->db("SELECT `p`.`id` AS `position_id`, `p`.`position_type_id`, `p`.`callsign`,
 	 		`t`.`id`,
@@ -143,7 +131,7 @@ class Reports {
 			);
 		} elseif($type === 2) { //report get answers
 			$sliders = $this->_db->db("SELECT `s`.`id`, `s`.`report_id`, `s`.`slider_id`, `s`.`value`,
-				`q`.`id`, `q`.`program_id`, `q`.`text`				
+				`q`.`id`, `q`.`program_id`, `q`.`text`
 				FROM `report_slider_questions` AS `q`
 				LEFT JOIN `report_slider_answers` AS `s` ON `s`.`slider_id` = `q`.`id`",
 				[
@@ -155,24 +143,24 @@ class Reports {
 			return $sliders->results();
 		}
 		return false;
-	}		
+	}
 
 	public function testget($id) {
 		$sliders = $this->_db->query("SELECT `s`.`id`, `s`.`report_id`, `s`.`slider_id`, `s`.`value`,
-				`q`.`id`, `q`.`program_id`, `q`.`text`, `q`.`deleted`				
+				`q`.`id`, `q`.`program_id`, `q`.`text`, `q`.`deleted`
 				FROM `report_slider_questions` AS `q`
 				LEFT JOIN `report_slider_answers` AS `s` ON `s`.`slider_id` = `q`.`id`
 				WHERE `s`.`report_id` = '{$id}'
 			UNION
-				SELECT `a`.`id`, `a`.`program_id`, `a`.`text`, `a`.`deleted`, 
-				`a`.`id` AS `id`, `a`.`id` AS `report_id`, `a`.`id` AS `slider_id`, `a`.`id` AS `value`, 
+				SELECT `a`.`id`, `a`.`program_id`, `a`.`text`, `a`.`deleted`,
+				`a`.`id` AS `id`, `a`.`id` AS `report_id`, `a`.`id` AS `slider_id`, `a`.`id` AS `value`,
 					FROM `report_slider_questions` as `a`
 				WHERE `a`.`deleted` = '0'
 				");
 			echo '<pre>';
 			print_r($sliders);
 			echo '</pre>';
-		
+
 	}
 
 	public function getCards($search) {

@@ -16,7 +16,7 @@ try {
 		Session::flash('error', 'You cannot mentor at this level');
 		Redirect::to('../mentor/');
 	}
-	
+
 } catch (Exception $e) {
 	echo $e->getMessage();
 }
@@ -74,24 +74,24 @@ try {
 									<td style="width:45%;">Controller:</td>
 									<td><?php echo $data->status; ?></td>
 								</tr>
-								
+
 							</table>
-							
+
 						</div>
 						<div class="row text-center">
 							<div class="col-md-3 col-sm-6">
 									<a class="btn btn-default" href="view_validations.php?cid=<?php echo $data->cid; ?>">
 										<span class="glyphicon glyphicon-plane" aria-hidden="true"></span>
-										 View Validations
+										 Validations
 									</a>
-									
+
 							</div>
 							<div class="col-md-3 col-sm-6">
 								<a class="btn btn-default" href="view_available.php?cid=<?php echo $data->cid;?>">
 										<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
 										 Availability
 									</a>
-									
+
 							</div>
 
 							<div class="col-md-3 col-sm-6">
@@ -100,20 +100,20 @@ try {
 										<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
 										 Email <?php echo $data->first_name; ?>
 									</a>
-									
-								
+
+
 								</div>
-							
+
 
 							<div class="col-md-3 col-sm-6">
 								<a class="btn btn-default" href="<?php echo BASE_URL . 'controllers/profile.php?id=' . $data->cid;?>">
 										<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-										 View Profile
+										 Profile
 									</a>
 							</div>
 							</div>
 						</div>
-					
+
 				</div>
 			</div>
 		</div>
@@ -128,16 +128,16 @@ try {
 						<div class="panel-body">
 							<div class="col-md-6">
 								<?php $perms = $t->getPermissions(); ?>
-								
+
 								<div class="col-md-3">
 									Permissions:
 								</div>
 								<div class="col-md-9">
-									
+
 									<form action="../staff/mentors.php" method="post">
 										<select <?php echo ($data->grou >= 10 && $data->grou <= 15) ? '' : 'disabled' ;?> class="col-md-6 text-left form-control tick" onchange="this.form.submit()" name="data[<?php echo $data->cid;?>]">
 											<?php foreach($perms as $perm):	?>
-												
+
 												<?php echo '<option value="' . $perm->id . '"';
 												if($perm->id == $data->grou) {
 													echo 'selected="" ';
@@ -146,7 +146,7 @@ try {
 												echo ($data->grou >= 10 && $data->grou <= 15) ? $perm->name : 'None' ;
 												echo '</option>';
 												?>
-												
+
 											<?php endforeach;?>
 										</select>
 									</form>
@@ -158,11 +158,11 @@ try {
 									Programme:
 								</div>
 								<div class="col-md-9">
-									
+
 									<form action="../staff/change_program.php" method="post">
 										<select class="col-md-6 text-left form-control tick" onchange="this.form.submit()" name="data[<?php echo $data->cid;?>]">
 											<?php foreach($progs as $prog):	?>
-												
+
 												<?php echo '<option value="' . $prog->id . '"';
 												if($prog->id == $data->program) {
 													echo 'selected="" ';
@@ -171,7 +171,7 @@ try {
 												echo $prog->name;
 												echo '</option>';
 												?>
-												
+
 											<?php endforeach;?>
 										</select>
 									</form>
@@ -206,9 +206,9 @@ try {
 																$notes = $r->getTypes(1);
 																if($notes) {
 																	$programs = array();
-																	foreach($notes as $note){				
-																	
-					
+																	foreach($notes as $note){
+
+
 																		echo '<option value="' . $note->id . '">' . $note->name . '</option>';
 																	}
 																}
@@ -224,7 +224,7 @@ try {
 										</form>
 								 	</div>
 								 	<!-- <div class="col-md-6">
-								
+
 										<form action="add_report.php" method="get" class="form-horizontal">
 											<div class="form-control">
 												<div class="col-md-4 col-sm-3 col-xs-4">
@@ -273,7 +273,7 @@ try {
 							if($card->card_type == 0) {//mentoring report
 								$report = $r->getReport(1, $card->link_id);
 								echo '
-								
+
 									<div class="row">
 										<div class="col-md-10 col-md-offset-1">
 											<div id="card" class="card" style="background-color:' . $report->colour . '; color:white;">
@@ -282,23 +282,21 @@ try {
 														<div class="hidden-xs" style="display:inline-block;"><strong>' . $report->sessname . ':</strong></div> ' . $report->callsign . ' <div class="hidden-xs" style="display:inline-block;"> on ' . date("j\<\s\u\p\>S\<\/\s\u\p\> M Y", strtotime($report->session_date)) . '</div><div class="visible-xs" style="font-size:15px">' . date("j\<\s\u\p\>S\<\/\s\u\p\> M Y", strtotime($report->session_date)) . '</div>
 														</div>
 												</div>
-												
-												
+
+
 													<article>
 														<div class="card-content">
 															<div style="padding-left:10px;">
-															
-																	
+
+
 																			' . $report->text;
 													$sliders = $r->getSliderAnswers($report->rep_id);
 
 													if($sliders) {
-														echo '								
-										<br><h4 style="color:white;">Breakdowns</h4>	
+														echo '
+										<br><h4 style="color:white;">Breakdowns</h4>
 															';
 
-																
-															
 																	// echo '<pre>';
 																	// print_r($sliders);
 																	// echo '</pre>';
@@ -306,10 +304,12 @@ try {
 																	foreach($sliders as $slider) {
 																		if(!in_array($slider->category, $sliderCat)) {
 																			$sliderCat[] = $slider->category;
+																			end($sliderCat);
+
 																			if(key($sliderCat) != 0) {
-																				echo '<br>';
+																				echo '<br><br>';
 																			}
-																			echo '<p class="text-center">' . $slider->name . '</p>';
+																			echo '<p class="text-center text-uppercase"><u>' . $slider->name . '</u></p>';
 																		}
 																		echo '<div class="row">
 																					<div class="col-xs-9 col-sm-8 col-md-8 text-left">' . $slider->text . '...</div>
@@ -317,7 +317,7 @@ try {
 																		if($slider->type == 0) {
 																		echo '
 																		<div class="hidden-xs">
-																		<a style="cursor:pointer;" data-toggle="tooltip" data-placement="top" title="' . $slider->value . '0%">																		
+																		<a style="cursor:pointer;" data-toggle="tooltip" data-placement="top" title="' . $slider->value . '0%">
 																				<div class="progress progress-striped active" style="margin-top:10px;">
 																					<div class="progress-bar" style="width: ' . $slider->value . '0%; vertical-align:bottom;"></div>
 																				</div>
@@ -338,14 +338,14 @@ try {
 																			</div>';
 																	}
 																}
-															
+
 
 																//end back  vv
 															echo '</div>
 										        		</div>
 										        	</article>
-										        
-									       		
+
+
 												    <div class="card-action">
 												        <div class="row">
 												            <div class="col-md-6 col-sm-6 col-xs-6" style="display:inline-block; padding-left:5px;">
@@ -353,10 +353,15 @@ try {
 															</div>
 															<div class="col-md-6 col-sm-6 col-xs-6 text-right" style="display:inline-block;">
 																<a class="btn btn-primary btn-xs" href="edit_report.php?id=' . $report->rep_id . '"><span class="glyphicon glyphicon-pencil"></span><div class="hidden-xs" style="display:inline-block;"> Edit</div></a>
-															</div>
+';
+														if($user->hasPermission('superadmin')) {
+															echo '<a onclick="return confirm(\'Are you sure?\');" class="btn btn-danger btn-xs" href="delete_card.php?id=' . $card->link_id . '&cid='. $data->cid  .'"><span class="glyphicon glyphicon-remove"></span><div class="hidden-xs" style="display:inline-block;"> Delete</div></a>';
+														}
+
+													echo '</div>
 														</div>
 													</div>
-												
+
 												</div>
 											</div>
 										</div>
@@ -377,15 +382,18 @@ try {
 													'. $note->text .'
 													</div></article>';
 											}
-													
+
 											 echo '<div class="card-action" style="margin-top:0px;">
 												        <div class="row">
 												            <div class="col-md-6 col-sm-6 col-xs-6" style="display:inline-block;">
 																<div class="text">' . $note->mfname . ' ' . $note->mlname . '<div class="hidden-xs" style="display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;' . date("jS M Y", strtotime($note->submitted_date)) . '</div></div>
 															</div>
 															<div class="col-md-6 col-sm-6 col-xs-6 text-right" style="display:inline-block;">
-																<a class="btn btn-primary btn-xs" href="edit_note.php?id=' . $note->note_id . '"><span class="glyphicon glyphicon-pencil"></span><div class="hidden-xs" style="display:inline-block;"> Edit</div></a>
-															</div>
+																<a class="btn btn-primary btn-xs" href="edit_note.php?id=' . $note->note_id . '"><span class="glyphicon glyphicon-pencil"></span><div class="hidden-xs" style="display:inline-block;"> Edit</div></a>';
+																if($user->hasPermission('superadmin')) {
+																	echo '<a onclick="return confirm(\'Are you sure?\');" class="btn btn-danger btn-xs" href="delete_card.php?id=' . $card->link_id . '&cid='. $data->cid  .'"><span class="glyphicon glyphicon-remove"></span><div class="hidden-xs" style="display:inline-block;"> Delete</div></a>';
+																}
+																echo '</div>
 														</div>
 													</div>
 												</div>
@@ -399,11 +407,11 @@ try {
 						echo '<br><div class="row">
 								<div class="col-md-6 col-md-offset-3">
 							<div class="text-danger text-center" style="font-size:16px;"><br>No training history</div><br>
-			
+
 							</div>';
 
 					}
-					
+
 
 
 				?>
@@ -418,7 +426,7 @@ try {
 
 
 
-		        
+
 </div>
 
 <?php

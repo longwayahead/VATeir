@@ -15,20 +15,20 @@ if(isset($_GET['id'])) {
 		$allSliders = $r->getSliders(1, $report->typ_id);
 		$answers = array();
 		if($sliders) {
-			
+
 			foreach($sliders as $s) {
 				if($s->value) {
 					//echo 'no';
 					$answers[$s->slider_id] = $s->value;
 				}
-				
+
 			}
 			//var_dump($answers);
 		}
 
-		
+
 		if(Input::exists()) { //if form submitted!
-			
+
 			$validate = new Validate();
 			$validation = $validate->check($_POST, array(
 				'report_type' => array(
@@ -68,15 +68,15 @@ if(isset($_GET['id'])) {
 								'value'		=> $slideVal
 							));
 							}
-						}				
+						}
 					}
 
-				
-					
+
+
 					Session::flash('success', 'Report Edited');
 					Redirect::to('./view_student.php?cid=' . Input::get("cid") . '#r' . $report->rep_id);
 
-						
+
 				} catch (Exception $e) {
 					die($e->getMessage());
 				}
@@ -95,7 +95,7 @@ if(isset($_GET['id'])) {
 					</div>
 				</div>
 				';
-					
+
 			}
 		 }
 	} catch(Exception $e) {
@@ -123,7 +123,7 @@ if(isset($_GET['id'])) {
 			        <select name="report_type type" id="type" class="form-control tick" required>
 						<?php
 							// try {
-								
+
 							// 	if(count($types)) {
 							// 		$programs = array();
 							// 		foreach($types as $type){
@@ -142,7 +142,7 @@ if(isset($_GET['id'])) {
 				<div class="form-group">
 					<label for="programname" class="col-lg-3 control-label">Report Type</label>
 					<div class="col-lg-4">
-						<select class="form-control tick" name="report_type" disabled>
+						<select class="form-control tick" name="report_type" readonly>
 							<?php
 							$types = $r->getTypes(0, ['program' => $report->program_id]);
 							$programs = array();
@@ -158,7 +158,7 @@ if(isset($_GET['id'])) {
 									echo ' selected';
 								}
 								echo '>' . $type->ident . ': ' . $type->session_type_name . '</option>';
-							
+
 							}
 
 							?>
@@ -200,7 +200,7 @@ if(isset($_GET['id'])) {
 						if(!in_array($slider->category, $sliderCat)) {
 							$sliderCat[] = $slider->category;
 
-							echo '<p class="text-center">'; 
+							echo '<p class="text-center">';
 							if(count($sliderCat) > 1) {
 								echo '<br><br>';
 							}
@@ -211,26 +211,26 @@ if(isset($_GET['id'])) {
 						echo '<div class="form-group">
 								<label for="slider' . $slider->sid . '" class="col-lg-3 control-label">' . $slider->text . '</label>';
 						if($slider->type == 0) {
-						
+
 							echo '
-							
+
 								<div class="col-md-6">
 									<div class="slider slider-material-blue" id="slider' . $slider->sid . '"></div>
 										<input type="hidden" id="slider' . $slider->sid . '-value" name="slider[' . $slider->sid . ']"></input>
-								
+
 								</div>
 								<div class="col-lg-1">
 									<div id="slider' . $slider->sid . '-value-text" style="display: inline"></div>
 								</div>
-						
+
 
 							';
 						} elseif($slider->type == 1) {
-							
+
 							echo '<div class="col-md-6">
-								
+
 								<div class="radio">
- 
+
 
 										<label>
 											<input type="radio" name=slider[' . $slider->sid . '] value="0"';
@@ -240,9 +240,9 @@ if(isset($_GET['id'])) {
 											echo '>
 											N/A
 										</label>
-								
+
 										&nbsp;&nbsp;&nbsp;&nbsp;
-									
+
 										<label>
 											<input type="radio" name=slider[' . $slider->sid . '] value="1"';
 											if((array_key_exists($slider->sid, $answers) && $answers[$slider->sid] == 1) || (Input::exists() && Input::get('slider')[$slider->sid] == 1)) {
@@ -251,9 +251,9 @@ if(isset($_GET['id'])) {
 											echo '>
 											Poor
 										</label>
-									
+
 										&nbsp;&nbsp;&nbsp;&nbsp;
-									
+
 										<label>
 											<input type="radio" name=slider[' . $slider->sid . '] value="2"';
 											if(array_key_exists($slider->sid, $answers) && ($answers[$slider->sid] == 2) || (Input::exists() && Input::get('slider')[$slider->sid] == 2)) {
@@ -262,7 +262,7 @@ if(isset($_GET['id'])) {
 											echo '>
 											Grand
 										</label>
-									
+
 								</div>
 							</div>
 
@@ -323,7 +323,7 @@ if(isset($_GET['id'])) {
 								} else {
 									echo '0';
 								}
-								
+
 							}
 							echo '],
 							step: 1,

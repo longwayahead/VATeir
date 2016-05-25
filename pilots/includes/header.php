@@ -2,7 +2,6 @@
 $url = realpath($_SERVER['DOCUMENT_ROOT']) . '/'; //Update me!
 require_once($url . 'includes/header.php');
 unset($url);
-$ev = new Events;
 ?>
 <style>
 a {
@@ -17,11 +16,15 @@ a:hover {
 
 
 <div class="col-sm-3 col-md-2">
-	
+
 	<ul class="well nav nav-list nav-list-vivid">
 
-			<li class="active"><a href="<?php echo BASE_URL . 'pilots/'; ?>">Home</a></li>		
-			<li class="active"><a href="<?php echo BASE_URL . 'pilots/notams.php'; ?>">NOTAMs</a></li>		
+			<li><a href="<?php echo BASE_URL . 'pilots/'; ?>">Home</a></li>
+			<li><a href="<?php echo BASE_URL . 'pilots/weather.php'; ?>">Weather</a></li>
+			<li><a href="<?php echo BASE_URL . 'pilots/notams.php'; ?>">NOTAMs</a></li>
+			<li><a target="_blank" href="https://cert.vatsim.net/fp/file.php">File Flight Plan</a></li>
+			<li><a href="<?php echo BASE_URL . 'pilots/fuel.php'; ?>">Fuel Planning</a></li>
+			<li><a href="<?php echo BASE_URL . 'pilots/tracks.php'; ?>">Oceanic Tracks</a></li>
 			<li class="divider"></li>
 			<br>
 

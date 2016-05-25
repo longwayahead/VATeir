@@ -8,6 +8,7 @@ try {
 $noreport = $s->get(array(
 		'all' => 1,
 		'noreport' => 1,
+		'cancelled' => 1,
 		'future' => 2
 	));
 }catch(Exception $e) {
@@ -22,7 +23,7 @@ if(!empty($noreport)) {
 				<h3 class="panel-title">Sessions without reports</h3>
 			</div>
 			<div class="panel-body">
-			
+
 					<table class="table table-condensed table-striped">
 						<tr>
 							<td>
@@ -44,26 +45,26 @@ if(!empty($noreport)) {
 								<strong>Finish</strong>
 							</td>
 						</tr>
-					
+
 						<?php foreach($noreport as $session): ?>
 							<tr>
 								<td>
-									<?php echo '<a href="../mentor/view_student.php?cid=' . $session->student . '">' . $session->sfname . ' ' . $session->slname . '</a>'; ?> 
+									<?php echo '<a href="../mentor/view_student.php?cid=' . $session->student . '">' . $session->sfname . ' ' . $session->slname . '</a>'; ?>
 								</td>
 								<td>
-									<?php echo $session->mfname . ' ' . $session->mlname; ?> 
+									<?php echo $session->mfname . ' ' . $session->mlname; ?>
 								</td>
 								<td>
-									<?php echo $session->callsign; ?> 
+									<?php echo $session->callsign; ?>
 								</td>
 								<td>
-									<?php echo date("j-M-y", strtotime($session->start)); ?> 
+									<?php echo date("j-M-y", strtotime($session->start)); ?>
 								</td>
 								<td>
-									<?php echo date("H:i", strtotime($session->start)); ?> 
+									<?php echo date("H:i", strtotime($session->start)); ?>
 								</td>
 								<td>
-									<?php echo date("H:i", strtotime($session->finish)); ?> 
+									<?php echo date("H:i", strtotime($session->finish)); ?>
 								</td>
 							</tr>
 
@@ -78,4 +79,3 @@ if(!empty($noreport)) {
 <?php
 }
 ?>
-

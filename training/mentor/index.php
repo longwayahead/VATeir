@@ -16,6 +16,7 @@ foreach($m as $j) {
 ?>
 <h3 class="text-center">Mentor Dashboard</h3><br>
 <div class="row">
+	<p class="text-center strong">The Student List now highlights those students who have inputted availability.</p>
 	<div class="col-md-6">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
@@ -50,26 +51,26 @@ foreach($m as $j) {
 								<strong>Edit</strong>
 							</td>
 						</tr>
-					
+
 						<?php $i=1; foreach($sessions as $session): ?>
 							<?php if($i <= 5) { ?>
 								<?php $i++; ?>
-							
+
 								<tr>
 									<td>
-										<?php echo '<a href="view_student.php?cid=' . $session->student . '">' . $session->sfname . ' ' . $session->slname . '</a>'; ?> 
+										<?php echo '<a href="view_student.php?cid=' . $session->student . '">' . $session->sfname . ' ' . $session->slname . '</a>'; ?>
 									</td>
 									<td>
-										<?php echo $session->callsign; ?> 
+										<?php echo $session->callsign; ?>
 									</td>
 									<td class="nowrap">
-										<?php echo date("j-M-y", strtotime($session->start)); ?> 
+										<?php echo date("j-M-y", strtotime($session->start)); ?>
 									</td>
 									<td>
-										<?php echo date("H:i", strtotime($session->start)); ?> 
+										<?php echo date("H:i", strtotime($session->start)); ?>
 									</td>
 									<td>
-										<?php echo '<a class="btn btn-xs btn-primary" href="edit_session.php?id=' . $session->session_id . '"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>' ?> 
+										<?php echo '<a class="btn btn-xs btn-primary" href="edit_session.php?id=' . $session->session_id . '"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>' ?>
 									</td>
 								</tr>
 							<?php } ?>
@@ -104,6 +105,7 @@ foreach($m as $j) {
 					$noreport = $s->get(array(
 							'mentor' => $user->data()->id,
 							'noreport' => 1,
+							'cancelled' => 1,
 							'future' => 2
 						));
 					if(!empty($noreport)) {
@@ -123,20 +125,20 @@ foreach($m as $j) {
 								<strong>View</strong>
 							</td>
 						</tr>
-					
+
 						<?php foreach($noreport as $session): ?>
 							<tr>
 								<td>
-									<?php echo '<a href="view_student.php?cid=' . $session->student . '">' . $session->sfname . ' ' . $session->slname . '</a>'; ?> 
+									<?php echo '<a href="view_student.php?cid=' . $session->student . '">' . $session->sfname . ' ' . $session->slname . '</a>'; ?>
 								</td>
 								<td>
-									<?php echo $session->callsign; ?> 
+									<?php echo $session->callsign; ?>
 								</td>
 								<td class="nowrap">
-									<?php echo date("j-M-y", strtotime($session->start)); ?> 
+									<?php echo date("j-M-y", strtotime($session->start)); ?>
 								</td>
 								<td>
-									<?php echo '<a class="btn btn-xs btn-primary" href="add_report.php?s=' . $session->session_id . '"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>' ?> 
+									<?php echo '<a class="btn btn-xs btn-primary" href="add_report.php?s=' . $session->session_id . '"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>' ?>
 								</td>
 							</tr>
 
@@ -206,7 +208,7 @@ foreach($m as $j) {
                 <td><?php echo date("H:i", strtotime($availability->time_from));?></td>
                 <td><?php echo date("H:i", strtotime($availability->time_until));?></td>
              	<td><?php echo '<a class="btn btn-xs btn-default" href="schedule_session.php?id=' . $availability->availability_id . '"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>' ?></td>
-            	
+
 			 </tr>
             <?php endforeach; ?>
           </table>
@@ -241,7 +243,7 @@ foreach($m as $j) {
 				<?php else: ?>
 					<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No sessions</div><br>
 				<?php endif; ?>
-				
+
 			</div>
 		</div>
 	</div>

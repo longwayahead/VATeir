@@ -1,6 +1,14 @@
 <?php
 $pagetitle = "Training Home";
 require_once("includes/header.php");
+$pic = [
+	'http://i.imgur.com/GKGcyWT.png',
+	'http://i.imgur.com/gJegY22.png',
+	'http://i.imgur.com/znH2Sd8.jpg',
+	'http://i.imgur.com/NjzzY7i.png',
+	'http://i.imgur.com/UooEY3x.png',
+	'http://i.imgur.com/lHNH1OW.png',
+]
 ?>
 <div class="row">
 	<h3 class="text-center">My Training Dashboard</h3><br>
@@ -38,7 +46,21 @@ require_once("includes/header.php");
 				</table>
 			</div>
 		</div>
-	</div>
+		</div>
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Writing code</h3>
+			</div>
+			<div class="panel-body">
+				<img class="text-center" src="
+				<?php
+					echo $pic[array_rand($pic)];
+				 ?>
+				 " alt="image">
+			</div>
+		</div>
+
 </div>
 
 <?php

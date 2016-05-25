@@ -332,3 +332,6 @@ input[readonly] {
 .nowrap {
 	white-space:nowrap;
 }
+.glyphicon {
+  right:1px;
+}

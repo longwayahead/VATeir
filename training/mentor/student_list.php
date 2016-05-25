@@ -1,6 +1,7 @@
 <?php
 $pagetitle = "Student List";
 require_once("../includes/header.php");
+$a = new Availability;
 ?>
 <h3 class="text-center">Student List</h3>
 
@@ -10,13 +11,13 @@ echo '<br><div class="col-md-10 col-md-offset-1">
 	<div class="row">
   <div class="col-md-9 col-sm-10" style="margin-bottom:4px;">
   <form action="student_list.php" method="get">
-  
+
     <div class="input-group">
       <input type="text" class="form-control" name="search" autocomplete="off" value="' . Input::get('search') . '" placeholder="Search..." style="padding-left:10px; padding-right:10px;">
       <span class="input-group-btn">
       <input type="hidden" name="a" value="1">
         <input class="btn btn-primary" type="submit" value="Go!">
-        
+
       </span>
     </div><!-- /input-group -->
     </form>
@@ -42,9 +43,9 @@ if(!isset($_GET['c']) && (!isset($_GET['a'])) || isset($_GET['c'])) {
 							<h3 class="panel-title">' . $p->name . ' Programme</h3>
 						</div>
 					<div class="panel-body">';
-				echo '<table class="table table-condensed table-responsive table-striped">';
+				echo '<table class="table table-condensed table-responsive">';
 					$students = $t->getStudentsProgram($p->id);
-					if($students) {			
+					if($students) {
 
 						echo '<tr>
 									<td><strong>Name</strong></td>
@@ -55,7 +56,11 @@ if(!isset($_GET['c']) && (!isset($_GET['a'])) || isset($_GET['c'])) {
 								</tr>';
 
 						foreach($students as $student) {
-							echo '<tr>
+							$available = $a->get(['student' => $student->cid,
+																		'limit' => 1]); //make the row green if the student has availabilities in the system
+							echo '<tr';
+							echo ($available != false) ? ' class="active">' : '>';
+							echo '
 									<td>' . $student->first_name . ' ' . $student->last_name . '</td>
 									<td class="hidden-xs">' . $student->cid . '</td>
 									<td><div class="hidden-xs" style="display:inline-block;">' . $student->long . ' (</div>' . $student->short . '<div class="hidden-xs" style="display:inline-block;">)</div></td>
@@ -65,7 +70,7 @@ if(!isset($_GET['c']) && (!isset($_GET['a'])) || isset($_GET['c'])) {
 									</td>
 								</tr>';
 						}
-						
+
 					} else {
 						echo '<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No students</div>';
 					}
@@ -131,7 +136,7 @@ if(!isset($_GET['c']) && (!isset($_GET['a'])) || isset($_GET['c'])) {
 		echo $f->getMessage();
 	}
 }
- 
+
 
 
 echo '</div>';

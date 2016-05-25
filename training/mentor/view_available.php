@@ -4,7 +4,7 @@ require_once("../includes/header.php");
 echo '<h3 class="text-center">All Availablities</h3><br>';
 try {
 	$a = new Availability;
-	
+
 	if(Input::get('cid')) {
 		$availables = $a->get(['student' => Input::get('cid')]);
 	} else {
@@ -17,12 +17,12 @@ try {
 			<div class="panel-heading">
 				<h3 class="panel-title"><?php echo (Input::get('cid')) ? 'Student\'s Availability' : 'All available students';?></h3>
 			</div>
-			<div class="panel-body" style="padding:0px;">
+			<div class="panel-body">
 					<?php
       try {
         if(!empty($availables)) {
            ?>
-           <table class="table table-condensed table-striped">
+           <table class="table table-condensed table-striped table-responsive">
 			<tr>
 				<td>
 					<strong>Name</strong>
@@ -34,10 +34,10 @@ try {
 					<strong>Date</strong>
 				</td>
 				<td>
-					<strong>Time From</strong>
+					<strong>From</strong>
 				</td>
 				<td>
-					<strong>Time Until</strong>
+					<strong>Until</strong>
 				</td>
 				<td>
 					<strong>Book</strong>
@@ -47,7 +47,7 @@ try {
               <tr>
               	<td><?php echo '<a href="view_student.php?cid=' . $availability->cid . '">' . $availability->first_name . ' ' . $availability->last_name . '</a>';?></td>
                 <td><?php echo $availability->program_name;?></td>
-                <td><?php echo date("j-M-y", strtotime($availability->date));?></td>
+                <td><?php echo date("j M y", strtotime($availability->date));?></td>
                 <td><?php echo date("H:i", strtotime($availability->time_from));?></td>
                 <td><?php echo date("H:i", strtotime($availability->time_until));?></td>
              	<td><?php echo '<a class="btn btn-xs btn-default" href="schedule_session.php?id=' . $availability->availability_id . '"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>' ?></td>

@@ -65,7 +65,7 @@ try {
 									<strong>Joined:</strong>
 								</td>
 								<td>
-									<?php echo date("d-M-Y", strtotime($student->regdate_vatsim)); ?>
+									<?php echo date("j\<\s\u\p\>S\<\/\s\u\p\> M Y", strtotime($student->regdate_vatsim)); ?>
 									
 								</td>
 							</tr>
@@ -106,9 +106,9 @@ try {
 											echo $booking->callsign;
 										echo '</td>';
 										echo '<td>';
-											echo date('d-m-y H:i', strtotime($booking->time_start));
+											echo date('j F H:i', strtotime($booking->time_start));
 										echo '</td><td>';
-											echo date('d-m-y H:i', strtotime($booking->time_end));
+											echo date('j F H:i', strtotime($booking->time_end));
 										echo '</td></tr>';
 
 							}

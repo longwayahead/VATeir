@@ -498,5 +498,11 @@ class Training {
 		}
 		return false;
 	}
-
+	public function whi() {
+		$data = $this->_db->query("SELECT controllers.* FROM controllers WHERE controllers.id not in (SELECT students.cid FROM students) AND (controllers.vateir_status = 3 OR controllers.vateir_status = 4)");
+		if($data->count()) {
+			return $data->results();
+		}
+		return false;
+	}
 }
