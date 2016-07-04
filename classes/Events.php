@@ -30,18 +30,18 @@ class Events {
 					'banner_url' => 'http://www.vateir.org/img/logo.png',
 					'description' => $description . '<br> Why not fly, contact ' . $session->first_name . ' on the frequency ' . $session->freq . ' and help him progress to his next rating?!',
 					'short_description' => $description,
-					'starts_date' => date('j-M-y', strtotime($session->start)),
+					'starts_date' => date('j F y', strtotime($session->start)),
 					'starts_time' => date('H:i', strtotime($session->start)),
-					'ends_date' => date('j-M-y', strtotime($session->finish)),
+					'ends_date' => date('j F y', strtotime($session->finish)),
 					'ends_time' => date('H:i', strtotime($session->finish))
 				];
 			}
 		}
 
 		foreach($this->_events as $event) {
-			$starts_date = date('j-M-y', strtotime($event->starts));
+			$starts_date = date('j F y', strtotime($event->starts));
 			$starts_time = date('H:i', strtotime($event->starts));
-			$ends_date = date('j-M-y', strtotime($event->ends));
+			$ends_date = date('j F y', strtotime($event->ends));
 			$ends_time = date('H:i', strtotime($event->ends));
 			if(date('Y-m-d') < date('Y-m-d', (strtotime($event->ends)))) {
 				$this->current[$event->id] = array(
@@ -94,9 +94,17 @@ class Events {
 										LEFT JOIN programs p ON r.program_id = p.id
 										LEFT JOIN controllers u ON u.id = s.student
 										LEFT JOIN position_list pos ON pos.id = s.position_id
-										WHERE (c.id = 1 OR c.id = 3)
+										WHERE (s.report_type = 1 OR s.report_type = 3)
 											AND s.deleted = 0
 											AND s.finish >= NOW()");
+			// $sessions = $this->_db->query("SELECT DISTINCT s.id, s.start, s.finish, r.session_type,
+			// 																							u.first_name
+			// 																FROM sessions s
+			// 																LEFT JOIN report_types r ON r.session_type = s.report_type
+			// 																LEFT JOIN controllers u ON u.id = s.student
+			// 																WHERE (r.session_type = 1 OR r.session_type = 3)
+			// 																AND s.deleted = 0
+			// 																AND s.finish >= NOW()");
 		if($sessions->count()) {
 			return $sessions->results();
 		}

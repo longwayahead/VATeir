@@ -45,9 +45,9 @@ require_once('includes/header.php');
 		</div><br><br>
 		<?php
 	}
-	
 
-		
+
+
 
 
 
@@ -66,7 +66,7 @@ require_once('includes/header.php');
 						<label for="gs" class="col-lg-4 control-label">Ground Speed</label>
 						<div class="col-lg-8">
 							<input required class="form-control" id="gs" name="gs" placeholder="kts" type="number" value="<?php echo (Input::exists()) ? Input::get('gs') : '';?>">
-							<span class="help-block">GS of Aircraft minus winds en route.</span>
+							<span class="help-block">GS of aircraft minus winds en route.</span>
 						</div>
 					</div>
 					<div class="form-group">
@@ -75,7 +75,7 @@ require_once('includes/header.php');
 							<input required class="form-control" id="nm" name="nm" placeholder="NM" type="number" value="<?php echo (Input::exists()) ? Input::get('nm') : '';?>">
 							<span class="help-block">Distance to destination in NM.</span>
 						</div>
-						
+
 					</div>
 					<div class="form-group">
 						<label for="fb" class="col-lg-4 control-label">Fuel Burn</label>
@@ -83,13 +83,13 @@ require_once('includes/header.php');
 							<input required class="form-control" id="fb" name="fb" placeholder="kg" type="number" value="<?php echo (Input::exists()) ? Input::get('fb') : '';?>">
 							<span class="help-block">Rate of aircraft's fuel burn per hour in kilograms.</span>
 						</div>
-						
+
 					</div>
 					<div class="form-group">
 						<label for="ta" class="col-lg-4 control-label">Time to Alternate</label>
 						<div class="col-lg-8">
 							<input class="form-control" id="ta" name="ta" placeholder="mins" type="number" value="<?php echo (Input::exists()) ? Input::get('ta') : '';?>">
-							<span class="help-block">Time in mins to alternate in mins.</span>
+							<span class="help-block">Time to alternate in mins.</span>
 						</div>
 					</div>
 					<div class="form-group">

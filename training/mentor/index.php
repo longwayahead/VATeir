@@ -13,10 +13,9 @@ foreach($m as $j) {
 		$show = true;
 	}
 }
-?>
+ ?>
 <h3 class="text-center">Mentor Dashboard</h3><br>
 <div class="row">
-	<p class="text-center strong">The Student List now highlights those students who have inputted availability.</p>
 	<div class="col-md-6">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
@@ -173,10 +172,10 @@ foreach($m as $j) {
 				<?php
       try {
       	$a = new Availability;
-        $availabilities = $a->get(array(
-        	'limit' => 5
-        	));
-        $all = $a->get(['deleted' => 0]);
+        // $availabilities = $a->get(array(
+        // 	'limit' => 5
+        // 	));
+        $availabilities = $a->get(['deleted' => 0]);
         if(!empty($availabilities)) {
            ?>
            <table class="table table-condensed table-striped">
@@ -204,7 +203,7 @@ foreach($m as $j) {
               <tr>
               	<td><?php echo '<a href="view_student.php?cid=' . $availability->cid . '">' . $availability->first_name . ' ' . $availability->last_name . '</a>';?></td>
               	<td class="hidden-xs"><?php echo $availability->program_name;?></td>
-                <td class="nowrap"><?php echo date("j M y", strtotime($availability->date));?></td>
+                <td class="nowrap"><?php echo date("j F Y", strtotime($availability->date));?></td>
                 <td><?php echo date("H:i", strtotime($availability->time_from));?></td>
                 <td><?php echo date("H:i", strtotime($availability->time_until));?></td>
              	<td><?php echo '<a class="btn btn-xs btn-default" href="schedule_session.php?id=' . $availability->availability_id . '"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>' ?></td>

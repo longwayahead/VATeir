@@ -41,7 +41,7 @@ try {
 								</tr>
 								<tr>
 									<td style="width:45%;">ATC Rating:</td>
-									<td><?php echo $data->long . ' (' . $data->short . ')'; ?></td>
+									<td><div class="hidden-xs" style="display:inline-block;"><?php echo $data->long . ' (</div>' . $data->short . '<div class="hidden-xs" style="display:inline-block;">)</div>'; ?></td>	
 								</tr>
 								<tr>
 									<td style="width:45%;">Pilot Rating:</td>
@@ -62,8 +62,8 @@ try {
 								<tr>
 									<td style="width:45%;">Activity:</td>
 									<td>
-										<a data-toggle="tooltip" data-placement="top" data-original-title="<?php echo ($data->rating > 0) ? 'Active' : 'Inactive'; ?>">VATSIM</a>
-										<a data-toggle="tooltip" data-placement="top" data-original-title="<?php echo ($data->alive != 0) ? 'Active' : 'Inactive'; ?>">VATeir</a>
+										<a style="cursor:pointer;" data-toggle="tooltip" data-placement="top" data-original-title="<?php echo ($data->rating > 0) ? 'Active' : 'Inactive'; ?>">VATSIM</a>
+										<a style="cursor:pointer;" data-toggle="tooltip" data-placement="top" data-original-title="<?php echo ($data->alive != 0) ? 'Active' : 'Inactive'; ?>">VATeir</a>
 									</td>
 								</tr>
 								<tr>
@@ -272,24 +272,18 @@ try {
 						foreach($cards as $card) {
 							if($card->card_type == 0) {//mentoring report
 								$report = $r->getReport(1, $card->link_id);
-								echo '
-
-									<div class="row">
+								echo '<div class="row">
 										<div class="col-md-10 col-md-offset-1">
 											<div id="card" class="card" style="background-color:' . $report->colour . '; color:white;">
 												<div class="nopad">
 													<div class="card-title text-center" id="r' . $report->rep_id . '">
 														<div class="hidden-xs" style="display:inline-block;"><strong>' . $report->sessname . ':</strong></div> ' . $report->callsign . ' <div class="hidden-xs" style="display:inline-block;"> on ' . date("j\<\s\u\p\>S\<\/\s\u\p\> M Y", strtotime($report->session_date)) . '</div><div class="visible-xs" style="font-size:15px">' . date("j\<\s\u\p\>S\<\/\s\u\p\> M Y", strtotime($report->session_date)) . '</div>
 														</div>
-												</div>
-
-
+													</div>
 													<article>
 														<div class="card-content">
 															<div style="padding-left:10px;">
-
-
-																			' . $report->text;
+															' . $report->text;
 													$sliders = $r->getSliderAnswers($report->rep_id);
 
 													if($sliders) {
@@ -354,9 +348,9 @@ try {
 															<div class="col-md-6 col-sm-6 col-xs-6 text-right" style="display:inline-block;">
 																<a class="btn btn-primary btn-xs" href="edit_report.php?id=' . $report->rep_id . '"><span class="glyphicon glyphicon-pencil"></span><div class="hidden-xs" style="display:inline-block;"> Edit</div></a>
 ';
-														if($user->hasPermission('superadmin')) {
-															echo '<a onclick="return confirm(\'Are you sure?\');" class="btn btn-danger btn-xs" href="delete_card.php?id=' . $card->link_id . '&cid='. $data->cid  .'"><span class="glyphicon glyphicon-remove"></span><div class="hidden-xs" style="display:inline-block;"> Delete</div></a>';
-														}
+														// if($user->hasPermission('superadmin')) {
+														// 	echo '<a onclick="return confirm(\'Are you sure?\');" class="btn btn-danger btn-xs" href="delete_card.php?id=' . $card->link_id . '&cid='. $data->cid  .'"><span class="glyphicon glyphicon-remove"></span><div class="hidden-xs" style="display:inline-block;"> Delete</div></a>';
+														// }
 
 													echo '</div>
 														</div>
@@ -378,21 +372,25 @@ try {
 														<div class="hidden-xs" style="display:inline-block;"><strong>' . $note->name . ':</strong></div> ' . $note->subject . '
 													</div>';
 											if($note->text) {
-												echo '<article><div class="card-content" style="margin-left:20px;">
-													'. $note->text .'
-													</div></article>';
+									echo '<article>
+													<div class="card-content">
+														<div style="padding-left:10px;">
+														'. $note->text .'
+														</div>
+													</div>
+												</article>';
 											}
 
-											 echo '<div class="card-action" style="margin-top:0px;">
+											 echo '<div class="card-action">
 												        <div class="row">
-												            <div class="col-md-6 col-sm-6 col-xs-6" style="display:inline-block;">
+												            <div class="col-md-6 col-sm-6 col-xs-6" style="display:inline-block; padding-left:5px;">
 																<div class="text">' . $note->mfname . ' ' . $note->mlname . '<div class="hidden-xs" style="display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;' . date("jS M Y", strtotime($note->submitted_date)) . '</div></div>
 															</div>
 															<div class="col-md-6 col-sm-6 col-xs-6 text-right" style="display:inline-block;">
 																<a class="btn btn-primary btn-xs" href="edit_note.php?id=' . $note->note_id . '"><span class="glyphicon glyphicon-pencil"></span><div class="hidden-xs" style="display:inline-block;"> Edit</div></a>';
-																if($user->hasPermission('superadmin')) {
-																	echo '<a onclick="return confirm(\'Are you sure?\');" class="btn btn-danger btn-xs" href="delete_card.php?id=' . $card->link_id . '&cid='. $data->cid  .'"><span class="glyphicon glyphicon-remove"></span><div class="hidden-xs" style="display:inline-block;"> Delete</div></a>';
-																}
+																// if($user->hasPermission('superadmin')) {
+																// 	echo '<a onclick="return confirm(\'Are you sure?\');" class="btn btn-danger btn-xs" href="delete_card.php?id=' . $card->link_id . '&cid='. $data->cid  .'"><span class="glyphicon glyphicon-remove"></span><div class="hidden-xs" style="display:inline-block;"> Delete</div></a>';
+																// }
 																echo '</div>
 														</div>
 													</div>

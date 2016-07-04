@@ -1,11 +1,11 @@
 <?php
-require_once('../includes/header.php');
-
-
 $to = "undisclosed-recipients;";
 switch($from) {
 	case($from == 'training'):
 		$from = 'VATeir Training <training@vateir.org>';
+	break;
+	case($from == 'noreply'):
+		$from = 'No Reply <noreply@vateir.org>';
 	break;
 }
 $headers = "From: $from\r\n";

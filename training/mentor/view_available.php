@@ -1,7 +1,7 @@
 <?php
-$pagetitle = 'All Available Students';
+$pagetitle = 'Availabilities';
 require_once("../includes/header.php");
-echo '<h3 class="text-center">All Availablities</h3><br>';
+echo '<h3 class="text-center">Availablities</h3><br>';
 try {
 	$a = new Availability;
 
@@ -13,7 +13,7 @@ try {
 	?>
 <div class="row">
 	<div class="col-md-10 col-md-offset-1">
-		<div class="panel panel-default">
+		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title"><?php echo (Input::get('cid')) ? 'Student\'s Availability' : 'All available students';?></h3>
 			</div>

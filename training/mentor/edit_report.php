@@ -142,7 +142,7 @@ if(isset($_GET['id'])) {
 				<div class="form-group">
 					<label for="programname" class="col-lg-3 control-label">Report Type</label>
 					<div class="col-lg-4">
-						<select class="form-control tick" name="report_type" readonly>
+						<select class="form-control tick" name="report_type">
 							<?php
 							$types = $r->getTypes(0, ['program' => $report->program_id]);
 							$programs = array();

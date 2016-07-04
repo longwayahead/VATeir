@@ -31,7 +31,7 @@ try {
 
     <meta property="og:type" content="website"/>
 
-    <meta property="og:image" content="http://vateir.org/img/logo.png"/>
+    <meta property="og:image" content="https://i.img.ie/suw.png"/>
 
     <meta property="og:url" content="www.vateir.org"/>
 
@@ -47,7 +47,7 @@ try {
 
     <meta name="twitter:description" content="The Irish vACC of the VATSIM Network!"/>
 
-    <meta name="twitter:image" content="http://vateir.org/img/logo.png"/>
+    <meta name="twitter:image" content="https://i.img.ie/suw.png"/>
 
     <!--Safari Optimisation-->
 
@@ -105,19 +105,7 @@ try {
 <div class="masthead">
 	<h3 class="text-muted" style="display:inline;">
     <a style="text-decoration:none;" href="<?php echo BASE_URL;?>">
-      <img class="img-responsive" style="display:inline;" width="200px" src=<?php echo BASE_URL . "img/logo.png"; ?> \>
-    	<?php
-    	if(!$user || !$user->isLoggedIn()) {
-    		?>
-    		<div style="display:inline-block; margin-left:-53px; margin-bottom:-4px"><span style="position:absolute; font-size:10px;" class="label label-danger"></span></div>
-    		<?php
-    	} else {
-
-    		?>
-    		<div style="display:inline-block; margin-left:-53px; margin-bottom:-4px"><span style="position:absolute; font-size:10px;" class="label label-danger"></span></div>
-    		<?php
-    	}
-    	?>
+      <img class="img-responsive" style="display:inline;" width="200px" src="https://i.img.ie/suw.png">
     </a>
 
 	</h3>
@@ -163,51 +151,50 @@ switch($directory) {
       <li <?php echo ($directory == 0) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL; ?>>Home</a></li>
       <?php if($user->isLoggedIn()) { ?>
           <li <?php echo ($directory == 1) ? 'class="active"' : '' ;?>>
-          <?php
-            if($user->hasPermission("mentor")) {
-              $trainingurl = BASE_URL . "training/mentor";
-            } else {
-              $trainingurl = BASE_URL . "training/history.php";
-            }
 
-          ?>
-          <a href="<?php echo $trainingurl; ?>"; ?>Training</a></li>
+          <a href="<?php echo BASE_URL . "training/"; ?>"; ?>Training</a></li>
       <?php } ?>
       <li <?php echo ($directory == 2) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "events"; ?>>Events</a></li>
       <li <?php echo ($directory == 4) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "pilots"; ?>>Pilots</a></li>
       <li <?php echo ($directory == 5) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "controllers"; ?>>Controllers</a></li>
      <li <?php echo ($directory == 6) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "about"; ?>>About Us</a></li>
-     <li><a href="https://www.twitch.tv/vatsim_atc/profile" target="_blank">Streams</a></li>
-      <li>
-          <?php //if($user->isLoggedIn()) { ?>
-              <!-- <a target="_blank" href="<?php echo BASE_URL . 'login/index.php?forum'?>">Forum</a> -->
-            <?php //} else { ?>
-              <a target="_blank" href="<?php echo BASE_URL . 'forum/'?>">Forum</a>
-           <?php //} ?>
-      </li>
+     <li class="hidden-sm"><a href="https://www.twitch.tv/vatsim_atc/profile" target="_blank">Streams</a></li>
+      <li><a target="_blank" href="<?php echo BASE_URL . 'forum'?>">Forum</a></li>
       <?php
-      if($user->isLoggedIn() && $user->hasPermission('admin')) {
-       echo '<li';
-       echo ($directory == 7) ? ' class="active"' : '' ;
-       echo '><a href="'. BASE_URL . 'admin/">Admin</a></li>';
-      }
+        echo ($user->isLoggedIn() && $user->hasPermission('admin')) ? '<li><a href="' . BASE_URL . 'admin">Admin</a></li>' : '';
       ?>
    </ul>
     <ul class="nav navbar-nav navbar-right">
     <?php
-    if(!$user->isLoggedIn()) {
+    if(!isset($_SESSION['user'])) {
         echo '<li><a href="' . BASE_URL . 'login/index.php">Login</a></li>';
     } else {
 
     ?>
 
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <div class="hidden-sm" style="display:inline-block;"><?php echo $user->data()->first_name . ' ' . $user->data()->last_name; ?></div><b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="<?php echo BASE_URL . 'controllers/profile.php?id=' . $user->data()->id; ?>"><!-- <span class="glyphicon glyphicon-user" aria-hidden="true"></span> --> Controller Profile</a></li>
-          <!-- <li><a href="#">My Notifications <span class="badge danger">5</span></a></li> -->
-          <li class="divider"></li>
-          <li><a href=<?php echo BASE_URL . "login/logout.php"; ?>><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a></li>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+          <div style="display:inline-block;">
+            <img src="<?php echo $user->getAvatarURL(['email' => $user->data()->email, 'size' => 20]); ?>" class="img-circle">
+            <div class="hidden-sm" style="display:inline-block;"><?php echo $user->data()->first_name . ' ' . $user->data()->last_name; ?></div>
+          </div>
+          <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="<?php echo BASE_URL . 'controllers/profile.php?id=' . $user->data()->id; ?>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</a>
+            </li>
+            <li>
+              <a href="<?php echo BASE_URL . 'training/availability.php';?>"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> Availability</a>
+            </li>
+            <li>
+              <a href="<?php echo BASE_URL . 'training/history.php';?>"><span class="glyphicon glyphicon-education" aria-hidden="true"></span> History</a>
+            </li>
+              <!-- <li><a href="#">My Notifications <span class="badge danger">5</span></a></li> -->
+            <li class="divider"></li>
+            <li>
+              <a href=<?php echo BASE_URL . "login/logout.php"; ?>><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a>
+            </li>
         </ul>
       </li>
       <?php

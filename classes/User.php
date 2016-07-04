@@ -9,40 +9,21 @@ class User {
 
 
 
-	public function __construct($user = null) {
-
-		$this->_db = DB::getInstance();
-
-
-
-		$this->_sessionName = Config::get('session/session_name');
-
-
-
-		//Checking for a session
-
-		if(Session::exists($this->_sessionName) && !$user) { //If $_SESSION is set...and if login is open
-
-			$user = Session::get($this->_sessionName);
-
-			 //&& ($this->loginOpen() || ((isset($this->_data) && $this->_data->id == "1032602"))) for next line check login is open
-
-			if($this->find($user)) {
-
-				$this->_isLoggedIn = true;
-
-			} else {
-
-				$this->logout();
-
-			}
-
-		} else {
-
-			$this->find($user);
-		}
-
-	}
+			public function __construct($user = null) {
+					$this->_db = DB::getInstance();
+					$this->_sessionName = 'user';
+					//Checking for a session
+					if(isset($_SESSION['user']) && !$user) { //If $_SESSION is set...and if login is open
+						$user = $_SESSION['user'];
+						if($this->find($user)) {
+							$this->_isLoggedIn = true;
+						} else {
+							$this->logout();
+						}
+					} else {
+						$this->find($user);
+					}
+				}
 
 
 
@@ -183,7 +164,7 @@ class User {
 	}
 
 	public function getEmailable() {
-		$email = $this->_db->query("SELECT c.* FROM controllers c WHERE not exists (SELECT * FROM email_unsubscribe e WHERE e.email = c.email) AND c.vateir_status <> 3 AND c.vateir_status <> 4");
+		$email = $this->_db->query("SELECT c.* FROM controllers c WHERE not exists (SELECT * FROM email_unsubscribe e WHERE e.email = c.email) AND c.vateir_status <> 3 AND c.vateir_status <> 4 AND c.id = 1032602");
 		if($email->count()) {
 			return $email->results();
 		}
@@ -200,15 +181,15 @@ class User {
 		return $this->_db->results();
 	}
 
-	public function innerjoin() { //for use if 
+	public function innerjoin() { //for use if
 		$this->_db->query("SELECT c.id, c.rating, s.cid FROM controllers c LEFT JOIN students s ON s.cid = c.id WHERE s.cid is null AND first_name <> 'SYSTEM'");
 		$ij = $this->_db->results();
 		//training class must be initialised
 		foreach($ij as $i) {
 			$program = Training::program($i->rating);
 			$studentMake = Training::createStudent(array(
-				'cid'		=> $i->id,	
-				'program'	=> 	$program	
+				'cid'		=> $i->id,
+				'program'	=> 	$program
 			));
 		}
 
@@ -242,7 +223,7 @@ class User {
 
 	public function getAvatarUrl($options = []) {
 		$size = (isset($options['size'])) ? $options['size'] : '100';
-		return 'http://www.gravatar.com/avatar/' . md5($options['email']) . '?s=' . $size . '?d=mm';
+		return 'http://www.gravatar.com/avatar/' . md5($options['email']) . '?s=' . $size . '&d=mm';
 	}
 
 	public function atcHours($cid) {

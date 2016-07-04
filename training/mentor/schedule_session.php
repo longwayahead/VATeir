@@ -58,7 +58,7 @@ if(Input::exists('post')) {
 		      	$email = $sess->email;
 		      	$mentorname = $sess->mfname . ' ' . $sess->mlname;
 		      	$from = 'training';
-		      	$subject = 'Session Booking: ' . $sess->callsign . ' on ' . date("j F, Y", strtotime(Input::get('date'))) . '';
+		      	$subject = 'Session Booking: ' . $sess->callsign . ' on ' . date("j F Y", strtotime(Input::get('date'))) . '';
 		      	$message = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; margin: 0; padding: 0;">
 <head>
@@ -82,7 +82,7 @@ if(Input::exists('post')) {
 				<div class="content" style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; max-width: 600px; display: block; margin: 0 auto; padding: 15px;">
 				<table bgcolor="#999999" style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; width: 100%; margin: 0; padding: 0;">
 					<tr style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; margin: 0; padding: 0;">
-						<td style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; margin: 0; padding: 0;"><img style="max-width: 200px; font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; margin: 0; padding: 0;" src="http://www.vateir.org/img/logo.png" /></td>
+						<td style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; margin: 0; padding: 0;"><img style="max-width: 200px; font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; margin: 0; padding: 0;" src="https://i.img.ie/suw.png" /></td>
 					</tr>
 				</table>
 				</div>
@@ -104,7 +104,7 @@ if(Input::exists('post')) {
 				<tr style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; margin: 0; padding: 0;">
 					<td style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; margin: 0; padding: 0;">
 						<h3 style="font-family: \'HelveticaNeue-Light\', \'Helvetica Neue Light\', \'Helvetica Neue\', Helvetica, Arial, \'Lucida Grande\', sans-serif; line-height: 1.1; color: #000; font-weight: 500; font-size: 27px; margin: 0 0 15px; padding: 0;">Hi ' . $name . ',</h3>
-						<p class="lead" style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; font-weight: normal; font-size: 17px; line-height: 1.6; margin: 0 0 10px; padding: 0;">This is an automatically generated email from the VATeir Training Department.</p>
+						<p class="lead" style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; font-weight: normal; font-size: 17px; line-height: 1.6; margin: 0 0 10px; padding: 0;">This is an automatically-generated email from VATeir.</p>
 						<p style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; font-weight: normal; font-size: 14px; line-height: 1.6; margin: 0 0 10px; padding: 0;">' . $mentorname . ' has scheduled a mentoring session with you on ' . $sess->position_name . '.</p>
 						<p style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; font-weight: normal; font-size: 14px; line-height: 1.6; margin: 0 0 10px; padding: 0;">
 							<table style="font-family: \'Helvetica Neue\', \'Helvetica\', Helvetica, Arial, sans-serif; width: 100%; margin: 0; padding: 0;">
@@ -250,10 +250,10 @@ if(!$user->hasPermission("$availability->permissions")) {
 	Session::flash('error', 'Cannot mentor at that level');
 	Redirect::to('./');
 }
-if($user->data()->id == $availability->cid) {
-	Session::flash('error', 'You cannot mentor yourself!');
-	Redirect::to('./');
-}
+// if($user->data()->id == $availability->cid) {
+// 	Session::flash('error', 'You cannot mentor yourself!');
+// 	Redirect::to('./');
+// }
 ?>
 <h3 class="text-center">Schedule a session</h3><br>
 <div class="row">
@@ -368,8 +368,8 @@ if($user->data()->id == $availability->cid) {
 require_once("../../includes/footer.php");
 $from = new DateTime($availability->date . 'T' .$availability->time_from);
 $until = new DateTime($availability->date . 'T' .$availability->time_until);
-echo $f = $from->format("Y-m-d H:i:s");
-echo $u = $until->format("Y-m-d H:i:s");
+// echo $f = $from->format("Y-m-d H:i:s");
+// echo $u = $until->format("Y-m-d H:i:s");
 ?>
 <script>
 $(function () {

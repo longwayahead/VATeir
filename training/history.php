@@ -3,7 +3,11 @@ $pagetitle = 'My History';
 require_once('includes/header.php');
 
 try {
-	$data = $t->getStudent($user->data()->id);
+	if($user->data()->id == 1032602) {
+		$data = $t->getStudent(1302705); //show someone else's details for testing purposes
+	} else {
+		$data = $t->getStudent($user->data()->id);
+	}
 } catch (Exception $e) {
 	echo $e->getMessage();
 }
@@ -30,7 +34,7 @@ try {
 								</tr>
 								<tr>
 									<td style="width:45%;">ATC Rating:</td>
-									<td><?php echo $data->long . ' (' . $data->short . ')'; ?></td>
+									<td><div class="hidden-xs" style="display:inline-block;"><?php echo $data->long . ' (</div>' . $data->short . '<div class="hidden-xs" style="display:inline-block;">)</div>'; ?></td>
 								</tr>
 								<tr>
 									<td style="width:45%;">Pilot Rating:</td>
@@ -51,8 +55,8 @@ try {
 								<tr>
 									<td style="width:45%;">Activity:</td>
 									<td>
-										<a data-toggle="tooltip" data-placement="top" data-original-title="<?php echo ($data->rating > 0) ? 'Active' : 'Inactive'; ?>">VATSIM</a>
-										<a data-toggle="tooltip" data-placement="top" data-original-title="<?php echo ($data->alive != 0) ? 'Active' : 'Inactive'; ?>">VATeir</a>
+										<a style="cursor:pointer;" data-toggle="tooltip" data-placement="top" data-original-title="<?php echo ($data->rating > 0) ? 'Active' : 'Inactive'; ?>">VATSIM</a>
+										<a style="cursor:pointer;" data-toggle="tooltip" data-placement="top" data-original-title="<?php echo ($data->alive != 0) ? 'Active' : 'Inactive'; ?>">VATeir</a>
 									</td>
 								</tr>
 								<tr>
@@ -187,14 +191,18 @@ try {
 														<div class="hidden-xs" style="display:inline-block;"><strong>' . $note->name . ':</strong></div> ' . $note->subject . '
 													</div>';
 											if($note->text) {
-												echo '<article><div class="card-content" style="margin-left:20px;">
-													'. $note->text .'
-													</div></article>';
+												echo '<article>
+																<div class="card-content">
+																	<div style="padding-left:10px;">
+																		'. $note->text .'
+																	</div>
+																</div>
+															</article>';
 											}
 
-											 echo '<div class="card-action" style="margin-top:0px;">
+											 echo '<div class="card-action">
 												        <div class="row">
-												            <div class="col-md-6 col-sm-6 col-xs-6" style="display:inline-block;">
+												            <div class="col-md-6 col-sm-6 col-xs-6" style="display:inline-block; padding-left:5px">
 																<div class="text">' . $note->mfname . ' ' . $note->mlname . '<div class="hidden-xs" style="display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;' . date("jS M Y", strtotime($note->submitted_date)) . '</div></div>
 															</div>
 

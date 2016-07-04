@@ -152,13 +152,25 @@ class Download {
 			} else {
 				$request = json_decode(file_get_contents($this->oadURL . $url . '?key=' . $apiToken . $bits));
 			}
-			
+
 			if($request->code == 200) {
 				return $request->data;
 			} else {
 				throw new Exception("Could not get data.");
 			}
 		}
-		
+
 	}
+
+	public static function xml2array($url) {
+		$xml = simplexml_load_string(file_get_contents($url));
+		return json_decode(json_encode($xml), true);
+
+	}
+
+	public function blackswan() {
+		$tracks = $this->xml2array('http://blackswan.ch/nat/nat.xml')['track'];
+		return $tracks;
+	}
+
 }

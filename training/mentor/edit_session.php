@@ -76,7 +76,7 @@ if(Input::exists('post')) {
 $session = $s->get([
 		'id' => Input::get('id')
 	])[0];
-print_r($session);
+// print_r($session);
 if(!$user->hasPermission($session->program_permissions) || !$user->hasPermission("admin")) {
 	Session::flash('error', 'Cannot mentor at that level');
 	Redirect::to('./');

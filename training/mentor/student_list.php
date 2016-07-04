@@ -37,7 +37,7 @@ echo '<br><div class="col-md-10 col-md-offset-1">
 if(!isset($_GET['c']) && (!isset($_GET['a'])) || isset($_GET['c'])) {
 	try {
 		foreach($t->getPrograms() as $p) {
-			if($user->hasPermission($p->permissions)) {
+			// if($user->hasPermission($p->permissions)) {
 				echo '<div class="panel panel-primary">
 						<div class="panel-heading">
 							<h3 class="panel-title">' . $p->name . ' Programme</h3>
@@ -56,8 +56,8 @@ if(!isset($_GET['c']) && (!isset($_GET['a'])) || isset($_GET['c'])) {
 								</tr>';
 
 						foreach($students as $student) {
-							$available = $a->get(['student' => $student->cid,
-																		'limit' => 1]); //make the row green if the student has availabilities in the system
+							// $available = $a->get(['student' => $student->cid,
+							// 											'limit' => 1]); //make the row green if the student has availabilities in the system
 							echo '<tr';
 							echo ($available != false) ? ' class="active">' : '>';
 							echo '
@@ -77,7 +77,7 @@ if(!isset($_GET['c']) && (!isset($_GET['a'])) || isset($_GET['c'])) {
 				echo '</table>';
 				echo '</div>
 					</div>';
-			}
+			//}
 		}
 	} catch(Exception $e) {
 		echo $e->getMessage();

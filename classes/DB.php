@@ -7,7 +7,7 @@ class DB {
 				$_error = false,
 				$_results = null,
 				$_count = 0,
-				$_whereString = null;
+				$_whereString = null, $_i=1;
 
 
 	private function __construct() {
@@ -29,7 +29,7 @@ class DB {
 	public function query($sql, $params = array()) {
 		// print_r($params);
 		// echo $sql;
-
+	//	echo '<font color="red" style="font-size:20px;">' . $this->_i++ . '</font>';
 		$this->_results = null;
 		$this->_count = 0;
 		$this->_whereString = null;

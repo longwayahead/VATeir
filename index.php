@@ -25,31 +25,32 @@ $greeting = ['Hi there.', 'Fáilte.', 'Hello.', 'Dia dhuit.', 'Welcome.'];
 <div class="col-md-8 well">
   <h2 class="text-center"><?php echo $greeting[array_rand($greeting)];?></h2>
   <?php
-  $stream = json_decode(file_get_contents("https://api.twitch.tv/kraken/streams/vatsim_atc"));
-  if($stream->stream != null && strpos($stream->stream->channel->status, '[VATSIM]') !== false) {
-    ?>
-      <div class="videoWrapper"><iframe src="https://player.twitch.tv/?channel=vatsim_atc"></iframe></div>
-      <h5 class="text-center"><?php echo $stream->stream->channel->status; ?></h5>
-    <?php
-  } else {
+   $stream = json_decode(file_get_contents("https://api.twitch.tv/kraken/streams/vatsim_atc"));
+   if($stream->stream != null && strpos($stream->stream->channel->status, '[VATSIM]') !== false) {
+     ?>
+       <div class="videoWrapper"><iframe src="https://player.twitch.tv/?channel=vatsim_atc"></iframe></div>
+       <h5 class="text-center"><?php //echo $stream->stream->channel->status; ?></h5>
+     <?php
+   } else {
 
-      $random = rand(0, 1);
-      if($random == 1) {
-      	echo '<div class="videoWrapper"><iframe width="560" height="315"  src="https://www.youtube.com/embed/gLjKKQ0-BrE" frameborder="0" allowfullscreen></iframe></div>';
-      } else {
-      	echo '<div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/r1wrc9DLgWQ" frameborder="0" allowfullscreen></iframe></div>';
-      }
+       $random = rand(0, 1);
+       if($random == 1) {
+       	echo '<div class="videoWrapper"><iframe width="560" height="315"  src="https://www.youtube.com/embed/gLjKKQ0-BrE" frameborder="0" allowfullscreen></iframe></div>';
+       } else {
+       	echo '<div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/r1wrc9DLgWQ" frameborder="0" allowfullscreen></iframe></div>';
+     }
   }
 
   ?>
 
   <br>
 
-  	<p>Firstly, can I welcome you to vACC Ireland. Nestled within the confines of Oceanic, British and French airspace, the Shannon FIR is home to all that the Republic of Ireland has to offer in the aviation sector. Our goal is to provide an enjoyable and challenging environment in which to participate in the widest range of virtual aviation activities. Please take the time to look around our website, and if you have any questions, please get in touch.</p>
+  	<p>Firstly, welcome to VATeir. Nestled between British and French, and oceanic airspace, the Shannon FIR is home to Ireland's aviation presence on VATSIM. VATeir's goal is to bolster this aviation presence with realistic virtual Air Traffic Control to compliment the altogether too realistic weather and stunning scenery on the island of Ireland.</p>
+		<p>For pilots, I invite you to take a look through our website, in particular through the pilots' section, whereas for prospective controllers, I invite you to log in and to submit your availability so that we can get the ball rolling on your ATC training. If you have any questions, please get in touch. Our contact details are on the <i>Staff</i> page in the <i>About</i> section, otherwise drop us a line on the forum.</p>
 
-  <p>Best regards,<br>
-  Martin Bergin &ndash; 931070<br>
-  Director &ndash; vACC Ireland </p>
+  <p class="text-right"><br>Is mise le meas,<br>
+  <i>Martin Bergin</i><br>
+  VATeir Director</p>
 </div>
 
 
@@ -71,7 +72,7 @@ $greeting = ['Hi there.', 'Fáilte.', 'Hello.', 'Dia dhuit.', 'Welcome.'];
 					</div>
 				</a>
 			</li>
-			<li class="">
+			<!-- <li class="">
 				<a href="#metar" data-toggle="tab" aria-expanded="false">
 					<div class="hidden-xs hidden-md">
 						<span class="glyphicon glyphicon-cloud" aria-hidden="true"></span> METAR
@@ -80,12 +81,12 @@ $greeting = ['Hi there.', 'Fáilte.', 'Hello.', 'Dia dhuit.', 'Welcome.'];
 						<span class="glyphicon glyphicon-cloud" aria-hidden="true"></span>
 					</div>
 				</a>
-			</li>
+			</li> -->
 			<li class="">
 				<li class="">
 				<a href="#inbound" data-toggle="tab" aria-expanded="false">
 					<div class="hidden-xs hidden-md">
-						<span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Arr
+						<span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Arrivals
 					</div>
 					<div class="visible-xs visible-md">
 						<span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>
@@ -96,7 +97,7 @@ $greeting = ['Hi there.', 'Fáilte.', 'Hello.', 'Dia dhuit.', 'Welcome.'];
 				<li class="">
 				<a href="#outbound" data-toggle="tab" aria-expanded="false">
 					<div class="hidden-xs hidden-md">
-						<span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span> Dep
+						<span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span> Departures
 					</div>
 					<div class="visible-xs visible-md">
 						<span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
@@ -108,8 +109,8 @@ $greeting = ['Hi there.', 'Fáilte.', 'Hello.', 'Dia dhuit.', 'Welcome.'];
 				<div class="tab-pane fade active in" id="atc">
 					<table class="table table-striped table-condensed" style="margin:0;">
 						<?php
-							cacheFile("datafiles/atc.json", "http://api.vateud.net/online/atc/ei.json");
-							$atcs = json_decode(file_get_contents("datafiles/atc.json"));
+							//cacheFile("datafiles/atc.json", "http://api.vateud.net/online/atc/ei.json");
+							$atcs = json_decode(file_get_contents("http://api.vateud.net/online/atc/ei.json"));
 
 							if($atcs) {
 
@@ -156,21 +157,21 @@ $greeting = ['Hi there.', 'Fáilte.', 'Hello.', 'Dia dhuit.', 'Welcome.'];
 				<div class="tab-pane fade" id="metar">
 					<p>
 					<?php
-						cacheFile("datafiles/metar.txt", "http://metar.vatsim.net/metar.php?id=EI");
-						echo '<div class="text-justified"><samp>
-							<p>' . getMetar("EICK") . '</p>
-							<p>' . getMetar("EIDW") . '</p>
-							<p>' . getMetar("EIKN") . '</p>
-							<p>' . getMetar("EINN") . '</p>
-						</samp></div>';
+						// cacheFile("datafiles/metar.txt", "http://metar.vatsim.net/metar.php?id=EI");
+						// echo '<div class="text-justified"><samp>
+						// 	<p>' . getMetar("EICK") . '</p>
+						// 	<p>' . getMetar("EIDW") . '</p>
+						// 	<p>' . getMetar("EIKN") . '</p>
+						// 	<p>' . getMetar("EINN") . '</p>
+						// </samp></div>';
 					?>
 					</p>
 				</div>
 				<div class="tab-pane fade" id="inbound">
 					<table class="table table-striped table-condensed" style="margin:0;">
 						<?php
-							cacheFile("datafiles/in.json", "http://api.vateud.net/online/arrivals/ei.json");
-							$pilots = json_decode(file_get_contents("datafiles/in.json"));
+							//cacheFile("datafiles/in.json", "http://api.vateud.net/online/arrivals/ei.json"); -->
+							$pilots = json_decode(file_get_contents("http://api.vateud.net/online/arrivals/ei.json"));
 
 							if($pilots) {
 
@@ -213,8 +214,8 @@ $greeting = ['Hi there.', 'Fáilte.', 'Hello.', 'Dia dhuit.', 'Welcome.'];
 				<div class="tab-pane fade" id="outbound">
 					<table class="table table-striped table-condensed" style="margin:0;">
 						<?php
-							cacheFile("datafiles/out.json", "http://api.vateud.net/online/departures/ei.json");
-							$pilots = json_decode(file_get_contents("datafiles/out.json"));
+							//cacheFile("datafiles/out.json", "");
+							$pilots = json_decode(file_get_contents("http://api.vateud.net/online/departures/ei.json"));
 
 							if($pilots) {
 

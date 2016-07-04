@@ -53,7 +53,7 @@ class Training {
 	public function __construct() {
 		$this->_db = DB::getInstance();
 	}
-	
+
 	public function getPrograms($where = null) {
 		if(!isset($where)) {
 			 $where = "WHERE name != 'completed'";
@@ -72,7 +72,7 @@ class Training {
 		$data = $this->_db->db("$this->_sql", [['`p`.`id`', '=', $pid], ['`c`.`alive`', '=', 1], ['`c`.`rating`', '>', 0]], "ORDER BY `c`.`rating` ASC, `c`.`last_name` ASC"
 							);
 		if($data->count()) {
-		
+
 			return $data->results();
 		}
 		return false;
@@ -84,17 +84,16 @@ class Training {
 		if(!empty($param)) {
 			//$data = $this->_db->query("$this->_sql", [["{$s}", 'LIKE', "%{$param}%"]], "ORDER BY `c`.`rating` DESC, `c`.`last_name` ASC"
 			$data = $this->_db->query("$this->_sql
-							WHERE `c`.`first_name` LIKE ? 
-								OR `c`.`last_name` LIKE ? 
-								OR `c`.`id` LIKE ?
+							WHERE	CONCAT(`c`.`first_name`, ' ', `c`.`last_name`) LIKE ?
+								OR`c`.`id` LIKE ?
 								OR `c`.`email` LIKE ?
 							ORDER BY `c`.`rating` DESC,
-							`c`.`last_name` ASC", 
+							`c`.`last_name` ASC",
 						[
-							["%{$param}%"], 
-							["%{$param}%"], 
-							["%{$param}%"], 
+							["%{$param}%"],
+							["%{$param}%"],
 							["%{$param}%"]
+
 						]
 					);
 		} else {
@@ -102,7 +101,7 @@ class Training {
 					);
 		}
 		if($data->count()) {
-			
+
 			return $data->results();
 		}
 		return false;
@@ -116,7 +115,37 @@ class Training {
 		return false;
 	}
 
+	public function assignProgram($cid, $rating) {
+		if(!$this->findStudent($cid)) {
+			$program = $this->program($rating);
+			$studentMake = $this->createStudent(array(
+				'cid'		=> $cid,
+				'program'	=> 	$program,
+			));
+			return true;
+		} else {
+			return false;
+		}
+	}
 
+	public function fixStudents() {
+		$data = $this->_db->query("SELECT c.id, c.rating FROM controllers c LEFT JOIN students s ON c.id = s.cid WHERE s.cid IS NULL AND c.id <> 0");
+		if($data->count()) {
+			$update = [];
+			foreach($data->results() as $d) {
+				$assign = $this->assignProgram($d->id, $d->rating);
+				if($assign == true) {
+					$update['success'][] = $d->id;
+				} else {
+					$update['fail'][] = $d->id;
+				}
+
+			}
+			return $update;
+		} else {
+			return false;
+		}
+	}
 
 	public function getAirports($major = true) {
 		$data = $this->_db->query("SELECT `a`.`id`, `a`.`icao`, `a`.`major`, `a`.`name`,
@@ -180,7 +209,7 @@ class Training {
 		cacheFile(URL.'datafiles/bookings.xml', 'http://vatbook.euroutepro.com/xml.php?fir=EISN');
 		$xml = new SimpleXMLElement(file_get_contents(URL.'datafiles/bookings.xml'));
 		$i = 0;
-		
+
 		foreach($xml->atc as $x) {
 			$bookings[$i]['callsign'] = $x->callsign;
 			$bookings[$i]['name'] = $x->name;
@@ -218,21 +247,21 @@ class Training {
 				}
 			}
 			return $pos_types;
-		}		
+		}
 		return false;
 	}
 
 	public function getControllers($options = array()) {
-		
+
 		if(isset($options['active'])) {
 				$where = "controllers.alive = 1";
-			
+
 		} else {
 			$where = "controllers.alive = 0 AND controllers.rating > 0";
 		}
 		if(isset($options['status'])) {
 				$where .= " AND (controllers.vateir_status <= 2)";
-			
+
 		}
 		$controllers = $this->_db->query("SELECT controllers.id as cid, controllers.first_name, controllers.last_name, controllers.rating, controllers.pilot_rating, controllers.pratingstring, controllers.vateir_status, controllers.email, controllers.alive, controllers.regdate_vatsim, controllers.regdate_vateir,
 										ratings.id, ratings.short, ratings.long
@@ -285,7 +314,7 @@ class Training {
 	public function oneMonth() {
 		$data = $this->_db->query("$this->_val WHERE `v`.`valid_until` < DATE_ADD(now(), INTERVAL 1 WEEK) ORDER BY `v`.`valid_until` ASC");
 		if($data->count()) {
-			
+
 			return $data->results();
 		}
 		return false;
@@ -308,7 +337,7 @@ class Training {
 		}
 		return false;
 	}
-	
+
 	public function deleteVals($posid, $cid) {
 		$delete = $this->_db->delete('validation_list', [['cid', '=', $cid], ['position_list_id', '=', $posid]]);
 		if($delete) {
@@ -326,7 +355,7 @@ class Training {
 			throw new Exception("There was a problem deleting a validation");
 		}
 	}
-	
+
 
 	public function maxValidatedSectorType($icao, $cid) {
 		$data=$this->_db->query("SELECT MAX(`p`.`position_type_id`) AS `position_type_id`, `p`.`airport_list_id`, `p`.`id` AS `positionid`,
@@ -429,7 +458,7 @@ class Training {
 	}
 
 	public static function program($rating) {
-	
+
 		switch($rating) {
 			case($rating==1):
 				$program = 2;

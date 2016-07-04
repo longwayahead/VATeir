@@ -58,7 +58,7 @@ class Sessions {
 										position_list.id as position_id, position_list.airport_list_id, position_list.callsign, position_list.freq, position_list.name as position_name,
 										card_types.id, card_types.name as session_name, card_types.exam as isexam,
 										controllers.id, controllers.email, controllers.first_name AS sfname, controllers.last_name AS slname, controllers.rating,
-										control.id, control.first_name AS mfname, control.last_name AS mlname
+										control.id, control.first_name AS mfname, control.last_name AS mlname, control.email AS memail
 									FROM sessions
 									LEFT JOIN report_types on report_types.id = sessions.report_type
 									LEFT JOIN programs on programs.id = report_types.program_id
@@ -101,10 +101,10 @@ class Sessions {
 
 	public function countMentor($cid) {
 		$count = $this->_db->query("SELECT COUNT(id) as session,
-			(	
+			(
 				SELECT COUNT(id)
-					FROM sessions 
-					WHERE mentor = ? 
+					FROM sessions
+					WHERE mentor = ?
 						AND finish <= NOW()
 						AND report_id = null
 			) as without,
@@ -114,8 +114,8 @@ class Sessions {
 					WHERE CONCAT(date, ' ', time_from) >= NOW()
 						AND deleted = 0
 			) as available
-		FROM sessions 
-		WHERE mentor = ? 
+		FROM sessions
+		WHERE mentor = ?
 			AND start >= NOW()
 			AND deleted = 0", [[$cid, $cid]]);
 		if($count->count()) {

@@ -1,5 +1,20 @@
 <?php
 require_once('includes/header.php');
-$r = new Reports;
-$sliders = $r->getSliders(1, 2, 1);
-print_r($sliders);
+// $ij = $user->innerjoin();
+// echo '<pre>';
+// print_r($ij);
+// echo '</pre>';
+// $t = new Training;
+// foreach($ij as $i) {
+// 	$program = $t->program($i->rating);
+// 	$studentMake = $t->createStudent(array(
+// 		'cid'		=> $i->id,
+// 		'program'	=> 	$program
+// 	));
+// }
+
+$e = new Events;
+$events = $e->sessions();
+echo '<pre>';
+print_r($events);
+echo '</pre>';

@@ -6,9 +6,9 @@ try {
 	if($user->isActive($student->cid)) {
 		$hours = $user->atcHours($student->cid);
 	}
-	
+
 	$t = new Training;
-	
+
 	$avatar = $user->getAvatarURL(['email' => $student->email]);
 	$bookings = $t->userBookings($student->cid);
 
@@ -32,7 +32,7 @@ try {
 						<table class="table table-responsive table-striped">
 							<tr>
 								<td colspan="2"  class="text-center">
-									<img src="<?php echo $avatar; ?>">
+									<img class="img-circle" src="<?php echo $avatar; ?>">
 								</td>
 							</tr>
 							<tr>
@@ -54,7 +54,7 @@ try {
 						  <tr>
 								<td>
 									<strong>Pilot Rating:</strong>
-									
+
 								</td>
 								<td>
 									<?php echo $student->pratingstring; ?>
@@ -66,7 +66,7 @@ try {
 								</td>
 								<td>
 									<?php echo date("j\<\s\u\p\>S\<\/\s\u\p\> M Y", strtotime($student->regdate_vatsim)); ?>
-									
+
 								</td>
 							</tr>
 						<tr>
@@ -79,13 +79,13 @@ try {
 							</td>
 						</tr>
 						</table>
-					</div>			
-				
+					</div>
+
 				</div>
 			</div>
 		</div>
-			
-		
+
+
 		<div class="col-md-4">
 				<div class="panel panel-warning">
 					<div class="panel-heading">
@@ -93,7 +93,7 @@ try {
 					</div>
 					<div class="panel-body">
 						<?php
-						if(!empty($bookings)) {					
+						if(!empty($bookings)) {
 							echo '<table class="table table-striped table-responsive table-condensed">
 								<tr>
 									<td><strong>Position</strong></td>

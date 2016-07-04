@@ -99,7 +99,7 @@ require_once('includes/header.php');
 						</tr>
 						<tr>
 							<td><strong>Visibility:</strong></td>
-							<td><?php echo $w->visibility;?></td>
+							<td><?php echo $w->visibility;?> mi</td>
 						</tr>
 						<tr>
 							<td><strong>Pressure:</strong></td>
@@ -110,13 +110,13 @@ require_once('includes/header.php');
 							<td><?php foreach($w->sky_conditions as $s) {
 								echo $s->sky_cover;}
 								?></td>
-								
+
 						</tr>
 						<tr>
 							<td><strong>Cloud Base:</strong></td>
 							<td><?php foreach($w->sky_conditions as $s) {
 								echo $s->cloud_base_ft_agl;}
-								?></td>
+								?> ft</td>
 						</tr>
 						<tr>
 							<td><strong>Category:</strong></td>
@@ -131,7 +131,7 @@ require_once('includes/header.php');
 			</div>
 			<?php
 			}
-			
+
 			$taf = $d->oadAPI('taf', ['station' => Input::get('icao')]);
 			foreach($taf as $t) {
 				?>
@@ -160,7 +160,7 @@ require_once('includes/header.php');
 			<?php
 			}
 			?>
-			
+
 
 
 
@@ -171,15 +171,15 @@ require_once('includes/header.php');
 		} catch(Exception $e) {
 			echo $e->getMessage();
 		}
-		
+
 
 		?>
 		<br><br>
 		<?php
 	}
-	
 
-		
+
+
 
 
 

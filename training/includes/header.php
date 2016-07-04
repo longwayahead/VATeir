@@ -2,7 +2,7 @@
 $url = realpath($_SERVER['DOCUMENT_ROOT']) . '/'; //Update me!
 require_once($url . 'includes/header.php');
 unset($url);
-if(!$user->isLoggedIn()) {
+if(!isset($_SESSION['user'])) {
 	Redirect::to(BASE_URL . 'login/');
 }
 $t = new Training;
@@ -17,29 +17,27 @@ $s = new Sessions;
 <div class="col-sm-3 col-md-2">
 
 	<ul class="well nav nav-list nav-list-vivid">
-	<?php
-	if($user->hasPermission('student')) {
-		?>
+
 
 		My Training
 			<li class="active"><a href="<?php echo BASE_URL . 'training/'; ?>">Home</a></li>
-			<li><a href="<?php echo BASE_URL . 'training/availability.php'; ?>">Availability <?php echo ($avails = $s->countAvailabilities($user->data()->id)) ? '<span class="badge danger">'. $avails .'</span>' : '';?></a></li>
-			<li><a href="<?php echo BASE_URL . 'training/sessions.php'; ?>">Sessions <?php echo ($sesh = $s->countSessions($user->data()->id)) ? '<span class="badge danger">'. $sesh .'</span>' : '';?></a></li>
+			<li><a href="<?php echo BASE_URL . 'training/availability.php'; ?>">Availability <?php //echo ($avails = $s->countAvailabilities($user->data()->id)) ? '<span class="badge danger">'. $avails .'</span>' : '';?></a></li>
+			<li><a href="<?php echo BASE_URL . 'training/sessions.php'; ?>">Sessions <?php //echo ($sesh = $s->countSessions($user->data()->id)) ? '<span class="badge danger">'. $sesh .'</span>' : '';?></a></li>
 			<li><a href="<?php echo BASE_URL . 'training/validations.php'; ?>">Validations</a></li>
 			<li><a href="<?php echo BASE_URL . 'training/history.php'; ?>">History</a></li>
 			<li><a href="<?php echo BASE_URL . 'training/token.php'; ?>">Tokens</a></li>
+			<li><a href="ts3server://ts.vateud.net?nickname=<?php echo $user->data()->first_name . ' ' . $user->data()->last_name;?>&channel=%5Bcspacer0%5D%20vACC%20ROOMS%2FIreland%20vACC">Teamspeak</a></li>
 
 			<li class="divider"></li>
 			<br>
 <?php
-	}
 	if($user->hasPermission('mentor')) {
 		?>
 		Mentor Menu
 			<li>
 				<a href="<?php echo BASE_URL . 'training/mentor/'; ?>">
 					Home
-					<?php echo ($ment = $s->countMentor($user->data()->id)) ? '<span class="badge danger">'. $ment .'</span>' : '';?>
+					<?php //echo ($ment = $s->countMentor($user->data()->id)) ? '<span class="badge danger">'. $ment .'</span>' : '';?>
 				</a>
 			</li>
 			<li><a href="<?php echo BASE_URL . 'training/mentor/student_list.php'; ?>">Students</a></li>
@@ -49,7 +47,6 @@ $s = new Sessions;
 <?php
 	}
 	if($user->hasPermission('tdstaff')) {
-		//$vals = $t->plus();
 	?>
 		Staff Menu
 			<li>

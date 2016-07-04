@@ -17,17 +17,17 @@ a:hover {
 
 
 <div class="col-sm-3 col-md-2">
-	
+
 	<ul class="well nav nav-list nav-list-vivid">
-	
+
 
 		Controllers
 			<li><a href="<?php echo BASE_URL . 'controllers/'; ?>">Roster</a></li>
-			<li><a href="<?php echo BASE_URL . 'controllers/validations.php'; ?>">Validations</a></li>
+			<li><a target="_blank" href="<?php echo BASE_URL . 'atc_solo/solo.txt'; ?>">Validations</a></li>
 			<li><a href="<?php echo BASE_URL . 'controllers/mentors.php'; ?>">Mentors</a></li>
-			<?php if($user->isLoggedIn()) {	?>	
+			<?php //if($user->isLoggedIn()) {	?>
 				<li><a href="<?php echo BASE_URL . 'controllers/downloads.php'; ?>">Downloads</a></li>
-			<?php } ?>
+			<?php// } ?>
 			<li class="divider"></li>
 			<br>
 

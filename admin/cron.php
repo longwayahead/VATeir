@@ -32,7 +32,7 @@ $data = json_decode($cron->data, true);
 						<tr>
 							<td><a target="_blank" href="../controllers/profile.php?id=<?php echo $cid; ?>"><?php echo $cid; ?></td>
 							<td>
-								<?php 
+								<?php
 									foreach($update as $p => $u) {
 										echo '<strong>' . $p . ':</strong>' . ' ' . $u . '<br>';
 									}
@@ -75,30 +75,6 @@ $data = json_decode($cron->data, true);
 	<div class="col-md-3">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h3 class="panel-title">Set as inactive</h3>
-			</div>
-			<div class="panel-body">
-			<?php if(isset($data['setasinactive'])) { ?>
-				<table class="table table-striped table-responsive table-condensed">
-					<tr>
-						<td><strong>CID</strong></td>
-					</tr>
-					<?php foreach($data['setasinactive'] as $id): ?>
-						<tr>
-							<td><a target="_blank" href="../controllers/profile.php?id=<?php echo $id; ?>"><?php echo $id; ?></td>
-						</tr>
-
-					<?php endforeach; ?>
-				</table>
-			<?php } else { ?>
-						<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No users</div><br>
-			<?php } ?>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-3">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
 				<h3 class="panel-title">Deleted</h3>
 			</div>
 			<div class="panel-body">
@@ -120,10 +96,36 @@ $data = json_decode($cron->data, true);
 			</div>
 		</div>
 	</div>
+	<div class="col-md-3">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Set as inactive</h3>
+			</div>
+			<div class="panel-body">
+			<?php if(isset($data['setasinactive'])) { ?>
+				<table class="table table-striped table-responsive table-condensed">
+					<tr>
+						<td><strong>CID</strong></td>
+					</tr>
+					<?php foreach($data['setasinactive'] as $id): ?>
+						<tr>
+							<td><a target="_blank" href="../controllers/profile.php?id=<?php echo $id; ?>"><?php echo $id; ?></td>
+						</tr>
+
+					<?php endforeach; ?>
+				</table>
+			<?php } else { ?>
+						<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No users</div><br>
+			<?php } ?>
+			</div>
+		</div>
+	</div>
+
 </div>
 <br>
 <div class="row">
-	<div class="col-md-6">
+
+	<div class="col-md-3">
 		<div class="panel panel-danger">
 			<div class="panel-heading">
 				<h3 class="panel-title">Update Failed</h3>
@@ -196,7 +198,54 @@ $data = json_decode($cron->data, true);
 		</div>
 	</div>
 </div>
-
+<div class="row">
+	<div class="col-md-3">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Student Fix</h3>
+			</div>
+			<div class="panel-body">
+			<?php if(isset($data['studentfix']['success'])) { ?>
+				<table class="table table-striped table-responsive table-condensed">
+					<?php foreach($data['studentfix']['success'] as $id): ?>
+						<tr>
+							<td><a target="_blank" href="../controllers/profile.php?id=<?php echo $id; ?>"><?php echo $id; ?></td>
+							<td>
+								<?php echo $msg; ?>
+							</td>
+						</tr>
+					<?php endforeach; ?>
+				</table>
+			<?php } else { ?>
+						<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No users</div><br>
+			<?php } ?>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="panel panel-danger">
+			<div class="panel-heading">
+				<h3 class="panel-title">Student Fix Fail</h3>
+			</div>
+			<div class="panel-body">
+			<?php if(isset($data['studentfix']['fail'])) { ?>
+				<table class="table table-striped table-responsive table-condensed">
+					<?php foreach($data['studentfix']['fail'] as $id): ?>
+						<tr>
+							<td><a target="_blank" href="../controllers/profile.php?id=<?php echo $id; ?>"><?php echo $id; ?></td>
+							<td>
+								<?php echo $msg; ?>
+							</td>
+						</tr>
+					<?php endforeach; ?>
+				</table>
+			<?php } else { ?>
+						<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No users</div><br>
+			<?php } ?>
+			</div>
+		</div>
+	</div>
+</div>
 
 
 
