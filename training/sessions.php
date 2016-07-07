@@ -19,7 +19,7 @@ $s = new Sessions;
 					$sessions = $s->get(array(
 							'student' => $user->data()->id,
 							'future' => 1,
-							'cancelled'	=> 1
+							'deleted'	=> 0
 						));
 					if(!empty($sessions)) {
 					?>
@@ -53,38 +53,38 @@ $s = new Sessions;
 								<strong>Cancel</strong>
 							</td>
 						</tr>
-					
+
 						<?php foreach($sessions as $session): ?>
 							<tr id="s<?php echo $session->session_id; ?>">
 								<td>
-									<?php echo $session->mfname . ' ' . $session->mlname; ?> 
+									<?php echo $session->mfname . ' ' . $session->mlname; ?>
 								</td>
 								<td>
-									<?php echo $session->program_name; ?> 
+									<?php echo $session->program_name; ?>
 								</td>
 								<td>
-									<?php echo $session->position_name . ' (' . $session->callsign . ')'; ?> 
+									<?php echo $session->position_name . ' (' . $session->callsign . ')'; ?>
 								</td>
 								<td>
-									<?php echo $session->session_name; ?> 
+									<?php echo $session->session_name; ?>
 								</td>
 								<td>
-									<?php echo date("j-M-y", strtotime($session->start)); ?> 
+									<?php echo date("j-M-y", strtotime($session->start)); ?>
 								</td>
 								<td>
-									<?php echo date("H:i", strtotime($session->start)); ?> 
+									<?php echo date("H:i", strtotime($session->start)); ?>
 								</td>
 								<td>
-									<?php echo date("H:i", strtotime($session->finish)); ?> 
+									<?php echo date("H:i", strtotime($session->finish)); ?>
 								</td>
 								<td>
 									<?php if($session->comment != null) :?>
 										<button title="" data-original-title="" type="button" class="btn btn-xs btn-default" data-container="body" data-toggle="popover" data-placement="bottom" data-content="<?php echo $session->comment; ?>" style="cursor:pointer; text-decoration:none;"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></button>
 									<?php endif; ?>
-									
+
 								</td>
 								<td>
-									<a href="cancel_session.php?id=<?php echo $session->session_id; ?>" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+									<a href="cancel_session.php?id=<?php echo $session->session_id; ?>" class="btn btn-xs btn-warning"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 								</td>
 							</tr>
 
@@ -147,35 +147,35 @@ $s = new Sessions;
 								<strong>Report</strong>
 							</td>
 						</tr>
-					
+
 						<?php foreach($sess as $session): ?>
 							<tr>
 								<td>
-									<?php echo $session->mfname . ' ' . $session->mlname; ?> 
+									<?php echo $session->mfname . ' ' . $session->mlname; ?>
 								</td>
 								<td>
-									<?php echo $session->program_name; ?> 
+									<?php echo $session->program_name; ?>
 								</td>
 								<td>
-									<?php echo $session->position_name . ' (' . $session->callsign . ')'; ?> 
+									<?php echo $session->position_name . ' (' . $session->callsign . ')'; ?>
 								</td>
 								<td>
-									<?php echo $session->session_name; ?> 
+									<?php echo $session->session_name; ?>
 								</td>
 								<td>
-									<?php echo date("j-M-y", strtotime($session->start)); ?> 
+									<?php echo date("j-M-y", strtotime($session->start)); ?>
 								</td>
 								<td>
-									<?php echo date("H:i", strtotime($session->start)); ?> 
+									<?php echo date("H:i", strtotime($session->start)); ?>
 								</td>
 								<td>
-									<?php echo date("H:i", strtotime($session->finish)); ?> 
+									<?php echo date("H:i", strtotime($session->finish)); ?>
 								</td>
 								<td>
 									<?php if($session->comment != null) :?>
 										<button title="" data-original-title="" type="button" class="btn btn-xs btn-default" data-container="body" data-toggle="popover" data-placement="bottom" data-content="<?php echo $session->comment; ?>" style="cursor:pointer; text-decoration:none;"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></button>
 									<?php endif; ?>
-									
+
 								</td>
 								<td>
 									<?php if($session->report_id != null) { echo '<a href="history.php#r' . $session->report_id .'" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>'; }?>
@@ -190,7 +190,7 @@ $s = new Sessions;
 						echo '<br><div class="row">
 								<div class="col-md-6 col-md-offset-3">
 							<div class="text-danger text-center" style="font-size:16px;">No Sessions</div><br>
-			
+
 							</div></div>';}
 				} catch(Exception $e) {
 					echo $e->getMessage();

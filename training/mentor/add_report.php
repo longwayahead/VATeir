@@ -6,6 +6,38 @@ require_once('../includes/header.php');
 if(Input::exists()) { //if form submitted!
 	// echo Input::get('position');
 	// die();
+	if(isset($_POST['noshow'])) {
+
+		$r->addCard(array(
+			'cid'		=> Input::get("cid"),
+			'card_type'	=> 2,
+			'link_id'	=> Input::get('s'),
+			'submitted'	=> date('Y-m-d H:i:s')
+		));
+		$r->addInfo(array(
+			'session_id'		=> Input::get("s"),
+			'card_id'	=> 7
+		));
+		$s->edit(['deleted' => 1], [['id', '=', Input::get('s')]]);
+		Session::flash('success', 'No-Show Report Added!');
+		Redirect::to('./view_student.php?cid=' . Input::get('cid') . '#ns' . Input::get('s'));
+		die();
+	} elseif(isset($_POST['cancelled'])) {
+		$r->addCard(array(
+			'cid'		=> Input::get("cid"),
+			'card_type'	=> 2,
+			'link_id'	=> Input::get('s'),
+			'submitted'	=> date('Y-m-d H:i:s')
+		));
+		$r->addInfo(array(
+			'session_id'		=> Input::get("s"),
+			'card_id'	=> 8
+		));
+		$s->edit(['deleted' => 1], [['id', '=', Input::get('s')]]);
+		Session::flash('success', 'Marked as cancelled!');
+		Redirect::to('./view_student.php?cid=' . Input::get('cid') . '#ns' . Input::get('s'));
+		die();
+	}
 	$validate = new Validate();
 	$validation = $validate->check($_POST, array(
 		'position' => array(
@@ -53,7 +85,6 @@ if(Input::exists()) { //if form submitted!
 				}
 			}
 
-			$s = new Sessions;
 			$sess = $s->edit(['report_id' => $reportID], [['id', '=', Input::get('s')]]);
 
 			$r->addCard(array(
@@ -85,7 +116,7 @@ if(Input::exists()) { //if form submitted!
 							'submitted'			=> date("Y-m-d H:i:s"),
 							'submitted_by'		=> 0,
 							'text'				=>
-							'<p>Exam passed. Student requires upgrade.</p><p><strong>Next Rating:</strong>' . $rating->long . ' (' . $rating->short . ')<br><strong>Report: </strong>a target="_blank" class="btn btn-xs btn-default" href="' . BASE_URL . 'training/mentor/view_student.php?cid=' . Input::get('cid') . '#r' . $reportID . '">View</a><br><strong>Upgrade Link: </strong><a target="_blank" class="btn btn-xs btn-primary" href="https://www.atsimtest.com/index.php?cmd=admin&sub=memberdetail&memberid=' . Input::get('cid') . '">ATSimTest</a></p>'
+							'<p>Exam passed. Student requires upgrade.</p><p><strong>Next Rating:</strong>' . $rating->long . ' (' . $rating->short . ')<br><strong>Report: </strong><a target="_blank" class="btn btn-xs btn-default" href="' . BASE_URL . 'training/mentor/view_student.php?cid=' . Input::get('cid') . '#r' . $reportID . '">View</a><br><strong>Upgrade Link: </strong><a target="_blank" class="btn btn-xs btn-primary" href="https://www.atsimtest.com/index.php?cmd=admin&sub=memberdetail&memberid=' . Input::get('cid') . '">ATSimTest</a></p>'
 							));
 				}
 			}
@@ -305,6 +336,8 @@ if(Input::exists()) { //if form submitted!
 				<input type="hidden" name="report_type" value="<?php echo $session->report_type;?>">
 				<input type="hidden" name="rating" value="<?php echo $session->rating;?>">
 				<input type="hidden" name="s" value="<?php echo Input::get('s');?>">
+				<button type="submit" id="noshow" name="noshow" class="btn btn-danger" onclick="return confirm('Are you sure?')">No Show</button>
+				<button type="submit" id="cancelled" name="cancelled" class="btn btn-warning" onclick="return confirm('Are you sure?')">Cancelled</button>
 				<button type="submit" id="submit" name="submit" class="btn btn-primary">Submit</button>
 				</div>
 			</div>

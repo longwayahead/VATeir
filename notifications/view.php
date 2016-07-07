@@ -22,13 +22,13 @@ if(Input::exists('get')) {
 											<td><strong>Submitted By</strong></td>
 											<td><strong>Opened On</strong></td>
 											<td><strong>Status</strong></td>
-									
+
 										</tr>
 									    <tr>
 											<td>' . $notification->type_name . '</td>
 											<td>' . $notification->first_name . ' ' . $notification->last_name . '</td>
 											<td>' . date("j-M-Y H:i", strtotime($notification->submitted)) . '</td>
-											<td>'; echo ($notification->status == 0 ? 'Open' : 'Closed'); echo '</td>
+											<td>'; echo ($notification->status == 0) ? 'Open' : 'Closed'; echo '</td>
 										</tr>
 							    	</table>
 							 	 </div>
@@ -47,15 +47,15 @@ if(Input::exists('get')) {
 							</div>
 							<h5>Comments</h5>
 						</div>
-				
+
 			';
 			$comments = $n->getComments(Input::get('id'));
-			
+
 			if($comments) {
 				foreach($comments as $comment) {
-					
+
 					if($comment->submitted_by == $notification->from) {
-						
+
 								echo '
 										<div class="col-md-12">
 										<div class="col-md-2">
@@ -70,7 +70,7 @@ if(Input::exists('get')) {
 														<p class="text-right" style="color:grey;"><time class="timeago" datetime="' . $commentTime . '">' . $date . '</time></p>
 													</div>
 											</div>
-											
+
 												<br>
 												'. $comment->text .'
 										</div>
@@ -86,7 +86,7 @@ if(Input::exists('get')) {
 									<div class="col-md-12">
 										<div class="col-md-8 well">
 											<div class="row">
-													
+
 												<div class="col-md-4">
 													<p class="text-left" style="color:grey;">
 														<time class="timeago" datetime="' . $commentTime . '">' . $date . '</time>
@@ -96,7 +96,7 @@ if(Input::exists('get')) {
 													<p class="text-uppercase" style="font-size:20px; margin-bottom:-10px;">' . $comment->first_name . ' ' . $comment->last_name . '</p>
 												</div>
 											</div>
-											
+
 												<br>
 												<div class="text-right">'. $comment->text .'</div>
 										</div>
@@ -105,9 +105,9 @@ if(Input::exists('get')) {
 										</div>
 									</div>
 
-							<br>';	
+							<br>';
 					}
-					
+
 				}
 				?>
 				<div class="row">
@@ -146,9 +146,9 @@ if(Input::exists('get')) {
 						</p>
 					</div>';
 			}
-			
-			
-		}	
+
+
+		}
 
 	} catch(Exception $e) {
 		echo $e->getMessage();
@@ -160,4 +160,3 @@ if(Input::exists('get')) {
 require_once('../includes/footer.php');
 ?>
 	<script src="../scribe/bower_components/requirejs/require.js" data-main="../scribe/setup.js"></script>
-

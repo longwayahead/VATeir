@@ -207,6 +207,21 @@ class Reports {
 		return true;
 	}
 
+	public function getInfo($session_id)  {
+		$noshow = $this->_db->query("SELECT s.id as session_id, s.start, ct.name as card_name, ct.colour, stu.first_name as sfname, stu.last_name as slname,
+		men.first_name as mfname, men.last_name as mlname, pl.callsign
+		FROM sessions s
+		JOIN infocards ic ON ic.session_id = s.id
+		JOIN card_types ct ON ct.id = ic.card_id
+		LEFT JOIN controllers stu ON stu.id = s.student
+		LEFT JOIN controllers men ON men.id = s.mentor
+		LEFT JOIN position_list pl ON pl.id = s.position_id
+			WHERE s.id = ?", [[$session_id]]);
+		if($noshow->count()) {
+			return $noshow->first();
+		}
+	}
+
 	public function getNote($note_id) {
 		$note = $this->_db->db("SELECT
 			`n`.`id` AS `note_id`, `n`.`student_cid`, `n`.`mentor_cid`, `n`.`note_type`, `n`.`submitted_date`, `n`.`subject`, `n`.`text`,
@@ -290,6 +305,12 @@ class Reports {
 	public function addCard($fields = array()) {
 		if(!$this->_db->insert('cards', $fields)) {
 			throw new Exception('There was a problem creating a card.');
+		}
+	}
+
+	public function addInfo($fields = array()) {
+		if(!$this->_db->insert('infocards', $fields)) {
+			throw new Exception('There was a problem creating record of a no show.');
 		}
 	}
 

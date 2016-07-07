@@ -10,7 +10,7 @@ if(isset($_GET['id'])) {
 			Redirect::to('./');
 		}
 	if(Input::exists()) { //if form submitted!
-		
+
 		$validate = new Validate();
 		$validation = $validate->check($_POST, array(
 			'type' => array(
@@ -29,12 +29,17 @@ if(isset($_GET['id'])) {
 		));
 
 		if($validation->passed()) {
+			if(Input::get('text') == "<p><br></p>") {
+				$text = '';
+			} else {
+				$text = Input::get('text');
+			}
 			try {
 				$update = $r->updateNote(array(
 					'note_type'			=> Input::get('type'),
 					'subject'			=> Input::get('subject'),
-					'text'				=> Input::get('text')
-				), 
+					'text'				=> $text
+				),
 
 					[
 						['id', '=', Input::get('id')]
@@ -46,9 +51,9 @@ if(isset($_GET['id'])) {
 					Session::flash('success', 'Note Edited');
 					Redirect::to('./view_student.php?cid=' . Input::get("cid") . '#n' . Input::get('id'));
 				}
-				
 
-					
+
+
 			} catch (Exception $e) {
 				die($e->getMessage());
 			}
@@ -67,7 +72,7 @@ if(isset($_GET['id'])) {
 				</div>
 			</div>
 			';
-				
+
 		}
 	 }
 		?>
@@ -92,7 +97,7 @@ if(isset($_GET['id'])) {
 							<?php
 
 								foreach($types as $type) {
-									echo '<option value="' . $type->id .  '"'; 
+									echo '<option value="' . $type->id .  '"';
 										if($type->id == $note->note_type) {
 											echo ' selected';
 										}
@@ -108,8 +113,8 @@ if(isset($_GET['id'])) {
 						<input class="form-control" autocomplete="off" name="subject" type="text" id="subject" value="<?php echo (!Input::exists()) ? $note->subject : Input::get('subject'); ?>" required>
 					</div>
 				</div>
-				
-				
+
+
 				<div class="form-group">
 					<label for="textArea" class="col-lg-3 control-label">Text</label>
 					<div class="col-lg-8">
@@ -118,7 +123,7 @@ if(isset($_GET['id'])) {
 						?>
 						<div class="scribe" class="form-control"><?php echo (!Input::exists()) ? $note->text : Input::get('text'); ?></div>
 						<input type="hidden" name="text" class="scribe-html" value="<?php echo (!Input::exists()) ? $report->text : Input::get('text'); ?>">
-						
+
 						<!-- <textarea name="text" autocomplete="off" class="form-control" rows="3" id="textArea"><?php echo (!Input::exists()) ? $note->text : Input::get('text'); ?></textarea>
 						<span class="help-block">(Optional) This field supports <a target="_blank" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Markdown</a>!.</span>
 				 -->	</div>

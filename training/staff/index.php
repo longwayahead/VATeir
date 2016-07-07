@@ -50,7 +50,6 @@ if(!$user->hasPermission('tdstaff')) {
 			<div class="panel-body">
 			<?php
 				try {
-					$s = new Sessions;
 					$noreport = $s->get(array(
 							'all' => 1,
 							'noreport' => 1,
@@ -59,7 +58,7 @@ if(!$user->hasPermission('tdstaff')) {
 						));
 					if(!empty($noreport)) {
 					?>
-					<table class="table table-condensed table-striped">
+					<table style="margin-bottom:0px;"  class="table table-condensed table-striped">
 						<tr>
 							<td>
 								<strong>Student</strong>
@@ -111,19 +110,76 @@ if(!$user->hasPermission('tdstaff')) {
 			?>
 		</div>
 	</div>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 	<div class="col-md-6">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">Sessions and Availabilities</h3>
+				<h3 class="panel-title">Future Sessions</h3>
 			</div>
 			<div class="panel-body">
-				<canvas id="canvas" style="padding-left:-20px; padding-right:20px;"></canvas>
+			<?php
+				try {
+					$future = $s->get(array(
+							'all' => 1,
+							'noreport' => 1,
+							'deleted' => 0,
+							'future' => 1
+						));
+					if(!empty($future)) {
+					?>
+					<table style="margin-bottom:0px;" class="table table-condensed table-striped">
+						<tr>
+							<td>
+								<strong>Student</strong>
+							</td>
+							<td>
+								<strong>Mentor</strong>
+							</td>
+							<td>
+								<strong>Position</strong>
+							</td>
+							<td>
+								<strong>Date</strong>
+							</td>
+						</tr>
 
+						<?php $i=1; foreach($future as $session): ?>
+						<?php if($i < 6) { $i++; ?>
+							<tr>
+								<td>
+									<?php echo '<a href="../mentor/view_student.php?cid=' . $session->student . '">' . $session->sfname . ' ' . $session->slname . '</a>'; ?>
+								</td>
+								<td>
+									<?php echo $session->mfname . ' ' . $session->mlname; ?>
+								</td>
+								<td>
+									<?php echo $session->callsign; ?>
+								</td>
+								<td>
+									<?php echo date("j-M-y", strtotime($session->start)); ?>
+								</td>
+							</tr>
+							<?php } ?>
+						<?php endforeach; ?>
+
+					</table>
+					<?php
+					} else {
+						echo '<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No future sessions</div><br>';
+					}
+				} catch(Exception $e) {
+					echo $e->getMessage();
+				}
+				?>
 			</div>
+			<?php
+			if(count($future) > 5) {
+				echo '<div class="panel-footer text-right"><a href="all_sessions.php">View All</a></div>';
+			}
+			?>
 		</div>
 	</div>
 </div>
+
 <div class="row">
 
 		<div class="col-md-6">
@@ -198,6 +254,21 @@ if(!$user->hasPermission('tdstaff')) {
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="row">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Sessions and Availabilities</h3>
+				</div>
+				<div class="panel-body">
+					<canvas id="canvas" style="padding-left:-20px; padding-right:20px;"></canvas>
+
+				</div>
+			</div>
+		</div>
+	</div>
 	</div>
 
 

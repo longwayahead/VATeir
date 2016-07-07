@@ -3,7 +3,10 @@ $pagetitle = "Schedule a Session";
 require_once("../includes/header.php");
 $a = new Availability;
 if(Input::exists('post')) {
-
+  $from = new DateTime(Input::get('from'));
+  $start = Input::get('date') . ' ' . $from->format("H:i:s");
+  $until = new DateTime(Input::get('until'));
+  $finish = Input::get('date') . ' ' . $until->format("H:i:s");
  	 try{
 	  	$validate = new Validate;
 	  	$validation = $validate->check($_POST, array(
@@ -27,10 +30,7 @@ if(Input::exists('post')) {
 	  			)
 	  		));
 	  	if($validation->passed()) {
-	  		$from = new DateTime(Input::get('from'));
-	  		$start = Input::get('date') . ' ' . $from->format("H:i:s");
-	  		$until = new DateTime(Input::get('until'));
-	  		$finish = Input::get('date') . ' ' . $until->format("H:i:s");
+
 	  		if(Input::get('comment')) {
 	  			$comment = Input::get('comment');
 	  			$commentEmail = 'A comment was left with the above booking:<br><br><i>' . $comment . '</i><br><br>';
@@ -250,11 +250,54 @@ if(!$user->hasPermission("$availability->permissions")) {
 	Session::flash('error', 'Cannot mentor at that level');
 	Redirect::to('./');
 }
-// if($user->data()->id == $availability->cid) {
-// 	Session::flash('error', 'You cannot mentor yourself!');
-// 	Redirect::to('./');
-// }
+if($user->data()->id == $availability->cid && $user->data()->id != 1032602) {
+	Session::flash('error', 'You cannot mentor yourself!');
+	Redirect::to('./');
+}
 ?>
+<?php
+$booked = $s->get(
+                  [
+                    'all' => 1,
+                    'future' => 1,
+                    'deleted' => 0,
+                    'thisday' => $availability->date
+                  ]
+              );
+//echo '<pre>';print_r($booked);echo '</pre>';
+if(!empty($booked)) { ?>
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<div class="panel panel-danger">
+			<div class="panel-heading">
+				<h3 class="panel-title">Other mentors have booked sessions on this day</h3>
+			</div>
+			<div class="panel-body">
+
+          <table class="table table-striped table-condensed table-responsive">
+            <tr>
+              <td><strong>Session Type</strong></td>
+              <td><strong>Mentor Name</strong></td>
+              <td><strong>Date</strong></td>
+              <td><strong>From</strong></td>
+              <td><strong>Until</strong></td>
+            </tr>
+            <?php foreach($booked as $b) : ?>
+            <tr>
+              <td><?php echo $b->session_name; ?></td>
+              <td><?php echo $b->mfname . ' ' . $b->mlname; ?></td>
+              <td><?php echo date('jS M Y', strtotime($b->start));  ?></td>
+              <td><?php echo date('H:i', strtotime($b->start)); ?></td>
+              <td><?php echo date('H:i', strtotime($b->finish)); ?></td>
+            </tr>
+          <?php endforeach; ?>
+          </table>
+
+      </div>
+    </div>
+  </div>
+</div>
+<?php } ?>
 <h3 class="text-center">Schedule a session</h3><br>
 <div class="row">
 	<div class="col-md-10 col-md-offset-1">
@@ -289,7 +332,11 @@ if(!$user->hasPermission("$availability->permissions")) {
 									if(count($types)) {
 										$programs = array();
 										foreach($types as $type){
-											echo '<option value="' . $type->report_type_id . '">' . $type->ident . ': ' . $type->session_type_name . '</option>';
+											echo '<option value="' . $type->report_type_id . '"';
+                      if($type->report_type_id == Input::get('type')) {
+                        echo ' selected';
+                      }
+                      echo '>' . $type->ident . ': ' . $type->session_type_name . '</option>';
 										}
 									}
 								} catch(Exception $e) {
@@ -368,26 +415,35 @@ if(!$user->hasPermission("$availability->permissions")) {
 require_once("../../includes/footer.php");
 $from = new DateTime($availability->date . 'T' .$availability->time_from);
 $until = new DateTime($availability->date . 'T' .$availability->time_until);
-// echo $f = $from->format("Y-m-d H:i:s");
-// echo $u = $until->format("Y-m-d H:i:s");
+$min = $from->format("Y-m-d H:i:s");
+$max = $until->format("Y-m-d H:i:s");
+if(!Input::exists()) {
+  $f = $min;
+  $u = $min;
+} else {
+  $f = $start;
+  $u = $finish;
+}
 ?>
 <script>
 $(function () {
     $('#datetimepicker1').datetimepicker({
       format: 'HH:mm',
       stepping: '15',
+      useCurrent: false,
       defaultDate: '<?php echo $f;?>',
-      minDate: '<?php echo $f;?>',
-      maxDate: '<?php echo $u;?>'
+      minDate: '<?php echo $min;?>',
+      maxDate: '<?php echo $max;?>'
     });
 });
 $(function () {
     $('#datetimepicker2').datetimepicker({
       format: 'HH:mm',
       stepping: '15',
+      useCurrent: false,
       defaultDate: '<?php echo $u;?>',
-      minDate: '<?php echo $f;?>',
-      maxDate: '<?php echo $u;?>'
+      minDate: '<?php echo $min;?>',
+      maxDate: '<?php echo $max;?>'
     });
 });
 </script>

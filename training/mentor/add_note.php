@@ -3,7 +3,7 @@ require_once('../includes/header.php');
 
 
 if(Input::exists()) { //if form submitted!
-	
+
 	$validate = new Validate();
 	$validation = $validate->check($_POST, array(
 		'subject' => array(
@@ -18,6 +18,11 @@ if(Input::exists()) { //if form submitted!
 	));
 
 	if($validation->passed()) {
+		if(Input::get('text') == "<p><br></p>") {
+			$text = '';
+		} else {
+			$text = Input::get('text');
+		}
 		try {
 			$r->addNote(array(
 				'student_cid'		=> Input::get('cid'),
@@ -25,7 +30,7 @@ if(Input::exists()) { //if form submitted!
 				'note_type'			=> Input::get('type'),
 				'submitted_date'	=> date("Y-m-d"),
 				'subject'			=> Input::get('subject'),
-				'text'				=> Input::get('text')
+				'text'				=> $text
 			));
 
 			$noteID = $r->getLatestID('notes');
@@ -36,11 +41,11 @@ if(Input::exists()) { //if form submitted!
 				'link_id'	=> $noteID,
 				'submitted'	=> date('Y-m-d H:i:s')
 			));
-			
+
 			Session::flash('success', 'Note Added');
 			Redirect::to('./view_student.php?cid=' . Input::get("cid"));
 
-				
+
 		} catch (Exception $e) {
 			die($e->getMessage());
 		}
@@ -59,7 +64,7 @@ if(Input::exists()) { //if form submitted!
 			</div>
 		</div>
 		';
-			
+
 	}
  }// else {
 
@@ -82,9 +87,9 @@ if(Input::exists()) { //if form submitted!
 			Session::flash('error', 'Insufficient permissions');
 			Redirect::to('./mentor/');
 		}
-	
 
-	} catch (Exception $e) { 
+
+	} catch (Exception $e) {
 		echo $e->getMessage();
 	}
 	?>
@@ -111,8 +116,8 @@ if(Input::exists()) { //if form submitted!
 											$notes = $r->getTypes(1);
 											if($notes) {
 												$programs = array();
-												foreach($notes as $note){				
-												
+												foreach($notes as $note){
+
 
 													echo '<option value="' . $note->id . '"';
 
@@ -134,8 +139,8 @@ if(Input::exists()) { //if form submitted!
 								<input class="form-control" name="subject" type="text" id="subject" required>
 							</div>
 						</div>
-						
-						
+
+
 						<div class="form-group">
 							<label for="textArea" class="col-lg-3 control-label">Text</label>
 							<div class="col-lg-8">
@@ -144,7 +149,7 @@ if(Input::exists()) { //if form submitted!
 							?>
 							<div class="scribe" class="form-control"><?php echo Input::get('text'); ?></div>
 							<input type="hidden" name="text" class="scribe-html" value="<?php echo Input::get('text'); ?>">
-							
+
 								<!-- <textarea name="text" class="form-control" rows="3" id="textArea"><?php echo Input::get('report');?></textarea>
 								<span class="help-block">(Optional) This field supports <a target="_blank" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Markdown</a>!.</span>
 							 --></div>
@@ -168,4 +173,3 @@ echo '</div>';
 require_once("../../includes/footer.php");
 ?>
 <script src="../../scribe/bower_components/requirejs/require.js" data-main="../../scribe/setup.js"></script>
-

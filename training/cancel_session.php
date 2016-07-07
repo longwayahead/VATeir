@@ -10,6 +10,16 @@ try {
 			// echo '<pre>';
 			// 	print_r($session);
 			// echo '</pre>';
+			$r->addCard(array(
+				'cid'		=> $user->data()->id,
+				'card_type'	=> 2,
+				'link_id'	=> Input::get('id'),
+				'submitted'	=> date('Y-m-d H:i:s')
+			));
+			$r->addInfo(array(
+				'session_id'		=> Input::get('id'),
+				'card_id'	=> 8
+			));
 			$edit = $s->edit(['deleted' => 1], [['id', '=', Input::get('id')]]);
 
 			$name = $session->sfname . ' ' . $session->slname;
@@ -114,7 +124,7 @@ body { -webkit-font-smoothing: antialiased !important; -webkit-text-size-adjust:
 
 
 
-			Session::flash('success', 'Session cancelled; mentor emailed.');
+			Session::flash('success', 'Session cancelled!');
 			Redirect::to('./index.php');
 		} else {
 			Session::flash('error', 'Invalid CID.');

@@ -27,7 +27,7 @@ foreach($m as $j) {
 					$sessions = $s->get(array(
 							'mentor' => $user->data()->id,
 							'future' => 1,
-							'cancelled' => 1
+							'deleted' => 0
 						));
 				//	print_r($sessions);
 					if(!empty($sessions)) {

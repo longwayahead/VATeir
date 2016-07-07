@@ -10,6 +10,16 @@ try {
 	// 	Redirect::to('./');
 	// }
 	if(!empty($session)) {
+		$r->addCard(array(
+			'cid'		=> $session->student,
+			'card_type'	=> 2,
+			'link_id'	=> Input::get('id'),
+			'submitted'	=> date('Y-m-d H:i:s')
+		));
+		$r->addInfo(array(
+			'session_id'		=> Input::get('id'),
+			'card_id'	=> 8
+		));
 			$edit = $s->edit(['deleted' => 1], [['id', '=', Input::get('id')]]);
 			$name = $session->sfname;
 			$email = $session->email . ',' . $session->memail;
@@ -112,7 +122,7 @@ body { -webkit-font-smoothing: antialiased !important; -webkit-text-size-adjust:
 
 
 
-			Session::flash('success', 'Session cancelled; student emailed.');
+			Session::flash('success', 'Session cancelled!');
 			Redirect::to('./index.php');
 
 	} else {

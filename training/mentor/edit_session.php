@@ -1,9 +1,12 @@
 <?php
 $pagetitle = "Edit a Session";
 require_once("../includes/header.php");
-$s = new Sessions;
 if(Input::exists('post')) {
 	 	 try{
+			 $from = new DateTime(Input::get('from'));
+			 $start = Input::get('date') . ' ' . $from->format("H:i:s");
+			 $until = new DateTime(Input::get('until'));
+			 $finish = Input::get('date') . ' ' . $until->format("H:i:s");
 		  	$validate = new Validate;
 		  	$validation = $validate->check($_POST, array(
 		  		'type' => array(
@@ -26,10 +29,7 @@ if(Input::exists('post')) {
 		  			)
 		  		));
 		  	if($validation->passed()) {
-		  			$from = new DateTime(Input::get('from'));
-			  		$start = Input::get('date') . ' ' . $from->format("H:i:s");
-			  		$until = new DateTime(Input::get('until'));
-			  		$finish = Input::get('date') . ' ' . $until->format("H:i:s");
+
 				  	// echo Input::get('position') . '<br>';
 				  	// echo Input::get('type') . '<br>';
 				  	// echo $start . '<br>';
@@ -115,7 +115,7 @@ if(!$user->hasPermission($session->program_permissions) || !$user->hasPermission
 										$programs = array();
 										foreach($types as $type){
 											echo '<option value="' . $type->report_type_id . '"';
-												if($type->report_type_id == $session->report_type_id) {
+												if((!Input::exists() && $type->report_type_id == $session->report_type_id) || (Input::exists() && $type->report_type_id == Input::get('type'))) {
 													echo ' selected ';
 												}
 											echo '>' . $type->ident . ': ' . $type->session_type_name . '</option>';
@@ -137,7 +137,7 @@ if(!$user->hasPermission($session->program_permissions) || !$user->hasPermission
 							$positions = $r->getPositions($session->program_id);
 							foreach($positions as $position) {
 								echo '<option value="' . $position->position_id . '"';
-									if($position->position_id == $session->position_id) {
+									if((!Input::exists() && $position->position_id == $session->position_id) || (Input::exists() && Input::get('position') == $position->position_id)) {
 										echo ' selected';
 									}
 								echo '>' . $position->callsign .'</option>';
@@ -181,7 +181,7 @@ if(!$user->hasPermission($session->program_permissions) || !$user->hasPermission
 				      <div class="col-lg-6 col-lg-offset-3">
 				      <input type="hidden" name="id" value="<?php echo Input::get('id');?>">
 				      <input type="hidden" name="date" value="<?php echo date("Y-m-d", strtotime($session->start));?>">
-				      	<a href="cancel_session.php?id=<?php echo Input::get('id'); ?>" class="btn btn-danger">Cancel Session</a>
+				      	<a href="cancel_session.php?id=<?php echo Input::get('id'); ?>" class="btn btn-warning" onclick="return confirm('Are you sure?')">Cancel Session</a>
 				        <button type="submit" id="submit" name="edit" class="btn btn-primary">Edit Session</button>
 
 				      </div>
@@ -197,28 +197,40 @@ if(!$user->hasPermission($session->program_permissions) || !$user->hasPermission
 
 <?php
 require_once("../../includes/footer.php");
-$from = new DateTime($session->start);
-$until = new DateTime($session->finish);
-echo $f = $from->format("Y-m-d H:i:s");
-echo $u = $until->format("Y-m-d H:i:s");
+$a= new Availability;
+$av = $a->get(['session_id' => $session->session_id])[0];
+$min= $av->date . ' ' . $av->time_from;
+$max = $av->date . ' ' . $av->time_until;
+
+if(!Input::exists()) {
+	$f = $session->start;
+	$u = $session->finish;
+
+} else {
+	$f = $start;
+	$u = $finish;
+}
 ?>
+
 <script>
 $(function () {
     $('#datetimepicker1').datetimepicker({
       format: 'HH:mm',
-      stepping: '60',
+      stepping: '15',
+			useCurrent: false,
       defaultDate: '<?php echo $f;?>',
-      minDate: '<?php echo date("Y-m-d H:i:s");?>',
-      maxDate: '<?php echo $u;?>'
+      minDate: '<?php echo $min?>',
+      maxDate: '<?php echo $max;?>'
     });
 });
 $(function () {
     $('#datetimepicker2').datetimepicker({
       format: 'HH:mm',
-      stepping: '60',
+      stepping: '15',
+			useCurrent: false,
       defaultDate: '<?php echo $u;?>',
-      minDate: '<?php echo date("Y-m-d H:i:s");?>',
-      maxDate: '<?php echo $u;?>'
+      minDate: '<?php echo $min;?>',
+      maxDate: '<?php echo $max;?>'
     });
 });
 </script>

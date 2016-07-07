@@ -22,36 +22,45 @@ class Sessions {
 		$this->end="";
 		if(isset($options['student'])) {
 			$this->end .= "sessions.student = ?";
-			$this->where = [$options['student']];
+			$this->where[] = $options['student'];
 		} elseif(isset($options['mentor'])) {
 			$this->end .= "sessions.mentor = ?";
-			$this->where = [$options['mentor']];
+			$this->where[] = $options['mentor'];
 		} elseif(isset($options['id'])) {
 			$this->end .= "sessions.id = ?";
-			$this->where = [$options['id']];
+			$this->where[] = $options['id'];
 		} elseif(isset($options['all'])) {
 			$this->end .= "sessions.id > 0";
 		}
 
 		if(isset($options['noreport'])) {
-			$this->end .= " AND sessions.report_id IS null";
+			$this->end .= " AND sessions.report_id IS null AND sessions.id NOT IN (SELECT session_id FROM infocards)";
 		}
 
 		if(isset($options['future']) && $options['future'] == 1) {
-			$this->end .= " AND sessions.start >= NOW()";
-		} elseif(isset($options['future']) && $options['future'] == 2) {
-			$this->end .=" AND sessions.start < NOW()";
-		}
+					$this->end .= " AND sessions.start >= NOW()";
+				} elseif(isset($options['future']) && $options['future'] == 2) {
+					$this->end .=" AND sessions.start < NOW()";
+				}
 
 		if(isset($options['cancelled']) && $options['cancelled'] = 1) {
 			$this->end .= " AND sessions.deleted = 0";
 		}
-		//echo $this->end;
+
+		if(isset($options['deleted']) && $options['deleted'] = 0) {
+			$this->end .= " AND sessions.deleted = 0";
+		}
 
 		if(isset($options['limit'])) {
 			$limit = $options['limit'];
 			$this->bits = " LIMIT $limit";
 		}
+
+		if(isset($options['thisday'])) {
+			$this->end .= " AND DATE(sessions.start) = DATE(?)";
+			$this->where[] = $options['thisday'];
+		}
+
 		$session = $this->_db->query("SELECT sessions.id as session_id, sessions.student, sessions.mentor, sessions.report_id, sessions.position_id, sessions.report_type, sessions.comment, sessions.start, sessions.finish, sessions.deleted as session_deleted,
 										report_types.id as report_type_id, report_types.program_id, report_types.session_type, report_types.deleted as report_deleted,
 										programs.id as program_id, programs.permissions as program_permissions, programs.name as program_name, programs.ident, programs.sort AS program_sort,
@@ -72,7 +81,8 @@ class Sessions {
 		// print_r($session);
 		if($session->count()) {
 			return $session->results();
-		//	print_r($session->results());
+			//print_r($session);
+			//print_r($session->results());
 		}
 		return false;
 	}

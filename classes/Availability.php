@@ -9,7 +9,7 @@ class Availability {
 	public function __construct() {
 		$this->_db = DB::getInstance();
 	}
-	
+
 	public function add($fields = array()) {
 		if(!$this->_db->insert('availability', $fields)) {
 			throw new Exception('There was a problem adding an availability.');
@@ -27,19 +27,24 @@ class Availability {
 		if(isset($options['limit'])) {
 			$this->limitstr = 'LIMIT ' . $options['limit'];
 		}
-		
+
 		if(isset($options['student'])) {
 			$this->end .= "AND availability.cid = ?";
-			$this->where = [$options['student']];
+			$this->where[] = $options['student'];
 		} elseif(isset($options['id'])) {
 			$this->end .= "AND availability.id = ?";
-			$this->where = [$options['id']];
+			$this->where[] = $options['id'];
 		}
 
 		if(isset($options['deleted']) && $options['deleted'] == 1) {
 			$this->end .= " AND availability.deleted = '1'";
 		} else {
 			$this->end .= " AND availability.deleted = '0'";
+		}
+
+		if(isset($options['session_id']) && $options['session_id'] > 0) {
+			$this->end .= " AND session_id = ?";
+			$this->where[] = $options['session_id'];
 		}
 		$avail = $this->_db->query("SELECT availability.id AS availability_id, availability.cid, availability.date, availability.time_from, availability.time_until, availability.deleted,
 									controllers.id, controllers.first_name, controllers.last_name,
@@ -55,12 +60,12 @@ class Availability {
 											availability.time_until ASC
 									$this->limitstr",
 									[$this->where]);
-	
+
 		if($avail->count()) {
 			$this->count = $avail->count();
 			return $avail->results();
 		}
-		return false;	
+		return false;
 	}
 
 	public function edit($fields, $where) {

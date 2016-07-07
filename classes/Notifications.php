@@ -19,7 +19,7 @@ class Notifications {
 				OR notifications.from = ?)
 				AND notifications.status = 0
 			ORDER BY notification_types.sort DESC, notifications.submitted ASC", [[$type, $id, $id]]);
-	
+
 		if($not->count()) {
 			return $not->results();
 		}
@@ -36,7 +36,7 @@ class Notifications {
 			LEFT JOIN notification_groups ON notifications.to = notification_groups.id
 			LEFT JOIN controllers ON controllers.id = notifications.from
 			WHERE notifications.id = ? OR notifications.to = ?", [[$id, $id]]);
-		
+
 		if(!$pre->count()) {
 			throw new Exception("No record found for that ID");
 		} else {
@@ -46,7 +46,7 @@ class Notifications {
 				return $this->_data;
 			}
 			throw new Exception("Invalid permissions to view that record");
-		}	
+		}
 	}
 	public function getComments($id) { //notification id
 		$comments = $this->_db->query("SELECT notifications_comments.id, notifications_comments.notification_id, notifications_comments.submitted, notifications_comments.submitted_by, notifications_comments.text,

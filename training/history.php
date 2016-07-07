@@ -4,7 +4,7 @@ require_once('includes/header.php');
 
 try {
 	if($user->data()->id == 1032602) {
-		$data = $t->getStudent(1302705); //show someone else's details for testing purposes
+		$data = $t->getStudent(1032602); //show someone else's details for testing purposes
 	} else {
 		$data = $t->getStudent($user->data()->id);
 	}
@@ -212,6 +212,19 @@ try {
 											</div>
 										</div>
 									</div>';
+							} elseif($card->card_type == 2) { //no show
+								$info = $r->getInfo($card->link_id);
+								echo '<div class="row">
+										<div class="col-md-10 col-md-offset-1">
+											<div id="card" class="card" style="background-color:' . $info->colour . '; color:white;">
+												<div class="nopad">
+													<div class="card-title text-center" id="ns' . $info->session_id . '">
+														<strong>' . $info->card_name . ':</strong> <div class="hidden-xs" style="display:inline-block;">' . $info->callsign . ' on</div> ' . date('j\<\s\u\p>S\</\s\u\p\> F', strtotime($info->start)) . '
+														</div>
+				 									</div>
+				 								</div>
+				 							</div>
+				 						</div>';
 							}
 						}
 
