@@ -1,6 +1,7 @@
 <?php
 $pagetitle = "Edit a Session";
 require_once("../includes/header.php");
+
 if(Input::exists('post')) {
 	 	 try{
 			 $from = new DateTime(Input::get('from'));
@@ -77,7 +78,13 @@ $session = $s->get([
 		'id' => Input::get('id')
 	])[0];
 // print_r($session);
-if(!$user->hasPermission($session->program_permissions) || !$user->hasPermission("admin")) {
+// echo $session->program_permissions . '<br>';;
+// if($user->hasPermission($session->program_permissions)) {
+// 	echo 'huzzah';
+// } else {
+// 	echo 'no';
+// }
+if(!$user->hasPermission($session->program_permissions)) {
 	Session::flash('error', 'Cannot mentor at that level');
 	Redirect::to('./');
 }
@@ -181,8 +188,9 @@ if(!$user->hasPermission($session->program_permissions) || !$user->hasPermission
 				      <div class="col-lg-6 col-lg-offset-3">
 				      <input type="hidden" name="id" value="<?php echo Input::get('id');?>">
 				      <input type="hidden" name="date" value="<?php echo date("Y-m-d", strtotime($session->start));?>">
-				      	<a href="cancel_session.php?id=<?php echo Input::get('id'); ?>" class="btn btn-warning" onclick="return confirm('Are you sure?')">Cancel Session</a>
-				        <button type="submit" id="submit" name="edit" class="btn btn-primary">Edit Session</button>
+
+				      	<a href="cancel_session.php?id=<?php echo Input::get('id'); ?>" id="cancel" class="btn btn-warning">Cancel Session</a>
+				        <button type="submit" name="edit" class="btn btn-primary">Edit Session</button>
 
 				      </div>
 				    </div>
@@ -211,6 +219,18 @@ if(!Input::exists()) {
 	$u = $finish;
 }
 ?>
+<script>
+$('#cancel').click(function(e){
+		event.preventDefault();
+    var c = confirm('Are you sure you would like to cancel this session?');
+		if (c == true) {
+			$('#cancel').addClass('disabled');
+			$('#cancel').click(false);
+			window.location = $(this).attr('href');
+		}
+
+});
+</script>
 
 <script>
 $(function () {

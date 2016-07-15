@@ -116,7 +116,7 @@ try {
 													$sliders = $r->getSliderAnswers($report->rep_id);
 													if($sliders) {
 														echo '
-										<br><h4 style="color:white;">Breakdowns</h4>
+										<br><h4 style="color:white;">Syllabus</h4>
 															';
 
 

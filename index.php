@@ -110,7 +110,7 @@ $greeting = ['Hi there.', 'Fáilte.', 'Hello.', 'Dia dhuit.', 'Welcome.'];
 					<table class="table table-striped table-condensed" style="margin:0;">
 						<?php
 							//cacheFile("datafiles/atc.json", "http://api.vateud.net/online/atc/ei.json");
-							$atcs = json_decode(file_get_contents("http://api.vateud.net/online/atc/ei.json"));
+							$atcs = json_decode(@file_get_contents("http://api.vateud.net/online/atc/ei.json"));
 
 							if($atcs) {
 
@@ -171,7 +171,7 @@ $greeting = ['Hi there.', 'Fáilte.', 'Hello.', 'Dia dhuit.', 'Welcome.'];
 					<table class="table table-striped table-condensed" style="margin:0;">
 						<?php
 							//cacheFile("datafiles/in.json", "http://api.vateud.net/online/arrivals/ei.json"); -->
-							$pilots = json_decode(file_get_contents("http://api.vateud.net/online/arrivals/ei.json"));
+							$pilots = json_decode(@file_get_contents("http://api.vateud.net/online/arrivals/ei.json"));
 
 							if($pilots) {
 
@@ -215,7 +215,7 @@ $greeting = ['Hi there.', 'Fáilte.', 'Hello.', 'Dia dhuit.', 'Welcome.'];
 					<table class="table table-striped table-condensed" style="margin:0;">
 						<?php
 							//cacheFile("datafiles/out.json", "");
-							$pilots = json_decode(file_get_contents("http://api.vateud.net/online/departures/ei.json"));
+							$pilots = json_decode(@file_get_contents("http://api.vateud.net/online/departures/ei.json"));
 
 							if($pilots) {
 

@@ -34,18 +34,15 @@ class Availability {
 		} elseif(isset($options['id'])) {
 			$this->end .= "AND availability.id = ?";
 			$this->where[] = $options['id'];
+		} elseif(isset($options['session_id'])) {
+			$this->end .= "AND availability.session_id = ?";
+			$this->where[] = $options['session_id'];
 		}
 
-		if(isset($options['deleted']) && $options['deleted'] == 1) {
-			$this->end .= " AND availability.deleted = '1'";
-		} else {
+		if(isset($options['deleted'])) {
 			$this->end .= " AND availability.deleted = '0'";
 		}
 
-		if(isset($options['session_id']) && $options['session_id'] > 0) {
-			$this->end .= " AND session_id = ?";
-			$this->where[] = $options['session_id'];
-		}
 		$avail = $this->_db->query("SELECT availability.id AS availability_id, availability.cid, availability.date, availability.time_from, availability.time_until, availability.deleted,
 									controllers.id, controllers.first_name, controllers.last_name,
 									students.id, students.cid, students.program,
@@ -60,10 +57,11 @@ class Availability {
 											availability.time_until ASC
 									$this->limitstr",
 									[$this->where]);
-
+								//	print_r($this->end);
 		if($avail->count()) {
 			$this->count = $avail->count();
-			return $avail->results();
+			//echo $avail->count();
+		return $avail->results();
 		}
 		return false;
 	}

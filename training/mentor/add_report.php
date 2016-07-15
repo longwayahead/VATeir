@@ -6,38 +6,7 @@ require_once('../includes/header.php');
 if(Input::exists()) { //if form submitted!
 	// echo Input::get('position');
 	// die();
-	if(isset($_POST['noshow'])) {
 
-		$r->addCard(array(
-			'cid'		=> Input::get("cid"),
-			'card_type'	=> 2,
-			'link_id'	=> Input::get('s'),
-			'submitted'	=> date('Y-m-d H:i:s')
-		));
-		$r->addInfo(array(
-			'session_id'		=> Input::get("s"),
-			'card_id'	=> 7
-		));
-		$s->edit(['deleted' => 1], [['id', '=', Input::get('s')]]);
-		Session::flash('success', 'No-Show Report Added!');
-		Redirect::to('./view_student.php?cid=' . Input::get('cid') . '#ns' . Input::get('s'));
-		die();
-	} elseif(isset($_POST['cancelled'])) {
-		$r->addCard(array(
-			'cid'		=> Input::get("cid"),
-			'card_type'	=> 2,
-			'link_id'	=> Input::get('s'),
-			'submitted'	=> date('Y-m-d H:i:s')
-		));
-		$r->addInfo(array(
-			'session_id'		=> Input::get("s"),
-			'card_id'	=> 8
-		));
-		$s->edit(['deleted' => 1], [['id', '=', Input::get('s')]]);
-		Session::flash('success', 'Marked as cancelled!');
-		Redirect::to('./view_student.php?cid=' . Input::get('cid') . '#ns' . Input::get('s'));
-		die();
-	}
 	$validate = new Validate();
 	$validation = $validate->check($_POST, array(
 		'position' => array(
@@ -169,7 +138,7 @@ if(Input::exists()) { //if form submitted!
 	}
 	?>
 <div class="col-md-10 col-md-offset-1 well">
-	<form class="form-horizontal" method="post" action="add_report.php" onsubmit="document.getElementById('submit').disabled=true; document.getElementById('submit').value='Submitting...';">
+	<form id="thisForm" class="form-horizontal" method="post" action="add_report.php" onsubmit="document.getElementById('submit').disabled=true; document.getElementById('submit').value='Submitting...';">
         <fieldset>
           <legend>Add Report</legend>
           	<div class="form-group">
@@ -300,7 +269,7 @@ if(Input::exists()) { //if form submitted!
 				}
 			} else {
 				echo '<div class="form-group">
-				<div class="col-md-6 col-md-offset-3"><p class="forum-control-static text-danger" stye="font-size:16px;">No Breakdown Options</p></div>
+				<div class="col-md-6 col-md-offset-3"><p class="forum-control-static text-danger" stye="font-size:16px;">No Syllabus Data</p></div>
 				</div>';
 			}
 			?>
@@ -336,9 +305,9 @@ if(Input::exists()) { //if form submitted!
 				<input type="hidden" name="report_type" value="<?php echo $session->report_type;?>">
 				<input type="hidden" name="rating" value="<?php echo $session->rating;?>">
 				<input type="hidden" name="s" value="<?php echo Input::get('s');?>">
-				<button type="submit" id="noshow" name="noshow" class="btn btn-danger" onclick="return confirm('Are you sure?')">No Show</button>
-				<button type="submit" id="cancelled" name="cancelled" class="btn btn-warning" onclick="return confirm('Are you sure?')">Cancelled</button>
-				<button type="submit" id="submit" name="submit" class="btn btn-primary">Submit</button>
+				<a id="noshow" href="noshow_session.php?id=<?php echo Input::get('s');?>" class="btn btn-danger">No Show</a>
+				<a id="cancel" href="cancel_session.php?id=<?php echo Input::get('s');?>&e=0" class="btn btn-warning">Cancelled</a>
+				<button type="submit" name="submit" class="btn btn-primary">Submit</button>
 				</div>
 			</div>
 		</fieldset>
@@ -384,8 +353,30 @@ require_once("../../includes/footer.php");
 </script>
 <script src="../../scribe/bower_components/requirejs/require.js" data-main="../../scribe/setup.js"></script>
 
+<script>
+$('#cancel').click(function(e){
+		event.preventDefault();
+    var c = confirm('Are you sure you would like to cancel this session?');
+		if (c == true) {
+			$('#cancel').addClass('disabled');
+			$('#cancel').click(false);
+			window.location = $(this).attr('href');
+		}
 
+});
+</script>
+<script>
+$('#noshow').click(function(e){
+		event.preventDefault();
+    var c = confirm('Are you sure you would like to mark this session as a No Show?');
+		if (c == true) {
+			$('#noshow').addClass('disabled');
+			$('#noshow').click(false);
+			window.location = $(this).attr('href');
+		}
+
+});
+</script>
 
 
 <?php
-// }

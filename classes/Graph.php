@@ -39,10 +39,13 @@ class Graph {
 		$m = $this->_db->query("SELECT COUNT(s.id) as count
 			FROM sessions s
 			LEFT JOIN report_types e ON e.id = s.report_type
+			LEFT JOIN infocards ic ON ic.session_id = s.id
 			WHERE s.mentor = ?
 			AND e.program_id = ?
 			AND s.report_id is not null
-			AND DATE(s.finish) BETWEEN DATE_SUB(now(), interval 6 month) AND CURDATE()", [[$cid, $program]]);
+			AND s.deleted = 0
+			AND ic.id is null
+			AND DATE(s.finish) BETWEEN DATE_SUB(now(), interval 6 month) AND CURDATE()", [[$cid], [$program]]);
 		if($m->count()) {
 			return $m->first();
 		}
@@ -62,24 +65,23 @@ class Graph {
 			$datehere = $month->m;
 			$dateObj = DateTime::createFromFormat('!n', $datehere);
 			$dt = $dateObj->format('F');
-			$data = $this->_db->query("SELECT count(id) as sessions FROM sessions
-											WHERE MONTH(finish) = ? AND YEAR(finish) = ?
-										GROUP BY MONTH(finish)", [[$month->m], [$month->y]]);
+			$data = $this->_db->query("SELECT (SELECT count(s.id) FROM sessions s LEFT JOIN infocards ic ON ic.session_id = s.id WHERE MONTH(s.finish) = ? AND YEAR(s.finish) = ? AND s.report_id is not null AND ic.id is null) as sessions,
+																(SELECT count(q.id) FROM sessions q RIGHT JOIN infocards ia ON ia.session_id = q.id WHERE MONTH(q.finish) = ? AND YEAR(q.finish) = ? AND ia.card_id = 7) as noshow,
+																(SELECT count(c.id) FROM sessions c RIGHT JOIN infocards ib ON ib.session_id = c.id WHERE MONTH(c.finish) = ? AND YEAR(c.finish) = ? AND ib.card_id = 8) as cancelled,
+																(SELECT count(a.id) FROM availability a WHERE MONTH(a.date) = ? AND YEAR(a.date) = ?) as availability"
+																, [[$month->m, $month->y, $month->m, $month->y, $month->m, $month->y, $month->m, $month->y]]);
+
 			if($data->count()) {
 				$output[$dt]['sessions'] = $data->first()->sessions;
-			}
-			$da= $this->_db->query("SELECT count(id) as availability FROM availability
-											WHERE MONTH(date) = ? AND YEAR(date) = ?
-										GROUP BY MONTH(date)", [[$month->m], [$month->y]]);
-
-			if($da->count()) {
-				$output[$dt]['availability'] = $da->first()->availability;
+				$output[$dt]['availability'] = $data->first()->availability;
+				$output[$dt]['noshow'] = $data->first()->noshow;
+				$output[$dt]['cancelled'] = $data->first()->cancelled;
 			}
 			unset($datehere);
 			unset($dateObj);
 			unset($monthName);
 		}
-		return $output;
+		return ($output);
 	}
 	public function months() {
 		$data = $this->_db->query("SELECT MONTH(date) as m, YEAR(date) as y FROM availability

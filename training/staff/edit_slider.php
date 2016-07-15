@@ -1,5 +1,5 @@
 <?php
-$pagetitle = "Add a breakdown option";
+$pagetitle = "Edit a syllabus item";
 require_once("../includes/header.php");
 if(!$user->hasPermission('tdstaff')) {
 	Session::flash('error', 'Invalid permissions');
@@ -38,7 +38,7 @@ if(Input::exists()) { //if form submitted!
 			Session::flash('success', 'Option edited');
 			Redirect::to('./sliders.php');
 
-				
+
 		} catch (Exception $e) {
 			die($e->getMessage());
 		}
@@ -57,7 +57,7 @@ if(Input::exists()) { //if form submitted!
 			</div>
 		</div></div>
 		';
-			
+
 	}
 }
 
@@ -69,14 +69,14 @@ $programs = $t->getPrograms();
 $categories = $t->getSliderCategories();
 $types = $r->getTypes(0, $a = null);
 ?>
-<h3 class="text-center">Add a breakdown option</h3><br>
+<h3 class="text-center">Edit a syllabus item</h3><br>
 <div class="row">
 	<div class="col-md-12">
 			<div class="row">
 				<div class="col-md-10 col-md-offset-1">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
-							<h3 class="panel-title">Add</h3>
+							<h3 class="panel-title">Edit</h3>
 						</div>
 						<div class="panel-body">
 							<form class="form-horizontal" action="" method="post" onsubmit="document.getElementById('submit').disabled=true; document.getElementById('submit').value='Submitting...';">
@@ -93,7 +93,7 @@ $types = $r->getTypes(0, $a = null);
 											<option value="">Select Type</option>
 											<?php
 												try {
-													
+
 													if($types) {
 														$programs = array();
 														foreach($types as $type){
@@ -126,12 +126,12 @@ $types = $r->getTypes(0, $a = null);
 										<select class="form-control" id="program" name="program">
 								          <?php foreach($programs as $program): ?>
 								          	<option value="<?php echo $program->id; ?>"
-								          	<?php if(isset($_GET['program']) && ($_GET['program'] == $option->program_id)) { 
+								          	<?php if(isset($_GET['program']) && ($_GET['program'] == $option->program_id)) {
 								          				echo 'selected';
 								          			} elseif($option->program_id == $program->id) {
 								          				echo 'selected';
 								          			} ?> >
-								          				
+
 								          	<?php echo $program->name; ?></option>
 								          <?php endforeach; ?>
 								        </select>
@@ -143,12 +143,12 @@ $types = $r->getTypes(0, $a = null);
 										<select class="form-control" id="cat" name="cat">
 								          <?php foreach($categories as $category): ?>
 								          	<option value="<?php echo $category->id; ?>"
-								          	<?php if(isset($_GET['cat']) && ($_GET['cat'] == $option->category)) { 
+								          	<?php if(isset($_GET['cat']) && ($_GET['cat'] == $option->category)) {
 								          				echo 'selected';
 								          			} elseif($option->category == $category->id) {
 								          				echo 'selected';
 								          			} ?> >
-								          				
+
 								          	<?php echo $category->name; ?></option>
 								          <?php endforeach; ?>
 								        </select>

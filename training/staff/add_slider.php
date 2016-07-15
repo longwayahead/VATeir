@@ -1,5 +1,5 @@
 <?php
-$pagetitle = "Add a breakdown option";
+$pagetitle = "Add a syllabus item";
 require_once("../includes/header.php");
 if(!$user->hasPermission('tdstaff')) {
 	Session::flash('error', 'Invalid permissions');
@@ -39,7 +39,7 @@ if(Input::exists()) { //if form submitted!
 			Session::flash('success', 'Option added');
 			Redirect::to('./sliders.php');
 
-				
+
 		} catch (Exception $e) {
 			die($e->getMessage());
 		}
@@ -58,7 +58,7 @@ if(Input::exists()) { //if form submitted!
 			</div>
 		</div></div>
 		';
-			
+
 	}
  }
 
@@ -67,7 +67,7 @@ $programs = $t->getPrograms();
 $categories = $t->getSliderCategories();
 $types = $r->getTypes(0, $a = null);
 ?>
-<h3 class="text-center">Add a breakdown option</h3><br>
+<h3 class="text-center">Add a syllabus item</h3><br>
 <div class="row">
 	<div class="col-md-12">
 			<div class="row">
@@ -91,7 +91,7 @@ $types = $r->getTypes(0, $a = null);
 											<option value="">Select Type</option>
 											<?php
 												try {
-													
+
 													if($types) {
 														$programs = array();
 														foreach($types as $type){

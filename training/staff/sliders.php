@@ -5,7 +5,7 @@ if(!$user->hasPermission('tdstaff')) {
 	Redirect::to(BASE_URL . 'training');
 }
 ?>
-<h3 class="text-center">Breakdown Options</h3><br>
+<h3 class="text-center">Syllabus Data</h3><br>
 <div class="row">
 	<div class="col-md-12">
 		<?php
@@ -45,7 +45,7 @@ if(!$user->hasPermission('tdstaff')) {
 											<td><a href="edit_slider.php?id=<?php echo $slider->sid; ?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></td>
 											<td><a href="delete_slider.php?id=<?php echo $slider->sid; ?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
 										</tr>
-										
+
 										<?php
 									endforeach;
 								} else {
@@ -64,8 +64,8 @@ if(!$user->hasPermission('tdstaff')) {
 
 
 
-			
-			<?php			
+
+			<?php
 		}
 
 		?>

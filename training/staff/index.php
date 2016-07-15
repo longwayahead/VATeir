@@ -42,6 +42,20 @@ if(!$user->hasPermission('tdstaff')) {
 	</div>
 </div>
 <div class="row">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Sessions</h3>
+			</div>
+			<div class="panel-body">
+				<canvas id="canvas" style="padding-left:-20px; padding-right:20px;"></canvas>
+
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
 	<div class="col-md-6">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -255,24 +269,12 @@ if(!$user->hasPermission('tdstaff')) {
 			</div>
 		</div>
 	</div>
-	<div class="row">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
-		<div class="col-md-12">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">Sessions and Availabilities</h3>
-				</div>
-				<div class="panel-body">
-					<canvas id="canvas" style="padding-left:-20px; padding-right:20px;"></canvas>
 
-				</div>
-			</div>
-		</div>
 	</div>
-	</div>
-
-
-
+<?php
+	$g = new Graph;
+	$pop = $g->sa();
+?>
 
 <script>
 	var lineChartData = {
@@ -284,23 +286,45 @@ if(!$user->hasPermission('tdstaff')) {
 			datasets : [
 				{
 					label: "Sessions",
-					fillColor : "rgba(220,220,220,0.2)",
-					strokeColor : "rgba(220,220,220,1)",
-					pointColor : "rgba(220,220,220,1)",
-					pointStrokeColor : "#fff",
-					pointHighlightFill : "#fff",
-					pointHighlightStroke : "rgba(220,220,220,1)",
-					data : [<?php foreach($pop as $month => $result) { echo ($result['sessions'] == false) ? '0' : $result['sessions']; echo ',';}?>]
-				},
-				{
-					label: "Availabilities",
 					fillColor : "rgba(151,187,205,0.2)",
 					strokeColor : "rgba(151,187,205,1)",
 					pointColor : "rgba(151,187,205,1)",
 					pointStrokeColor : "#fff",
 					pointHighlightFill : "#fff",
 					pointHighlightStroke : "rgba(151,187,205,1)",
-					data : [<?php foreach($pop as $month => $result) { echo ($result['availability'] == false) ? '0' : $result['availability']; echo ',';}?>]
+
+					data : [<?php foreach($pop as $month => $result) { echo ($result['sessions'] == false) ? '0' : $result['sessions']; echo ',';}?>]
+				},
+				// },
+				// {
+				// 	label: "Availabilities",
+				// 	fillColor : "rgba(220,220,220,0.2)",
+				// 	strokeColor : "rgba(220,220,220,1)",
+				// 	pointColor : "rgba(220,220,220,1)",
+				// 	pointStrokeColor : "#fff",
+				// 	pointHighlightFill : "#fff",
+				// 	pointHighlightStroke : "rgba(220,220,220,1)",
+				// 	data : [<?php foreach($pop as $month => $result) { echo ($result['availability'] == false) ? '0' : $result['availability']; echo ',';}?>]
+				// },
+				{
+					label: "No Show",
+					fillColor: "rgba(247,70,74,0.2)",
+	        strokeColor: "rgba(247,70,74,1)",
+	        pointColor: "rgba(247,70,74,1)",
+	        pointStrokeColor: "#fff",
+	        pointHighlightFill: "#fff",
+	        pointHighlightStroke: "rgba(247,70,74,0.8)",
+					data : [<?php foreach($pop as $month => $result) { echo ($result['noshow'] == false) ? '0' : $result['noshow']; echo ',';}?>]
+				},
+				{
+					label: "Cancelled",
+					fillColor: "rgba(253,180,92,0.2)",
+					strokeColor: "rgba(253,180,92,1)",
+					pointColor: "rgba(253,180,92,1)",
+					pointStrokeColor: "#fff",
+					pointHighlightFill: "#fff",
+					pointHighlightStroke: "rgba(253,180,92,0.8)",
+					data : [<?php foreach($pop as $month => $result) { echo ($result['cancelled'] == false) ? '0' : $result['cancelled']; echo ',';}?>]
 				}
 			]
 

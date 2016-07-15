@@ -277,6 +277,7 @@ if(!empty($booked)) { ?>
           <table class="table table-striped table-condensed table-responsive">
             <tr>
               <td><strong>Session Type</strong></td>
+              <td><strong>Position</strong></td>
               <td><strong>Mentor Name</strong></td>
               <td><strong>Date</strong></td>
               <td><strong>From</strong></td>
@@ -285,6 +286,7 @@ if(!empty($booked)) { ?>
             <?php foreach($booked as $b) : ?>
             <tr>
               <td><?php echo $b->session_name; ?></td>
+              <td><?php echo $b->callsign; ?></td>
               <td><?php echo $b->mfname . ' ' . $b->mlname; ?></td>
               <td><?php echo date('jS M Y', strtotime($b->start));  ?></td>
               <td><?php echo date('H:i', strtotime($b->start)); ?></td>

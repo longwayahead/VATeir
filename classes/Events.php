@@ -9,7 +9,7 @@ class Events {
 	public function __construct() {
 		$this->_db = DB::getInstance();
 		cacheFile(URL.'datafiles/events.json', 'http://api.vateud.net/events/vacc/IRL.json');
-		$this->_events = json_decode(file_get_contents(URL.'datafiles/events.json'));
+		$this->_events = json_decode(@file_get_contents(URL.'datafiles/events.json'));
 
 		$sessions = $this->sessions();
 		if(!empty($sessions)) {
@@ -25,6 +25,7 @@ class Events {
 
 				$this->current[$session->session_id] = [
 					'id' => $session->session_id,
+					'type' => 0,
 					'title' => $session_name . ' on ' . $session->callsign,
 					'subtitle' => $session_name . ' on ' . $session->position_name,
 					'banner_url' => 'http://www.vateir.org/img/logo.png',
@@ -43,14 +44,15 @@ class Events {
 			$starts_time = date('H:i', strtotime($event->starts));
 			$ends_date = date('j F y', strtotime($event->ends));
 			$ends_time = date('H:i', strtotime($event->ends));
-			if(date('Y-m-d') < date('Y-m-d', (strtotime($event->ends)))) {
+			if(date('Y-m-d H:i:s') <= date('Y-m-d H:i:s', (strtotime($event->ends)))) {
 				$this->current[$event->id] = array(
 					'id' => $event->id,
+					'type' => 1,
 					'title' => $event->title,
 					'subtitle' => $event->subtitle,
 					'banner_url' => $event->banner_url,
 					'description' => $event->description,
-					'short_description' => substr($event->description, 0, 200).'...',
+					'short_description' => htmlentities(substr($event->description, 0, 200)).'...',
 					'starts_date' => $starts_date,
 					'starts_time' => $starts_time,
 					'ends_date' => $ends_date,
@@ -63,7 +65,7 @@ class Events {
 					'subtitle' => $event->subtitle,
 					'banner_url' => $event->banner_url,
 					'description' => $event->description,
-					'short_description' => substr($event->description, 0, 200).'...',
+					'short_description' => htmlentities(substr($event->description, 0, 200)).'...',
 					'starts_date' => $starts_date,
 					'starts_time' => $starts_time,
 					'ends_date' => $ends_date,
@@ -94,7 +96,7 @@ class Events {
 										LEFT JOIN programs p ON r.program_id = p.id
 										LEFT JOIN controllers u ON u.id = s.student
 										LEFT JOIN position_list pos ON pos.id = s.position_id
-										WHERE (s.report_type = 1 OR s.report_type = 3)
+										WHERE (c.id = 1 OR c.id = 3)
 											AND s.deleted = 0
 											AND s.finish >= NOW()");
 			// $sessions = $this->_db->query("SELECT DISTINCT s.id, s.start, s.finish, r.session_type,

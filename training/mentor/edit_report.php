@@ -274,7 +274,7 @@ if(isset($_GET['id'])) {
 					}
 				} else {
 					echo '<div class="form-group">
-					<div class="col-md-6 col-md-offset-3"><p class="forum-control-static text-danger" stye="font-size:16px;">No Breakdown Data</p></div>
+					<div class="col-md-6 col-md-offset-3"><p class="forum-control-static text-danger" stye="font-size:16px;">No Syllabus Data</p></div>
 					</div>';
 				}
 				?>

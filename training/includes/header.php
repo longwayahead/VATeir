@@ -25,7 +25,8 @@ $s = new Sessions;
 			<li><a href="<?php echo BASE_URL . 'training/sessions.php'; ?>">Sessions <?php //echo ($sesh = $s->countSessions($user->data()->id)) ? '<span class="badge danger">'. $sesh .'</span>' : '';?></a></li>
 			<li><a href="<?php echo BASE_URL . 'training/validations.php'; ?>">Validations</a></li>
 			<li><a href="<?php echo BASE_URL . 'training/history.php'; ?>">History</a></li>
-			<li><a href="<?php echo BASE_URL . 'training/token.php'; ?>">Tokens</a></li>
+			<li><a href="<?php echo BASE_URL . 'training/calendar.php'; ?>">Calendar</a></li>
+			<!-- <li><a href="<?php// echo BASE_URL . 'training/token.php'; ?>">Tokens</a></li> -->
 			<li><a href="ts3server://ts.vateud.net?nickname=<?php echo $user->data()->first_name . ' ' . $user->data()->last_name;?>&channel=%5Bcspacer0%5D%20vACC%20ROOMS%2FIreland%20vACC">Teamspeak</a></li>
 
 			<li class="divider"></li>

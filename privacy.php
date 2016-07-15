@@ -19,7 +19,7 @@ require_once('includes/header.php');
 	<h2>Contact &amp; Communication</h2>
 	<p>Users contacting this website and/or its owners do so at their own discretion and provide any such personal details requested at their own risk. Your personal information is kept private and stored securely until a time it is no longer required or has no use, as detailed in the Data Protection Act 1998. Every effort has been made to ensure a safe and secure form to email submission process but advise users using such form to email processes that they do so at their own risk.<br>
 	</p>
-	<p>This website and its owners use any information submitted to provide you with further information about the products / services they offer or to assist you in answering any questions or queries you may have submitted. This includes using your details to subscribe you to any email newsletter program the website operates but only if this was made clear to you and your express permission was granted when submitting any form to email process. Or whereby you the consumer have previously purchased from or enquired about purchasing from the company a product or service that the email newsletter relates to. This is by no means an entire list of your user rights in regard to receiving email marketing material. 
+	<p>This website and its owners use any information submitted to provide you with further information about the products / services they offer or to assist you in answering any questions or queries you may have submitted. This includes using your details to subscribe you to any email newsletter program the website operates but only if this was made clear to you and your express permission was granted when submitting any form to email process. Or whereby you the consumer have previously purchased from or enquired about purchasing from the company a product or service that the email newsletter relates to. This is by no means an entire list of your user rights in regard to receiving email marketing material.
 	Your details are not passed on to any third parties. </p>
 	<h2>Email Newsletter</h2>
 	<p>This website operates an email newsletter program, used to inform subscribers about products and services supplied by this website. Users can subscribe through an online automated process should they wish to do so but do so at their own discretion. Some subscriptions may be manually processed through prior written agreement with the user. </p>
@@ -51,10 +51,7 @@ require_once('includes/header.php');
 	 <li><a href="http://www.google.com/privacy.html" target="_blank">Google Privacy Policy</a></li>
 	 <li><a href="http://www.linkedin.com/static?key=privacy_policy" target="_blank">Linkedin Privacy Policy</a></li>
 	 <li><a href="http://mailchimp.com/legal/privacy/" target="_self">Mailchimp Privacy Policy</a></li>
-     <li><a href="http://www.jamieking.co.uk/website-design.html" target="_blank" title="Web Design Wales">Web Design Wales</a></li>
-     <li><a href="http://www.jamieking.co.uk/resources/free_sample_privacy_policy.html" title="Website Privacy Policy UK" target="_blank">Website Privacy Policy</a></li>
-     <li><a href="http://jamieking.co.uk/kb/task-manager-project-planner-template.html" title="Project Planner Project Planner Template" target="_blank">Project Planner Template</a></li>
-	</ul>
+    </ul>
 	<p>v.2.0 April 2013 Edited &amp; customised by: ### VATeir, Irish vACC of VATSIM ###</p>
 	<p>End of Privacy Policy.</p>
 <!-- InstanceEndEditable -->

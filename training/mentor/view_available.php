@@ -6,7 +6,7 @@ try {
 	$a = new Availability;
 
 	if(Input::get('cid')) {
-		$availables = $a->get(['student' => Input::get('cid')]);
+		$availables = $a->get(['student' => Input::get('cid'), 'deleted' => 0]);
 	} else {
 		$availables = $a->get(['deleted' => 0]);
 	}

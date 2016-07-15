@@ -19,12 +19,12 @@ if(Input::exists()) {
 					'submitted' => date("Y-m-d H:i:s"),
 					'status'	=> 0
 				));
-		
+
 			$comment = $n->addComment(array(
 					'notification_id'	=> $id,
 					'submitted'			=> date("Y-m-d H:i:s"),
 					'submitted_by'		=> 0,
-					'text'				=> 
+					'text'				=>
 					'<p>ATSimTest theory token requested.</p><p><strong>Next Rating: </strong>' . $rating->short . ' (' . $rating->long . ')</p><p><strong>Admin Link: </strong><a target="_blank" class="btn btn-xs btn-primary" href="https://www.atsimtest.com/index.php?cmd=admin&sub=memberdetail&memberid=' . $user->data()->id . '">ATSimTest</a></p>'
 					));
 
@@ -48,8 +48,8 @@ if(Input::exists()) {
       	</h3>
       </div>
       	<div class="panel-body text-center">
-		
-		
+
+
 	<?php if($user->data()->rating < 5) { ?>
 	<p>You are eligible for a rating upgrade requiring a written test. When you wish to request the ability to take this test please press the button below.</p>
 		<br>
@@ -72,7 +72,7 @@ if(Input::exists()) {
 
 
 		?>
-		
+
 	<?php } else { ?>
 		<div style="font-size:16px; color:red;">
 			<br>You have no further upgrades.<br><br>
@@ -82,7 +82,7 @@ if(Input::exists()) {
 	</div>
 	</div>
 		<br>
-	
+
 	</div>
 
 

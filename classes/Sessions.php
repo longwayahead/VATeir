@@ -47,7 +47,7 @@ class Sessions {
 			$this->end .= " AND sessions.deleted = 0";
 		}
 
-		if(isset($options['deleted']) && $options['deleted'] = 0) {
+		if(isset($options['deleted'])) {
 			$this->end .= " AND sessions.deleted = 0";
 		}
 

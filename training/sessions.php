@@ -84,7 +84,7 @@ $s = new Sessions;
 
 								</td>
 								<td>
-									<a href="cancel_session.php?id=<?php echo $session->session_id; ?>" class="btn btn-xs btn-warning"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+									<a id="cancel" href="cancel_session.php?id=<?php echo $session->session_id; ?>" class="btn btn-xs btn-warning" ><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 								</td>
 							</tr>
 
@@ -95,7 +95,7 @@ $s = new Sessions;
 					} else {
 						echo '<br><div class="row">
 								<div class="col-md-6 col-md-offset-3">
-							<div class="text-danger text-center" style="font-size:16px;">No Sessions</div><br>
+							<div class="text-danger text-center" style="font-size:16px;">No sessions</div><br>
 							</div></div>';}
 				} catch(Exception $e) {
 					echo $e->getMessage();
@@ -201,5 +201,19 @@ $s = new Sessions;
 	</div>
 </div>
 </div>
+
 <?php
 require_once('../includes/footer.php');
+?>
+<script>
+$('#cancel').click(function(e){
+		event.preventDefault();
+    var c = confirm('Are you sure you would like to cancel this session?');
+		if (c == true) {
+			$('#cancel').addClass('disabled');
+			$('#cancel').click(false);
+			window.location = $(this).attr('href');
+		}
+
+});
+</script>

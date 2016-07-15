@@ -1,7 +1,12 @@
 <?php
 $pagetitle = "My Availability";
 require_once('includes/header.php');
-$student = $t->getStudent($user->data()->id);
+
+  $student = $t->getStudent($user->data()->id);
+  // if($user->data()->id  != 1032602) {
+  //   Redirect::to('index.php');
+  // }
+
 $a = new Availability;
 if(Input::exists()) {
   try{
@@ -85,7 +90,7 @@ if(Input::exists()) {
                           <span class="glyphicon glyphicon-time"></span>
                       </span>
                   </div>
-                  
+
                 </div>
                 <div class="col-md-2">
                 to
@@ -99,7 +104,7 @@ if(Input::exists()) {
                   </div>
                 </div>
                 <br>
-                
+
               </div>
 
             </div>
@@ -165,13 +170,13 @@ if(Input::exists()) {
           echo '<br><div class="row">
                 <div class="col-md-6 col-md-offset-3">
               <div class="text-danger text-center" style="font-size:16px;">No availability</div><br>
-      
+
               </div></div>';}
       } catch(Exception $e) {
         echo $e->getMessage();
       }
       ?>
-       
+
       </div>
 
     </div>
@@ -201,13 +206,13 @@ require_once('../includes/footer.php');
           stepping: '60'
         });
     });
-   
+
 
     $(function () {
         $('#datetimepicker3').datetimepicker({
           format: 'HH:mm',
           stepping: '60'
         });
-       
+
     });
 </script>

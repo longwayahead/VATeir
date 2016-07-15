@@ -1,5 +1,5 @@
 <?php
-$to = "undisclosed-recipients;";
+$to = "noreply@vateir.org";
 switch($from) {
 	case($from == 'training'):
 		$from = 'VATeir Training <training@vateir.org>';
