@@ -19,33 +19,35 @@ require_once("includes/header.php");
 	}
 </style>
 <?php
-$greeting = ['Hi there.', 'Fáilte.', 'Hello.', 'Dia dhuit.', 'Welcome.'];
+//$greeting = ['Hi there.', 'Fáilte.', 'Hello.', 'Dia dhuit.', 'Welcome.'];
 
 ?>
 <div class="col-md-8 well">
-  <h2 class="text-center"><?php echo $greeting[array_rand($greeting)];?></h2>
+  <h2 class="text-center">Fáilte<?php //echo $greeting[array_rand($greeting)];?></h2>
+	<br>
+	<div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/r1wrc9DLgWQ" frameborder="0" allowfullscreen></iframe></div>
   <?php
-   $stream = json_decode(file_get_contents("https://api.twitch.tv/kraken/streams/vatsim_atc"));
-   if($stream->stream != null && strpos($stream->stream->channel->status, '[VATSIM]') !== false) {
+  // $stream = json_decode(file_get_contents("https://api.twitch.tv/kraken/streams/vatsim_atc"));
+  // if($stream->stream != null && strpos($stream->stream->channel->status, '[VATSIM]') !== false) {
      ?>
-       <div class="videoWrapper"><iframe src="https://player.twitch.tv/?channel=vatsim_atc"></iframe></div>
-       <h5 class="text-center"><?php //echo $stream->stream->channel->status; ?></h5>
+       <!-- <div class="videoWrapper"><iframe src="https://player.twitch.tv/?channel=vatsim_atc"></iframe></div>
+       <h5 class="text-center"><?php //echo $stream->stream->channel->status; ?></h5> -->
      <?php
-   } else {
+  // } else {
 
-       $random = rand(0, 1);
-       if($random == 1) {
-       	echo '<div class="videoWrapper"><iframe width="560" height="315"  src="https://www.youtube.com/embed/gLjKKQ0-BrE" frameborder="0" allowfullscreen></iframe></div>';
-       } else {
-       	echo '<div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/r1wrc9DLgWQ" frameborder="0" allowfullscreen></iframe></div>';
-     }
-  }
+  //     $random = rand(0, 1);
+  //     if($random == 1) {
+  //     	echo '<div class="videoWrapper"><iframe width="560" height="315"  src="https://www.youtube.com/embed/gLjKKQ0-BrE" frameborder="0" allowfullscreen></iframe></div>';
+  //     } else {
+  //     	echo '<div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/r1wrc9DLgWQ" frameborder="0" allowfullscreen></iframe></div>';
+  //   }
+//  }
 
   ?>
 
   <br>
-
-  	<p>Firstly, welcome to VATeir. Nestled between British and French, and oceanic airspace, the Shannon FIR is home to Ireland's aviation presence on VATSIM. VATeir's goal is to bolster this aviation presence with realistic virtual Air Traffic Control to compliment the altogether too realistic weather and stunning scenery on the island of Ireland.</p>
+	<br>
+  	<p>Welcome to VATeir! Nestled between British, French, and oceanic airspace, the Shannon FIR is home to Ireland's aviation presence on VATSIM. VATeir's goal is to bolster this aviation presence with realistic virtual Air Traffic Control to compliment the altogether too realistic weather and stunning scenery on the island of Ireland.</p>
 		<p>For pilots, I invite you to take a look through our website, in particular through the pilots' section, whereas for prospective controllers, I invite you to log in and to submit your availability so that we can get the ball rolling on your ATC training. If you have any questions, please get in touch. Our contact details are on the <i>Staff</i> page in the <i>About</i> section, otherwise drop us a line on the forum.</p>
 
   <p class="text-right"><br>Is mise le meas,<br>
@@ -260,16 +262,16 @@ $greeting = ['Hi there.', 'Fáilte.', 'Hello.', 'Dia dhuit.', 'Welcome.'];
 		</div>
 	</div>
 
-	<div class="panel panel-success">
+<!--<div class="panel panel-success">
 			<div class="panel-heading">
 				<h3 class="panel-title">Events</h3>
 			</div>
 			<div class="panel-body">
 	<?php
-	$ev = new Events;
-	try{
-	$event = $ev->random();
-		if(!empty($event)) {
+	// $ev = new Events;
+	// try{
+	// $event = $ev->random();
+	// 	if(!empty($event)) {
 
 
 	?>
@@ -277,33 +279,34 @@ $greeting = ['Hi there.', 'Fáilte.', 'Hello.', 'Dia dhuit.', 'Welcome.'];
 
 				<div class="thumbnail">
 					<div class="text-center">
-						<img class="img-responsive" data-src="holder.js/300x300" src="<?php echo $event->banner_url;?>" alt="...">
+						<img class="img-responsive" data-src="holder.js/300x300" src="<?php //echo $event->banner_url;?>" alt="...">
 					</div>
 					<div class="caption">
-						<h4><?php echo $event->title;?><small><br><?php echo $event->starts_date . ' ' . $event->starts_time;?>&ndash;<?php echo $event->ends_time;?></small></h4>
-						<p><?php echo strip_tags($event->short_description); ?></p>
-						<p><div class="text-right"><a href="events/index.php#<?php echo $event->id; ?>" class="btn btn-success" role="button">Read More</a></div></p>
+						<h4><?php// echo $event->title;?><small><br><?php //echo $event->starts_date . ' ' . $event->starts_time;?>&ndash;<?php //echo $event->ends_time;?></small></h4>
+						<p><?php// echo strip_tags($event->short_description); ?></p>
+						<p><div class="text-right"><a href="events/index.php#<?php //echo $event->id; ?>" class="btn btn-success" role="button">Read More</a></div></p>
 					</div>
 				</div>
 				</div>
 
 
 	<?php
-		} else {
-			echo '<div class="text-danger text-center" style="font-size:16px;"><br>No forthcoming events</div></div><br>';
-		}
-	}catch (Exception $e) {
-		echo $e->getMessage();
-	}
+		//} else {
+			//echo '<div class="text-danger text-center" style="font-size:16px;"><br>No forthcoming events</div></div><br>';
+		//}
+//	}catch (Exception $e) {
+		//echo $e->getMessage();
+//	}
 	?>
-	</div>
-  <div class="fb-page"
+-->
+<!-- </div> -->
+  <!-- <div class="fb-page"
     data-href="https://www.facebook.com/vateir"
     data-width="380"
     data-hide-cover="false"
     data-show-facepile="false"
-    data-show-posts="false"></div>
-  <!-- <div class="fb-post" data-href="https://www.facebook.com/VATeir/posts/1284026881627510" data-width="350" data-show-text="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/VATeir/posts/1284026881627510"><p>After an absence of several years VATeir&#x2014;the Irish vACC of the VATSIM network&#x2014;is glad to announce its 2016...</p>Posted by <a href="https://www.facebook.com/VATeir/">VATeir</a> on&nbsp;<a href="https://www.facebook.com/VATeir/posts/1284026881627510">Tuesday, 17 May 2016</a></blockquote></div></div> -->
+    data-show-posts="false"></div> -->
+<div class="fb-post" data-href="https://www.facebook.com/VATeir/posts/1284026881627510" data-width="350" data-show-text="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/VATeir/posts/1284026881627510"><p>After an absence of several years VATeir&#x2014;the Irish vACC of the VATSIM network&#x2014;is glad to announce its 2016...</p>Posted by <a href="https://www.facebook.com/VATeir/">VATeir</a> on&nbsp;<a href="https://www.facebook.com/VATeir/posts/1284026881627510">Tuesday, 17 May 2016</a></blockquote></div></div>
 </div>
 <?php
 require_once("includes/footer.php");

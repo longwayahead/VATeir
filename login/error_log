@@ -18,3 +18,8 @@ Stack trace:
 #0 /home/longway1/public_html/vateir/login/terms.php(13): User->term_agree(Array)
 #1 {main}
   thrown in /home/longway1/public_html/vateir/classes/User.php on line 284
+[20-Jul-2016 14:19:12 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'There was a problem accepting a term.' in /home/longway1/public_html/vateir/classes/User.php:284
+Stack trace:
+#0 /home/longway1/public_html/vateir/login/terms.php(13): User->term_agree(Array)
+#1 {main}
+  thrown in /home/longway1/public_html/vateir/classes/User.php on line 284

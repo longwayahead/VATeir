@@ -1,7 +1,9 @@
 <?php
 $pagetitle = "Edit Report";
 require_once('../includes/header.php');
-
+?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/8.5.1/nouislider.min.css">
+<?php
 if(isset($_GET['id'])) {
 	try {
 		$report = $r->getReport(1, $_GET['id']);
@@ -308,6 +310,7 @@ if(isset($_GET['id'])) {
 	require_once("../../includes/footer.php");
 ?>
 	<script src=<?php echo BASE_URL . "js/jquery.nouislider.all.min.js";?>></script>
+	<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/8.5.1/nouislider.min.js"></script> -->
 	<script>
 		<?php
 		if($allSliders) {

@@ -225,7 +225,7 @@ foreach($controllers as $controller) {	//Register users if they aren't already i
 				if($data->first_name != $controller->firstname) {
 					$change['first_name'] = $controller->firstname;
 				}
-				if($data->last_name != $controller->lastname && $data->last_name != 'O Luing') {
+				if($data->last_name != $controller->lastname && $data->last_name != '&#211; L&#250;ing') {
 					$change['last_name'] = $controller->lastname;
 				}
 				if($data->email != $controller->email) {

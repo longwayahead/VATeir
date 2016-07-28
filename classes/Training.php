@@ -268,6 +268,7 @@ class Training {
 										FROM controllers
 										LEFT JOIN ratings ON ratings.id = controllers.rating
 										WHERE $where
+										AND controllers.id <> '937032'
 										ORDER BY controllers.rating DESC, controllers.last_name ASC");
 		//print_r($controllers);
 		if($controllers->count()) {

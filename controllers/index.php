@@ -4,7 +4,7 @@ require_once("includes/header.php");
 $t = new Training;
 try {
 	$controllers = $t->getControllers(['active' => 1]);
-	$inactives = $t->getControllers(['status' => 1]);
+//	$inactives = $t->getControllers(['status' => 1]);
 //	print_r($controllers);
 }catch(Exception $e) {
 	echo $e->getMessage();
@@ -30,7 +30,7 @@ try {
 						<td><strong>Profile</strong></td>
 					</tr>
 					<?php foreach($controllers as $controller): ?>
-						
+
 						<tr>
 							<td><?php echo $controller->first_name . ' ' . $controller->last_name;?></td>
 							<td><?php echo '<div class="hidden-xs" style="display:inline-block;">' . $controller->long . ' (</div>' . $controller->short . '<div class="hidden-xs" style="display:inline-block;">)</div>';?></td>							<td class="hidden-xs"><?php echo $controller->pratingstring;?></td>
@@ -41,7 +41,7 @@ try {
 			<?php	 } else {
 				echo '<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No active controllers</div><br>';
 				} ?>
-				
+
 			</div>
 		</div>
 	</div>
@@ -65,7 +65,7 @@ try {
 						<td><strong>Profile</strong></td>
 					</tr>
 					<?php foreach($inactives as $controller): ?>
-						
+
 						<tr>
 							<td><?php echo $controller->first_name . ' ' . $controller->last_name;?></td>
 							<td><?php echo '<div class="hidden-xs" style="display:inline-block;">' . $controller->long . ' (</div>' . $controller->short . '<div class="hidden-xs" style="display:inline-block;">)</div>';?></td>
@@ -77,7 +77,7 @@ try {
 			<?php	}  else {
 				//echo '<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No controllers</div><br>';
 				} ?>
-				
+
 			</div>
 		</div>
 	</div>

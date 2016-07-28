@@ -1,7 +1,9 @@
 <?php
 $pagetitle = "Add Report";
 require_once('../includes/header.php');
-
+?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/8.5.1/nouislider.min.css">
+<?php
 
 if(Input::exists()) { //if form submitted!
 	// echo Input::get('position');
@@ -138,7 +140,7 @@ if(Input::exists()) { //if form submitted!
 	}
 	?>
 <div class="col-md-10 col-md-offset-1 well">
-	<form id="thisForm" class="form-horizontal" method="post" action="add_report.php" onsubmit="document.getElementById('submit').disabled=true; document.getElementById('submit').value='Submitting...';">
+	<form id="thisForm" class="form-horizontal" method="post" action="add_report.php" onsubmit="document.getElementById('submit').disabled=true;document.getElementById('cancel').disabled=true;document.getElementById('noshow').disabled=true; document.getElementById('submit').value='Submitting...';">
         <fieldset>
           <legend>Add Report</legend>
           	<div class="form-group">
@@ -307,7 +309,7 @@ if(Input::exists()) { //if form submitted!
 				<input type="hidden" name="s" value="<?php echo Input::get('s');?>">
 				<a id="noshow" href="noshow_session.php?id=<?php echo Input::get('s');?>" class="btn btn-danger">No Show</a>
 				<a id="cancel" href="cancel_session.php?id=<?php echo Input::get('s');?>&e=0" class="btn btn-warning">Cancelled</a>
-				<button type="submit" name="submit" class="btn btn-primary">Submit</button>
+				<button id="submit" type="submit" name="submit" class="btn btn-primary">Submit</button>
 				</div>
 			</div>
 		</fieldset>
@@ -321,6 +323,7 @@ echo '</div>';
 require_once("../../includes/footer.php");
 ?>
 <script src=<?php echo BASE_URL . "js/jquery.nouislider.all.min.js";?>></script>
+
 <script>
 	<?php
 	if($sliders) {
@@ -359,7 +362,11 @@ $('#cancel').click(function(e){
     var c = confirm('Are you sure you would like to cancel this session?');
 		if (c == true) {
 			$('#cancel').addClass('disabled');
+			$('#noshow').addClass('disabled');
+			$('#submit').addClass('disabled');
 			$('#cancel').click(false);
+			$('#noshow').click(false);
+			$('#submit').click(false);
 			window.location = $(this).attr('href');
 		}
 
@@ -370,13 +377,17 @@ $('#noshow').click(function(e){
 		event.preventDefault();
     var c = confirm('Are you sure you would like to mark this session as a No Show?');
 		if (c == true) {
+			$('#cancel').addClass('disabled');
 			$('#noshow').addClass('disabled');
+			$('#submit').addClass('disabled');
+			$('#cancel').click(false);
 			$('#noshow').click(false);
+			$('#submit').click(false);
 			window.location = $(this).attr('href');
 		}
 
 });
 </script>
-
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/8.5.1/nouislider.min.js"></script> -->
 
 <?php

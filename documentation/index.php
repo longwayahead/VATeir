@@ -25,6 +25,7 @@ require_once('../includes/header.php');
             <li><a href="#1.3.1">1.3.1 What is it?</a></li>
             <li><a href="#1.3.2">1.3.2 Cancel a Session</a></li>
             <li><a href="#1.3.3">1.3.3 Past Sessions</a></li>
+            <li><a href="#1.3.4">1.3.4 Controller Profile</a></li>
           </ul>
           <li><a href="#1.4">1.4 Validations</a></li>
           <ul>
@@ -293,6 +294,17 @@ require_once('../includes/header.php');
         <img src="https://i.img.ie/sqx.png" alt="sqx.png" border="0" class="img-responsive center-block"/>
         <br>
         <strong>Fig. 1.3.6: Mentoring Report Link</strong>
+        <br>
+        <br>
+      </div>
+      <h6 id="1.3.4">1.3.4 Controller Profile</h6>
+      <p>All controllers including students who connect to the network on an Irish VATSIM position who are also registered with the VATeir database will have their name turn into a link which links to their controller profile.</p>
+      <p>This feature is independent of dashes or underscores which are contained within the callsign.</p>
+      <br>
+      <div class="text-center">
+        <img src="https://i.img.ie/sxH.png" alt="sqx.png" border="0" class="img-responsive center-block"/>
+        <br>
+        <strong>Fig. 1.3.7: Controller Profile</strong>
         <br>
         <br>
       </div>
