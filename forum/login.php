@@ -1,7 +1,7 @@
 <?php
 session_start();
-if(($_SESSION['token'] == $_POST['token']) && ($_SESSION['forum_id'] == $_POST['forum_id'])) {
-    $id = ($_POST['forum_id']);
+if(($_SESSION['token'] == $_SESSION['forum']['token']) && ($_SESSION['forum_id'] == $_SESSION['forum']['forum_id'])) {
+    $id = $_SESSION['forum']['forum_id'];
 
     define('IN_PHPBB', true);
     $phpbb_root_path = './';    //Path to forum
@@ -25,7 +25,6 @@ if(($_SESSION['token'] == $_POST['token']) && ($_SESSION['forum_id'] == $_POST['
             echo 'Error Logging In';
         }
     }
-    //Auto Login User with phpBB User ID 2 (u/name = "admin")
     phpbbAutoLogin($id);
     echo '<a target="_blank" href="' . $phpbb_root_path . append_sid("index.$phpEx").'"> Link </a>';
 

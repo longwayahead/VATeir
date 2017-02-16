@@ -58,8 +58,8 @@ if(!isset($_GET['c']) && (!isset($_GET['a'])) || isset($_GET['c'])) {
 						foreach($students as $student) {
 							// $available = $a->get(['student' => $student->cid,
 							// 											'limit' => 1]); //make the row green if the student has availabilities in the system
-							echo '<tr';
-							echo ($available != false) ? ' class="active">' : '>';
+							echo '<tr>';
+							//echo ($available != false) ? ' class="active">' : '>';
 							echo '
 									<td>' . $student->first_name . ' ' . $student->last_name . '</td>
 									<td class="hidden-xs">' . $student->cid . '</td>

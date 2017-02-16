@@ -1,0 +1,5 @@
+<?php exit; ?>
+1487161381
+SELECT * FROM phpbb_bbcodes WHERE bbcode_id = 13
+901
+a:1:{i:0;a:10:{s:9:"bbcode_id";s:2:"13";s:10:"bbcode_tag";s:7:"youtube";s:15:"bbcode_helpline";s:62:"Youtube video: [youtube]https://youtu.be/ffHLIZh0PHg[/youtube]";s:18:"display_on_posting";s:1:"1";s:12:"bbcode_match";s:55:"[youtube]{IDENTIFIER}://youtu.be/{SIMPLETEXT}[/youtube]";s:10:"bbcode_tpl";s:130:"<iframe width="560" height="315" src="{IDENTIFIER}://www.youtube.com/embed/{SIMPLETEXT}" frameborder="0" allowfullscreen></iframe>";s:16:"first_pass_match";s:76:"!\[youtube\]([a-zA-Z0-9-_]+)\://youtu\.be/([a-zA-Z0-9-+.,_ ]+)\[/youtube\]!i";s:18:"first_pass_replace";s:49:"[youtube:$uid]${1}://youtu.be/${2}[/youtube:$uid]";s:17:"second_pass_match";s:86:"!\[youtube:$uid\]([a-zA-Z0-9-_]+)\://youtu\.be/([a-zA-Z0-9-+.,_ ]+)\[/youtube:$uid\]!s";s:19:"second_pass_replace";s:114:"<iframe width="560" height="315" src="${1}://www.youtube.com/embed/${2}" frameborder="0" allowfullscreen></iframe>";}}

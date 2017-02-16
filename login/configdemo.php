@@ -2,7 +2,7 @@
 /**
  * Example VATSIM SSO Script package.
  * Configuration file for OAuth integration
- * 
+ *
  * @author Kieran Hardern
  * @version 0.2
  */
@@ -57,7 +57,7 @@ $sso['method'] = 'RSA';
  * Your RSA **PRIVATE** key
  * If you are not using RSA, this value can be anything (or not set)
  */
-$sso['cert'] = <<<EOD
+$sso['cert'] = "<<<EOD
 -----BEGIN RSA PRIVATE KEY-----
 MIIEpgIBAAKCAQEA2S5RckDw7SnEoZDmjaQHAQGajVlb7iwKIAX6nXbZBO7Uo3pN
 ItjmAbfkMqKBgWDVowM3UjbKivZNWGzkmxirArpbw9q7JhcX2LW6RfXx+5zn2+zW
@@ -85,7 +85,7 @@ VlU8uJ8JAoGBAOmzlKBcEjJdlD0ZxkgMxp+YqpKkC+ojzf4tORn6jo2d/aKUOIAR
 bfRCMTmDmqyVoUH/SYgQWzD36zAy8HyHEz0U1k6+QMzWPbsEGQSQrk0DgnlOBPWo
 O0gQ0RDS3gD8C5XHvy5vryYjUOB10rUn9A2xLQw4sqKv2suHvIhc0Eit
 -----END RSA PRIVATE KEY-----
-EOD;
+EOD";
 
 
 ?>

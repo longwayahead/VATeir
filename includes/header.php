@@ -4,7 +4,7 @@ session_start();
 ob_start();
 try {
   define ('URL', realpath($_SERVER['DOCUMENT_ROOT']) . '/'); // go to /training/includes/ and update the soft coded link too
-  define ('BASE_URL', 'http://'.$_SERVER['HTTP_HOST'].'/');
+  define ('BASE_URL', 'https://'.$_SERVER['HTTP_HOST'].'/');
   require_once(URL . "core/init.php");
   $user = new User;
 } catch (Exception $e) {
@@ -82,6 +82,7 @@ try {
   	</h3>
   </div>
 <?php
+$directory = 0;
 // $dir = getcwd();
 // $directory = 0;
 // switch($directory) {
@@ -128,7 +129,7 @@ try {
       <li <?php echo ($directory == 4) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "pilots"; ?>>Pilots</a></li>
       <li <?php echo ($directory == 5) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "controllers"; ?>>Controllers</a></li>
      <li <?php echo ($directory == 6) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "about"; ?>>About Us</a></li>
-     <li class="hidden-sm"><a href="https://www.twitch.tv/vatsim_atc/profile" target="_blank">Streams</a></li>
+     <!-- <li class="hidden-sm"><a href="https://www.twitch.tv/vatsim_atc/profile" target="_blank">Streams</a></li> -->
       <li><a target="_blank" href="<?php echo BASE_URL . 'forum'?>">Forum</a></li>
    </ul>
     <ul class="nav navbar-nav navbar-right">

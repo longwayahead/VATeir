@@ -11,12 +11,12 @@ class Airports{
 
 	public function __construct() {
 		$this->_db = DB::getInstance();
-		
+
 		cacheFile(URL.'datafiles/airports.json', 'http://api.vateud.net/airports/country/IE.json', 2592000);
 		$this->_airports = json_decode(file_get_contents(URL.'datafiles/airports.json'), true);
 	}
 
-	public function all() {		
+	public function all() {
 
 		cacheFile(URL.'datafiles/frequencies.json', 'http://api.vateud.net/frequencies/IRL.json', 2592000);
 		$this->_positions = json_decode(file_get_contents(URL.'datafiles/frequencies.json'), true);
@@ -51,14 +51,14 @@ class Airports{
 			}
 		}
 
-		
+
 
 		foreach(array_reverse($this->_airports) as $airport) {
 			$this->airports[$airport['icao']] = $airport;
 			$this->airports[$airport['icao']]['positions'] = $positions[$airport['icao']];
 
 		}
-		
+
 
 		$this->airports['EISN']['icao'] = 'EISN';
 		$this->airports['EISN']['major'] = 1;

@@ -11,8 +11,10 @@ require_once('includes/header.php');
 	  }
 	}
 	$i = 1;
+	$str = "";
 	foreach($all as $air) {
 	  if($air['icao'] != 'EISN') {
+
 	    $str .= '[\'' . $air['data']['name'] . '\', '; //0
 	    $str .= $air['data']['lat'] . ', '; //1
 	    $str .= $air['data']['lon'] . ', ';//2
@@ -35,8 +37,8 @@ require_once('includes/header.php');
 			  </div>
 			  <div class="panel-body">
 
-				  <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-				  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.1.min.js"></script>
+				  <script src="https://maps.google.com/maps/api/js?sensor=false"></script>
+				  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.1.min.js"></script>
 
 				  <div id="map" class="img-responsive" style="width: 500px; height: 400px;"></div>
 

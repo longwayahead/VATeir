@@ -223,7 +223,7 @@ class User {
 
 	public function getAvatarUrl($options = []) {
 		$size = (isset($options['size'])) ? $options['size'] : '100';
-		return 'http://www.gravatar.com/avatar/' . md5($options['email']) . '?s=' . $size . '&d=mm';
+		return 'https://www.gravatar.com/avatar/' . md5($options['email']) . '?s=' . $size . '&d=mm';
 	}
 
 	public function atcHours($cid) {

@@ -229,9 +229,12 @@ class Training {
 				$book[] = $booking;
 			}
 		}
-		if(count($book)) {
-			return $book;
+		if(isset($book)) {
+			if(count($book)) {
+				return $book;
+			}
 		}
+
 		return false;
 	}
 

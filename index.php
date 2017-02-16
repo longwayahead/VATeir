@@ -29,19 +29,19 @@ require_once("includes/header.php");
   <?php
   // $stream = json_decode(file_get_contents("https://api.twitch.tv/kraken/streams/vatsim_atc"));
   // if($stream->stream != null && strpos($stream->stream->channel->status, '[VATSIM]') !== false) {
-     ?>
-       <!-- <div class="videoWrapper"><iframe src="https://player.twitch.tv/?channel=vatsim_atc"></iframe></div>
-       <h5 class="text-center"><?php //echo $stream->stream->channel->status; ?></h5> -->
-     <?php
+  //    ?>
+        <!-- <div class="videoWrapper"><iframe src="https://player.twitch.tv/?channel=vatsim_atc"></iframe></div>
+        <h5 class="text-center"><?php //echo $stream->stream->channel->status; ?></h5> -->
+      <?php
   // } else {
 
-  //     $random = rand(0, 1);
-  //     if($random == 1) {
-  //     	echo '<div class="videoWrapper"><iframe width="560" height="315"  src="https://www.youtube.com/embed/gLjKKQ0-BrE" frameborder="0" allowfullscreen></iframe></div>';
-  //     } else {
-  //     	echo '<div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/r1wrc9DLgWQ" frameborder="0" allowfullscreen></iframe></div>';
-  //   }
-//  }
+    //   $random = rand(0, 1);
+    //   if($random == 1) {
+    //   	echo '<div class="videoWrapper"><iframe width="560" height="315"  src="https://www.youtube.com/embed/gLjKKQ0-BrE" frameborder="0" allowfullscreen></iframe></div>';
+    //   } else {
+    //   	echo '<div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/r1wrc9DLgWQ" frameborder="0" allowfullscreen></iframe></div>';
+    // }
+ //}
 
   ?>
 
@@ -300,13 +300,12 @@ require_once("includes/header.php");
 	?>
 -->
 <!-- </div> -->
-  <!-- <div class="fb-page"
+  <div class="fb-page"
     data-href="https://www.facebook.com/vateir"
     data-width="380"
     data-hide-cover="false"
     data-show-facepile="false"
-    data-show-posts="false"></div> -->
-<div class="fb-post" data-href="https://www.facebook.com/VATeir/posts/1284026881627510" data-width="350" data-show-text="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/VATeir/posts/1284026881627510"><p>After an absence of several years VATeir&#x2014;the Irish vACC of the VATSIM network&#x2014;is glad to announce its 2016...</p>Posted by <a href="https://www.facebook.com/VATeir/">VATeir</a> on&nbsp;<a href="https://www.facebook.com/VATeir/posts/1284026881627510">Tuesday, 17 May 2016</a></blockquote></div></div>
+    data-show-posts="false"></div>
 </div>
 <?php
 require_once("includes/footer.php");

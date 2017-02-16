@@ -6,8 +6,18 @@ $login_type = $_SESSION['ssologin'];
 $user = $_SESSION['ssouser'];
 
 //Reverify that they have accepted all the terms and conditions.
-
-$typ = ($login_type == 'site') ? 0 : 1;
+switch($login_type) {
+	case($login_type == 'site'):
+		$typ = 0;
+		break;
+	case($login_type == 'forum'):
+		$typ = 1;
+		break;
+	case($login_type == 'ts'):
+		$typ = 2;
+		break;
+}
+//$typ = ($login_type == 'site') ? 0 : 1;
 
 $terms = $u->terms($typ, $user->user->id);
 if(!empty($terms)) { //If not, redirect them away so that they can agree to them before being logged in.
@@ -227,15 +237,19 @@ unset($_SESSION['ssouser']);
 				'vatsim_id'	=> $user->user->id
 
 			];
+
 		if(!$forum_id = $f->getID($user->user->id)) {
 			echo 'Registering you. Please wait.';
-			echo '<form id="form" action="' . BASE_URL . 'forum/register.php" method="post">
-					<input type="hidden" name="token" value="' . Token::generate() . '">
-					<input type="hidden" name="data" value="' . htmlentities(serialize($forum_data)) . '">
-					</form>
-				<script type="text/javascript">
-				document.getElementById("form").submit();
-				</script>';
+			$_SESSION['forum']['data'] = $forum_data;
+			$_SESSION['forum']['token'] = Token::generate();
+			// echo '<form id="form" action="' . BASE_URL . 'forum/register.php" method="post">
+			// 		<input type="hidden" name="token" value="' . Token::generate() . '">
+			// 		<input type="hidden" name="data" value="' . htmlentities(serialize($forum_data)) . '">
+			// 		</form>
+			// 	<script type="text/javascript">
+			// 	document.getElementById("form").submit();
+			// 	</script>';
+			Redirect::to(BASE_URL . 'forum/register.php');
 		} else {
 			try { //update the user's name as per cert.
 
@@ -251,12 +265,21 @@ unset($_SESSION['ssouser']);
 	    		// print_r($_SESSION);
 
 	    		// die();
-			echo '<form id="form" action="' . BASE_URL . 'forum/login.php" method="post">
-				<input type="hidden" name="token" value="' . Token::generate() . '">
-				<input type="hidden" name="forum_id" value="' . $forum_id . '">
-			</form>
-			<script type="text/javascript">
-				document.getElementById("form").submit();
-			</script>';
+					$_SESSION['forum']['forum_id'] = $forum_id;
+					$_SESSION['forum']['token'] = Token::generate();
+					Redirect::to(BASE_URL . 'forum/login.php');
+
+			// echo '<form id="form" action="' . BASE_URL . 'forum/login.php" method="post">
+			// 	<input type="hidden" name="token" value="' . Token::generate() . '">
+			// 	<input type="hidden" name="forum_id" value="' . $forum_id . '">
+			// </form>
+			// <script type="text/javascript">
+			// 	document.getElementById("form").submit();
+			// </script>';
 		}
+	} elseif($login_type == 'ts') {
+		$_SESSION['ts'] = $user->user->id;
+
+		Session::flash('success', 'You have successfully logged in.');
+		Redirect::to('../teamspeak/index.php');
 	}
