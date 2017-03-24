@@ -41,8 +41,7 @@ unset($_SESSION['ssouser']);
 	    $t = new Training;
 
 	    try {
-
-	    	$siteLogin = $u->login($user->user->id);
+	    		$siteLogin = $u->login($user->user->id);
 		} catch(Exception $l) {
 
 			echo $l->getMessage();
@@ -100,7 +99,7 @@ unset($_SESSION['ssouser']);
 
 	    	Session::flash('success', 'You are now logged in!');
 	    	Redirect::to('../index.php');
-	    } elseif(!$siteLogin && $user->user->division->code == "EUD" && $user->user->subdivision->code == "IRL") {
+	    } elseif((!$siteLogin && $user->user->division->code == "EUD" && $user->user->subdivision->code == "IRL" )) {
 
 
 	    	//echo '1';
@@ -194,34 +193,34 @@ unset($_SESSION['ssouser']);
 				<p>Do you think it should be? Have you just registered? <a href="<?php echo BASE_URL . 'check/?cid=' . $user->user->id;?>">Check your ID status</a> to see what the hold up is.</p>
 				<p>In the mean time, please feel free to stop by the <a target="_blank" href="<?php echo BASE_URL . 'forum';?>">forum</a>, or to pop on to the <a href="ts3server://ts.vateud.net?nickname=<?php echo $user->user->name_first . ' ' . $user->user->name_last;?>&channel=%5Bcspacer0%5D%20vACC%20ROOMS%2FIreland%20vACC">Teamspeak Server</a>.</p>
 
-				<p><div class="text-danger">For those looking for to control in Ireland as a visiting controller, we are not accepting any visiting controller requests at present due to a backlog in training our own students.</div></p>
+				<!-- <p><div class="text-danger">For those looking for to control in Ireland as a visiting controller, we are not accepting any visiting controller requests at present due to a backlog in training our own students.</div></p> -->
 				<?php
-					// $notAllowed = ($user->user->rating->id > 2) ? false : true; //Set the rating to be S2 and above for visiting controller applications
-					// if ($notAllowed === true) {
-					// 	echo '<p><div class="text-danger">One thing though: you must be at least an S2 to become a visiting controller in VATeir.</div></p>';
-					// }
+					$notAllowed = ($user->user->rating->id > 2) ? false : true; //Set the rating to be S2 and above for visiting controller applications
+					if ($notAllowed === true) {
+						echo '<p><div class="text-danger">One thing though: you must be at least an S2 to become a visiting controller in VATeir.</div></p>';
+					}
 			?>
 			</div>
-				<!-- <form method="post" action="apply.php">
+				<form method="post" action="apply.php">
 				    <div class="wrapper">
 				    <span class="group-btn">
 				    	<br>
 				    	<div class="row">
 				    		<div class="text-center">
-								<button disabled type="submit" name="visiting" class="<?php //echo ($notAllowed === true) ? 'disabled ' : '' ;?>btn btn-success btn-lg">
+								<button type="submit" name="visiting" class="<?php echo ($notAllowed === true) ? 'disabled ' : '' ;?>btn btn-success btn-lg">
 									<span class="glyphicon glyphicon-plane" aria-hidden="true"></span> Become a visiting <?php //echo $user->user->rating->short; ?>
 								</button>
 								<br>
 								<br>
-								<button disabled type="submit" name="transfer" class="btn btn-warning btn-lg">
+								<button type="submit" name="transfer" class="btn btn-warning btn-lg">
 									<span class="glyphicon glyphicon-road" aria-hidden="true"></span> Transfer to VATeir
 				        		</button>
 				        	</div>
 				        <br>
 				        <br>
 				    </span>
-				    <input type="hidden" name="data" value="<?php //echo htmlspecialchars(serialize($user->user), ENT_QUOTES); ?>">
-				</form> -->
+				    <input type="hidden" name="data" value="<?php echo htmlspecialchars(serialize($user->user), ENT_QUOTES); ?>">
+				</form>
 
 		<?php
 
