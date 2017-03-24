@@ -32,11 +32,13 @@ require_once("includes/header.php");
 // var_dump($stream);
 // echo '</pre>';
 
-	if($stream->items[0]->id->videoId != null && strpos($stream->items[0]->snippet->title, 'ATC') !== false) {
+	if(isset($stream->items[0]->id->videoId) && strpos($stream->items[0]->snippet->title, 'ATC') !== false) {
+
      ?>
         <div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $stream->items[0]->id->videoId;?>" frameborder="0" allowfullscreen></iframe></div>
         <h5 class="text-center"><?php echo $stream->items[0]->snippet->title; ?></h5>
       <?php
+		
    } else {
 		 ?>
 		 		<div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/r1wrc9DLgWQ" frameborder="0" allowfullscreen></iframe></div>
