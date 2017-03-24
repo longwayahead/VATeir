@@ -25,23 +25,23 @@ require_once("includes/header.php");
 <div class="col-md-8 well">
   <h2 class="text-center">Fáilte<?php //echo $greeting[array_rand($greeting)];?></h2>
 	<br>
-	<div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/r1wrc9DLgWQ" frameborder="0" allowfullscreen></iframe></div>
-  <?php
-  // $stream = json_decode(file_get_contents("https://api.twitch.tv/kraken/streams/vatsim_atc"));
-  // if($stream->stream != null && strpos($stream->stream->channel->status, '[VATSIM]') !== false) {
-  //    ?>
-        <!-- <div class="videoWrapper"><iframe src="https://player.twitch.tv/?channel=vatsim_atc"></iframe></div>
-        <h5 class="text-center"><?php //echo $stream->stream->channel->status; ?></h5> -->
-      <?php
-  // } else {
 
-    //   $random = rand(0, 1);
-    //   if($random == 1) {
-    //   	echo '<div class="videoWrapper"><iframe width="560" height="315"  src="https://www.youtube.com/embed/gLjKKQ0-BrE" frameborder="0" allowfullscreen></iframe></div>';
-    //   } else {
-    //   	echo '<div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/r1wrc9DLgWQ" frameborder="0" allowfullscreen></iframe></div>';
-    // }
- //}
+  <?php
+  $stream = json_decode(file_get_contents("https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UC3cbTV3I-D6QPE4H8v6W2fw&type=video&eventType=live&key=AIzaSyAQXxoeB3xrW9ZKM3-Rgh4dViUd_5JlWos"));
+// echo '<pre>';
+// var_dump($stream);
+// echo '</pre>';
+
+	if($stream->items[0]->id->videoId != null && strpos($stream->items[0]->snippet->title, 'ATC') !== false) {
+     ?>
+        <div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $stream->items[0]->id->videoId;?>" frameborder="0" allowfullscreen></iframe></div>
+        <h5 class="text-center"><?php echo $stream->items[0]->snippet->title; ?></h5>
+      <?php
+   } else {
+		 ?>
+		 		<div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/r1wrc9DLgWQ" frameborder="0" allowfullscreen></iframe></div>
+		 <?php
+ }
 
   ?>
 
