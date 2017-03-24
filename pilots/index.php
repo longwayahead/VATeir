@@ -160,20 +160,21 @@ require_once('includes/header.php');
 			</div>
 			<div class="panel-body">
 				<?php
-				$d = new Download;
-				try {
-					$airac = 	$d->oadAPI('airac', ['cache' => 1]);
-					$start = new DateTime($airac->start);
-					echo '<font size="200"><strong>' . $airac->cycle . '</strong></font>';
-					echo '<br>Valid from: ' . $start->format('jS F Y H:i') . '<br>';
-					echo '<a href="https://www.navigraph.com/FmsDataManualInstall.aspx" target="_blank">Navigraph   <span class="badge">Payware</span></a>';
-					echo '<br><br>AIRAC cycles provide accurate and up-to-date navigational information to flight crews. It is important that your FMC or FMGS is up to date in order to accept ATC routing instructions.';
-					//print_r($airac);
-				} catch(Exception $e) {
-					echo $e->getMessage();
-				}
+				// $d = new Download;
+				// try {
+				// 	$airac = 	$d->oadAPI('airac', ['cache' => 1]);
+				// 	$start = new DateTime($airac->start);
+				// 	echo '<font size="200"><strong>' . $airac->cycle . '</strong></font>';
+				// 	echo '<br>Valid from: ' . $start->format('jS F Y H:i') . '<br>';
+				// 	echo '<a href="https://www.navigraph.com/FmsDataManualInstall.aspx" target="_blank">Navigraph   <span class="badge">Payware</span></a>';
+				// 	echo '<br><br>AIRAC cycles provide accurate and up-to-date navigational information to flight crews. It is important that your FMC or FMGS is up to date in order to accept ATC routing instructions.';
+				// 	//print_r($airac);
+				// } catch(Exception $e) {
+				// 	echo $e->getMessage();
+				// }
 
 				?>
+				Hang on, the API is experiencing some trouble!
 			</div>
 		</div>
 	</div>
