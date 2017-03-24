@@ -212,9 +212,9 @@ unset($_SESSION['ssouser']);
 								</button>
 								<br>
 								<br>
-								<button type="submit" name="transfer" class="btn btn-warning btn-lg">
+								<!-- <button type="submit" name="transfer" class="btn btn-warning btn-lg">
 									<span class="glyphicon glyphicon-road" aria-hidden="true"></span> Transfer to VATeir
-				        		</button>
+				        		</button> -->
 				        	</div>
 				        <br>
 				        <br>
