@@ -17,14 +17,21 @@ require_once("includes/header.php");
 		width: 100%;
 		height: 100%;
 	}
+	.blink {
+	    animation: blinker 1.5s cubic-bezier(.5, 0, 1, 1) infinite alternate;
+	}
+
+	@keyframes blinker {
+	  from { opacity: 1; }
+	  to { opacity: 0; }
+	}
 </style>
 <?php
 //$greeting = ['Hi there.', 'Fáilte.', 'Hello.', 'Dia dhuit.', 'Welcome.'];
 
 ?>
 <div class="col-md-8 well">
-  <h2 class="text-center">Fáilte<?php //echo $greeting[array_rand($greeting)];?></h2>
-	<br>
+
 
   <?php
   $stream = json_decode(file_get_contents("https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UC3cbTV3I-D6QPE4H8v6W2fw&type=video&eventType=live&key=AIzaSyAQXxoeB3xrW9ZKM3-Rgh4dViUd_5JlWos"));
@@ -36,11 +43,13 @@ require_once("includes/header.php");
 
      ?>
         <div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $stream->items[0]->id->videoId;?>" frameborder="0" allowfullscreen></iframe></div>
-        <h5 class="text-center"><?php echo $stream->items[0]->snippet->title; ?></h5>
+        <h5 class="text-center"><span class="label label-danger blink">Live!</span> <?php echo $stream->items[0]->snippet->title; ?></h5>
       <?php
-		
+
    } else {
 		 ?>
+		 	<h2 class="text-center">Fáilte<?php //echo $greeting[array_rand($greeting)];?></h2>
+	 		<br>
 		 		<div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/r1wrc9DLgWQ" frameborder="0" allowfullscreen></iframe></div>
 		 <?php
  }
@@ -55,13 +64,14 @@ require_once("includes/header.php");
   <p class="text-right"><br>Is mise le meas,<br>
   <i>Martin Bergin</i><br>
   VATeir Director</p>
+
 </div>
 
 
 <div class="col-md-4 well">
 	<div class="panel panel-primary">
 		<div class="panel-heading">
-				<h3 class="panel-title">VATeir Live</h3>
+				<h3 class="panel-title">VATeir Now...</h3>
 			</div>
 			<div class="panel-body">
 
