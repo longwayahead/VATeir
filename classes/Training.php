@@ -129,7 +129,7 @@ class Training {
 	}
 
 	public function fixStudents() {
-		$data = $this->_db->query("SELECT c.id, c.rating FROM controllers c LEFT JOIN students s ON c.id = s.cid WHERE s.cid IS NULL AND c.id <> 0");
+		$data = $this->_db->query("SELECT c.id, c.rating FROM controllers c LEFT JOIN students s ON c.id = s.cid WHERE s.cid IS NULL AND c.id <> 0 and c.vateir_status <> 3 AND c.vateir_status <> 4");
 		if($data->count()) {
 			$update = [];
 			foreach($data->results() as $d) {
