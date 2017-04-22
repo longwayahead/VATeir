@@ -121,15 +121,18 @@ $directory = 0;
     <ul class="nav navbar-nav">
       <li <?php echo ($directory === 0) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL; ?>>Home</a></li>
       <?php if($user->isLoggedIn()) { ?>
+
           <li <?php echo ($directory == 1) ? 'class="active"' : '' ;?>>
 
           <a href="<?php echo BASE_URL . "training/"; ?>"; ?>Training</a></li>
+            <li> <a target="_blank" href="<?php echo BASE_URL . 'training/calendar.php'?>">Calendar </a></li>
       <?php } ?>
       <li <?php echo ($directory == 2) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "events"; ?>>Events</a></li>
       <li <?php echo ($directory == 4) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "pilots"; ?>>Pilots</a></li>
       <li <?php echo ($directory == 5) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "controllers"; ?>>Controllers</a></li>
      <li <?php echo ($directory == 6) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "about"; ?>>About Us</a></li>
      <!-- <li class="hidden-sm"><a href="https://www.twitch.tv/vatsim_atc/profile" target="_blank">Streams</a></li> -->
+
       <li><a target="_blank" href="<?php echo BASE_URL . 'forum'?>">Forum</a></li>
    </ul>
     <ul class="nav navbar-nav navbar-right">
@@ -152,6 +155,7 @@ $directory = 0;
             <li>
               <a href="<?php echo BASE_URL . 'training/availability.php';?>"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> Availability</a>
             </li>
+            <li> <a target="_blank" href="<?php echo BASE_URL . 'training/calendar.php'?>"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Calendar</a></li>
             <li>
               <a href="<?php echo BASE_URL . 'training/history.php';?>"><span class="glyphicon glyphicon-education" aria-hidden="true"></span> History</a>
             </li>
