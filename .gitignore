@@ -45,3 +45,4 @@ Temporary Items
 *.txt
 *.json
 error_log
+core/init.php
