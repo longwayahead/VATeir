@@ -46,3 +46,8 @@ Temporary Items
 *.json
 error_log
 core/init.php
+forum
+sql_backups
+uploads
+atc_solo
+datafiles
