@@ -64,7 +64,7 @@ class Graph {
 		foreach($this->months($interval) as $month) {
 			$datehere = $month->m;
 			$dateObj = DateTime::createFromFormat('!n', $datehere);
-			$dt = $dateObj->format('F');
+			$dt = $dateObj->format('F y');
 			$data = $this->_db->query("SELECT (SELECT count(s.id) FROM sessions s LEFT JOIN infocards ic ON ic.session_id = s.id WHERE MONTH(s.finish) = ? AND YEAR(s.finish) = ? AND s.report_id is not null AND ic.id is null) as sessions,
 																(SELECT count(q.id) FROM sessions q RIGHT JOIN infocards ia ON ia.session_id = q.id WHERE MONTH(q.finish) = ? AND YEAR(q.finish) = ? AND ia.card_id = 7) as noshow,
 																(SELECT count(c.id) FROM sessions c RIGHT JOIN infocards ib ON ib.session_id = c.id WHERE MONTH(c.finish) = ? AND YEAR(c.finish) = ? AND ib.card_id = 8) as cancelled,
