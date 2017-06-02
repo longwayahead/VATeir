@@ -60,8 +60,8 @@ class Graph {
 		return $programs;
 	}
 
-	public function sa() {
-		foreach($this->months() as $month) {
+	public function sa($interval = null) {
+		foreach($this->months($interval) as $month) {
 			$datehere = $month->m;
 			$dateObj = DateTime::createFromFormat('!n', $datehere);
 			$dt = $dateObj->format('F');
@@ -83,9 +83,14 @@ class Graph {
 		}
 		return ($output);
 	}
-	public function months() {
+	public function months($interval = null) {
+		if($interval != null) {
+			$sqlInterval = "6";
+		} else {
+			$sqlInterval = (int)$interval;
+		}
 		$data = $this->_db->query("SELECT MONTH(date) as m, YEAR(date) as y FROM availability
-									WHERE date >= CURDATE() - INTERVAL 6 MONTH AND date < CURDATE()
+									WHERE date >= CURDATE() - INTERVAL {$sqlInterval} MONTH AND date < CURDATE()
 									GROUP BY MONTH(date), YEAR(date)
 									ORDER BY y ASC, m ASC");
 		if($data->count()) {
