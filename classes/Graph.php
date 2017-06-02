@@ -84,7 +84,7 @@ class Graph {
 		return ($output);
 	}
 	public function months($interval = null) {
-		if($interval != null) {
+		if($interval == null) {
 			$sqlInterval = "6";
 		} else {
 			$sqlInterval = (int)$interval;
