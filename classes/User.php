@@ -200,14 +200,26 @@ class User {
 		// print_r($group);
 		if($group->count()) {
 			$permissions = json_decode($group->first()->permissions, true);
-
 			if($permissions[$key] === 1) {
 				return true;
 			}
-
+		}
+		return false;
+	}
+	public function hasAdmin($key) {
+		if($user->data()->adminPerm == 0) {
+			return false;
+		} else {
+			switch($key) {
+				case($key == 'admin'):
+					if($this->data()->adminPerm > 0) {return true;}
+			  break;
+				case($key == 'operations'):
+					if($this->data()->adminPerm == 2) {return true;}
+				break;
+			}
 		}
 
-		return false;
 	}
 
 	public function loginOpen() {
