@@ -125,7 +125,7 @@ switch($directory) {
           <li <?php echo ($directory == 1) ? 'class="active"' : '' ;?>>
 
           <a href="<?php echo BASE_URL . "training/"; ?>"; ?>Training</a></li>
-            <li> <a target="_blank" href="<?php echo BASE_URL . 'training/calendar.php'?>">Calendar </a></li>
+            <!-- <li> <a target="_blank" href="<?php echo BASE_URL . 'training/calendar.php'?>">Calendar </a></li> -->
       <?php } ?>
       <li <?php echo ($directory == 2) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "events"; ?>>Events</a></li>
       <li <?php echo ($directory == 4) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "pilots"; ?>>Pilots</a></li>
