@@ -4,7 +4,7 @@ class Training {
 			$_count = null,
 			$_data = array(),
 			$_sql = "SELECT `s`.`cid`, `s`.`program`,
-					`c`.`id`, `c`.`pratingstring`, `c`.`first_name`, `c`.`last_name`, `c`.`email`, `c`.`rating`, `c`.`pilot_rating`, `c`.`vateir_status`, `c`.`alive`, `c`.`regdate_vatsim`, `c`.`regdate_vateir`, `c`.`grou`,
+					`c`.`id`, `c`.`pratingstring`, `c`.`first_name`, `c`.`last_name`, `c`.`email`, `c`.`rating`, `c`.`pilot_rating`, `c`.`vateir_status`, `c`.`alive`, `c`.`regdate_vatsim`, `c`.`regdate_vateir`, `c`.`grou`, `c`.`adminPerm`,
 					`p`.`id`, `p`.`name`, `p`.`sort`, `p`.`permissions` as `program_permissions`,
 					`r`.`id`, `r`.`long`, `r`.`short`,
 					`v`.`id`, `v`.`status`

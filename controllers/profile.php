@@ -87,6 +87,40 @@ try {
 
 
 		<div class="col-md-4">
+			<?php if($user->isLoggedIn() && $user->hasAdmin("admin")) {
+				?>
+				<div class="panel panel-warning">
+					<div class="panel-heading">
+						<h3 class="panel-title">Admin Functions</h3>
+					</div>
+					<div class="panel-body">
+						<div class="col-md-3">
+							Admin:
+						</div>
+						<div class="col-md-9">
+
+							<form action="../admin/change_permissions.php" method="post">
+								<select <?php echo ($student->adminPerm) ? '' : 'disabled' ;?> class="col-md-6 text-left form-control tick" onchange="this.form.submit()" name="data[<?php echo $student->cid;?>]">
+								<option value="0" selected="">N/A</option>
+								<option value="2" selected="">Operations</option>
+								<option value="1" selected="">Admin</option>
+
+										<?php //echo '<option value="' . $perm->id . '"';
+										// if($perm->id == $data->grou) {
+										// 	echo 'selected="" ';
+										// }
+										// echo '>';
+										// echo ($data->grou >= 10 && $data->grou <= 15) ? $perm->name : 'None' ;
+										// echo '</option>';
+										?>
+								</select>
+							</form>
+						</div>
+					</div>
+				</div>
+				<?php
+			}
+			?>
 				<div class="panel panel-warning">
 					<div class="panel-heading">
 						<h3 class="panel-title"><?php echo $student->first_name;?>'s Bookings</h3>
@@ -119,6 +153,8 @@ try {
 						?>
 					</div>
 				</div>
+
+
 			</div>
 			<div class="col-md-8">
 			<div class="panel panel-warning">
