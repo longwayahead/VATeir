@@ -159,16 +159,17 @@ switch($directory) {
             <li>
               <a href="<?php echo BASE_URL . 'training/history.php';?>"><span class="glyphicon glyphicon-education" aria-hidden="true"></span> History</a>
             </li>
-            <li class="divider"></li>
             <?php
-              if($user->hasPermission('operations')) { ?>
+              if($user->hasAdmin('operations')) { ?>
+            <li class="divider"></li>
+
                 <li>
                   <a href="<?php echo BASE_URL . 'operations/';?>"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Operations</a>
                 </li>
               <?php }
              ?>
              <?php
-               if($user->hasPermission('admin')) { ?>
+               if($user->hasAdmin('admin')) { ?>
                  <li>
                    <a href="<?php echo BASE_URL . 'admin/';?>"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Admin</a>
                  </li>
