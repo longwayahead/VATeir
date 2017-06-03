@@ -210,12 +210,14 @@ class User {
 		if($this->data()->adminPerm == 0) {
 			return false;
 		} else {
-			switch($key) {
-				case($key == 'admin' || $key == 'operations'):
-					if($this->data()->adminPerm == 1) {return true;}
+			switch($this->data()->adminPerm) {
+				case($this->data()->adminPerm == 1):
+					return true;
 			  break;
-				case($key == 'operations'):
-					if($this->data()->adminPerm == 2) {return true;}
+				case($this->data()->adminPerm == 2):
+					if($key == 'operations') {
+						return true;
+					}
 				break;
 			}
 		}
