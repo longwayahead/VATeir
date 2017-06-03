@@ -83,31 +83,31 @@ try {
   </div>
 <?php
 $directory = 0;
-// $dir = getcwd();
-// $directory = 0;
-// switch($directory) {
-//   case(strpos($dir, "training") != true):
-//     $directory = 1;
-//   break;
-//   case(strpos($dir, "events") != true):
-//     $directory = 2;
-//   break;
-//   case(strpos($dir, "pilots") != true):
-//     $directory = 4;
-//   break;
-//   case(strpos($dir, "controllers") != true):
-//     $directory = 5;
-//   break;
-//   case(strpos($dir, "about") != true):
-//     $directory = 6;
-//   break;
-//    case(strpos($dir, "admin") != true):
-//     $directory = 7;
-//   break;
-//   default:
-//     $directory = 0;
-//   break;
-// }
+$dir = getcwd();
+$directory = 0;
+switch($directory) {
+  case(strpos($dir, "training") != true):
+    $directory = 1;
+  break;
+  case(strpos($dir, "events") != true):
+    $directory = 2;
+  break;
+  case(strpos($dir, "pilots") != true):
+    $directory = 4;
+  break;
+  case(strpos($dir, "controllers") != true):
+    $directory = 5;
+  break;
+  case(strpos($dir, "about") != true):
+    $directory = 6;
+  break;
+   case(strpos($dir, "admin") != true):
+    $directory = 7;
+  break;
+  default:
+    $directory = 0;
+  break;
+}
 ?>
 <div class="navbar navbar-default">
   <div class="navbar-header">
@@ -159,6 +159,21 @@ $directory = 0;
             <li>
               <a href="<?php echo BASE_URL . 'training/history.php';?>"><span class="glyphicon glyphicon-education" aria-hidden="true"></span> History</a>
             </li>
+            <li class="divider"></li>
+            <?php
+              if($user->hasPermission('operations')) { ?>
+                <li>
+                  <a href="<?php echo BASE_URL . 'operations/';?>"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Operations</a>
+                </li>
+              <?php }
+             ?>
+             <?php
+               if($user->hasPermission('admin')) { ?>
+                 <li>
+                   <a href="<?php echo BASE_URL . 'admin/';?>"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Admin</a>
+                 </li>
+               <?php }
+              ?>
             <li class="divider"></li>
             <li>
               <a href=<?php echo BASE_URL . "login/logout.php"; ?>><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a>
