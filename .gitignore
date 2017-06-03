@@ -47,7 +47,7 @@ Temporary Items
 error_log
 core/init.php
 forum/**
-sql_backups
-uploads
-atc_solo
-datafiles
+sql_backups/**
+uploads/**
+atc_solo/**
+datafiles/**
