@@ -56,6 +56,27 @@ $t = new Training;$a = new Admin;$incoming = $a->incoming();
 			</div>
 		</div>
 	</div>
+	<div class="col-md-3">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Site Admins</h3>
+			</div>
+			<div class="panel-body">
+				<table class="table table-striped table-condensed">
+					<tr>
+						<td><strong>Name</strong></td>
+						<td><strong>Permission</strong></td>
+					</tr>
+					<?php
+						$admins = $a->getAdmins();
+						foreach($admins as $admin) {
+							echo '<tr><td><a href="../controllers/profile.php?id=' . $admin->id . '">' . $admin->first_name . ' ' . $admin->last_name . '</a></td><td>' . $admin->name.'</td></tr>';
+						}
+					 ?>
+				 </table>
+			</div>
+		</div>
+	</div>
 </div>
 
 

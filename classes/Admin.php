@@ -32,6 +32,19 @@ class Admin {
 		return false;
 	}
 
+	public function getAdmins() {
+			$admins = $this->_db->query("SELECT c.id, c.first_name, c.last_name, p.name
+				FROM controllers c
+				LEFT JOIN permissionsAdmin p
+					ON p.id = c.adminPerm
+				WHERE c.adminPerm > 0
+				ORDER BY p.sort DESC, c.first_name ASC");
+				if($admins->count()) {
+					return $admins->results();
+				}
+				return false;
+	}
+
 	public function getAdminPerms(){
 		$perms = $this->_db->query("SELECT * FROM permissionsAdmin ORDER BY sort ASC");
 		if($perms->count()) {
