@@ -13,10 +13,10 @@ if(!$user->hasAdmin('operations')) {
 ?>
 <style>
 a {
-	color:#9c27b0;
+	color:#ff9800;
 }
 a:hover {
-	color:#8c239e;
+	color:#d17c00;
 }
 
 </style>
