@@ -97,4 +97,5 @@ class Graph {
 			return $data->results();
 		}
 	}
+
 }
