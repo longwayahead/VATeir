@@ -58,7 +58,7 @@ unset($_SESSION['ssouser']);
 
 	    	Session::flash('success', 'You are now logged in!');
 	    	Redirect::to('../index.php');
-	    } elseif((!$siteLogin && $user->user->division->code == "EUD" && $user->user->subdivision->code == "IRL" ) && $user->user->id != '1032602') {
+	    } elseif((!$siteLogin && $user->user->division->code == "EUD" && $user->user->subdivision->code == "IRL" )) {
 				?>
 				<div class="row">
 					<div class="col-md-6 col-md-offset-3">

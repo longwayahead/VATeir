@@ -3,7 +3,7 @@ require_once("../includes/header.php");
 if(isset($_POST["data"])) {
 	$data = unserialize($_POST["data"]);
 	$t = new Training;
-	$isAllowed = $t->getVisCID($user->user->id);
+	$isAllowed = $t->getVisCID($data->id);
 		if($isAllowed == false) { //If they are not in the CIDs table
 			Session::flash("error", "Cannnot access resource!");
 			Redirect::to("../index.php");
