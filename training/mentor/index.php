@@ -221,7 +221,7 @@ foreach($m as $j) {
       ?>
 			</div>
 			<?php
-			if(count($all) > 5) {
+			if(isset($all) == true && count($all) > 5) {
 				echo '<div class="panel-footer text-right"><a href="view_available.php">View All</a></div>';
 			}
 			?>
