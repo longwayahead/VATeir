@@ -431,6 +431,7 @@ class Training {
 		if($cids->count()) {
 			return $cids->results();
 		}
+		return false;
 	}
 
 	public function addVisitingCID($fields = array()) {
