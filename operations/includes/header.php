@@ -5,7 +5,7 @@ unset($url);
 if(!isset($_SESSION['user'])) {
 	Redirect::to(BASE_URL . 'login/');
 }
-if(!$user->hasPermission('operations')) {
+if(!$user->hasAdmin('operations')) {
 	Session::flash('error', 'Insufficient permissions.');
 	Redirect::to('../index.php');
 
