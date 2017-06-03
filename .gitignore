@@ -46,7 +46,7 @@ Temporary Items
 *.json
 error_log
 core/init.php
-forum
+forum/**
 sql_backups
 uploads
 atc_solo
