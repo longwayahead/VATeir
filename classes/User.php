@@ -207,7 +207,7 @@ class User {
 		return false;
 	}
 	public function hasAdmin($key) {
-		if($user->data()->adminPerm == 0) {
+		if($this->data()->adminPerm == 0) {
 			return false;
 		} else {
 			switch($key) {
