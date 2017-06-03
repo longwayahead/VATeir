@@ -280,6 +280,7 @@ foreach($controllers as $controller) {	//Register users if they aren't already i
 				), [['id', '=', $controller->cid]]);
 				$register["setasinactive"][] = $controller->cid;
 			}
+
 		} catch (Exception $f) {
 			echo $f->getMessage();
 			$register["updatefail"][$controller->cid] = $f->getMessage();
@@ -288,6 +289,17 @@ foreach($controllers as $controller) {	//Register users if they aren't already i
 	}
 
 unset($change);
+
+}
+//see whether the visiting controllers are still active
+$dead = $user->getVisitingDead();
+if(count($dead)) {
+	foreach($dead as $d) {
+		$update = $user->update(array(
+			'alive' => 0
+		), [['id', '=', $d->id]]);
+		$register["setasinactive"][] = $d->id;
+	}
 
 }
 

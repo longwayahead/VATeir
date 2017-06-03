@@ -128,6 +128,14 @@ class User {
 		return $pull->user->PreviousRatingInt;
 	}
 
+	public function getVisitingDead(){
+		$this->_db->query("SELECT DISTINCT c.id FROM controllers c LEFT JOIN logins l ON l.cid = c.id WHERE l.datetime < date_sub(now(), INTERVAL 6 MONTH) AND c.vateir_status = 2 AND c.alive = 1");
+		if($this->_db->count()) {
+			return $this->_db->results();
+		}
+		return false;
+	}
+
 	public function isActive($cid, $interval = "3 MONTH") {
 		$this->_db->query("SELECT `c`.`id`, `c`.`first_name`, `c`.`last_name`, `c`.`email`, `c`.`rating`, `c`.`pilot_rating`, `c`.`vateir_status`, `c`.`alive`, `c`.`regdate_vatsim`, `c`.`regdate_vateir`, `c`.`grou`, `l`.`cid`, `l`.`datetime`
 			FROM `controllers` AS `c`
