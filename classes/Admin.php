@@ -32,6 +32,14 @@ class Admin {
 		return false;
 	}
 
+	public function getAdminPerms(){
+		$perms = $this->_db->query("SELECT * FROM permissionsAdmin ORDER BY sort ASC");
+		if($perms->count()) {
+			return $perms->results();
+		}
+		return false;
+	}
+
 	public function getAllowed() {
 		$allowed = $this->_db->query("SELECT * FROM allowed");
 		if($allowed->count()) {

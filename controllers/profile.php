@@ -88,6 +88,8 @@ try {
 
 		<div class="col-md-4">
 			<?php if($user->isLoggedIn() && $user->hasAdmin("admin")) {
+				$a = new Admin;
+				$perms = $a->getAdminPerms();
 				?>
 				<div class="panel panel-warning">
 					<div class="panel-heading">
@@ -100,19 +102,17 @@ try {
 						<div class="col-md-9">
 
 							<form action="../admin/change_permissions.php" method="post">
-								<select <?php echo ($student->adminPerm) ? '' : 'disabled' ;?> class="col-md-6 text-left form-control tick" onchange="this.form.submit()" name="data[<?php echo $student->cid;?>]">
-								<option value="0" selected="">N/A</option>
-								<option value="2" selected="">Operations</option>
-								<option value="1" selected="">Admin</option>
-
-										<?php //echo '<option value="' . $perm->id . '"';
-										// if($perm->id == $data->grou) {
-										// 	echo 'selected="" ';
-										// }
-										// echo '>';
-										// echo ($data->grou >= 10 && $data->grou <= 15) ? $perm->name : 'None' ;
-										// echo '</option>';
-										?>
+								<select
+								<?php echo ($student->cid == 1032602) ? ' disabled ' : ''; ?>
+								 class="col-md-6 text-left form-control tick" onchange="this.form.submit()" name="data[<?php echo $student->cid;?>]">
+									<?php foreach($perms as $perm){
+										echo '<option value="' . $perm->id . '"';
+										if($perm->id == $student->adminPerm) {
+											echo 'selected ';
+										}
+										echo ">$perm->name</option>";
+									}
+						?>
 								</select>
 							</form>
 						</div>
