@@ -422,6 +422,13 @@ class Training {
 		throw new Exception("Problem getting position data");
 	}
 
+	public function getVisitingCIDs() {
+		$cids = $this->_db->query("SELECT * FROM visitingCIDs");
+		if($cids->count()) {
+			return $cids->results();
+		}
+	}
+
 	public function getMentors() {
 		$mentors = $this->_db->query("SELECT controllers.id as cid, controllers.first_name, controllers.pratingstring, controllers.last_name, controllers.grou,
 											permissions.id, permissions.name, permissions.sort,
