@@ -81,34 +81,7 @@ try {
 
   	</h3>
   </div>
-<?php
-$directory = 0;
-$dir = getcwd();
-$directory = 0;
-switch($directory) {
-  case(strpos($dir, "training") != true):
-    $directory = 1;
-  break;
-  case(strpos($dir, "events") != true):
-    $directory = 2;
-  break;
-  case(strpos($dir, "pilots") != true):
-    $directory = 4;
-  break;
-  case(strpos($dir, "controllers") != true):
-    $directory = 5;
-  break;
-  case(strpos($dir, "about") != true):
-    $directory = 6;
-  break;
-   case(strpos($dir, "admin") != true):
-    $directory = 7;
-  break;
-  default:
-    $directory = 0;
-  break;
-}
-?>
+
 <div class="navbar navbar-default">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -119,19 +92,17 @@ switch($directory) {
   </div>
   <div class="navbar-collapse collapse navbar-responsive-collapse">
     <ul class="nav navbar-nav">
-      <li <?php echo ($directory === 0) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL; ?>>Home</a></li>
+      <li><a href=<?php echo BASE_URL; ?>>Home</a></li>
       <?php if($user->isLoggedIn()) { ?>
 
-          <li <?php echo ($directory == 1) ? 'class="active"' : '' ;?>>
+          <li>
 
           <a href="<?php echo BASE_URL . "training/"; ?>"; ?>Training</a></li>
-            <!-- <li> <a target="_blank" href="<?php echo BASE_URL . 'training/calendar.php'?>">Calendar </a></li> -->
       <?php } ?>
-      <li <?php echo ($directory == 2) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "events"; ?>>Events</a></li>
-      <li <?php echo ($directory == 4) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "pilots"; ?>>Pilots</a></li>
-      <li <?php echo ($directory == 5) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "controllers"; ?>>Controllers</a></li>
-     <li <?php echo ($directory == 6) ? 'class="active"' : '' ;?>><a href=<?php echo BASE_URL . "about"; ?>>About Us</a></li>
-     <!-- <li class="hidden-sm"><a href="https://www.twitch.tv/vatsim_atc/profile" target="_blank">Streams</a></li> -->
+      <li><a href=<?php echo BASE_URL . "events"; ?>>Events</a></li>
+      <li><a href=<?php echo BASE_URL . "pilots"; ?>>Pilots</a></li>
+      <li><a href=<?php echo BASE_URL . "controllers"; ?>>Controllers</a></li>
+     <li><a href=<?php echo BASE_URL . "about"; ?>>About Us</a></li>
 
       <li><a target="_blank" href="<?php echo BASE_URL . 'forum'?>">Forum</a></li>
    </ul>
