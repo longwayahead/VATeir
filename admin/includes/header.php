@@ -17,7 +17,8 @@ $a = new Admin;
 	Admin
 			<li><a href="<?php echo BASE_URL . 'admin/'; ?>">Home</a></li>
 			<li><a href="<?php echo BASE_URL . 'admin/terms.php'; ?>">T&Cs</a></li>
-			<li><a href="<?php echo BASE_URL . 'admin/allow.php'; ?>">Allow</a></li>
+			<li><a href="<?php echo BASE_URL . 'admin/visiting.php'; ?>">Visiting</a></li>
+			<li><a href="<?php echo BASE_URL . 'admin/allow.php'; ?>">Authorised</a></li>
 			<li><a href="<?php echo BASE_URL . 'admin/downloads.php'; ?>">Downloads</a></li>
 
 	</ul>
