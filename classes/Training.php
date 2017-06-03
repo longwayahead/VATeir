@@ -429,6 +429,21 @@ class Training {
 		}
 	}
 
+	public function addVisitingCID($fields = array()) {
+		if(!$this->_db->insert('visitingCIDs', $fields)) {
+			throw new Exception('There was a problem adding an visiting controller\'s CID.');
+		}
+	}
+
+	public function deleteVisitingCID($cid) {
+		$delete = $this->_db->delete('visitingCIDs', [['cid', '=', $cid]]);
+		if($delete) {
+			return true;
+		} else {
+			throw new Exception("There was a problem deleting an visiting controller's CID.");
+		}
+	}
+
 	public function getMentors() {
 		$mentors = $this->_db->query("SELECT controllers.id as cid, controllers.first_name, controllers.pratingstring, controllers.last_name, controllers.grou,
 											permissions.id, permissions.name, permissions.sort,

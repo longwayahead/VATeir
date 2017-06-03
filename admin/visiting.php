@@ -38,7 +38,7 @@ $visitingCIDs = $t->getVisitingCIDs();
   					foreach($visitingCIDs as $cid) {
   						echo '<tr>
   								<td>' . $cid->cid .  '</td>
-  								<td><a class="btn btn-xs btn-default" href="delete_allow.php?id=' . $cid->cid . '"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+  								<td><a class="btn btn-xs btn-default" href="delete_visiting.php?id=' . $cid->cid . '"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
   							</tr>';
   					} ?>
           </table>
