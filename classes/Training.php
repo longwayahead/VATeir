@@ -422,8 +422,12 @@ class Training {
 		throw new Exception("Problem getting position data");
 	}
 
-	public function getVisitingCIDs() {
-		$cids = $this->_db->query("SELECT * FROM visitingCIDs");
+	public function getVisitingCIDs($where = null) {
+		$sql = null;
+		if (isset($where) == true) {
+			$sql = "WHERE cid = ?";
+		}
+		$cids = $this->_db->query("SELECT * FROM visitingCIDs {$sql}", [[$where]]);
 		if($cids->count()) {
 			return $cids->results();
 		}
