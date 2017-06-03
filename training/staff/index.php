@@ -9,36 +9,36 @@ if(!$user->hasPermission('tdstaff')) {
 <h3 class="text-center">Staff Dashboard</h3><br>
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
-		<div class="panel panel-primary">
+		<!-- <div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title">Staff Tasks</h3>
 			</div>
 			<div class="panel-body">
 				<table class="table table-responsive table-striped table-condensed">
 					<?php
-					$notifications = $n->getList(1, 3);
-					if($notifications) {
-						echo '<tr>
-								<td><strong>Type</strong></td>
-								<td><strong>Controller</strong></td>
-								<td class="nowrap"><strong>Submitted On</strong></td>
-								<td><strong>View</strong></td>
-							</tr>';
-						foreach($notifications as $notification) {
-							echo '<tr>
-									<td>' . $notification->type_name . '</td>
-									<td><a href="../mentor/view_student.php?cid=' . $notification->from . '">' . $notification->first_name . ' ' . $notification->last_name . '</a></td>
-									<td class="nowrap">' . date("j-M-Y", strtotime($notification->submitted)) . '</td>
-									<td><a href="../../notifications/view.php?id=' . $notification->notification_id . '" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a></td>
-								</tr>';
-						}
-					} else {
-						echo '<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No tasks</div>';
-					}
+					// $notifications = $n->getList(1, 3);
+					// if($notifications) {
+					// 	echo '<tr>
+					// 			<td><strong>Type</strong></td>
+					// 			<td><strong>Controller</strong></td>
+					// 			<td class="nowrap"><strong>Submitted On</strong></td>
+					// 			<td><strong>View</strong></td>
+					// 		</tr>';
+					// 	foreach($notifications as $notification) {
+					// 		echo '<tr>
+					// 				<td>' . $notification->type_name . '</td>
+					// 				<td><a href="../mentor/view_student.php?cid=' . $notification->from . '">' . $notification->first_name . ' ' . $notification->last_name . '</a></td>
+					// 				<td class="nowrap">' . date("j-M-Y", strtotime($notification->submitted)) . '</td>
+					// 				<td><a href="../../notifications/view.php?id=' . $notification->notification_id . '" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a></td>
+					// 			</tr>';
+					// 	}
+					// } else {
+					// 	echo '<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No tasks</div>';
+					// }
 					?>
 				</table>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </div>
 <div class="row">
