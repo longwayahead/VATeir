@@ -3,7 +3,7 @@ require_once('../includes/header.php');
 $data = Input::get('data');
 $cid = key($data);
 $program = $data[$cid];
-if(!$user->hasPermission("admin")) {
+if(!$user->hasPermission("tdstaff")) {
 	Session::flash('error', 'Invalid permissions.');
 	Redirect::to('../mentor/view_student.php?cid=' . $cid);
 }
@@ -23,4 +23,3 @@ if(Input::exists('post')) {
 	Session::flash('error', 'No data passed to the form.');
 	Redirect::to('../mentor/view_student.php?cid=' . $cid);
 }
-

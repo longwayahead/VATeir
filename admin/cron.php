@@ -1,11 +1,6 @@
 <?php
 $pagetitle = "View Cron";
 require_once("includes/header.php");
-if(!$user->hasPermission('admin')) {
-	Session::flash('error', 'Invalid permissions.');
-	Redirect::to('../index.php');
-}
-
 
 $c = new Crons;
 $cron = $c->get(Input::get('id'));
