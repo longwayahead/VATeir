@@ -429,12 +429,9 @@ class Training {
 		return false;
 	}
 
-	public function getVisitingCIDs($where = null) {
-		$sql = null;
-		if (isset($where) == true) {
-			$sql = "WHERE cid = ?";
-		}
-		$cids = $this->_db->query("SELECT * FROM visitingCIDs {$sql}", [[$where]]);
+	public function getVisitingCIDs() {
+
+		$cids = $this->_db->query("SELECT * FROM visitingCIDs");
 		if($cids->count()) {
 			return $cids->results();
 		}
