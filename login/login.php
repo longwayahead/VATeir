@@ -49,180 +49,131 @@ unset($_SESSION['ssouser']);
 
 	    if($siteLogin) {
 
-	    // 	if($user->user->rating->id > 7) { //get the CID's real rating (instead of SUP/ADM/INS etc)
-			// 	$rating = $u->getRealRating($user->user->id);
-			// } else {
-			// 	$rating = $user->user->rating->id;
-			// }
-			// //check rating is the same as before
-	    // 	$changeProgram = false;
-	    // 	if($u->data()->rating != $rating) {
-	    // 		$changeProgram = true;
-	    // 	}
-			//$pilotRating = $t->pilotRating($user->user->pilot_rating->rating);
-	    	//change user to alive and update their details
-	    //	if($user->user->division->code == "EUD" && $user->user->subdivision->code == "IRL") {
-			// 	$u->update([
-			// 		'alive' 		=> 1,
-			// 		'vateir_status' => 1,
-			// 		//'first_name' 	=> $user->user->name_first,
-			// 		//'last_name' 	=> $user->user->name_last,
-			// 		//'email'			=> $user->user->email,
-			// 		//'rating'		=> $rating,
-			// 		//'pilot_rating'	=> $user->user->pilot_rating->rating,
-			// 		//'pratingstring'	=> $pilotRating
-			// 	], [['id', '=', $u->data()->id]]);
-			// } else {
-			// 	$u->update([
-			// 		'alive' 		=> 1,
-			// 		'vateir_status' => 2,
-			// 		//'first_name' 	=> $user->user->name_first,
-			// 		//'last_name' 	=> $user->user->name_last,
-			// 		//'email'			=> $user->user->email,
-			// 		//'rating'		=> $rating,
-			// 		//'pilot_rating'	=> $user->user->pilot_rating->rating,
-			// 		//'pratingstring'	=> $pilotRating
-			// 	], [['id', '=', $u->data()->id]]);
-			//}
-			if($user->user->alive == 0) {
-				$u->update([
-					'alive' => 1
-				], [['id', '=', $u->data()->id]]);
-			}
-			// if($changeProgram === true) {
-			// 	$t = new Training;
-			// 	$program = $t->program($rating);
-			// 	$studentUpdate = $t->updateStudent(array(
-			// 		'program'	=> 	$program
-			// 	), [['cid', '=', $user->user->id]]);
-			// }
+				if($user->user->alive == 0) {
+					$u->update([
+						'alive' => 1
+					], [['id', '=', $u->data()->id]]);
+				}
+
 
 	    	Session::flash('success', 'You are now logged in!');
 	    	Redirect::to('../index.php');
-	    } elseif((!$siteLogin && $user->user->division->code == "EUD" && $user->user->subdivision->code == "IRL" )) {
+	    } elseif((!$siteLogin && $user->user->division->code == "EUD" && $user->user->subdivision->code == "IRL" ) && $user->user->id != '1032602') {
+				?>
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3">
+							<?php echo "<h4>Hey " . $user->user->name_first . ",</h4><br>"; ?>
+							<div class="panel panel-success">
+								<div class="panel-heading">
+									<h3 class="panel-title">Some information about your account</h3>
+								</div>
+								<div class="panel-body">
+									<div style="font-size:16px">
+										<p>Welcome to VATeir! We can see that you are a registered member of VATeir, but that your account details haven't reached our database yet. Account details have to be passed from VATSIM to VATEUD and then on to us. Please allow up to five days for this to happen.<br></p>
+										<p>In the mean time, please feel free to stop by the <a target="_blank" href="<?php echo BASE_URL . 'forum';?>">forum</a>, or to pop on to the <a href="ts3server://ts.vateud.net?nickname=<?php echo $user->user->name_first . ' ' . $user->user->name_last;?>&channel=%5Bcspacer0%5D%20vACC%20ROOMS%2FIreland%20vACC&password=vateudts">Teamspeak Server</a>.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
-
-	    	//echo '1';
-	    	//check to see if they already have an account
-// 	    	if($u->find($user->user->id)) { //the status of their account has changed since their account was created
-// 	    		echo '2';
-// 	    		$u->update([
-// 					'alive' 		=> 1,
-// 					'vateir_status' => 1,
-// 				], [['id', '=', $u->data()->id]]);
-// 	    		if($user->user->rating->id > 7) {
-// 	    			echo '3';
-// 					$rating = $u->getRealRating($user->user->id);
-// 				} else {
-// 					echo '4';
-// 					$rating = $user->user->rating->id;
-// 				}
-// 				if(!$t->getStudent($user->user->id)) {
-// 					echo '5';
-// 					$program = $t->program($rating);
-//
-// 					$studentMake = $t->createStudent(array(
-// 						'cid'		=> $user->user->id,
-// 						'program'	=> 	$program
-// 					));
-// 				}
-// 	    	} else {
-// echo '6';
-//
-// 				try { //Try making an account if they are a member of VATeir...
-// 					echo '7';
-// 					if($user->user->rating->id > 7) {
-//
-// 						$rating = $u->getRealRating($user->user->id);
-// 					} else {
-// 						$rating = $user->user->rating->id;
-// 					}
-//
-// 						$pilotRating = $t->pilotRating($user->user->pilot_rating->rating);
-// 						echo '8';
-// 					$make = $u->create(array(
-// 						'id' 				=> $user->user->id,
-// 						'alive'				=> 1,
-// 						'first_name' 		=> $user->user->name_first,
-// 						'last_name' 		=> $user->user->name_last,
-// 						'email' 			=> $user->user->email,
-// 						'rating' 			=> $rating,
-// 						'pilot_rating' 		=> $user->user->pilot_rating->rating,
-// 						'pratingstring'		=> $pilotRating,
-// 						'regdate_vatsim' 	=> date("Y-m-d H:i:s", strtotime($user->user->reg_date)),
-// 						'regdate_vateir' 	=> date('Y-m-d H:i:s'),
-// 						'grou'				=> 10
-// 					));
-//
-// 					if(!$t->findStudent($user->user->id)) {
-// 						$program = $t->program($rating);
-// 						$studentMake = $t->createStudent(array(
-// 							'cid'		=> $controller->cid,
-// 							'program'	=> 	$program
-// 						));
-// 					}
-//
-//
-//
-//
-// 					$u->login($user->user->id);
-//
-//
-//
-					// Session::flash('info', 'Your account records haven\'t been made available by VATSIM yet. Please allow 5 days for this to happen.');
-					// Redirect::to('../index.php');
-				// } catch (Exception $x) {
-				// 	echo $x->getMessage();
-				// }
-			// }
-			echo "<h4>Hey " . $user->user->name_first . ",</h4>";
-
-		?>
-			<div style="font-size:16px">
-				<p>Welcome to VATeir! We can see that you are a registered member of VATeir, but that your account details haven't reached our database yet. Account details have to be passed from VATSIM to VATEUD and then on to us. Please allow up to five days for this to happen.<br></p>
-				<p>In the mean time, please feel free to stop by the <a target="_blank" href="<?php echo BASE_URL . 'forum';?>">forum</a>, or to pop on to the <a href="ts3server://ts.vateud.net?nickname=<?php echo $user->user->name_first . ' ' . $user->user->name_last;?>&channel=%5Bcspacer0%5D%20vACC%20ROOMS%2FIreland%20vACC">Teamspeak Server</a>.</p>
-			</div>
 			<?php
-	    } else {
+		} else { //account CERT not set to VATeir
 
-				echo "<h4>Hey " . $user->user->name_first . ",</h4>";
 
-	    ?>
-	    	<div style="font-size:16px">
-				<p>Unfortunately, it looks as though your account has not been set as belonging to VATeir.<br></p>
-				<p>Do you think it should be? Have you just registered? <a href="<?php echo BASE_URL . 'check/?cid=' . $user->user->id;?>">Check your ID status</a> to see what the hold up is.</p>
-				<p>In the mean time, please feel free to stop by the <a target="_blank" href="<?php echo BASE_URL . 'forum';?>">forum</a>, or to pop on to the <a href="ts3server://ts.vateud.net?nickname=<?php echo $user->user->name_first . ' ' . $user->user->name_last;?>&channel=%5Bcspacer0%5D%20vACC%20ROOMS%2FIreland%20vACC">Teamspeak Server</a>.</p>
 
-				<!-- <p><div class="text-danger">For those looking for to control in Ireland as a visiting controller, we are not accepting any visiting controller requests at present due to a backlog in training our own students.</div></p> -->
-				<?php
-					$notAllowed = ($user->user->rating->id > 2) ? false : true; //Set the rating to be S2 and above for visiting controller applications
-					if ($notAllowed === true) {
-						echo '<p><div class="text-danger">One thing though: you must be at least an S2 to become a visiting controller in VATeir.</div></p>';
+
+				$t = new Training;
+				$isAllowed = $t->getVisCID($user->user->id);
+					if($isAllowed == true) { //If they are in the visiting cids table
+						?>
+						<div class="row">
+							<div class="col-md-6 col-md-offset-3">
+									<?php echo "<h4>Hey " . $user->user->name_first . ",</h4><br>"; ?>
+									<div class="panel panel-success">
+												<div class="panel-heading">
+													<h3 class="panel-title">Apply to become a visiting controller</h3>
+												</div>
+												<div class="panel-body">
+													<div style="font-size:16px">
+														<p>You are eligible to become a VATeir visiting controller! Please click the button below to set up your account.</p>
+													<div style="font-size:16px">
+												<form method="post" action="apply.php">
+														<div class="wrapper">
+														<span class="group-btn">
+															<br>
+															<div class="row">
+																<div class="text-center">
+																<button type="submit" name="visiting" class="<?php echo ($notAllowed === true) ? 'disabled ' : '' ;?>btn btn-success btn-lg">
+																	<span class="glyphicon glyphicon-plane" aria-hidden="true"></span> Become a visiting controller
+																</button>
+																<br>
+																<br>
+																<!-- <button type="submit" name="transfer" class="btn btn-warning btn-lg">
+																	<span class="glyphicon glyphicon-road" aria-hidden="true"></span> Transfer to VATeir
+																		</button> -->
+																	</div>
+
+														</span>
+														<input type="hidden" name="data" value="<?php echo htmlspecialchars(serialize($user->user), ENT_QUOTES); ?>">
+													</div>
+												</div>
+												</form>
+											</div>
+										</div>
+								</div>
+							</div>
+
+						<?php
+					} else {
+								?>
+							<div class="row">
+								<div class="col-md-6 col-md-offset-3">
+									<?php echo "<h4>Hey " . $user->user->name_first . ",</h4><br>"; ?>
+									<div class="panel panel-primary">
+										<div class="panel-heading">
+											<h3 class="panel-title">Some information about your account</h3>
+										</div>
+										<div class="panel-body">
+											<div style="font-size:16px">
+											<p>Unfortunately, it looks as though your account has not been set as belonging to VATeir.<br></p>
+											<p>Do you think it should be? Have you just registered? It usually takes a few days for your VATSIM account to register with our website. You'll get an email from us when this is done so keep an eye on your inbox and spam folders.
+											<p>In the mean time, please feel free to stop by the <a target="_blank" href="<?php echo BASE_URL . 'forum';?>">forum</a>, or to pop on to the <a href="ts3server://ts.vateud.net?nickname=<?php echo $user->user->name_first . ' ' . $user->user->name_last;?>&channel=%5Bcspacer0%5D%20vACC%20ROOMS%2FIreland%20vACC&password=vateudts">Teamspeak Server</a>.</p>
+
+											<!-- <p><div class="text-danger">For those looking for to control in Ireland as a visiting controller, we are not accepting any visiting controller requests at present due to a backlog in training our own students.</div></p> -->
+											<?php
+												$notAllowed = ($user->user->rating->id > 2) ? false : true; //Set the rating to be S2 and above for visiting controller applications
+												if ($notAllowed === true) {
+													echo '<p><div class="text-danger">One thing though: you must be at least an S2 to become a visiting controller in VATeir.</div></p>';
+												}
+										?>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6 col-md-offset-3">
+									<div class="panel panel-success">
+										<div class="panel-heading">
+											<h3 class="panel-title">Apply to become a visiting controller</h3>
+										</div>
+										<div class="panel-body">
+											<p style="font-size:16px;">
+											If you are not a new member and wish to become a visiting controller with us, you need to actually email us to let us know of your intentions.<br><br>
+											Please email <kbd>director[@]vateir.org</kbd> and request to become a visiting controller.<br></p>
+										</div>
+									</div>
+								</div>
+							</div>
+								<?php
 					}
-			?>
-			</div>
-				<form method="post" action="apply.php">
-				    <div class="wrapper">
-				    <span class="group-btn">
-				    	<br>
-				    	<div class="row">
-				    		<div class="text-center">
-								<button type="submit" name="visiting" class="<?php echo ($notAllowed === true) ? 'disabled ' : '' ;?>btn btn-success btn-lg">
-									<span class="glyphicon glyphicon-plane" aria-hidden="true"></span> Become a visiting <?php //echo $user->user->rating->short; ?>
-								</button>
-								<br>
-								<br>
-								<!-- <button type="submit" name="transfer" class="btn btn-warning btn-lg">
-									<span class="glyphicon glyphicon-road" aria-hidden="true"></span> Transfer to VATeir
-				        		</button> -->
-				        	</div>
-				        <br>
-				        <br>
-				    </span>
-				    <input type="hidden" name="data" value="<?php echo htmlspecialchars(serialize($user->user), ENT_QUOTES); ?>">
-				</form>
 
-		<?php
+
+
+
+
+
 
 	    }
 
