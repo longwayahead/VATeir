@@ -11,7 +11,16 @@ $_SESSION['atkn'] = $token;
   <div class="col-md-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Training Stats</h3>
+        <h3 class="panel-title">Availabilities Data</h3>
+      </div>
+      <div class="panel-body">
+        <canvas id="availabilities" style="padding-left:-20px; padding-right:20px;"></canvas>
+
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Session totals</h3>
       </div>
       <div class="panel-body">
         <canvas id="canvas" style="padding-left:-20px; padding-right:20px;"></canvas>
@@ -24,6 +33,7 @@ $_SESSION['atkn'] = $token;
       </form>
     </div>
   </div>
+
 </div>
 
 
@@ -36,11 +46,24 @@ $_SESSION['atkn'] = $token;
 ?>
 
 <script>
+var availabilityData = {
+  labels : [
+    <?php foreach($pop as $month => $result) { echo '"' . $month . '", ';}?>
+  ],
+  datasets : [
+    {
+      label: "Availabilities",
+      fillColor: "rgba(151,205,187,0.2)",
+      strokeColor: "rgba(151,205,187,1)",
+      pointColor: "rgba(151,205,187,1)",
+      pointStrokeColor: "#fff",
+      pointHighlightFill: "#fff",
+      pointHighlightStroke: "rgba(151,205,187,1)",
+      data : [<?php foreach($pop as $month => $result) {echo ($result['availability'] == false) ? '0' : $result['availability']; echo ',';}?>]
+    }
+  ]
+}
 	var lineChartData = {
-			<?php
-			$g = new Graph;
-			$pop = $g->sa();
-			?>
 			labels : [<?php foreach($pop as $month => $result) { echo '"' . $month . '", ';}?>],
 			datasets : [
 				{
@@ -54,17 +77,6 @@ $_SESSION['atkn'] = $token;
 
 					data : [<?php foreach($pop as $month => $result) { echo ($result['sessions'] == false) ? '0' : $result['sessions']; echo ',';}?>]
 				},
-				// },
-				// {
-				// 	label: "Availabilities",
-				// 	fillColor : "rgba(220,220,220,0.2)",
-				// 	strokeColor : "rgba(220,220,220,1)",
-				// 	pointColor : "rgba(220,220,220,1)",
-				// 	pointStrokeColor : "#fff",
-				// 	pointHighlightFill : "#fff",
-				// 	pointHighlightStroke : "rgba(220,220,220,1)",
-				// 	data : [<?php foreach($pop as $month => $result) { echo ($result['availability'] == false) ? '0' : $result['availability']; echo ',';}?>]
-				// },
 				{
 					label: "No Show",
 					fillColor: "rgba(247,70,74,0.2)",
@@ -95,7 +107,14 @@ $_SESSION['atkn'] = $token;
 			multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
 			scaleBeginAtZero: true
 		});
+    var ctx = document.getElementById("availabilities").getContext("2d");
+    window.myLine = new Chart(ctx).Line(availabilityData, {
+      responsive: true,
+      multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
+      scaleBeginAtZero: true
+    });
 	}
+
 
 </script>
 
