@@ -51,3 +51,4 @@ sql_backups/**
 uploads/**
 atc_solo/**
 datafiles/**
+test.php
