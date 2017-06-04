@@ -94,6 +94,20 @@ class Sessions {
 		return true;
 	}
 
+	public function nextSession($cid){
+		$session = $this->_db->query("SELECT s.id, s.start, s.finish
+		FROM sessions s
+		LEFT JOIN controllers c
+			ON c.id = s.mentor
+		WHERE s.student = ?
+			AND s.start > now()
+		LIMIT 1", [[$cid]]);
+		if($session->count()) {
+			return $session->first();
+		}
+		return false;
+	}
+
 	public function max() {
 		$max = $this->_db->query("SELECT MAX(id) as session_id FROM sessions");
 		if($max->count()) {
