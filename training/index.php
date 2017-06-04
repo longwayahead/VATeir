@@ -34,7 +34,7 @@ require_once("includes/header.php");
 	<?php
 	//}
 	?>
-
+--->
 	<div class="col-md-6">
 		<div class="panel panel-default">
 			<div class="panel-heading">
