@@ -56,13 +56,16 @@ class Check {
     $vateud = json_decode(file_get_contents($this->_vateud . $cid . '.json'));
     if(!empty($vateud)) {
       $this->check['vateud']['account'] = 1;
+      if(!isset($vateud->division) && $vateud->firstname != null) {
+        $this->check['vateud']['eud'] = 1;
+      }
+      if($vateud->subdivision == 'IRL') {
+        $this->check['vateud']['irl'] = 1;
+      }
+    } else {
+      $this->check['vateud']['account'] = 0;
     }
-    if(!isset($vateud->division) && $vateud->firstname != null) {
-      $this->check['vateud']['eud'] = 1;
-    }
-    if($vateud->subdivision == 'IRL') {
-      $this->check['vateud']['irl'] = 1;
-    }
+
 
   }
 
