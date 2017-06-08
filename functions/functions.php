@@ -20,7 +20,7 @@ function sortArray($array, $orderBy1, $direction1, $orderBy2, $direction2){ //so
 }
 
 function sortFunction( $a, $b ) {
-    return strtotime($a["starts_date"]) - strtotime($b["starts_end"]);
+    return strtotime($a["starts_date"]) - strtotime($b["starts_date"]);
 }
 
 
