@@ -1,7 +1,7 @@
 <?php
 $pagetitle = 'Check a CID';
 require_once('../includes/header.php');
-$arrow = false;
+$arrow = true;
 ?>
 <div class="container">
   <h3 class="text-center">CID Status Check</h3><br>
@@ -49,8 +49,9 @@ $arrow = false;
                 ?>
               <td>
                 <?php
-                  $arrow = true;
-                  if(isset($check['vateud']['account']) ==  false || $check['vateud']['account'] == 0) {
+
+                  if($arrow === true && (isset($check['vateud']['account']) ==  false || $check['vateud']['account'] == 0)) {
+                    $arrow = false;
                     echo '<button class="btn btn-xs btn-danger glyphicon glyphicon-arrow-left" aria-hidden="true"></button>';
                   }
                 ?>
@@ -70,7 +71,7 @@ $arrow = false;
               </td>
               <td>
                 <?php
-                  if((isset($check['vateud']['eud']) == false || $check['vateud']['eud'] == 0) && $arrow = true) {
+                  if($arrow === true && (isset($check['vateud']['eud']) == false || $check['vateud']['eud'] == 0)) {
                     $arrow = false;
                     echo '<a tabindex="0" class="btn btn-xs btn-danger" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-html="true" title="Set division" data-content="If you haven\'t selected a division yet '. htmlentities('<a target="_blank" href="https://cert.vatsim.net/vatsimnet/divas.php">select one</a>.<br>If you have already set your division, please allow a number of days for the setting to be picked up.') . '"><span class="glyphicon glyphicon-arrow-left"></span></a>';
                   }
@@ -88,7 +89,7 @@ $arrow = false;
                   } ?>
                 </td>
               <td>
-                <?php if($arrow == true && (isset($check['vateud']['irl']) == false || $check['vateir']['irl'] == 0 && $check['vateud']['eud'] == 1)) {
+                <?php if($arrow === true && (isset($check['vateud']['irl']) == false || $check['vateir']['irl'] == 0 && $check['vateud']['eud'] == 1)) {
                   $arrow = false;
                   echo '<a tabindex="0" class="btn btn-xs btn-danger" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Email VATEUD" data-content="If you haven\'t selected a vACC, email members@vateud.net and request that your account be assigned to VATeir."><span class="glyphicon glyphicon-arrow-left"></span></a>';
                 }
@@ -111,7 +112,7 @@ $arrow = false;
               </td>
               <td>
                 <?php
-                if($arrow = true && (isset($check['vateud']['irl']) == true && $check['vateud']['irl'] == 1 && $check['vateir']['controller'] == 0)) {
+                if($arrow === true && (isset($check['vateud']['irl']) == true && $check['vateud']['irl'] == 1 && $check['vateir']['controller'] == 0)) {
                   $arrow = false;
                   echo '<a tabindex="0" class="btn btn-xs btn-danger" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-html="true" title="Please wait" data-content="Set division" data-content="Please allow a number of days for the VATeir website to pick up your account. You will receive an email when you have been registered so keep an eye on your inbox and spam folders."><span class="glyphicon glyphicon-arrow-left"></span></a>';
                 }
@@ -131,7 +132,7 @@ $arrow = false;
               </td>
               <td>
                 <?php
-                  if($arrow = true && $check['vateir']['student'] == 1 && $check['vateir']['controller'] == 0) {
+                  if($arrow === true && $check['vateir']['student'] == 1 && $check['vateir']['controller'] == 0) {
                     echo '<a tabindex="0" class="btn btn-xs btn-danger" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-html="true" title="Please wait" data-content="Set division" data-content="Please allow up to 24 hours for this issue to fix itself."><span class="glyphicon glyphicon-arrow-left"></span></a>';
                   }
                 ?>
