@@ -95,10 +95,12 @@ class Sessions {
 	}
 
 	public function nextSession($cid){
-		$session = $this->_db->query("SELECT s.id, s.start, s.finish
+		$session = $this->_db->query("SELECT s.id, s.start, s.finish, t.name AS session_type
 		FROM sessions s
 		LEFT JOIN controllers c
 			ON c.id = s.mentor
+		LEFT JOIN report_types r, card_types t
+			ON c.report_type = r.id AND r.session_type = t.id
 		WHERE s.student = ?
 			AND s.start > now()
 		LIMIT 1", [[$cid]]);
