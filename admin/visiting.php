@@ -11,7 +11,7 @@ $visitingCIDs = $t->getVisitingCIDs();
 
 ?>
 
-<h3 class="text-center">Acepted Visiting Controllers</h3><br>
+<h3 class="text-center">Accepted Visiting Controllers</h3><br>
 <div class="col-md-6 col-md-offset-3">
 	<p class="text-center">In order for a visiting controller to register an account with the website, their CID must be added to this list first.</p>
 <form action="" method="post">
