@@ -1,9 +1,9 @@
 <?php
 require_once("../includes/header.php");
 if(Input::exists('post')) {
-	foreach(Input::get('data') as $id => $p) {	
+	foreach(Input::get('data') as $id => $p) {
 		if(($p >= 10 && $p <= 15) && ($id != $user->data()->id) && ($p >= 10) && ($p <= 15)) {
-			
+
 			$user->update(
 				['grou' => $p],
 				[['id', '=', $id]]
@@ -30,7 +30,7 @@ if(Input::exists('post')) {
 				if(count($mentors)) {
 					?>
 					<table class="table table-condensed table-striped table-responsive">
-						
+
 						<tr>
 							<td><strong>Name</strong></td>
 							<td><strong>Rating</strong></td>
@@ -43,24 +43,25 @@ if(Input::exists('post')) {
 								<td><?php echo $mentor->first_name . ' ' . $mentor->last_name;?></td>
 								<td><?php echo $mentor->long . ' (' . $mentor->short . ')';?></td>
 								<td>
-									
-									<select class="col-md-6 text-left form-control tick"name="data[<?php echo $mentor->cid;?>]">
+
+									<select class="col-md-6 text-left form-control tick"name="data[<?php echo $mentor->cid;?>]" <?php echo (isset($mentor->fake) == true) ? ' disabled' : '';?>>
 										<?php foreach($perms as $perm):	?>
-											
+
 											<?php echo '<option value="' . $perm->id . '"';
 											if($perm->id == $mentor->grou) {
 												echo 'selected="" ';
 											}
+
 											echo '>' . $perm->name . '</option>';
 											?>
-											
+
 										<?php endforeach;?>
 									</select>
-							
+
 								</td>
 							</tr>
 						<?php endforeach; ?>
-						
+
 					</table>
 
 				</div>

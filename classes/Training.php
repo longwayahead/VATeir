@@ -461,12 +461,21 @@ class Training {
 										LEFT JOIN permissions ON permissions.id = controllers.grou
 										LEFT JOIN ratings ON ratings.id = controllers.rating
 										WHERE controllers.grou >= 11 AND controllers.grou <= 15
-										ORDER BY permissions.sort DESC, ratings.id DESC");
+										ORDER BY permissions.sort DESC, ratings.id ASC");
 		if($mentors->count()) {
-			$return = $mentors->results();
-			// $return[] = a2o(['id' => 1, 'long' => 'Enroute Controller', 'short' => 'C1', 'name' => 'C1 Mentor', 'sort' => 2, 'cid' => 1032602, 'first_name' => 'Cillian', 'last_name' => 'Long', 'pratingstring' => 'P0', 'controllers.grou' => 14]);
+			$return = json_decode(json_encode($mentors->results()), true);
+		 	$return[] = ['id' => 2, 'long' => 'Senior Controller', 'short' => 'C3', 'name' => 'C1 Mentor', 'sort' => 5, 'cid' => 931070, 'first_name' => 'Martin', 'last_name' => 'Bergin', 'pratingstring' => 'P1', 'grou' => 14, 'fake'=>1];
+			$return[] = ['id' => 1, 'long' => 'Enroute Controller', 'short' => 'C1', 'name' => 'C1 Mentor', 'sort' => 5, 'cid' => 1032602, 'first_name' => 'Cillian', 'last_name' => 'Long', 'pratingstring' => 'P1', 'grou' => 14, 'fake'=>1];
+
+			 function cmp($a, $b) {
+			    if ($a['sort'] == $b['sort']) {
+			        return 0;
+			    }
+			    return ($a['sort'] < $b['sort']) ? 1 : -1;
+			}
+			uasort($return, 'cmp');
 			// print_r($return);
-			// sortArray($return, 'sort', 'DESC', 'id', 'DESC');
+			$return = a2o($return);
 			return $return;
 		}
 	}
