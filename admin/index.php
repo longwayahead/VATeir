@@ -6,7 +6,7 @@ $t = new Training;$a = new Admin;
 $incoming = $a->incoming();
 ?>
 <div class="row">
-	<h3 class="text-center"><?php echo ($user->data()->id == 931070) ? "Hi Martin." : "Admin Dashboard";</h3><br>
+	<h3 class="text-center"><?php echo ($user->data()->id == 931070) ? "Hi Martin." : "Admin Dashboard";?></h3><br>
 	<div class="col-md-3">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
