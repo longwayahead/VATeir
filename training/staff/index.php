@@ -154,6 +154,9 @@ if(!$user->hasPermission('tdstaff')) {
 							<td>
 								<strong>Date</strong>
 							</td>
+							<td>
+								<strong>Edit</strong>
+							</td>
 						</tr>
 
 						<?php $i=1; foreach($future as $session): ?>
@@ -170,6 +173,9 @@ if(!$user->hasPermission('tdstaff')) {
 								</td>
 								<td>
 									<?php echo date("j-M-y", strtotime($session->start)); ?>
+								</td>
+								<td>
+									<?php echo '<a class="btn btn-xs btn-default" href="edit_session.php?id=' . $session->session_id . '"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>' ?>
 								</td>
 							</tr>
 							<?php } ?>
