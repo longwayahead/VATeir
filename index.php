@@ -203,14 +203,15 @@ require_once("includes/header.php");
 									} else {
 										$planAlt = 'FL' . substr($pilot->planned_altitude, 0, 3);
 									}
-									echo '<tr>
+									?>
+									<tr>
 											<td>
 												<a tabindex="0" data-container="body" data-trigger="focus" data-toggle="popover" data-placement="bottom" data-html="true" title="Flight Details" data-content="
-												<strong>Route: </strong>' . $pilot->route . '<br>
-												<strong>Aircraft: </strong>' . $pilot->aircraft . '<br>
-												<strong>Altitude: </strong>' . number_format($pilot->altitude) . ' ft (' . $planAlt . ')<br>
-												<strong>Speed: </strong>' . $pilot->groundspeed . ' kts<br>
-												<a target=\'_blank\' href=\'' .htmlentities($pilot->gcmap).'\'><img src=\'' . htmlentities($pilot->gcmap) . '\' class=\'img-responsive\'></a>
+												<strong>Route: </strong> <?php echo (isset($pilot->route)) ? $pilot->route : '';?><br>
+												<strong>Aircraft: </strong> <?php echo $pilot->aircraft; ?> <br>
+												<strong>Altitude: </strong> <?php echo number_format($pilot->altitude) . ' ft (' . $planAlt . ')';?><br>
+												<strong>Speed: </strong><?php echo $pilot->groundspeed;?> kts<br>
+												<?php echo '<a target=\'_blank\' href=\'' .htmlentities($pilot->gcmap).'\'><img src=\'' . htmlentities($pilot->gcmap) . '\' class=\'img-responsive\'></a>
 											" data-original-title="" title="" aria-describedby="popover148301" style="cursor:pointer">' . $pilot->callsign . '</a>
 											</td>
 											<td class="hidden-xs">' . $pilot->name . '</td>
