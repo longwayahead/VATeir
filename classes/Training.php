@@ -465,7 +465,7 @@ class Training {
 		if($mentors->count()) {
 			$return = json_decode(json_encode($mentors->results()), true);
 		 	$return[] = ['id' => 2, 'long' => 'Senior Controller', 'short' => 'C3', 'name' => 'C1 Mentor', 'sort' => 5, 'cid' => 931070, 'first_name' => 'Martin', 'last_name' => 'Bergin', 'pratingstring' => 'P1', 'grou' => 14, 'fake'=>1];
-			$return[] = ['id' => 1, 'long' => 'Enroute Controller', 'short' => 'C1', 'name' => 'C1 Mentor', 'sort' => 5, 'cid' => 1032602, 'first_name' => 'Cillian', 'last_name' => 'Long', 'pratingstring' => 'P1', 'grou' => 14, 'fake'=>1];
+			$return[] = ['id' => 1, 'long' => 'Enroute Controller', 'short' => 'C1', 'name' => 'C1 Mentor', 'sort' => 5, 'cid' => 1032602, 'first_name' => 'Cillian', 'last_name' => 'Ó Lúing', 'pratingstring' => 'P1', 'grou' => 14, 'fake'=>1];
 
 			 function cmp($a, $b) {
 			    if ($a['sort'] == $b['sort']) {
