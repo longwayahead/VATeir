@@ -135,7 +135,7 @@ Class Calendar {
           $siteEvents[] = [ //vateir sessions this time
             'id' => $session->id,
             'type' => 1,
-            'summary' => "Session: $session->position_callsign",
+            'summary' => "$session->session_type: $session->position_callsign",
             'starts' => $this->outputDate($session->start),
             'ends' => $this->outputDate($session->finish),
             'description' => "$session->session_type session.\\nTraffic is kindly requested for $session->position_callsign\\n"
