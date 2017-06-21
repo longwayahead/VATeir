@@ -275,11 +275,16 @@ require_once("includes/header.php");
 		</div>
 	</div>
 
-<!--<div class="panel panel-success">
+<div class="panel panel-success">
 			<div class="panel-heading">
 				<h3 class="panel-title">Events</h3>
 			</div>
 			<div class="panel-body">
+				<div class="fb-post"
+      data-href="https://www.facebook.com/events/1527634263934583/permalink/1527634357267907"
+      data-width="380"></div>
+			</div>
+		</div>
 	<?php
 	// $ev = new Events;
 	// try{
@@ -290,7 +295,7 @@ require_once("includes/header.php");
 	?>
 
 
-				<div class="thumbnail">
+				<!--<div class="thumbnail">
 					<div class="text-center">
 						<img class="img-responsive" data-src="holder.js/300x300" src="<?php //echo $event->banner_url;?>" alt="...">
 					</div>

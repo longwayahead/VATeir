@@ -2,8 +2,26 @@
 $pagetitle = "Events Home";
 require_once("includes/header.php");
 ?>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.6";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <h3 class="text-center">Events Home</h3> <br>
 <div class="row col-md-10 col-md-offset-1">
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			<h3 class="panel-title">VATeir Fly-in 2017</h3>
+		</div>
+		<div class="panel-body text-center">
+			<div class="fb-post"
+				data-href="https://www.facebook.com/events/1527634263934583/permalink/1527634357267907"
+			></div>
+		</div>
+	</div>
 
 		<?php
 		try{
@@ -55,3 +73,4 @@ require_once("includes/header.php");
 
 </div>
 <?php require_once('../includes/footer.php');
+?>
