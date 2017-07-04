@@ -27,14 +27,14 @@ require_once("includes/header.php");
 									<span style="font-size:15px;"><?php echo date('j\<\s\u\p\>S\<\/\s\u\p\> M Y', strtotime($session->start));?></span>
 									<br>
 									<br>
+									
+									<span class="glyphicon glyphicon-plane" aria-hidden="true"></span> <span style="font-size:15px;"><?php echo $session->type;?></span>
 									<br>
-									<span class="glyphicon glyphicon-plane" aria-hidden="true"></span> <?php echo $session->type;?>
+									<span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span style="font-size:15px;"><?php echo $session->first_name . ' ' . $session->last_name;?></span>
 									<br>
-									<span class="glyphicon glyphicon-user" aria-hidden="true"></span> <?php echo $session->first_name . ' ' . $session->last_name;?>
+									<span class="glyphicon glyphicon-time" aria-hidden="true"></span> <span style="font-size:15px;"><?php echo date('H:i', strtotime($session->start)) . ' to ' . date('H:i', strtotime($session->finish));?> IST</span>
 									<br>
-									<span class="glyphicon glyphicon-time" aria-hidden="true"></span> <?php echo date('H:i', strtotime($session->start)) . ' to ' . date('H:i', strtotime($session->finish));?> IST
-									<br>
-									<br>
+
 
 									<br>
 									<a style="margin-top:-20px;" target="_blank" class="btn btn-primary btn-xs" href="sessions.php#s<?php echo $session->id;?>"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</a>
@@ -86,6 +86,7 @@ require_once("includes/header.php");
 					<h3 class="panel-title">Latest validations</h3>
 				</div>
 				<div class="panel-body">
+
 					<div style="border-radius:10px; background-color:#4caf50; color:white;">
 						<p class="text-center"><span style="font-size:30px;"><?php echo $session->callsign;?></span>
 							<br>
