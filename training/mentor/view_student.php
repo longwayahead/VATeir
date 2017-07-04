@@ -337,7 +337,7 @@ try {
 																		</div>
 																			';
 																		} elseif($slider->type == 1) {
-																			if($slider->value == 2) {
+																			if($slider->value ==2) {
 																				echo '<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>';
 																			} elseif($slider->value == 1) {
 																				echo '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>';
