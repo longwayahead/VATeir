@@ -23,7 +23,7 @@ try {
 
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-					<h3 class="panel-title"><?php echo $data->first_name; ?>'s Training Details</h3>
+					<h3 class="panel-title">Your Training Details</h3>
 					</div>
 					<div class="panel-body">
 						<div class="col-md-6">
@@ -219,8 +219,9 @@ try {
 											<div id="card" class="card" style="background-color:' . $info->colour . '; color:white;">
 												<div class="nopad">
 													<div class="card-title text-center" id="ns' . $info->session_id . '">
-														<strong>' . $info->card_name . ':</strong> <div class="hidden-xs" style="display:inline-block;">' . $info->callsign . ' on</div> ' . date('j\<\s\u\p>S\</\s\u\p\> F', strtotime($info->start)) . '
-														</div>
+													<div class="hidden-xs"><strong>' . $info->card_name . ':</strong> <div class="hidden-xs" style="display:inline-block;">' . $info->callsign . ' on</div> ' . date('j\<\s\u\p>S\</\s\u\p\> M', strtotime($info->start)) . '<div style="display:inline-block;" class="hidden-xs">&nbsp;' . date('Y', strtotime($info->start)) .'</div></div>
+													<div class="visible-xs"> ' . $info->callsign . '</div><div class="visible-xs" style="font-size:15px">' . date("j\<\s\u\p\>S\<\/\s\u\p\> M Y", strtotime($info->start)) . '</div>
+												</div>
 				 									</div>
 				 								</div>
 				 							</div>
