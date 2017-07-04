@@ -301,15 +301,22 @@ if(Input::exists()) { //if form submitted!
 					</div>
 				</div>
 			<?php endif; ?>
-			<div class="form-group text-center">
+			<div class="row form-group text-center">
 				<div class="col-lg-10 col-md-offset-1">
 				<input type="hidden" name="cid" value="<?php echo $session->student;?>">
 				<input type="hidden" name="report_type" value="<?php echo $session->report_type;?>">
 				<input type="hidden" name="rating" value="<?php echo $session->rating;?>">
 				<input type="hidden" name="s" value="<?php echo Input::get('s');?>">
+				<button id="submit" type="submit" name="submit" class="btn btn-primary">Submit!</button>
+			</div>
+			<div class-"row col-lg-10 col-md-offset-1">
+				<br>
+				<br>
+				<br>
+				<br>
 				<a id="noshow" href="noshow_session.php?id=<?php echo Input::get('s');?>" class="btn btn-danger">No Show</a>
 				<a id="cancel" href="cancel_session.php?id=<?php echo Input::get('s');?>&e=0" class="btn btn-warning">Cancelled</a>
-				<button id="submit" type="submit" name="submit" class="btn btn-primary">Submit</button>
+
 				</div>
 			</div>
 		</fieldset>
