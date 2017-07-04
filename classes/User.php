@@ -306,4 +306,12 @@ class User {
 			throw new Exception('There was a problem accepting a term.');
 		}
 	}
+
+	public function lastLogin($cid){
+		$loginrow = $this->_db->query("SELECT * FROM logins WHERE cid = ? ORDER BY datetime desc LIMIT 1,1", [[$cid]]);
+		if($loginrow->count()) {
+			return $loginrow->first();
+		}
+		return false;
+	}
 }

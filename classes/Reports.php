@@ -254,6 +254,10 @@ class Reports {
 		} elseif($type == 2) {
 			$array = ['`r`.`id`', '>=', $id];
 			$bits = 'ORDER BY `r`.`submitted_date` DESC LIMIT 5';
+		} elseif($type == 3) {
+
+			$array = ['`r`.`student_cid`', '=', $id];
+			$bits = 'ORDER BY `r`.`submitted_date` DESC LIMIT 2';
 		}
 		$report = $this->_db->db("SELECT
 			`r`.`id` AS `rep_id`, `r`.`student_cid`, `r`.`mentor_cid`, `r`.`report_type_id`, `r`.`position_id`, `r`.`submitted_date`, `r`.`session_date`, `r`.`text`,
@@ -283,7 +287,7 @@ class Reports {
 		if($report->count()) {
 			if($type == 1) {
 				return $report->first();
-			} elseif($type == 2) {
+			} elseif($type == 2 || $type == 3) {
 				return $report->results();
 			}
 		}

@@ -4,37 +4,142 @@ require_once("includes/header.php");
 ?>
 <div class="row">
 	<h3 class="text-center">My Training Dashboard</h3><br>
-	<!-- <?php //if($user->data()->id == 1032602) {
+	 <?php if($user->data()->id == 1032602) {
 	?>
-	<div class="row">
+
 		<div class="col-md-4">
 
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-						<h3 class="panel-title">Next session</h3>
+						<h3 class="panel-title">My next session</h3>
 					</div>
 					<div class="panel-body">
 
 						<?php
-						// $session = $s->nextSession(1373006);
-						// if($session !== false) {
-						// 	?>
-						// 	<p><?php echo $session->session_type;?></p>
-						// 	<p><a class="btn btn-default" href="sessions.php#<?php echo $session->id;?>">View &#187;</a></p>
-						// 	<?php
-						// 	}
+						 $session = $s->nextSession(1341574);
+					 if($session !== false) {
+					// 	 print_r($session);
+						 	?>
+							<div style="border-radius:10px; background-color:<?php echo $session->colour;?>; color:white;">
+								<p class="text-center"><span style="font-size:30px;"><?php echo $session->callsign;?></span>
+									<br>
+
+									<span style="font-size:15px;"><?php echo date('j\<\s\u\p\>S\<\/\s\u\p\> M Y', strtotime($session->start));?></span>
+									<br>
+									<br>
+									<br>
+									<span class="glyphicon glyphicon-plane" aria-hidden="true"></span> <?php echo $session->type;?>
+									<br>
+									<span class="glyphicon glyphicon-user" aria-hidden="true"></span> <?php echo $session->first_name . ' ' . $session->last_name;?>
+									<br>
+									<span class="glyphicon glyphicon-time" aria-hidden="true"></span> <?php echo date('H:i', strtotime($session->start)) . ' to ' . date('H:i', strtotime($session->finish));?> IST
+									<br>
+									<br>
+
+									<br>
+									<a style="margin-top:-20px;" target="_blank" class="btn btn-primary btn-xs" href="sessions.php#s<?php echo $session->id;?>"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</a>
+								</p>
+								</div>
+
+							<?php
+					 	} else {
+							  ?><div class="text-danger text-center" style="font-size:16px;"><br>None booked :-(</div><br><?php
+						}
 						?>
 					</div>
 				</div>
 
 		</div>
-		<div class="col-md-4"></div>
-		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Latest reports</h3>
+				</div>
+				<div class="panel-body">
+					<?php
+						$rep = $r->getReport(3, 1194728);
+						if($rep !== false) {
+							// print_r($rep);
+							foreach($rep as $report) {
+								?>
+								<div style="border-radius:10px; background-color:<?php echo $report->colour;?>; color:white;">
+									<p class="text-center"><span style="font-size:30px;"><?php echo $report->callsign;?></span>
+										<br>
+										<span style="font-size:15px;"><?php echo date('j\<\s\u\p\>S\<\/\s\u\p\> M Y', strtotime($report->session_date));?></span>
+										<br>
+										<br>
+										<a style="margin-top:-20px;" target="_blank" class="btn btn-primary btn-xs" href="history.php#r<?php echo $report->rep_id;?>"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Read</a>
+									</p>
+									</div>
+								<?php
+							}
+						} else {
+							?><div class="text-danger text-center" style="font-size:16px;"><br>No reports</div><br><?php
+						}
+					?>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Latest validations</h3>
+				</div>
+				<div class="panel-body">
+					<div style="border-radius:10px; background-color:#4caf50; color:white;">
+						<p class="text-center"><span style="font-size:30px;"><?php echo $session->callsign;?></span>
+							<br>
+
+							<span style="font-size:15px;"><?php echo date('j\<\s\u\p\>S\<\/\s\u\p\> M Y', strtotime($session->start));?></span>
+							<br>
+							<br>
+							<br>
+							<span class="glyphicon glyphicon-plane" aria-hidden="true"></span> <?php echo $session->type;?>
+							<br>
+							<span class="glyphicon glyphicon-user" aria-hidden="true"></span> <?php echo $session->first_name . ' ' . $session->last_name;?>
+							<br>
+							<span class="glyphicon glyphicon-time" aria-hidden="true"></span> <?php echo date('H:i', strtotime($session->start)) . ' to ' . date('H:i', strtotime($session->finish));?> IST
+							<br>
+							<br>
+
+							<br>
+							<a style="margin-top:-20px;" target="_blank" class="btn btn-primary btn-xs" href="sessions.php#s<?php echo $session->id;?>"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View</a>
+						</p>
+						</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">My last login</h3>
+				</div>
+				<div class="panel-body">
+					<?php
+					$login = $user->lastLogin($user->data()->id);
+					if($login !== false) {
+						?>
+						<p>Last login was on <br><span style="font-size:20px;"><?php echo date('d\<\s\u\p\>S\<\/\s\u\p\> M Y', strtotime($login->datetime));?></span><br>
+							from <br>
+							<span style="font-size:20px;">
+							<?php echo $login->ip;?></span></p>
+						<?php
+					} else {
+						  ?><div class="text-success text-center" style="font-size:16px;"><br>Welcome to VATeir!</div><br><?php
+					}
+					?>
+				</div>
+			</div>
+		</div>
 	</div>
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4"></div>
+
 	<?php
-	//}
+	}
 	?>
---->
+
 	<div class="col-md-6">
 		<div class="panel panel-default">
 			<div class="panel-heading">
