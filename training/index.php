@@ -119,8 +119,128 @@ require_once("includes/header.php");
 			</div>
 		</div>
 	</div>
+	<div class="row">
+	 <div class="col-xs-12 text-center">
+		 <h5>VATeir Training Videos</h5>
+	 </div>
+ </div>
+ <div class="row">
+	 <div class="col-sm-8 col-sm-offset-2">
+		 <div id="random_number1" class="carousel slide youtube-carousel"  data-ride="carousel" data-interval="false">
+			 <div class="carousel-inner">
+				 <div class="video-container item active">
+					 <div class="youtube-video" id='9MsRdYO_ql8'></div>
+					 <div class="carousel-caption">OBS&ndash;S1: Video 1</div>
+				 </div>
+				 <div class="video-container item">
+					 <div class="youtube-video" id='oaDK3ugiZgg'></div>
+					 <div class="carousel-caption">OBS&ndash;S1: Video 2</div>
+				 </div>
+				 <div class="video-container item ">
+					 <div class="youtube-video" id='XVdr9grPYdo'></div>
+					 <div class="carousel-caption">OBS&ndash;S1: Video 3</div>
+				 </div>
+			 </div>
+			 <div class="controls">
+				 <a class="left carousel-control" href="#random_number1" data-slide="prev">
+					 <div class="left-button">
+						 <div class="glyphicon glyphicon-chevron-left"></div>
+					 </div>
+				 </a>
+				 <a class="right carousel-control" href="#random_number1" data-slide="next">
+					 <div class="right-button">
+						 <div class="glyphicon glyphicon-chevron-right"></div>
+					 </div>
+				 </a>
+			 </div>
+		 </div>
+	 </div>
+ </div>
 
 <?php
 echo '</div>';
+?>
+<script>
+//Start Youtube API
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+var youtubeReady = false;
+
+//Variable for the dynamically created youtube players
+var players= new Array();
+var isPlaying = false;
+function onYouTubeIframeAPIReady(){
+  //The id of the iframe and is the same as the videoId
+  jQuery(".youtube-video").each(function(i, obj)  {
+     players[obj.id] = new YT.Player(obj.id, {
+			  videoId: obj.id,
+			    playerVars: {
+			    controls: 2,
+		      rel:0,
+		      autohide:1,
+		      showinfo: 0 ,
+		      modestbranding: 1,
+		      wmode: "transparent",
+		      html5: 1
+       	},
+        events: {
+          'onStateChange': onPlayerStateChange
+        }
+       });
+     });
+     youtubeReady = true;
+  }
+
+
+function onPlayerStateChange(event) {
+  var target_control =  jQuery(event.target.getIframe()).parent().parent().parent().find(".controls");
+
+  var target_caption = jQuery(event.target.getIframe()).parent().find(".carousel-caption");
+  switch(event.data){
+    case -1:
+      jQuery(target_control).fadeIn(500);
+      jQuery(target_control).children().unbind('click');
+      break
+     case 0:
+      jQuery(target_control).fadeIn(500);
+      jQuery(target_control).children().unbind('click');
+      break;
+     case 1:
+      jQuery(target_control).children().click(function () {return false;});
+      jQuery(target_caption).fadeOut(500);
+      jQuery(target_control).fadeOut(500);
+       break;
+      case 2:
+        jQuery(target_control).fadeIn(500);
+        jQuery(target_control).children().unbind('click');
+        break;
+        case 3:
+           jQuery(target_control).children().click(function () {return false;});
+           jQuery(target_caption).fadeOut(500);
+           jQuery(target_control).fadeOut(500);
+           break;
+          case 5:
+            jQuery(target_control).children().click(function () {return false;});
+            jQuery(target_caption).fadeOut(500);
+            jQuery(target_control).fadeOut(500);
+            break;
+          default:
+            break;
+    }
+};
+
+jQuery(window).bind('load', function(){
+  jQuery(".carousel-caption").fadeIn(500);
+  jQuery(".controls").fadeIn(500);
+ });
+
+jQuery('.carousel').bind('slid.bs.carousel', function (event) {
+   jQuery(".controls").fadeIn(500);
+});
+</script>
+<?php
 require_once("../includes/footer.php");
 ?>
