@@ -132,7 +132,7 @@ try {
             </li>
             <?php
               if($user->hasAdmin('operations')) { ?>
-            <li role="separator" class="divider"></li>
+             <li role="separator" class="divider"></li>
             <li class="dropdown-header">Admin</li>
 
                 <li>
@@ -141,8 +141,8 @@ try {
               <?php }
              ?>
              <?php
-               if($user->hasAdmin('admin')) { ?>
-                 <li>
+              if($user->hasAdmin('admin')) { ?>
+                  <li>
                    <a href="<?php echo BASE_URL . 'admin/';?>"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Admin Panel</a>
                  </li>
                <?php }
