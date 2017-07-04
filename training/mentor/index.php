@@ -195,6 +195,9 @@ foreach($m as $j) {
 				<td>
 					<strong>Until</strong>
 				</td>
+				<td class="hidden-xs">
+					<strong>VATSIM</strong>
+				</td>
 				<td>
 					<strong>Book</strong>
 				</td>
@@ -206,7 +209,8 @@ foreach($m as $j) {
                 <td class="nowrap"><?php echo date("j F Y", strtotime($availability->date));?></td>
                 <td><?php echo date("H:i", strtotime($availability->time_from));?></td>
                 <td><?php echo date("H:i", strtotime($availability->time_until));?></td>
-             	<td><?php echo '<a class="btn btn-xs btn-default" href="schedule_session.php?id=' . $availability->availability_id . '"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>' ?></td>
+								<td class="hidden-xs"><a target="_blank" class="btn btn-default btn-xs" href="https://stats.vatsim.net/conn_details_time.php?id=<?php echo $availability->cid;?>&timeframe=6_months" data-toggle="tooltip" data-placement="top" title="stats.vatsim.net"><span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span></a></td>
+             	<td><?php echo '<a class="btn btn-xs btn-primary" href="schedule_session.php?id=' . $availability->availability_id . '"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>' ?></td>
 
 			 </tr>
             <?php endforeach; ?>

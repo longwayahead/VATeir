@@ -111,6 +111,16 @@ try {
 										 Profile
 									</a>
 							</div>
+
+							</div>
+							<div class="row text-center">
+								<div class="col-md-6 col-md-offset-3">
+									<br>
+									<a target="_blank" class="btn btn-primary" href="https://stats.vatsim.net/conn_details_time.php?id=<?php echo $data->cid;?>&timeframe=6_months" data-toggle="tooltip" data-placement="top" title="stats.vatsim.net">
+											<span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span>
+											6 months
+									</a>
+								</div>
 							</div>
 						</div>
 
