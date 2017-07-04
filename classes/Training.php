@@ -386,14 +386,14 @@ class Training {
 		return false;
 	}
 
-	public function fetchAllValidations($search = null, $param = '`c`.`id`', $cid = null, $bits = 'LIMIT 5') {
+	public function fetchAllValidations($search = null, $param = '`c`.`id`', $cid = null, $bits = null) {
 		if(isset($cid)) {
 			$cidsearch = " AND `v`.`cid` = $cid";
 		} else {
 			$cidsearch=null;
 		}
 		if(isset($search)) {
-			$data = $this->_db->query("$this->_val WHERE $param = $search $cidsearch ORDER BY `v`.`valid_until` DESC, `t`.`sort` ASC, `p`.`callsign` ASC");
+			$data = $this->_db->query("$this->_val WHERE $param = $search $cidsearch ORDER BY `v`.`valid_until` DESC, `t`.`sort` ASC, `p`.`callsign` ASC $bits");
 		} else {
 			$data = $this->_db->query("$this->_val ORDER BY `v`.`valid_from` DESC $bits");
 		}

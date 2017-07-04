@@ -247,7 +247,7 @@ if(!$user->hasPermission('tdstaff')) {
 
 					<?php
 
-					$validations = $t->fetchAllValidations();
+					$validations = $t->fetchAllValidations(null, null, null, 'LIMIT 5');
 					if($validations) {
 						echo '<tr>
 								<td><strong>Student</strong></td>
