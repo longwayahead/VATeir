@@ -3,7 +3,7 @@
 In order to get this website to work on your own server you must see to the following:
 
 ## Website -> Database
-* Rename core/init_demo.php to core/init.php.
+* Rename core/initdemo.php to core/init.php.
 * Insert relevant details to your setup.
 
 ## Website -> VATSIM SSO -> Website
