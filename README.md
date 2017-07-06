@@ -5,6 +5,7 @@ In order to get this website to work on your own server you must see to the foll
 ## Website -> Database
 * Rename core/initdemo.php to core/init.php.
 * Insert relevant details to your setup.
+* Example schematic is provided in the root directory under "vateir_website.sql".
 
 ## Website -> VATSIM SSO -> Website
 * Rename login/configdemo.php to login/config.php.
