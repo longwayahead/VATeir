@@ -53,3 +53,4 @@ atc_solo/**
 datafiles/**
 test.php
 login/config.php
+forum/config.php
