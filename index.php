@@ -39,20 +39,33 @@ require_once("includes/header.php");
 // var_dump($stream);
 // echo '</pre>';
 
-	if(isset($stream->items[0]->id->videoId) && strpos($stream->items[0]->snippet->title, 'ATC') !== false) {
+	$twitch = new Twitch;
+	$livestream = $twitch->johnStream();
+	if($livestream == false || strpos($livestream->stream->channel->status, 'ATC') == false) {
+		?>
+		<h2 class="text-center">Fáilte</h2>
+	 	<br>
+		<div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/r1wrc9DLgWQ" frameborder="0" allowfullscreen></iframe></iframe></div>
+		<?php
+	} else {
+		?>
+		<div class="videoWrapper">
+			<iframe
+				width="560"
+				height="310"
+				src="https://player.twitch.tv/?channel=squawkmodecharlie"
+				frameborder="0"
+				allowfullscreen>
+			</iframe>
+		</div>
+		<h5 class="text-center">
+			<span class="label label-danger blink">Live!</span>
+			<?php echo '  ' .$livestream->stream->channel->status; ?>
+		</h5>
+		<?php
 
-     ?>
-        <div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $stream->items[0]->id->videoId;?>" frameborder="0" allowfullscreen></iframe></div>
-        <h5 class="text-center"><span class="label label-danger blink">Live!</span> <?php echo $stream->items[0]->snippet->title; ?></h5>
-      <?php
+	}
 
-   } else {
-		 ?>
-		 	<h2 class="text-center">Fáilte<?php //echo $greeting[array_rand($greeting)];?></h2>
-	 		<br>
-		 		<div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/r1wrc9DLgWQ" frameborder="0" allowfullscreen></iframe></div>
-		 <?php
- }
 
   ?>
 
