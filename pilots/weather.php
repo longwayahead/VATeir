@@ -104,14 +104,14 @@ require_once('includes/header.php');
 						</tr>
 						<tr>
 							<td><strong>Pressure:</strong></td>
-							<td><?php echo $metar->pressure . '/' .$metar->altimeter;?></td>
+							<td><?php echo $metar->pressure . ' / ' .$metar->altimeter;?></td>
 						</tr>
 						<tr>
 							<td><strong>Cloud:</strong></td>
 							<td><?php foreach($metar->sky_conditions as $s) {
 								echo 'Sky Cover: ';
 								echo $s->sky_cover;
-								echo ' \ Cloud Base: ';
+								echo ' / Cloud Base: ';
 								echo $s->cloud_base_ft_agl . 'ft agl';
 								echo '<br>';
 							}
