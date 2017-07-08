@@ -154,11 +154,11 @@ require_once('includes/header.php');
 				?>
 			</div>
 		</div>
-		<div class="panel panel-info">
+		<!-- <div class="panel panel-info">
 			<div class="panel-heading">
 				<h3 class="panel-title">Current AIRAC</h3>
 			</div>
-			<div class="panel-body">
+			<div class="panel-body"> -->
 				<?php
 				// $d = new Download;
 				// try {
@@ -174,11 +174,11 @@ require_once('includes/header.php');
 				// }
 
 				?>
-				Hang on, the API is experiencing some trouble!
+				<!-- Hang on, the API is experiencing some trouble!
 			</div>
 		</div>
 	</div>
-	</div>
+	</div> -->
 <!-- 	<div class="row">
 
 	<div class="col-md-6">
