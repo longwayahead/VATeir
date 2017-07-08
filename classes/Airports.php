@@ -80,8 +80,12 @@ class Airports{
 		foreach($this->_notams as $notam) {
 			preg_match("/ B\) (.{10})/", $notam['raw'], $time);
 			$start = '20' . $time[1] . '00';
-			preg_match("/ C\) (.{10})/", $notam['raw'], $times);
-			$end = '20' . $times[1] . '00';
+			if(preg_match("/ C\) (.{10})/", $notam['raw'], $times)) {
+				$end = '20' . $times[1] . '00';
+			} else {
+				$end = 'Permanent';
+			}
+
 			$this->notams[] = [
 				'icao' 	=> $notam['icao'],
 				'raw'	=> $notam['raw'],
