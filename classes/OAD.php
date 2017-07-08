@@ -1,7 +1,7 @@
 <?php
 class OAD {
 
-  private function getData($link) {
+  private function getter($link) {
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, $link); //Set the URL here
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -16,6 +16,9 @@ class OAD {
     $get = curl_exec($curl); //Get the data
     curl_close($curl);
     return $get;
+  }
+  private function getData($url) {
+    return json_decode($this->getter($url));
   }
 
   public function metar($icao) {
