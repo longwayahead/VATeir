@@ -50,8 +50,9 @@ forum/**
 sql_backups/**
 uploads/**
 atc_solo/**
-datafiles/**
+datafiles/
 test.php
 login/config.php
 forum/config.php
 mail/mail.php
+libs/
