@@ -14,3 +14,6 @@ In order to get this website to work on your own server you must see to the foll
 ## PHPBB 3 Forum Integration
 * You will need to modify the default PHPBB database schema to include a column called `vatsim_id` in the phpbb_users table.
 
+## CRON Job
+* Add update_controllers.php to your crontab.
+* This script updates members' records if there has been an update to their CERT, it registers new users, and it does a cleanup of some database things.
