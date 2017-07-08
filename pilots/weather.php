@@ -96,7 +96,7 @@ require_once('includes/header.php');
 						</tr>
 						<tr>
 							<td><strong>Wind:</strong></td>
-							<td><?php echo $metar->wind->dir . ' @ ' . $metar->wind->spd . ' kt' . $metar->wind->gust;?></td>
+							<td><?php echo $metar->wind->dir . ' @ ' . $metar->wind->spd . ' kt / Gust: ' . $metar->wind->gust;?></td>
 						</tr>
 						<tr>
 							<td><strong>Visibility:</strong></td>
