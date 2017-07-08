@@ -35,11 +35,17 @@ require_once('includes/header.php');
 						echo '</td><td class="hidden-xs">';
 							echo '<a data-toggle="tooltip" data-placement="top" data-original-title="' . date('j M Y H:i', strtotime($notam['start'])) . '">Start</a>';
 						echo '</td><td class="hidden-xs">';
-							echo '<a data-toggle="tooltip" data-placement="top" data-original-title="' . date('j M Y H:i', strtotime($notam['end'])) . '">End</a>';
+							echo '<a data-toggle="tooltip" data-placement="top" data-original-title="';
+							if($notam['end'] == 'Permanent') {
+								echo 'Permanent';
+							} else {
+								echo date('j M Y H:i', strtotime($notam['end']));
+							}
+							 echo '">End</a>';
 						echo '</td></tr>';
 					}
 				}
-				
+
 				?>
 				</table>
 			</div>
