@@ -4,13 +4,14 @@ require_once('includes/header.php');
 
 try {
 	if($user->data()->id == 1032602) {
-		$data = $t->getStudent(1032602); //show someone else's details for testing purposes
+		$data = $t->getStudent(1385589); //show someone else's details for testing purposes
 	} else {
 		$data = $t->getStudent($user->data()->id);
 	}
 } catch (Exception $e) {
 	echo $e->getMessage();
 }
+$now = new DateTime;
 ?>
 
 <h3 class="text-center">My History</h3>
@@ -170,7 +171,15 @@ try {
 												    <div class="card-action">
 												        <div class="row">
 												            <div class="col-md-6 col-sm-6 col-xs-6" style="display:inline-block; padding-left:5px;">
-																<div class="text">' . $report->mfname . ' ' . $report->mlname . '<div class="hidden-xs" style="display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;' . date("jS M Y", strtotime($report->submitted_date)) . '</div></div>
+																<div class="text">' . $report->mfname . ' ' . $report->mlname . '<div class="hidden-xs" style="display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;';
+																$dtReport = new DateTime($report->submitted_date);
+																$dtReportFormat = $dtReport->format("j\<\s\u\p\>S\<\/\s\u\p\> M Y");
+																if($dtReport->diff($now)->days < 7){
+																	echo '<time class="timeago" datetime="' . $dtReport->format(DateTime::ATOM) . '">' . $dtReportFormat . '</time>';
+																} else {
+																	echo $dtReportFormat;
+																}
+																echo '</div></div>
 															</div>
 
 														</div>
@@ -203,7 +212,15 @@ try {
 											 echo '<div class="card-action">
 												        <div class="row">
 												            <div class="col-md-6 col-sm-6 col-xs-6" style="display:inline-block; padding-left:5px">
-																<div class="text">' . $note->mfname . ' ' . $note->mlname . '<div class="hidden-xs" style="display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;' . date("jS M Y", strtotime($note->submitted_date)) . '</div></div>
+																<div class="text">' . $note->mfname . ' ' . $note->mlname . '<div class="hidden-xs" style="display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;';
+																$dtNote = new DateTime($note->submitted_date);
+																$dtNoteFormat = $dtNote->format("j\<\s\u\p\>S\<\/\s\u\p\> M Y");
+																if($dtNote->diff($now)->days < 7){
+																	echo '<time class="timeago" datetime="' . $dtNote->format(DateTime::ATOM) . '">' . $dtNoteFormat . '</time>';
+																} else {
+																	echo $dtNoteFormat;
+																}
+																echo '</div></div>
 															</div>
 
 														</div>
@@ -251,11 +268,17 @@ try {
 <?php
 require_once("../includes/footer.php");
 ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.6.1/jquery.timeago.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Readmore.js/2.0.5/readmore.min.js"></script>
 <script>$('article').readmore({
 	collapsedHeight: 58,
 	speed:200,
 	moreLink: '<div class="text-left" style="padding-top:10px; padding-left:15px; margin-bottom:4px;"><a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> More</a></div>',
 	lessLink: '<div class="text-left" style="padding-top:10px; padding-left:15px; margin-bottom:4px;"><a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Less</a></div>'
+});
+</script>
+<script>
+jQuery(document).ready(function() {
+  jQuery("time.timeago").timeago();
 });
 </script>

@@ -20,6 +20,7 @@ try {
 } catch (Exception $e) {
 	echo $e->getMessage();
 }
+$now = new DateTime;
 ?>
 
 
@@ -57,7 +58,8 @@ try {
 							<table class="table" style="margin-bottom:0;">
 								<tr>
 									<td style="width:45%;">VATeir Reg:</td>
-									<td><?php echo date("j\<\s\u\p\>S\<\/\s\u\p\> M Y", strtotime($data->regdate_vateir)); ?></td>
+									<td><?php echo date("j\<\s\u\p\>S\<\/\s\u\p\> M Y", strtotime($data->regdate_vateir));
+									?></td>
 								</tr>
 								<tr>
 									<td style="width:45%;">Activity:</td>
@@ -358,7 +360,15 @@ try {
 												    <div class="card-action">
 												        <div class="row">
 												            <div class="col-md-6 col-sm-6 col-xs-6" style="display:inline-block; padding-left:5px;">
-																<div class="text">' . $report->mfname . ' ' . $report->mlname . '<div class="hidden-xs" style="display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;' . date("jS M Y", strtotime($report->submitted_date)) . '</div></div>
+																<div class="text">' . $report->mfname . ' ' . $report->mlname . '<div class="hidden-xs" style="display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;';
+																$dtReport = new DateTime($report->submitted_date);
+																$dtReportFormat = $dtReport->format("j\<\s\u\p\>S\<\/\s\u\p\> M Y");
+																if($dtReport->diff($now)->days < 7){
+																	echo '<time class="timeago" datetime="' . $dtReport->format(DateTime::ATOM) . '">' . $dtReportFormat . '</time>';
+																} else {
+																	echo $dtReportFormat;
+																}
+																echo '</div></div>
 															</div>
 															<div class="col-md-6 col-sm-6 col-xs-6 text-right" style="display:inline-block;">
 																<a class="btn btn-primary btn-xs" href="edit_report.php?id=' . $report->rep_id . '"><span class="glyphicon glyphicon-pencil"></span><div class="hidden-xs" style="display:inline-block;"> Edit</div></a>
@@ -399,7 +409,15 @@ try {
 											 echo '<div class="card-action">
 												        <div class="row">
 												            <div class="col-md-6 col-sm-6 col-xs-6" style="display:inline-block; padding-left:5px;">
-																<div class="text">' . $note->mfname . ' ' . $note->mlname . '<div class="hidden-xs" style="display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;' . date("jS M Y", strtotime($note->submitted_date)) . '</div></div>
+																<div class="text">' . $note->mfname . ' ' . $note->mlname . '<div class="hidden-xs" style="display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;';
+																$dtNote = new DateTime($note->submitted_date);
+																$dtNoteFormat = $dtNote->format("j\<\s\u\p\>S\<\/\s\u\p\> M Y");
+																if($dtNote->diff($now)->days < 7){
+																	echo '<time class="timeago" datetime="' . $dtNote->format(DateTime::ATOM) . '">' . $dtNoteFormat . '</time>';
+																} else {
+																	echo $dtNoteFormat;
+																}
+																echo '</div></div>
 															</div>
 															<div class="col-md-6 col-sm-6 col-xs-6 text-right" style="display:inline-block;">
 																<a class="btn btn-primary btn-xs" href="edit_note.php?id=' . $note->note_id . '"><span class="glyphicon glyphicon-pencil"></span><div class="hidden-xs" style="display:inline-block;"> Edit</div></a>';
@@ -421,7 +439,7 @@ try {
 												<div class="nopad">
 													<div class="card-title text-center" id="ns' . $info->session_id . '"">
 														<div class="hidden-xs"><strong>' . $info->card_name . ':</strong> <div class="hidden-xs" style="display:inline-block;">' . $info->callsign . ' on</div> ' . date('j\<\s\u\p>S\</\s\u\p\> M', strtotime($info->start)) . '<div style="display:inline-block;" class="hidden-xs">&nbsp;' . date('Y', strtotime($info->start)) .'</div></div>
-														<div class="visible-xs"> ' . $info->callsign . '</div><div class="visible-xs" style="font-size:15px">' . date("j\<\s\u\p\>S\<\/\s\u\p\> M Y", strtotime($info->start)) . '</div>
+														<div class="visible-xs"> ' . $info->callsign . '</div><div class="visible-xs" style="font-size:15px">' . date("j\<\s\u\p\>S\<\/\s\u\p\> M Y", strtotime($info->start)) . </div>
 													</div>
 				 									</div>
 				 								</div>
@@ -459,11 +477,17 @@ try {
 <?php
 require_once("../../includes/footer.php");
 ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.6.1/jquery.timeago.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Readmore.js/2.0.5/readmore.min.js"></script>
 <script>$('article').readmore({
 	collapsedHeight: 58,
 	speed:200,
 	moreLink: '<div class="text-left" style="padding-top:10px; padding-left:15px; margin-bottom:4px;"><a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> More</a></div>',
 	lessLink: '<div class="text-left" style="padding-top:10px; padding-left:15px; margin-bottom:4px;"><a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Less</a></div>'
+});
+</script>
+<script>
+jQuery(document).ready(function() {
+  jQuery("time.timeago").timeago();
 });
 </script>
