@@ -439,7 +439,7 @@ $now = new DateTime;
 												<div class="nopad">
 													<div class="card-title text-center" id="ns' . $info->session_id . '"">
 														<div class="hidden-xs"><strong>' . $info->card_name . ':</strong> <div class="hidden-xs" style="display:inline-block;">' . $info->callsign . ' on</div> ' . date('j\<\s\u\p>S\</\s\u\p\> M', strtotime($info->start)) . '<div style="display:inline-block;" class="hidden-xs">&nbsp;' . date('Y', strtotime($info->start)) .'</div></div>
-														<div class="visible-xs"> ' . $info->callsign . '</div><div class="visible-xs" style="font-size:15px">' . date("j\<\s\u\p\>S\<\/\s\u\p\> M Y", strtotime($info->start)) . </div>
+														<div class="visible-xs"> ' . $info->callsign . '</div><div class="visible-xs" style="font-size:15px">' . date("j\<\s\u\p\>S\<\/\s\u\p\> M Y", strtotime($info->start)) . '</div>
 													</div>
 				 									</div>
 				 								</div>
