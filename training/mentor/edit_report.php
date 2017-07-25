@@ -1,6 +1,7 @@
 <?php
 $pagetitle = "Edit Report";
 require_once('../includes/header.php');
+$f = new Files;
 ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/8.5.1/nouislider.min.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.2/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
@@ -8,7 +9,14 @@ require_once('../includes/header.php');
 if(isset($_GET['id'])) {
 	try {
 		$report = $r->getReport(1, $_GET['id']);
-		print_r($report);
+		if($report->files > 0) {
+
+			$files = $f->get($_GET['id']);
+		}
+
+		// print_r($report);
+		// echo $report->files;
+
 		if(!$user->hasPermission('mentor') || !$user->hasPermission($report->permissions)) {
 			Session::flash('error', 'Insufficient permissions');
 			Redirect::to('./');
@@ -74,6 +82,17 @@ if(isset($_GET['id'])) {
 						}
 					}
 
+					if(isset($_FILES['upload'])) {
+						$status = $f->upload($_FILES['upload'], $_GET['id'], $user->data()->id, $_SERVER['REMOTE_ADDR']);
+					}
+
+					if(Input::get('fileDelete')) {
+						foreach(Input::get('fileDelete') as $fileID => $on) {
+							$deleteFile = $f->remove($fileID);
+						}
+					}
+
+
 
 
 					Session::flash('success', 'Report Edited');
@@ -111,7 +130,7 @@ if(isset($_GET['id'])) {
 
 
 	<div class="col-md-10 col-md-offset-1 well">
-		<form class="form-horizontal" method="post" action=""  onsubmit="document.getElementById('submit').disabled=true; document.getElementById('submit').value='Editing...';">
+		<form class="form-horizontal" method="post" action=""  onsubmit="document.getElementById('submit').disabled=true; document.getElementById('submit').value='Editing...';" enctype="multipart/form-data">
 	        <fieldset>
 	          <legend>Edit Report</legend>
 	          	<div class="form-group">
@@ -120,28 +139,6 @@ if(isset($_GET['id'])) {
 						<input class="form-control" type="text" id="studentname" placeholder="<?php echo $report->sfname . ' ' . $report->slname;?>" readonly>
 					</div>
 				</div>
-				<!-- <div class="form-group">
-			      <label for="type" class="col-lg-3 control-label">Report Type</label>
-			      <div class="col-lg-4">
-			        <select name="report_type type" id="type" class="form-control tick" required>
-						<?php
-							// try {
-
-							// 	if(count($types)) {
-							// 		$programs = array();
-							// 		foreach($types as $type){
-							// 			echo '<option value="' . $type->report_type_id . '"';
-							// 			echo ($type->report_type_id == $report->report_type_id) ? ' selected' : '';
-							// 			echo '>' . $type->ident . ': ' . $type->session_type_name . '</option>';
-							// 		}
-							// 	}
-							// } catch(Exception $e) {
-							// 	echo '<option>' . $e->getMessage . '</option>';
-							// }
-						?>
-					</select>
-			      </div>
-			    </div> -->
 				<div class="form-group">
 					<label for="programname" class="col-lg-3 control-label">Report Type</label>
 					<div class="col-lg-4">
@@ -288,7 +285,7 @@ if(isset($_GET['id'])) {
 						<?php
 							require_once(URL . 'scribe/box.php');
 						?>
-						<div class="scribe" id="textArea" class="form-control"><?php echo (!Input::exists()) ? htmlentities($report->text) : htmlentities(Input::get('text')); ?></div>
+						<div class="scribe" id="textArea" class="form-control"><?php echo (!Input::exists()) ? $report->text : Input::get('text'); ?></div>
 						<input type="hidden" name="text" class="scribe-html" value="<?php echo (!Input::exists()) ? htmlentities($report->text) : htmlentities(Input::get('text')); ?>">
 
 					</div>
@@ -297,9 +294,39 @@ if(isset($_GET['id'])) {
 				<?php if($user->data()->id == 1032602 && $report->sess_type_id == 3) {
 					?>
 					<div class="form-group">
-						<label for="uploads" class="control-label col-lg-3">Select File(s)</label>
+						<label for="uploads" class="control-label col-lg-3">Files</label>
 						<div class="col-lg-8">
-							<input id="uploads" name="uploads[]" type="file" class="file" multiple data-show-upload="false" data-show-caption="true">
+							<?php
+							if($files){
+								?>
+								<table class="table table-condensed table-responsive table-striped">
+									<tr>
+										<td><input style="margin-left:5px;" type="checkbox" class="checkbox check" id="checkAll"></td>
+										<td>Name</td>
+										<td>Uploader</td>
+										<td>Size</td>
+									</tr>
+								<?php
+								foreach($files as $file) {
+									?>
+
+										<tr>
+											<td>
+												<input style="margin-left:5px;" class="checkbox check" name="fileDelete[<?php echo $file->id; ?>]" type="checkbox">
+											</td>
+											<td><a href="<?php echo BASE_URL . 'training/uploads/' . $_GET['id'] . '/' .  $file->fileName; ?>"><?php echo $file->originalName; ?></a></td>
+											<td><?php echo $file->first_name . ' ' . $file->last_name;?></td>
+											<td><?php echo $file->size;?></td>
+
+									<?php
+								}
+								?>
+								</tr>
+								</table>
+								<?php
+							}
+							 ?>
+							<input id="uploads" name="upload[]" type="file" class="file" multiple data-show-upload="false" data-show-caption="true">
 						</div>
 					</div>
 					<?php
@@ -325,7 +352,6 @@ if(isset($_GET['id'])) {
 	<script src=<?php echo BASE_URL . "js/jquery.nouislider.all.min.js";?>></script>
 	<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/8.5.1/nouislider.min.js"></script> -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.2/js/fileinput.min.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.2/js/fileinput.min.js" type="text/javascript"></script>
 
 	<script>
@@ -364,6 +390,10 @@ if(isset($_GET['id'])) {
 
 	</script>
 	<script src="../../scribe/bower_components/requirejs/require.js" data-main="../../scribe/setup.js"></script>
-
+	<script>
+	$("#checkAll").click(function () {
+	    $(".check").prop('checked', $(this).prop('checked'));
+	});
+	</script>
 	<?php
 }

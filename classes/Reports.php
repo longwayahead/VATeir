@@ -267,6 +267,7 @@ class Reports {
 			`stu`.`id`, `stu`.`cid`, `stu`.`program`,
 			`prog`.`id` AS `prog_id`, `prog`.`name`, `prog`.`ident`, `prog`.`sort`, `prog`.`permissions`,
 			`m`.`id`, `m`.`first_name` AS `mfname`, `m`.`last_name` AS `mlname`,
+			(SELECT count(`f`.`id`) FROM `training_uploads` AS `f` WHERE `f`.`report_id` = `r`.`id`) AS `files`,
 			`st`.`id`, `st`.`first_name` AS `sfname`, `st`.`last_name` AS `slname`
 			FROM `reports` AS `r`
 			LEFT JOIN `report_types` AS `t` ON `t`.`id` = `r`.`report_type_id`
