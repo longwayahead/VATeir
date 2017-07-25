@@ -283,7 +283,7 @@ if(Input::exists()) { //if form submitted!
 						require_once(URL . 'scribe/box.php');
 					?>
 					<div class="scribe" class="form-control"><?php echo Input::get('text'); ?></div>
-					<input type="hidden" name="text" class="scribe-html" value="<?php echo Input::get('text'); ?>">
+					<input type="hidden" name="text" class="scribe-html" value="<?php echo htmlentities(Input::get('text')); ?>">
 					<!-- <textarea name="report" class="form-control" rows="3" id="textArea" required><?php //echo Input::get('report');?></textarea>
 					<span class="help-block">This field supports <a target="_blank" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Markdown</a>!.</span> -->
 				</div>
