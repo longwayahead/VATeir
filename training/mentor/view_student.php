@@ -350,6 +350,27 @@ $now = new DateTime;
 																	}
 																}
 
+																if($report->files > 0) {
+																	$f = new Files;
+																	echo '<br><h4 style="color:white;">Files</h4>
+																	<table class="table table-responsive table-condensed">
+																					<tr>
+																						<td>Name</td>
+																						<td class="hidden-xs">Uploader</td>
+																						<td class="hidden-xs">Size</td>
+																					</tr>';
+																	$files = $f->get($report->rep_id);
+
+																	foreach($files as $file) {
+																		echo '<tr>
+																					 <td><a href="' . BASE_URL . 'training/uploads/' . $report->rep_id . '/' . $file->fileName . '">' . $file->originalName . '</a></td>
+																					 <td class="hidden-xs">' . $file->first_name . ' ' . $file->last_name . '</td>
+																					 <td class="hidden-xs">' . $file->size . '</td>
+																					</tr>';
+																	}
+																	echo '</table>';
+																}
+
 
 																//end back  vv
 															echo '</div>

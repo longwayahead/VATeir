@@ -33,7 +33,10 @@ class Files {
     }
 
     public function get($report_id) {
-      $get = $this->_db->query("SELECT * FROM training_uploads WHERE report_id = ?", [[$report_id]]);
+      $get = $this->_db->query("SELECT t.*, c.first_name, c.last_name
+        FROM training_uploads t
+        LEFT JOIN controllers c ON c.id = t.uploader
+        WHERE report_id = ?", [[$report_id]]);
       if($get) {
         return $get->results();
       } else {
@@ -41,15 +44,16 @@ class Files {
       }
     }
 
-    public function dbPut($uploader, $report_id, $original_name, $new_name) {
-      $put = $this->_db->query("INSERT INTO training_uploads (uploader, report_id, originalName, fileName) VALUES (?, ?, ?, ?)", [[$uploader, $report_id, $original_name, $new_name]]);
+    public function dbPut($uploader, $report_id, $original_name, $new_name, $size, $ip) {
+      $put = $this->_db->query("INSERT INTO training_uploads (uploader, report_id, originalName, fileName, size, date_uploaded, ip)
+      VALUES (?, ?, ?, ?, ?, ?, ?)", [[$uploader, $report_id, $original_name, $new_name, $size, date("Y-m-d H:i:s"), $ip]]);
       if($put) {
         return true;
       }
       return false;
     }
 
-    public function upload($file_array, $report_id, $uploader) {
+    public function upload($file_array, $report_id, $uploader, $ip) {
       if(!empty($file_array['name'][0])) { //we want to only do something if someone's uploaded something...
         echo '<pre>';
         print_r($file_array);
@@ -84,7 +88,7 @@ class Files {
                   //moving the file from PHP tmp to the above directory
                   if(move_uploaded_file($file_temp, $destination . $newName)) {
                     //record the upload in the database
-                    $database = $this->dbPut($uploader, $report_id, $sanitisedName, $newName);
+                    $database = $this->dbPut($uploader, $report_id, $sanitisedName, $newName, $file_size, $ip);
                     if($database == true){ //if adding the record went okay
                       $uploaded[$key] = $file_name;
                     } else { //all the error reporting is here below

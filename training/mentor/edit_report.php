@@ -326,18 +326,18 @@ if(isset($_GET['id'])) {
 								<?php
 							}
 							 ?>
-							<input id="uploads" name="upload[]" type="file" class="file" multiple data-show-upload="false" data-show-caption="true">
+							<input id="uploads" name="upload[]" type="file" class="file" multiple data-browseClass="btn btn-default" data-show-upload="false" data-show-caption="true">
 						</div>
 					</div>
 					<?php
 				}
 				?>
-
+				<br><br>
 				<div class="form-group text-center">
 					<div class="col-lg-10 col-md-offset-1">
 					<input type="hidden" name="id" value="<?php echo Input::get('id');?>"></input>
 					<input type="hidden" name="cid" value="<?php echo $report->student_cid;?>"></input>
-					<button type="submit" id="submit" name="submit" class="btn btn-primary">Submit</button>
+					<button type="submit" id="submit" name="submit" class="btn btn-primary btn-lg">Submit</button>
 					</div>
 				</div>
 			</fieldset>
