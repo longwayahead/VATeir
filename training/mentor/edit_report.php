@@ -83,7 +83,7 @@ if(isset($_GET['id'])) {
 					}
 
 					if(isset($_FILES['upload'])) {
-						$status = $f->upload($_FILES['upload'], $_GET['id'], $user->data()->id, $_SERVER['REMOTE_ADDR']);
+						$status = $f->upload($_FILES['upload'], $_GET['id'], $user->data()->id);
 					}
 
 					if(Input::get('fileDelete')) {
@@ -291,7 +291,7 @@ if(isset($_GET['id'])) {
 					</div>
 				</div>
 				<br><br>
-				<?php if($user->data()->id == 1032602 && $report->sess_type_id == 3) {
+				<?php if($user->hasPermission('admin')) {
 					?>
 					<div class="form-group">
 						<label for="uploads" class="control-label col-lg-3">Files</label>
