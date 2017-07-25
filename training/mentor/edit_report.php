@@ -3,11 +3,12 @@ $pagetitle = "Edit Report";
 require_once('../includes/header.php');
 ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/8.5.1/nouislider.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.2/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
 <?php
 if(isset($_GET['id'])) {
 	try {
 		$report = $r->getReport(1, $_GET['id']);
-		//print_r($report);
+		print_r($report);
 		if(!$user->hasPermission('mentor') || !$user->hasPermission($report->permissions)) {
 			Session::flash('error', 'Insufficient permissions');
 			Redirect::to('./');
@@ -281,18 +282,30 @@ if(isset($_GET['id'])) {
 				}
 				?>
 				<br><br><br>
-				<div class="form-group"> 
+				<div class="form-group">
 					<label for="textArea" class="col-lg-3 control-label">Report Text</label>
 					<div class="col-lg-8">
 						<?php
 							require_once(URL . 'scribe/box.php');
 						?>
-						<div class="scribe" class="form-control"><?php echo (!Input::exists()) ? $report->text : Input::get('text'); ?></div>
+						<div class="scribe" id="textArea" class="form-control"><?php echo (!Input::exists()) ? $report->text : Input::get('text'); ?></div>
 						<input type="hidden" name="text" class="scribe-html" value="<?php echo (!Input::exists()) ? htmlentities($report->text) : htmlentities(Input::get('text')); ?>">
-						<!-- <textarea name="report" class="form-control" rows="3" id="textArea" required><?php //echo (!Input::exists()) ? $report->text : Input::get('report'); ?></textarea>
-						<span class="help-block">This field supports <a target="_blank" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Markdown</a>!.</span> -->
+
 					</div>
 				</div>
+				<br><br>
+				<?php if($user->data()->id == 1032602 && $report->sess_type_id == 3) {
+					?>
+					<div class="form-group">
+						<label for="uploads" class="control-label col-lg-3">Select File(s)</label>
+						<div class="col-lg-8">
+							<input id="uploads" name="uploads[]" type="file" class="file" multiple data-show-upload="false" data-show-caption="true">
+						</div>
+					</div>
+					<?php
+				}
+				?>
+
 				<div class="form-group text-center">
 					<div class="col-lg-10 col-md-offset-1">
 					<input type="hidden" name="id" value="<?php echo Input::get('id');?>"></input>
@@ -311,6 +324,10 @@ if(isset($_GET['id'])) {
 ?>
 	<script src=<?php echo BASE_URL . "js/jquery.nouislider.all.min.js";?>></script>
 	<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/8.5.1/nouislider.min.js"></script> -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.2/js/fileinput.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.2/js/fileinput.min.js" type="text/javascript"></script>
+
 	<script>
 		<?php
 		if($allSliders) {
