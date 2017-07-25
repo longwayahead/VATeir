@@ -288,7 +288,7 @@ if(isset($_GET['id'])) {
 						<?php
 							require_once(URL . 'scribe/box.php');
 						?>
-						<div class="scribe" id="textArea" class="form-control"><?php echo (!Input::exists()) ? $report->text : Input::get('text'); ?></div>
+						<div class="scribe" id="textArea" class="form-control"><?php echo (!Input::exists()) ? htmlentities($report->text) : htmlentities(Input::get('text')); ?></div>
 						<input type="hidden" name="text" class="scribe-html" value="<?php echo (!Input::exists()) ? htmlentities($report->text) : htmlentities(Input::get('text')); ?>">
 
 					</div>
