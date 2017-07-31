@@ -56,3 +56,8 @@ login/config.php
 forum/config.php
 mail/mail.php
 libs/
+statistics/datafile.txt
+statistics/.htaccess
+statistics/server_log.txt
+statistics/dbpw.php
+training/uploads

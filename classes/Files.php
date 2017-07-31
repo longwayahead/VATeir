@@ -44,9 +44,10 @@ class Files {
       }
     }
 
-    public function dbPut($uploader, $report_id, $original_name, $new_name, $size, $ip) {
-      $put = $this->_db->query("INSERT INTO training_uploads (uploader, report_id, originalName, fileName, size, date_uploaded, ip)
-      VALUES (?, ?, ?, ?, ?, ?, ?)", [[$uploader, $report_id, $original_name, $new_name, $size, date("Y-m-d H:i:s"), $ip]]);
+    public function dbPut($uploader, $report_id, $original_name, $new_name, $size) {
+      $date = date("Y-m-d H:i:s");
+      $put = $this->_db->query("INSERT INTO training_uploads (uploader, report_id, originalName, fileName, size, date_uploaded)
+      VALUES (?, ?, ?, ?, ?, ?, ?)", [[$uploader, $report_id, $original_name, $new_name, $size, $date]]);
       if($put) {
         return true;
       }
@@ -55,13 +56,13 @@ class Files {
 
     public function upload($file_array, $report_id, $uploader, $ip) {
       if(!empty($file_array['name'][0])) { //we want to only do something if someone's uploaded something...
-        echo '<pre>';
-        print_r($file_array);
-        echo '</pre>';
+        // echo '<pre>';
+        // print_r($file_array);
+        // echo '</pre>';
 
         $uploaded = [];
         $failed = [];
-        $allowed = ['txt', 'xlsx'];
+        $allowed = ['xlsx', 'zip'];
 
 
         foreach($file_array['name'] as $key => $data) {
