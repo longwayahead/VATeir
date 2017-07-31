@@ -9,7 +9,7 @@ $remoteurls = [
 ];
 $randomurl = $remoteurls[array_rand($remoteurls)];
 ////////////Cache the datafile/////////////////////
-if (file_exists($localfilename) && (filemtime($localfilename) > (time() - 60 * 5))) {
+if (file_exists($localfilename) && (filemtime($localfilename) > (time() - 60 * 4))) {
    // Cache file is less than five minutes old.
    // Don't bother refreshing, just use the file as-is.
    $file = file_get_contents($localfilename);
@@ -70,7 +70,15 @@ foreach($result[1] as $i => $atc) {
     }
   }
 }
-$conn = null;
+
 ////////////////LOG WHICH SERVER WAS USED//////////////////////
 $log_url = '['. $finish .'] ' . $randomurl . "\r\n";
 file_put_contents("server_log.txt", $log_url, FILE_APPEND);
+////////////////GET AND STORE VATSIM CLIENT DATA//////////////////////
+preg_match("/CONNECTED CLIENTS = (\d+)/",$file , $clients);
+$network = $conn->prepare("INSERT INTO network (clients)
+VALUES (:clients)");
+$connections = $clients[1];
+$network->bindParam(":clients", $connections);
+$network->execute();
+$conn = null;
