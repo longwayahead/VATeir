@@ -36,6 +36,8 @@ $check = $conn->prepare("SELECT 1 FROM sessions WHERE cid = :cid AND start = :st
 //update
 $update = $conn->prepare("UPDATE sessions SET finish = :finish WHERE cid = :cid AND start = :start AND position = :position");
 //////////////////////TIME TO LOOP THROUGH THE POSITIONS ONLINE//////////////////////
+$finish = new DateTime();
+$finish = $finish->format("Y-m-d H:i:s");
 foreach($result[1] as $i => $atc) {
   if(strpos($atc, 'ATIS') == false && strpos($atc, 'OBS') == false) { //Make sure only actual ATC positions are recorded -> backup in case REGEX above fails
     //////////////////////MAKES THINGS EASIER TO WORK WITH//////////////////////
@@ -45,8 +47,6 @@ foreach($result[1] as $i => $atc) {
     $dt = new DateTime($result[5][$i]);
     $start = $dt->format("Y-m-d H:i:s");
     $facility = $result[4][$i];
-    $finish = new DateTime();
-    $finish = $finish->format("Y-m-d H:i:s");
     /////////////////////////////////////////////////////////////////////////////
     $check->bindParam(":cid",$cid);
     $check->bindParam(":start", $start);
