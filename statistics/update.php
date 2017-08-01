@@ -21,7 +21,7 @@ if (file_exists($localfilename) && (filemtime($localfilename) > (time() - 60 * 4
 }
 
 ////////////////GET IRISH POSITIONS ONLINE//////////////////////
-preg_match_all("/(EI\w{2,}_(?:[\w\d]_)?(?:CTR|APP|TWR|GND|DEL)):(\d+):.*?:ATC:(?=.*:([1-9])::([\d+]):)(?=.*:(\d+)::::)/",$file , $result);
+preg_match_all("/(EI\w{2,}_(?:[\w\d]_)?(?:CTR|APP|TWR|GND|DEL)):(\d+):.*?:ATC:(?!199\.998)(?=.*:([1-9])::([\d+]):)(?=.*:(\d+)::::)/",$file , $result);
 require_once('db.php');
 //////////////////////PREPARE THE QUERIES//////////////////////
 //Insert query
