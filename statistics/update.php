@@ -22,11 +22,7 @@ if (file_exists($localfilename) && (filemtime($localfilename) > (time() - 60 * 4
 
 ////////////////GET IRISH POSITIONS ONLINE//////////////////////
 preg_match_all("/(EI\w{2,}_(?:[\w\d]_)?(?:CTR|APP|TWR|GND|DEL)):(\d+):.*?:ATC:(?=.*:([1-9])::([\d+]):)(?=.*:(\d+)::::)/",$file , $result);
-////////////////DATABASE STUFF//////////////////////
-require_once('dbpw.php');
-$conn = new PDO("mysql:host=localhost;dbname=vateir_statistics", 'vateir', $password);
-// set the PDO error mode to exception
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);#
+require_once('db.php');
 //////////////////////PREPARE THE QUERIES//////////////////////
 //Insert query
 $insert = $conn->prepare("INSERT INTO sessions (cid, rating, start, finish, position, facility)
@@ -44,7 +40,10 @@ foreach($result[1] as $i => $atc) {
     $position = $atc;
     $cid = $result[2][$i];
     $rating = $result[3][$i];
-    $dt = new DateTime($result[5][$i]);
+    $time = $result[5][$i];
+    $dt = new DateTime($time, new DateTimezone('GMT'));
+    $IST = new DateTimeZone('Europe/Dublin');
+    $dt->setTimezone($IST);
     $start = $dt->format("Y-m-d H:i:s");
     $facility = $result[4][$i];
     /////////////////////////////////////////////////////////////////////////////
@@ -74,7 +73,7 @@ foreach($result[1] as $i => $atc) {
 ////////////////LOG WHICH SERVER WAS USED//////////////////////
 $log_url = '['. $finish .'] ' . $randomurl . "\r\n";
 file_put_contents("server_log.txt", $log_url, FILE_APPEND);
-////////////////GET AND STORE VATSIM CLIENT DATA//////////////////////
+//////////////GET AND STORE VATSIM CLIENT DATA//////////////////////
 preg_match("/CONNECTED CLIENTS = (\d+)/",$file , $clients);
 $network = $conn->prepare("INSERT INTO network (clients)
 VALUES (:clients)");
