@@ -1,37 +1,57 @@
 <?php
 require_once('db.php');
 $get = $conn->prepare("SELECT vateir_statistics.sessions.cid, vateir.controllers.first_name, vateir.controllers.last_name, vateir_statistics.sessions.position, vateir_statistics.sessions.facility,
-(SELECT SEC_TO_TIME(SUM(time_to_sec(TIMEDIFF(x.finish, x.start))))  FROM vateir_statistics.sessions x WHERE x.cid = vateir_statistics.sessions.cid AND x.position = vateir_statistics.sessions.position) as duration
+(SELECT SEC_TO_TIME(SUM(time_to_sec(TIMEDIFF(x.finish, x.start))))
+FROM vateir_statistics.sessions x
+  WHERE x.cid = vateir_statistics.sessions.cid
+  AND x.position = vateir_statistics.sessions.position
+  AND YEAR(CURRENT_DATE) = YEAR(x.finish)
+  AND MONTH(CURRENT_DATE) = MONTH(x.finish)) as duration
 FROM vateir_statistics.sessions
-LEFT JOIN vateir.controllers ON vateir.controllers.id = vateir_statistics.sessions.cid
+RIGHT JOIN vateir.controllers ON vateir.controllers.id = vateir_statistics.sessions.cid
+WHERE YEAR(CURRENT_DATE) = YEAR(vateir_statistics.sessions.finish)
+  AND MONTH(CURRENT_DATE) = MONTH(vateir_statistics.sessions.finish)
 GROUP BY vateir_statistics.sessions.cid, vateir_statistics.sessions.position
 ORDER BY vateir_statistics.sessions.facility DESC, duration DESC
 ");
 $get->execute();
 $results = $get->fetchAll(PDO::FETCH_ASSOC);
-// echo '<pre>';
-// print_r($results);
-// echo '</pre>';
 //1-3 DEL GND TWR // 4 APP // 5-6 CTR
 $stats = [];
+$del = 0;
+$gnd = 0;
+$twr = 0;
+$app = 0;
+$twr = 0;
+$ctr = 0;
 foreach($results as $a) {
   $facility = $a['facility'];
-  if($facility <= 4) {
-    $stats['Aerodrome'][] = $a;
-  } elseif($facility == 5) {
-    $stats['Approach'][] = $a;
-  } else {
-    $stats['Enroute'][] = $a;
-  }
+    if($facility == 2 && $del <= 10) {
+      $stats['Delivery'][] = $a;
+      $del++;
+    } elseif($facility == 3 && $gnd <= 10) {
+      $stats['Ground'][] = $a;
+      $gnd++;
+    } elseif($facility == 4 && $twr <= 10) {
+      $stats['Tower'][] = $a;
+      $twr++;
+    } elseif($facility == 5 && $app <= 10) {
+      $stats['Approach'][] = $a;
+      $app++;
+    } elseif($facility == 6 && $ctr <= 10) {
+      $stats['Enroute'][] = $a;
+      $ctr++;
+    }
 
 }
-// echo '<pre>';
-// print_r($stats);
-// echo '</pre>';
 $output = "";
+$boxes = 0;
 foreach($stats as $name => $s) {
   $i = 1;
-
+  $boxes++;
+  if($boxes == 1 || $boxes == 4) {
+    $output .= '<div class="row">';
+  }
   $output .= '<div class="col-md-4">
     <div class="panel panel-warning">
       <div class="panel-heading">
@@ -61,6 +81,9 @@ $output .= '</table>
           </div>
         </div>
         </div>';
+        if($boxes == 3 || $boxes == 5) {
+          $output .= '</div>';
+        }
 
 }
 file_put_contents("facility.html", $output);
