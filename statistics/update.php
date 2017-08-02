@@ -19,65 +19,27 @@ if (file_exists($localfilename) && (filemtime($localfilename) > (time() - 60 * 4
    $file = file_get_contents($randomurl);
    file_put_contents($localfilename, $file, LOCK_EX);
 }
-
 ////////////////GET IRISH POSITIONS ONLINE//////////////////////
 preg_match_all("/(EI\w{2,}_(?:[\w\d]_)?(?:CTR|APP|TWR|GND|DEL)):(\d+):.*?:ATC:(?!199\.998)(?=.*:([1-9])::([\d+]):)(?=.*:(\d+)::::)/",$file , $result);
 require_once('db.php');
-//////////////////////PREPARE THE QUERIES//////////////////////
-//Insert query
+//////////////////////PREPARE THE QUERY//////////////////////
 $insert = $conn->prepare("INSERT INTO sessions (cid, rating, start, finish, position, facility)
-VALUES (:cid, :rating, :start, :finish, :position, :facility)");
-//check to see whether session already exists in database
-$check = $conn->prepare("SELECT 1 FROM sessions WHERE cid = :cid AND start = :start AND position = :position");
-//update
-$update = $conn->prepare("UPDATE sessions SET finish = :finish WHERE cid = :cid AND start = :start AND position = :position");
+VALUES (:cid, :rating, :start, TIMESTAMP(NOW()), :position, :facility)
+  ON DUPLICATE KEY UPDATE
+    finish = VALUES(finish);
+");
 //////////////////////TIME TO LOOP THROUGH THE POSITIONS ONLINE//////////////////////
-$finish = new DateTime();
-$finish = $finish->format("Y-m-d H:i:s");
 foreach($result[1] as $i => $atc) {
-  if(strpos($atc, 'ATIS') == false && strpos($atc, 'OBS') == false) { //Make sure only actual ATC positions are recorded -> backup in case REGEX above fails
-    //////////////////////MAKES THINGS EASIER TO WORK WITH//////////////////////
-    $position = $atc;
-    $cid = $result[2][$i];
-    $rating = $result[3][$i];
     $time = $result[5][$i];
     $dt = new DateTime($time, new DateTimezone('GMT'));
     $IST = new DateTimeZone('Europe/Dublin');
     $dt->setTimezone($IST);
     $start = $dt->format("Y-m-d H:i:s");
-    $facility = $result[4][$i];
     /////////////////////////////////////////////////////////////////////////////
-    $check->bindParam(":cid",$cid);
-    $check->bindParam(":start", $start);
-    $check->bindParam(":position", $position);
-    $check->execute();
-    $fetch = $check->fetch();
-    if($fetch) { //if a record already exists update it
-      $update->bindParam(":finish", $finish);
-      $update->bindParam(":cid", $cid);
-      $update->bindParam(":start", $start);
-      $update->bindParam(":position", $position);
-      $update->execute();
-    } else { //if a record doesn't exist make one
-      $insert->bindParam(":cid", $cid);
-      $insert->bindParam(":rating", $rating);
-      $insert->bindParam(":start", $start);
-      $insert->bindParam(":finish", $finish);
-      $insert->bindParam(":position", $position);
-      $insert->bindParam(":facility", $facility);
-      $insert->execute();
-    }
-  }
+    $insert->bindParam(":cid", $result[2][$i]);
+    $insert->bindParam(":rating", $result[3][$i]);
+    $insert->bindParam(":start", $start);
+    $insert->bindParam(":position", $atc);
+    $insert->bindParam(":facility", $result[4][$i]);
+    $insert->execute();
 }
-
-////////////////LOG WHICH SERVER WAS USED//////////////////////
-$log_url = '['. $finish .'] ' . $randomurl . "\r\n";
-file_put_contents("server_log.txt", $log_url, FILE_APPEND);
-//////////////GET AND STORE VATSIM CLIENT DATA//////////////////////
-preg_match("/CONNECTED CLIENTS = (\d+)/",$file , $clients);
-$network = $conn->prepare("INSERT INTO network (clients)
-VALUES (:clients)");
-$connections = $clients[1];
-$network->bindParam(":clients", $connections);
-$network->execute();
-$conn = null;
