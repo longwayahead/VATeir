@@ -29,7 +29,7 @@ try {
 						<td><strong>Profile</strong></td>
 					</tr>
 					<?php foreach($controllers as $controller): ?>
-						
+
 						<tr>
 							<td><?php echo $controller->first_name . ' ' . $controller->last_name;?></td>
 							<td><?php echo $controller->long . ' (' . $controller->short . ')';?></td>
@@ -41,11 +41,12 @@ try {
 			<?php	} else {
 				echo '<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No mentors</div><br>';
 				} ?>
-				
+
 			</div>
 		</div>
 	</div>
 </div>
+
 
 <?php
 require_once("../includes/footer.php");

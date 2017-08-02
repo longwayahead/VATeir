@@ -41,7 +41,7 @@ echo '<br>';
 						<tr>
 							<td><?php echo $controller->first_name . ' ' . $controller->last_name;?></td>
 							<td><?php echo '<div class="hidden-xs" style="display:inline-block;">' . $controller->long . ' (</div>' . $controller->short . '<div class="hidden-xs" style="display:inline-block;">)</div>';?></td>							<td class="hidden-xs"><?php echo $controller->pratingstring;?></td>
-							<td><?php echo '<a class="btn btn-xs btn-warning" href="./profile.php?id=' . $controller->cid . '"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>';?></td>
+							<td><?php echo '<a id="' . $controller->cid . '" class="btn btn-xs btn-warning" href="./profile.php?id=' . $controller->cid . '"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>';?></td>
 						</tr>
 					<?php endforeach; ?>
 				</table>

@@ -65,7 +65,9 @@ foreach($stats as $name => $s) {
           </tr>';
           foreach($s as $q) {
             $output .= '<tr>
-              <td>' . $i . '. ' . $q['first_name'] . ' ' . $q['last_name'] . '
+              <td>';
+               $output .= ($i == 1) ? '<span class="glyphicon glyphicon-star" aria-hidden="true"></span> ' : $i . '. ';
+               $output .= '<a href="#' . $q['cid'] . '">' . $q['first_name'] . ' ' . $q['last_name'] . '</a>
               </td>
               <td>
                 ' . $q['duration'] .'
