@@ -7,7 +7,7 @@ LEFT JOIN vateir.controllers v ON v.id = s.cid
 WHERE YEAR(CURRENT_DATE()) = YEAR(s.finish)
 	AND MONTH(CURRENT_DATE()) = MONTH(CURRENT_DATE)
 GROUP BY s.position, s.cid
-ORDER BY s.facility DESC, s.position DESC
+ORDER BY  s.facility DESC, v.last_name DESC
 ");
 $get->execute();
 $results = $get->fetchAll(PDO::FETCH_ASSOC);
@@ -40,8 +40,11 @@ function timeLength($sec)
 }
 
 
-$output = '<div class="row">
-  <div class="col-md-6 col-md-offset-3">
+$output = '<div class="panel panel-warning">
+  <div class="panel-heading">
+    <h3 class="panel-title">' . date("F") . '\'s Controlling Hours</h3>
+  </div>
+<div class="panel-body">
     <table class="table table-responsive table-condensed">
       <tr>
     ';

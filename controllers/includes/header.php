@@ -24,6 +24,7 @@ a:hover {
 		Controllers
 			<li><a href="<?php echo BASE_URL . 'controllers/'; ?>">Roster</a></li>
 			<li><a target="_blank" href="<?php echo BASE_URL . 'atc_solo/solo.txt'; ?>">Validations</a></li>
+			<li><a href="statistics.php">Statistics</a></li>
 			<li><a href="<?php echo BASE_URL . 'controllers/mentors.php'; ?>">Mentors</a></li>
 			<?php //if($user->isLoggedIn()) {	?>
 				<li><a href="<?php echo BASE_URL . 'controllers/downloads.php'; ?>">Downloads</a></li>
