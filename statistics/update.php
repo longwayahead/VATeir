@@ -20,7 +20,7 @@ if (file_exists($localfilename) && (filemtime($localfilename) > (time() - 60 * 4
    file_put_contents($localfilename, $file, LOCK_EX);
 }
 ////////////////GET IRISH POSITIONS ONLINE//////////////////////
-preg_match_all("/(EI\w{2,}_(?:[\w\d]_)?(?:CTR|APP|TWR|GND|DEL)):(\d+):.*?:ATC:(?!199\.998)(?=.*:([1-9])::([\d+]):)(?=.*:(\d+)::::)/",$file , $result);
+preg_match_all("/(EI(?:\w{2})_(?:[\w\d]_)?(?:CTR|APP|TWR|GND|DEL)):(\d+):.*?:ATC:(?!199\.998)(?=.*:([1-9])::([\d+]):)(?=.*:(\d+)::::)/",$file , $result);
 require_once('db.php');
 //////////////////////PREPARE THE QUERY//////////////////////
 $insert = $conn->prepare("INSERT INTO sessions (cid, rating, start, finish, position, facility)

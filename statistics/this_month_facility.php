@@ -16,6 +16,12 @@ ORDER BY vateir_statistics.sessions.facility DESC, duration DESC
 ");
 $get->execute();
 $results = $get->fetchAll(PDO::FETCH_ASSOC);
+$tot = $conn->prepare("CALL thismonth_tott()");
+$tot->execute();
+$tott= $tot->fetchAll(PDO::FETCH_ASSOC);
+// echo '<pre>';
+// print_r($tott);
+// echo '</pre>';
 //1-3 DEL GND TWR // 4 APP // 5-6 CTR
 $stats = [];
 $del = 0;
@@ -42,8 +48,8 @@ foreach($results as $a) {
       $stats['Enroute'][] = $a;
       $ctr++;
     }
-
 }
+$stats['Top of the top'] = $tott;
 $output = "";
 $boxes = 0;
 foreach($stats as $name => $s) {
@@ -58,7 +64,7 @@ foreach($stats as $name => $s) {
         <h3 class="panel-title">' . $name . '</h3>
       </div>
       <div class="panel-body">
-        <table class="table table-condensed table-responsive table-striped">
+        <table class="table table-condensed table-responsive table-striped" style="margin-bottom:0px;">
           <tr>
               <td><strong>Name</strong></td>
               <td><strong>Time</strong></td>
@@ -83,10 +89,10 @@ $output .= '</table>
           </div>
         </div>
         </div>';
-        if($boxes == 3 || $boxes == 5) {
+        if($boxes == 3 || $boxes == 6) {
           $output .= '</div>';
         }
-
 }
+// $output;
 file_put_contents("facility.html", $output);
 ?>
