@@ -10,13 +10,7 @@ try {
 	echo $e->getMessage();
 }
 ?>
-<h3 class="text-center"><?php echo date("F");?>'s Top Controllers</h3><br>
 
-<?php
-include('../statistics/facility.html');
-echo '<div class="text-right">Last updated: ' . date("H:i \I\S\T j\<\s\u\p\>S\<\/\s\u\p\> M Y", filemtime('../statistics/facility.html')) . '</div>';
-echo '<br>';
-?>
 <h3 class="text-center">Roster of Controllers</h3>
 <br>
 <div class="row">

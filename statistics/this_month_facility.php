@@ -30,6 +30,7 @@ $twr = 0;
 $app = 0;
 $twr = 0;
 $ctr = 0;
+$stats['Top of the top'] = $tott;
 foreach($results as $a) {
   $facility = $a['facility'];
     if($facility == 2 && $del <= 10) {
@@ -49,7 +50,7 @@ foreach($results as $a) {
       $ctr++;
     }
 }
-$stats['Top of the top'] = $tott;
+
 $output = "";
 $boxes = 0;
 foreach($stats as $name => $s) {
