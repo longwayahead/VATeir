@@ -23,6 +23,7 @@ foreach($results as $r) {
 }
 
 $out = [];
+
 $overall_time = 0;
 foreach($stats['total'] as $pos => $time) {
   $out[0][] = $pos;
@@ -38,9 +39,6 @@ foreach($stats['cid'] as $cid => $q) {
   }
 	$out['cid'][$cid]['total'] = $controller_total;
 }
-// echo '<pre>';
-// print_r($out);
-// echo '</pre>';
 function timeLength($sec)
 {
     $s=$sec % 60;
@@ -59,34 +57,48 @@ $output = '<div class="panel panel-warning">
     //headers
 $output .= '<tr>';
 $output .= '<td></td>';
-foreach($out[0] as $key => $v) {
-
-  $output .= '<td><strong>' . $v . '</strong></td>';
-}
+	//CSV STUFF
+//	$csv[0][0] = '';
+		foreach($out[0] as $key => $v) {
+		  $output .= '<td><strong>' . $v . '</strong></td>';
+			//$csv[0][$key+1] = $v;
+		}
+//	$csv[0][] = 'Total';
+	//\CSV STUFF
 $output .= '<td><strong>Total</strong></td>';
 $output .= '</tr>';
 end($out[0]);
 $total = key($out[0]);
 //cids
 foreach($out['cid'] as $controller_name => $z) {
+	//CSV STUFF
+	//$csv[$controller_name][] = $controller_name;
+	//\CSV STUFF
   $output .= '<tr>';
   $output .= '<td style="white-space: nowrap;"><strong>' . $controller_name . '<strong></td>';
   for($i = 0; $i <= $total; $i++) {
     $output .= '<td>';
       if(array_key_exists($i, $z)) {
         $output .= timeLength($z[$i]);
+				//CSV STUFF
+				//$csv[$controller_name][] = $z[$i];
+				//\CSV STUFF
       } else {
         $output .= '';
+			//	$csv[$controller_name][] = 0;
       }
     $output .= '</td>';
   }
 	$output .= '<td>' . timeLength($z['total']) . '</td>';
+	//$csv[$controller_name][] = $z['total'];
   $output .= '</tr>';
 }
 $output .= '<tr>
 							<td><strong>Total</strong></td>';
+//	$csv['totals'][] = 'Total';
 	foreach($out[1] as $total_time) {
 		$output .= '<td>' . timeLength($total_time) . '</td>';
+		//$csv['totals'][] = $total_time;
 	}
 $output .= '</tr>';
 
@@ -94,6 +106,16 @@ $output .= '
     </table>
   </div>
 </div>';
-echo $output;
+// echo $output;
+// echo '<pre>';
+// print_r($csv);
+// echo '</pre>';
 file_put_contents("total.html", $output);
+//$fp = fopen('files/' . date("m.Y").'.csv', 'w');
+
+// foreach ($csv as $fields) {
+//     fputcsv($fp, $fields);
+// }
+
+//fclose($fp);
 ?>

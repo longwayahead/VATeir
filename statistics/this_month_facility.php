@@ -16,12 +16,12 @@ ORDER BY vateir_statistics.sessions.facility DESC, duration DESC
 ");
 $get->execute();
 $results = $get->fetchAll(PDO::FETCH_ASSOC);
-$tot = $conn->prepare("SELECT vateir_statistics.sessions.cid, vateir.controllers.first_name, vateir.controllers.last_name,
-         SEC_TO_TIME(SUM(TIME_TO_SEC(timediff(vateir_statistics.sessions.finish, vateir_statistics.sessions.start)))) as duration
-    FROM vateir_statistics.sessions
-    RIGHT JOIN vateir.controllers ON vateir.controllers.id = vateir_statistics.sessions.cid
-    WHERE YEAR(vateir_statistics.sessions.finish) = YEAR(CURRENT_DATE) AND MONTH(vateir_statistics.sessions.finish) = MONTH(CURRENT_DATE)
-GROUP BY vateir_statistics.sessions.cid
+$tot = $conn->prepare("SELECT x.cid, v.first_name, v.last_name,
+         SEC_TO_TIME(SUM(TIME_TO_SEC(timediff(x.finish, x.start)))) as duration
+    FROM vateir_statistics.sessions x
+    RIGHT JOIN vateir.controllers v ON v.id = x.cid
+    WHERE YEAR(x.finish) = YEAR(CURRENT_DATE) AND MONTH(x.finish) = MONTH(CURRENT_DATE)
+GROUP BY x.cid
 ORDER BY duration DESC
 LIMIT 10");
 $tot->execute();
