@@ -16,7 +16,14 @@ ORDER BY vateir_statistics.sessions.facility DESC, duration DESC
 ");
 $get->execute();
 $results = $get->fetchAll(PDO::FETCH_ASSOC);
-$tot = $conn->prepare("CALL thismonth_tott()");
+$tot = $conn->prepare("SELECT vateir_statistics.sessions.cid, vateir.controllers.first_name, vateir.controllers.last_name,
+         SEC_TO_TIME(SUM(TIME_TO_SEC(timediff(vateir_statistics.sessions.finish, vateir_statistics.sessions.start)))) as duration
+    FROM vateir_statistics.sessions
+    RIGHT JOIN vateir.controllers ON vateir.controllers.id = vateir_statistics.sessions.cid
+    WHERE YEAR(vateir_statistics.sessions.finish) = YEAR(CURRENT_DATE) AND MONTH(vateir_statistics.sessions.finish) = MONTH(CURRENT_DATE)
+GROUP BY vateir_statistics.sessions.cid
+ORDER BY duration DESC
+LIMIT 10");
 $tot->execute();
 $tott= $tot->fetchAll(PDO::FETCH_ASSOC);
 // echo '<pre>';
@@ -30,7 +37,7 @@ $twr = 0;
 $app = 0;
 $twr = 0;
 $ctr = 0;
-$stats['Top of the top'] = $tott;
+$stats['Top of the tops'] = $tott;
 foreach($results as $a) {
   $facility = $a['facility'];
     if($facility == 2 && $del <= 10) {
@@ -74,7 +81,12 @@ foreach($stats as $name => $s) {
             $output .= '<tr>
               <td>';
                $output .= ($i == 1) ? '<span class="glyphicon glyphicon-star" aria-hidden="true"></span> ' : $i . '. ';
-               $output .= '<a href="#' . $q['cid'] . '">' . $q['first_name'] . ' ' . $q['last_name'] . '</a>
+               if($q['cid'] == 	861497 && $boxes == 1 && $i == 1) {
+                 $output .= '<a href="profile.php?id=' . $q['cid'] . '" style="cursor: crosshair;" data-toggle="tooltip" title="Winner winner chicken dinner">' . $q['first_name'] . ' ' . $q['last_name'] . '</a>';
+               } else {
+                 $output .= '<a href="profile.php?id=' . $q['cid'] . '" style="cursor: pointer;">' . $q['first_name'] . ' ' . $q['last_name'] . '</a>';
+               }
+               $output .= '
               </td>
               <td>
                 ' . $q['duration'] .'
