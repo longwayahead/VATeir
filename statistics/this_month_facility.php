@@ -4,14 +4,14 @@ $get = $conn->prepare("SELECT vateir_statistics.sessions.cid, vateir.controllers
 (SELECT SEC_TO_TIME(SUM(time_to_sec(TIMEDIFF(x.finish, x.start))))
 FROM vateir_statistics.sessions x
   WHERE x.cid = vateir_statistics.sessions.cid
-  AND x.position = vateir_statistics.sessions.position
+  AND x.facility = vateir_statistics.sessions.facility
   AND YEAR(CURRENT_DATE) = YEAR(x.finish)
   AND MONTH(CURRENT_DATE) = MONTH(x.finish)) as duration
 FROM vateir_statistics.sessions
 RIGHT JOIN vateir.controllers ON vateir.controllers.id = vateir_statistics.sessions.cid
 WHERE YEAR(CURRENT_DATE) = YEAR(vateir_statistics.sessions.finish)
   AND MONTH(CURRENT_DATE) = MONTH(vateir_statistics.sessions.finish)
-GROUP BY vateir_statistics.sessions.cid, vateir_statistics.sessions.position
+GROUP BY vateir_statistics.sessions.cid, vateir_statistics.sessions.facility
 ORDER BY vateir_statistics.sessions.facility DESC, duration DESC
 ");
 $get->execute();
@@ -20,7 +20,7 @@ $tot = $conn->prepare("CALL thismonth_tott()");
 $tot->execute();
 $tott= $tot->fetchAll(PDO::FETCH_ASSOC);
 // echo '<pre>';
-// print_r($tott);
+// print_r($results);
 // echo '</pre>';
 //1-3 DEL GND TWR // 4 APP // 5-6 CTR
 $stats = [];
@@ -94,6 +94,6 @@ $output .= '</table>
           $output .= '</div>';
         }
 }
-// $output;
+//echo $output;
 file_put_contents("facility.html", $output);
 ?>
