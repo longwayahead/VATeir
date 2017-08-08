@@ -34,7 +34,7 @@ require_once("includes/header.php");
 
 
   <?php
-  $stream = json_decode(file_get_contents("https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UC3cbTV3I-D6QPE4H8v6W2fw&type=video&eventType=live&key=AIzaSyAQXxoeB3xrW9ZKM3-Rgh4dViUd_5JlWos"));
+  //$stream = json_decode(file_get_contents("https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UC3cbTV3I-D6QPE4H8v6W2fw&type=video&eventType=live&key=AIzaSyAQXxoeB3xrW9ZKM3-Rgh4dViUd_5JlWos"));
 // echo '<pre>';
 // var_dump($stream);
 // echo '</pre>';
@@ -82,6 +82,22 @@ require_once("includes/header.php");
 
 
 <div class="col-md-4 well">
+	<div class="panel panel-danger">
+		<div class="panel-heading">
+			<h3 class="panel-title">Donate to VATeir</h3>
+		</div>
+		<div class="panel-body text-center">
+			We fund VATeir using personal cash. Please consider supporting the upkeep of our web services.<br><br>
+			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+				<input type="hidden" name="cmd" value="_s-xclick">
+				<input type="hidden" name="hosted_button_id" value="JG4HJV7WBLXFN">
+				<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+				<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+			</form>
+
+
+		</div>
+	</div>
 	<div class="panel panel-primary">
 		<div class="panel-heading">
 				<h3 class="panel-title">VATeir Now...</h3>
