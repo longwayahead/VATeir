@@ -35,10 +35,21 @@ $_SESSION['atkn'] = $token;
   </div>
 
 </div>
-
-
-
-
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Logon Stats</h3>
+      </div>
+      <div class="panel-body text-center">
+        <form method="post" action="stats_csv.php">
+          <input type="hidden" name="auth_token" value="<?php echo $token; ?>">
+          <button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-arrow-down" aria-hidden="true"></i> Month to date</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 <?php
 	$g = new Graph;
@@ -98,7 +109,6 @@ var availabilityData = {
 					data : [<?php foreach($pop as $month => $result) { echo ($result['cancelled'] == false) ? '0' : $result['cancelled']; echo ',';}?>]
 				}
 			]
-
 		}
 	window.onload = function(){
 		var ctx = document.getElementById("canvas").getContext("2d");
