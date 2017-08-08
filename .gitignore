@@ -61,3 +61,5 @@ statistics/.htaccess
 statistics/server_log.txt
 statistics/dbpw.php
 training/uploads
+statistics/
+img/
