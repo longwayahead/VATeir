@@ -112,6 +112,24 @@ require_once('includes/header.php');
 	</div>
 
 	<div class="col-md-6">
+		<?php if($user->isLoggedIn()) { ?>
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title">Last 24h</h3>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-6">
+							<a href="../img/ireland_large.jpg"><img class="img-responsive" src="../img/ireland.jpg" \></a>
+					</div>
+					<div class="col-md-6">
+							Traffic
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<?php } ?>
 		<div class="panel panel-info">
 			<div class="panel-heading">
 				<h3 class="panel-title">ATC Bookings</h3>
