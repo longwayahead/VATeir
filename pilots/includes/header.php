@@ -21,6 +21,7 @@ a:hover {
 
 			<li><a href="<?php echo BASE_URL . 'pilots/'; ?>">Home</a></li>
 			<li><a href="<?php echo BASE_URL . 'pilots/weather.php'; ?>">Weather</a></li>
+			<li><a href="<?php echo BASE_URL . 'pilots/statistics.php'; ?>">Statistics</a></li>
 			<li><a href="<?php echo BASE_URL . 'pilots/notams.php'; ?>">NOTAMs</a></li>
 			<li><a target="_blank" href="https://cert.vatsim.net/fp/file.php">File Flight Plan</a></li>
 			<li><a href="<?php echo BASE_URL . 'pilots/fuel.php'; ?>">Fuel Planning</a></li>

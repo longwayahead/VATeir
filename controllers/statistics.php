@@ -15,9 +15,13 @@ require_once("includes/header.php");
 		echo '<div class="text-right">Last updated: ' . date("H:i \I\S\T j\<\s\u\p\>S\<\/\s\u\p\> M Y", filemtime('../statistics/total.html')) . '</div>';
 		echo '<br>';
 		 ?>
-
-
-
+<script>
+		 $(document).ready(function() {
+		     $('#table').DataTable( {
+		         "scrollX": true
+		     } );
+		 } );
+</script>
 
 <?php
 require_once("../includes/footer.php");

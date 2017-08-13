@@ -8,7 +8,7 @@ LEFT JOIN vateir.controllers v ON v.id = s.cid
 WHERE YEAR(CURRENT_DATE()) = YEAR(s.finish)
 	AND MONTH(CURRENT_DATE()) = MONTH(s.finish)
 GROUP BY s.cid, s.position
-ORDER BY  s.facility DESC, v.last_name DESC
+ORDER BY  s.facility DESC, v.last_name ASC
 ");
 $get->execute();
 $results = $get->fetchAll(PDO::FETCH_ASSOC);
@@ -51,6 +51,7 @@ $output = '<div class="panel panel-warning">
     <h3 class="panel-title">' . date("F") . '\'s Controlling Hours</h3>
   </div>
 <div class="panel-body">
+	<div style="overflow-y: scroll;">
     <table class="table table-responsive table-striped table-condensed">
       <tr>
     ';
@@ -104,6 +105,7 @@ $output .= '</tr>';
 
 $output .= '
     </table>
+		</div>
   </div>
 </div>';
 // echo $output;

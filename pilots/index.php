@@ -29,6 +29,8 @@ require_once('includes/header.php');
 	}
 	?>
 	  <h3 class="text-center">Pilots' Home</h3> <br>
+
+
 	  <div class="row">
 	  <div class="col-md-6">
 	  		<div class="panel panel-info">
@@ -112,24 +114,8 @@ require_once('includes/header.php');
 	</div>
 
 	<div class="col-md-6">
-		<?php if($user->isLoggedIn()) { ?>
-		<div class="panel panel-info">
-			<div class="panel-heading">
-				<h3 class="panel-title">Last 24h</h3>
-			</div>
-			<div class="panel-body">
-				<div class="row">
-					<div class="col-md-6">
-							<a href="../img/ireland_large.jpg"><img class="img-responsive" src="../img/ireland.jpg" \></a>
-					</div>
-					<div class="col-md-6">
-							Traffic
-					</div>
-				</div>
 
-			</div>
-		</div>
-		<?php } ?>
+
 		<div class="panel panel-info">
 			<div class="panel-heading">
 				<h3 class="panel-title">ATC Bookings</h3>
@@ -172,83 +158,41 @@ require_once('includes/header.php');
 				?>
 			</div>
 		</div>
-		<!-- <div class="panel panel-info">
-			<div class="panel-heading">
-				<h3 class="panel-title">Current AIRAC</h3>
-			</div>
-			<div class="panel-body"> -->
-				<?php
-				// $d = new Download;
-				// try {
-				// 	$airac = 	$d->oadAPI('airac', ['cache' => 1]);
-				// 	$start = new DateTime($airac->start);
-				// 	echo '<font size="200"><strong>' . $airac->cycle . '</strong></font>';
-				// 	echo '<br>Valid from: ' . $start->format('jS F Y H:i') . '<br>';
-				// 	echo '<a href="https://www.navigraph.com/FmsDataManualInstall.aspx" target="_blank">Navigraph   <span class="badge">Payware</span></a>';
-				// 	echo '<br><br>AIRAC cycles provide accurate and up-to-date navigational information to flight crews. It is important that your FMC or FMGS is up to date in order to accept ATC routing instructions.';
-				// 	//print_r($airac);
-				// } catch(Exception $e) {
-				// 	echo $e->getMessage();
-				// }
 
-				?>
-				<!-- Hang on, the API is experiencing some trouble!
+</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title">Live VATSIM Flights</h3>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-6 text-center">
+							<a target="_blank" href="https://vatmm.org/ng/images/World/Out/ireland_0.jpg"><img class="img-responsive" src="https://vatmm.org/ng/images/World/Out/ireland_small_0.jpg" \></a>
+							Live
+					</div>
+					<div class="col-md-6 text-center">
+							<a target="_blank" href="https://vatmm.org/ng/images/World/Out/ireland_24.jpg"><img class="img-responsive" src="https://vatmm.org/ng/images/World/Out/ireland_small_24.jpg" \></a>
+							24h
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 text-center">
+							<a target="_blank" href="https://vatmm.org/ng/images/World/Out/ireland_24.jpg"><img class="img-responsive" src="https://vatmm.org/ng/images/World/Out/ireland_small_24.jpg" \></a>
+							48h
+					</div>
+					<div class="col-md-6 text-center">
+							<a target="_blank" href="https://vatmm.org/ng/images/World/Out/ireland_96.jpg"><img class="img-responsive" src="https://vatmm.org/ng/images/World/Out/ireland_small_96.jpg" \></a>
+							96h
+					</div>
+				</div>
+				</div>
+
 			</div>
 		</div>
 	</div>
-	</div> -->
-<!-- 	<div class="row">
-
-	<div class="col-md-6">
-		<div class="panel panel-info">
-			<div class="panel-heading">
-				<h3 class="panel-title">Relevant NOTAMs</h3>
-			</div>
-			<div class="panel-body">
-				<?php
-				// $notams = $a->notams();
-				// $i = 1;
-				// $icao = array();
-				// if(count($notams)) {
-				// 	echo '<table class="table table-striped table-responsive table-condensed">
-				// 		<tr>
-				// 			<td><strong>ICAO</strong></td>
-				// 			<td><strong>Message</strong></td>
-				// 			<td><strong>From</strong></td>
-				// 			<td><strong>Until</strong></td>
-				// 		</tr>';
-				// 	foreach($notams as $notam) {
-				// 		if(!in_array($notam['icao'], $icao)) {
-				// 			$icao[] = $notam['icao'];
-				// 			if($i <= 7) {
-				// 				echo '<tr><td>';
-				// 					echo $notam['icao'];
-				// 				echo '</td>';
-				// 				echo '<td>';
-				// 					echo $notam['message'];
-				// 				echo '</td><td>';
-				// 					echo date('d-m-y H:i', strtotime($notam['start']));
-				// 				echo '</td><td>';
-				// 					echo date('d-m-y H:i', strtotime($notam['end']));
-				// 				echo '</td></tr>';
-				// 			}
-				// 			$i++;
-				// 		}
-				// 	}
-				// 	echo '</table>';
-				// }
-				?>
-			</div>
-			<?php
-			// if($i >= 7) {
-			// 	echo '<div class="panel-footer text-right"><a href="notams.php">View All</a></div>';
-			// }
-			?>
-		</div>
-
-</div>
-</div> -->
-</div>
 
 <?php
 require_once('../includes/footer.php');
