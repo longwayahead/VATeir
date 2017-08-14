@@ -9,16 +9,16 @@ $remoteurls = [
 ];
 $randomurl = $remoteurls[array_rand($remoteurls)];
 ////////////Cache the datafile/////////////////////
-if (file_exists($localfilename) && (filemtime($localfilename) > (time() - 60 * 3))) {
+//if (file_exists($localfilename) && (filemtime($localfilename) > (time() - 60 * 3))) {
    // Cache file is less than five minutes old.
    // Don't bother refreshing, just use the file as-is.
-   $file = file_get_contents($localfilename);
-} else {
+   //$file = file_get_contents($localfilename);
+//} else {
    // Our cache is out-of-date, so load the data from our remote server,
    // and also save it over our cache for next time.
    $file = file_get_contents($randomurl);
    file_put_contents($localfilename, $file, LOCK_EX);
-}
+//}
 ////////////////GET IRISH POSITIONS ONLINE//////////////////////
 preg_match_all("/(EI(?:\w{2})_(?:[\w\d]{1,2})?(?:CTR|APP|TWR|GND|DEL)):(\d+):.*?:ATC:(?!199\.998)(?=.*:([1-9])::([\d+]):)(?=.*:(\d+)::::)/",$file , $result);
 require_once('db.php');

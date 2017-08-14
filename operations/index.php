@@ -7,6 +7,42 @@ $_SESSION['atkn'] = $token;
 
 <h3 class="text-center">Operations Home</h3> <br>
 <div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Network Statistics CSVs</h3>
+      </div>
+      <div class="panel-body text-center">
+        <div class="col-md-6">
+          <form method="post" action="stats_csv.php">
+            <input type="hidden" name="auth_token" value="<?php echo $token; ?>">
+            <button type="submit" class="btn btn-warning"><i class="glyphicon glyphicon-arrow-down" aria-hidden="true"></i> Controllers: Month to date</button>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <form method="post" action="flights_csv.php">
+            <input type="hidden" name="auth_token" value="<?php echo $token; ?>">
+            <button type="submit" class="btn btn-info"><i class="glyphicon glyphicon-arrow-down" aria-hidden="true"></i> Movements: Month to date</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Network Movements</h3>
+      </div>
+      <div class="panel-body text-center">
+        <?php require_once('../statistics/movements_graph.php'); ?>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
   <div class="col-md-12">
     <div class="panel panel-default">
@@ -36,21 +72,7 @@ $_SESSION['atkn'] = $token;
 
 </div>
 </div>
-<div class="row">
-  <div class="col-md-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Logon Stats</h3>
-      </div>
-      <div class="panel-body text-center">
-        <form method="post" action="stats_csv.php">
-          <input type="hidden" name="auth_token" value="<?php echo $token; ?>">
-          <button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-arrow-down" aria-hidden="true"></i> Month to date</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+
 <?php
 	$g = new Graph;
 	$pop = $g->sa();
