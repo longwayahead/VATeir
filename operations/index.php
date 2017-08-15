@@ -29,19 +29,8 @@ $_SESSION['atkn'] = $token;
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Network Movements</h3>
-      </div>
-      <div class="panel-body text-center">
-        <?php require_once('../statistics/movements_graph.php'); ?>
-
-      </div>
-    </div>
-  </div>
-</div>
+<?php require_once('../statistics/movements_line_7.php'); ?>
+<?php require_once('../statistics/movements_pie_7.php'); ?>
 <div class="row">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
   <div class="col-md-12">

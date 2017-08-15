@@ -64,7 +64,7 @@ $colours = [
   <div class="col-md-12">
     <div class="panel panel-info">
       <div class="panel-heading">
-        <h3 class="panel-title">Stats</h3>
+        <h3 class="panel-title">Network Movements: Last 7 days</h3>
       </div>
       <div class="panel-body text-center">
 
