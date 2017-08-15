@@ -36,9 +36,9 @@ $sql .= "(
 	) as Total_In";
     $sql .= "
 from movements
+where logon_time between NOW() - INTERVAL 7 DAY AND NOW() - interval 1 day
 group by date(days)
-order by date(days) desc
-limit 1, 7";
+order by date(days) asc";
 
 
 $mvts = $conn->prepare($sql);
