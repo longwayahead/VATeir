@@ -84,17 +84,14 @@ require_once("includes/header.php");
 <div class="col-md-4 well">
 	<div class="panel panel-danger">
 		<div class="panel-heading">
-			<h3 class="panel-title">Donate to VATeir</h3>
+			<h3 class="panel-title">Donations</h3>
 		</div>
 		<div class="panel-body text-center">
-			We fund VATeir using personal cash. Please consider supporting the upkeep of our web services.<br><br>
-			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-				<input type="hidden" name="cmd" value="_s-xclick">
-				<input type="hidden" name="hosted_button_id" value="JG4HJV7WBLXFN">
-				<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-				<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-			</form>
-
+			<div style="font-size:16px">
+				€15 of our goal of €30 has been raised.<br>
+				Please consider donating to help us pay for our web services.<br>
+			</div><br>
+			<a href="donate.php" class="btn btn-default">Read more&raquo;&raquo;</a>
 
 		</div>
 	</div>
@@ -115,18 +112,7 @@ require_once("includes/header.php");
 					</div>
 				</a>
 			</li>
-			<!-- <li class="">
-				<a href="#metar" data-toggle="tab" aria-expanded="false">
-					<div class="hidden-xs hidden-md">
-						<span class="glyphicon glyphicon-cloud" aria-hidden="true"></span> METAR
-					</div>
-					<div class="visible-xs visible-md">
-						<span class="glyphicon glyphicon-cloud" aria-hidden="true"></span>
-					</div>
-				</a>
-			</li> -->
 			<li class="">
-				<li class="">
 				<a href="#inbound" data-toggle="tab" aria-expanded="false">
 					<div class="hidden-xs hidden-md">
 						<span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Arrivals
@@ -137,7 +123,6 @@ require_once("includes/header.php");
 				</a>
 			</li>
 			<li class="">
-				<li class="">
 				<a href="#outbound" data-toggle="tab" aria-expanded="false">
 					<div class="hidden-xs hidden-md">
 						<span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span> Departures
@@ -196,19 +181,6 @@ require_once("includes/header.php");
 							unset($atcs);
 						?>
 					</table>
-				</div>
-				<div class="tab-pane fade" id="metar">
-					<p>
-					<?php
-						// cacheFile("datafiles/metar.txt", "http://metar.vatsim.net/metar.php?id=EI");
-						// echo '<div class="text-justified"><samp>
-						// 	<p>' . getMetar("EICK") . '</p>
-						// 	<p>' . getMetar("EIDW") . '</p>
-						// 	<p>' . getMetar("EIKN") . '</p>
-						// 	<p>' . getMetar("EINN") . '</p>
-						// </samp></div>';
-					?>
-					</p>
 				</div>
 				<div class="tab-pane fade" id="inbound">
 					<table class="table table-striped table-condensed" style="margin:0;">
@@ -354,10 +326,12 @@ require_once("includes/header.php");
     data-show-facepile="false"
     data-show-posts="false"></div>
 </div>
+
 <?php
 require_once("includes/footer.php");
 
 ?>
+
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];

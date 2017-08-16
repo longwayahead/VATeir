@@ -10,8 +10,8 @@ require_once('includes/header.php') ?>
         </div>
         <div class="panel-body">
           <div style="font-size:16px">
-            <p>Thank you very much for donating to the upkeep of the VATeir web services. Our web server is hosted by Hetzner in Germany and donations are the only way we can pay to keep our web services going. We will publish a list of all donations and where the money is used in due course.<br></p>
-            <p>In the mean time, please feel free to stop by the <a target="_blank" href="<?php echo BASE_URL . 'forum';?>">forum</a>, or to pop on to the <a href="ts3server://ts.vateud.net?nickname=<?php echo $user->user->name_first . ' ' . $user->user->name_last;?>&channel=%5Bcspacer0%5D%20vACC%20ROOMS%2FIreland%20vACC&password=vateudts">Teamspeak Server</a>.</p>
+            <p>Thank you very much for donating to the upkeep of the VATeir web services. Our web server is hosted by Hetzner in Germany and donations are the only way we can pay to keep our web services going.<br></p>
+            <p>In the mean time, please feel free to stop by the <a target="_blank" href="channel=%5Bcspacer0%5D%20vACC%20ROOMS%2FIreland%20vACC&password=vateudts">Teamspeak Server</a>.</p>
           </div>
         </div>
       </div>

@@ -78,9 +78,8 @@ try {
       <a style="text-decoration:none;" href="<?php echo BASE_URL;?>">
         <img class="img-responsive" style="display:inline;" width="200px" src="https://i.img.ie/suw.png">
       </a>
-
   	</h3>
-  </div>
+    </div>
 
 <div class="navbar navbar-default">
   <div class="navbar-header">
@@ -105,6 +104,7 @@ try {
      <li><a href=<?php echo BASE_URL . "about"; ?>>About Us</a></li>
 
       <li><a target="_blank" href="<?php echo BASE_URL . 'forum'?>">Forum</a></li>
+      <li><a href="<?php echo BASE_URL . 'donate.php'?>">Donate</a></li>
    </ul>
     <ul class="nav navbar-nav navbar-right">
     <?php
