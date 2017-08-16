@@ -18,7 +18,7 @@ $staff = json_decode(file_get_contents("../datafiles/staff.json"));
 		<div class="panel-body">
 		<?php
 			if(count($staff)) {
-				
+
 				?>
 				<table class="table table-responsive table-striped table-condensed">
 					<tr>
@@ -29,21 +29,21 @@ $staff = json_decode(file_get_contents("../datafiles/staff.json"));
 						<td><strong>Contact</strong></td>
 					</tr>
 					<?php foreach($staff as $s): ?>
-						
+
 							<tr>
 								<td><?php echo (isset($s->member)) ? $s->member->firstname . ' ' . $s->member->lastname : ''; ?></td>
 								<td class="hidden-xs"><?php echo (isset($s->cid)) ? $s->cid : ''; ?></td>
 								<td class="hidden-xs"><?php echo $s->callsign;?></td>
 								<td><?php echo $s->position;?></td>
-								<td><?php echo '<a class="btn btn-xs btn-primary" href="mailto:' . $s->email . '"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></a>';?></td>
+								<td><?php echo '<a class="btn btn-xs btn-primary" href="mailto:' . str_replace("@", "[[@]]", $s->email) . '"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></a>';?></td>
 							</tr>
-					
+
 					<?php endforeach; ?>
 				</table>
 			<?php	 } else {
 				echo '<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No active controllers</div><br>';
 				} ?>
-				
+
 			</div>
 		</div>
 	</div>
@@ -80,7 +80,7 @@ try {
 						<td><strong>Profile</strong></td>
 					</tr>
 					<?php foreach($controllers as $controller): ?>
-						
+
 						<tr>
 							<td><?php echo $controller->first_name . ' ' . $controller->last_name;?></td>
 							<td class="hidden-xs"><?php echo $controller->long . ' (' . $controller->short . ')';?></td>
@@ -93,7 +93,7 @@ try {
 			<?php	} else {
 				echo '<div class="text-danger text-center" style="font-size:16px; margin-top:8px;">No mentors</div><br>';
 				} ?>
-				
+
 			</div>
 		</div>
 	</div>
