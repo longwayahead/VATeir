@@ -14,7 +14,6 @@ function getDistance( $latitude1, $longitude1, $latitude2, $longitude2 ) {
 }
 ////////////////GET IRISH FLIGHTS//////////////////////
 preg_match_all("/([\w-]+):(\d+):.*?:PILOT::.*?(\-?\d+\.\d+):(\-?\d+\.\d+):\d+:(\d+):.*?:\d+:(\w{4}):\d+:(\w{4}).*(\d{14}):\d+:\d+\.\d+:\d+:/",$file , $result);
-
 $eisn = [];
 foreach($result[1] as $k => $cs) {
   $cid = $result[2][$k];
@@ -28,8 +27,7 @@ foreach($result[1] as $k => $cs) {
     $eisn[] = [$cs, $cid, $aclat, $aclon, $spd, $dep, $arr, $on];
   }
 }
-// print_r($eisn);
-$coordinates = [
+$coordinates = [  //easier than doing another DB call!
   'EIDW' => [53.421389, -6.27],
   'EICK' => [51.841389, -8.491111],
   'EINN' => [52.701978, -8.924817000000001],
@@ -43,7 +41,6 @@ $coordinates = [
   'EIBN' => [51.6777, -9.4870],
 
 ];
-
 require_once('db.php');
 //////////////////////PREPARE THE QUERY//////////////////////
 $check = $conn->prepare("SELECT * from movements WHERE callsign = :callsign AND cid = :cid AND dep = :dep AND arr = :arr AND (dep_time > date_sub(now(), interval 30 minute) OR arr_time > date_sub(now(), interval 30 minute)) ORDER BY logon_time DESC LIMIT 1");
@@ -54,38 +51,19 @@ VALUES (:callsign, :cid, :logon_time, :dep, :arr, :dep_time, :arr_time)
     arr_time = IF(VALUES(arr_time) IS NOT NULL AND arr_time IS NULL, VALUES(arr_time), arr_time),
     dep_time = IF(VALUES(dep_time) IS NOT NULL, VALUES(dep_time), dep_time);
 ");
-// $departure = $conn->prepare("INSERT INTO departures (callsign, cid, logon_time, dep, arr, stamp)
-// VALUES (:callsign, :cid, :logon_time, :dep, :arr, :stamp)
-//   ON DUPLICATE KEY UPDATE
-//     stamp = VALUES(stamp);
-// ");
-// $arrival = $conn->prepare("INSERT INTO arrivals (callsign, cid, logon_time, dep, arr, stamp)
-// VALUES (:callsign, :cid, :logon_time, :dep, :arr, :stamp)
-//   ON DUPLICATE KEY UPDATE
-//     stamp = VALUES(stamp);
-// ");
-
 foreach($eisn as $d) {
   $time = $d[7];
   $dt = new DateTime($time, new DateTimezone('GMT'));
   $IST = new DateTimeZone('Europe/Dublin');
   $dt->setTimezone($IST);
   $logon = $dt->format("Y-m-d H:i:s");
-
-///
-
   $check->bindParam(":callsign", $d[0]);
   $check->bindParam(":cid", $d[1]);
   $check->bindParam(":dep", $d[5]);
   $check->bindParam(":arr", $d[6]);
   $check->execute();
   $results = $check->fetchAll(PDO::FETCH_ASSOC);
-  // echo '<pre>';
-  // print_r($results);
-  // echo '</pre>';
-  // echo $logon;
-  // echo ' ' .$results[0]['logon_time'];
-  // echo ' <b> ' . (strtotime($logon) - strtotime($results[0]['logon_time'])) . '</b>';
+
   //This if statement checks to make sure the aircraft hasn't logged off and back on again in the last 30 minutes
   if(count($results) != 0 && (strtotime($logon) - strtotime($results[0]['logon_time']))>0 && (strtotime($logon) - strtotime($results[0]['logon_time'])) < 1800) { //if record is separated by amount in seconds
     $correct->bindParam(":logon_time", $logon);
@@ -94,27 +72,19 @@ foreach($eisn as $d) {
     $correct->bindParam(":dep", $d[5]);
     $correct->bindParam(":arr", $d[6]);
     $correct->execute();
-    //echo 'hi';
   }
   $update->bindParam(":callsign", $d[0]);
   $update->bindParam(":cid", $d[1]);
   $update->bindParam(":logon_time", $logon);
   $update->bindParam(":dep", $d[5]);
   $update->bindParam(":arr", $d[6]);
-  if($d[4] < 20 && substr($d[5], 0, 2) == 'EI' && getDistance($d[2], $d[3], $coordinates[$d[5]][0], $coordinates[$d[5]][1]) < 2) { //departing
+  if($d[4] < 35 && substr($d[5], 0, 2) == 'EI' && getDistance($d[2], $d[3], $coordinates[$d[5]][0], $coordinates[$d[5]][1]) < 2) { //departing -> checks to see whether aircraft is within 2 NM of departing ICAO
     $update->bindParam(":arr_time", $a=null);
     $update->bindParam(":dep_time", date("Y-m-d H:i:s"));
     $update->execute();
-
-
-  } elseif($d[4] < 20 && substr($d[6], 0, 2) == 'EI' && getDistance($d[2], $d[3], $coordinates[$d[6]][0], $coordinates[$d[6]][1]) < 2) { //arriving
+  } elseif($d[4] < 35 && substr($d[6], 0, 2) == 'EI' && getDistance($d[2], $d[3], $coordinates[$d[6]][0], $coordinates[$d[6]][1]) < 2) { //arriving
     $update->bindParam(":dep_time", $a=null);
     $update->bindParam(":arr_time", date("Y-m-d H:i:s"));
     $update->execute();
-
   }
-
-
-
-
 }
