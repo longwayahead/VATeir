@@ -6,6 +6,39 @@ $_SESSION['atkn'] = $token;
 ?>
 
 <h3 class="text-center">Operations Home</h3> <br>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+<script src="https://cdn.rawgit.com/eligrey/FileSaver.js/master/FileSaver.min.js"></script>
+<script src="https://cdn.rawgit.com/eligrey/canvas-toBlob.js/master/canvas-toBlob.js"></script>
+
+<h4>VATSIM Now</h4>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Live data</h3>
+      </div>
+      <div class="panel-body text-center">
+        <div id="vatsimonline"></div>
+        <a class="loadvatsim btn btn-xs btn-default" href="<?php echo BASE_URL; ?>statistics/vatsim.php"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></a>
+      </div>
+    </div>
+  </div>
+</div>
+<h4>ATC</h4>
+<h5>Last week</h6>
+<?php require_once('../statistics/atcmovements_line_7.php'); ?>
+<br>
+<h4>Flights</h5>
+<h5>Last week</h6>
+<?php //require_once('../statistics/movements_line_last.php'); ?>
+<?php //require_once('../statistics/movements_pie_last.php'); ?>
+
+<?php require_once('../statistics/movements_line_7.php'); ?>
+<?php require_once('../statistics/movements_pie_7.php'); ?>
+<h4>Download</h5>
 <div class="row">
   <div class="col-md-12">
     <div class="panel panel-default">
@@ -29,12 +62,11 @@ $_SESSION['atkn'] = $token;
     </div>
   </div>
 </div>
-<?php require_once('../statistics/movements_line_7.php'); ?>
-<?php require_once('../statistics/movements_pie_7.php'); ?>
+<h4>Training</h5>
 <div class="row">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
   <div class="col-md-12">
-    <div class="panel panel-default">
+    <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title">Availabilities Data</h3>
       </div>
@@ -43,7 +75,7 @@ $_SESSION['atkn'] = $token;
 
       </div>
     </div>
-    <div class="panel panel-default">
+    <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title">Session totals</h3>
       </div>
@@ -143,3 +175,20 @@ var availabilityData = {
 <?php
 require_once('../includes/footer.php');
 ?>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countto/1.2.0/jquery.countTo.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	$(".loadvatsim").click(function(event) {
+		event.preventDefault();
+		$("#vatsimonline").load($(this).attr("href"), function() {
+       $(".loadvatsim").hide();
+
+      $('.timer').countTo();
+    });
+  });
+
+
+
+
+});
+</script>
