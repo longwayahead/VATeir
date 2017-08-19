@@ -17,3 +17,11 @@ In order to get this website to work on your own server you must see to the foll
 ## CRON Job
 * Add update_controllers.php to your crontab.
 * This script updates members' records if there has been an update to their CERT, it registers new users, and it does a cleanup of some database things.
+
+## Log VATSIM Statistics
+* The statistics folder is completely separate to the rest of the system with its own database and logic.
+* DB Schematic provided at "vateir_statistics.sql".
+* Just add "update.php" to your CRON to run at a conservative interval in order to update controllers online.
+* We don't need to download the VATSIM data file every two minutes, that'd be silly.
+* Add "pilots".php to your CRON too. This doesn't download the datafile, but should be run at the same interval as "update.php". 
+* Make sure to modify the files to your needs including the regex in "update.php" and "pilots.php".
