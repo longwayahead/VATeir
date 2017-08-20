@@ -178,7 +178,7 @@ foreach($m as $j) {
         $availabilities = $a->get(['deleted' => 0]);
         if(!empty($availabilities)) {
            ?>
-           <table class="table table-condensed table-striped">
+    <table class="table table-condensed table-striped" id="availabilities">
 			<tr>
 				<td>
 					<strong>Name</strong>
@@ -196,7 +196,10 @@ foreach($m as $j) {
 					<strong>Until</strong>
 				</td>
 				<td class="hidden-xs">
-					<strong>VATSIM</strong>
+					<strong>Stats</strong>
+				</td>
+				<td class="hidden-xs">
+					<strong>Time</strong>
 				</td>
 				<td>
 					<strong>Book</strong>
@@ -209,7 +212,12 @@ foreach($m as $j) {
                 <td class="nowrap"><?php echo date("j F Y", strtotime($availability->date));?></td>
                 <td><?php echo date("H:i", strtotime($availability->time_from));?></td>
                 <td><?php echo date("H:i", strtotime($availability->time_until));?></td>
-								<td class="hidden-xs"><a target="_blank" class="btn btn-default btn-xs" href="https://stats.vatsim.net/conn_details_time.php?id=<?php echo $availability->cid;?>&timeframe=6_months" data-toggle="tooltip" data-placement="top" title="stats.vatsim.net"><span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span></a></td>
+								<td class="hidden-xs"><a target="_blank" class="btn btn-default btn-xs" href="https://stats.vatsim.net/conn_details_time.php?id=<?php echo $availability->cid;?>&timeframe=6_months" data-toggle="tooltip" data-placement="top" title="stats.vatsim.net"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></a></td>
+								<td class="hidden-xs">
+									<div id="timeonline<?php echo $availability->availability_id;?>"></div>
+						      <a class="loadtime btn btn-xs btn-default" data-availid="<?php echo $availability->availability_id;?>" href="<?php echo BASE_URL; ?>statistics/single_hours.php?id=<?php echo $availability->cid;?>"><span class="glyphicon glyphicon-hourglass" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Last 30 days"></span></a>
+						      </div>
+								</td>
              	<td><?php echo '<a class="btn btn-xs btn-primary" href="schedule_session.php?id=' . $availability->availability_id . '"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>' ?></td>
 
 			 </tr>
@@ -349,9 +357,19 @@ window.onload = function(){
 		responsive: true
 	});
 }
+
 </script>
 
 <?php
 echo '</div>';
 require_once("../../includes/footer.php");
 ?>
+<script>
+$(function() {
+	$(".loadtime").click(function(event) {
+		event.preventDefault();
+		$("#timeonline"+$(this).data("availid")).load($(this).attr("href"), function() {});
+		$(this).hide();
+  });
+});
+</script>
