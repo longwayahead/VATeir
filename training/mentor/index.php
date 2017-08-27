@@ -215,7 +215,7 @@ foreach($m as $j) {
 								<td class="hidden-xs"><a target="_blank" class="btn btn-default btn-xs" href="https://stats.vatsim.net/conn_details_time.php?id=<?php echo $availability->cid;?>&timeframe=6_months" data-toggle="tooltip" data-placement="top" title="stats.vatsim.net"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></a></td>
 								<td class="hidden-xs">
 									<div id="timeonline<?php echo $availability->availability_id;?>"></div>
-						      <a class="loadtime btn btn-xs btn-default" data-availid="<?php echo $availability->availability_id;?>" href="<?php echo BASE_URL; ?>statistics/single_hours.php?id=<?php echo $availability->cid;?>"><span class="glyphicon glyphicon-hourglass" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Last 30 days"></span></a>
+						      <a class="loadtime btn btn-xs btn-default" data-availid="<?php echo $availability->availability_id;?>" href="<?php echo BASE_URL; ?>functions/single_hours.php?id=<?php echo $availability->cid;?>"><span class="glyphicon glyphicon-hourglass" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Last 30 days"></span></a>
 						      </div>
 								</td>
              	<td><?php echo '<a class="btn btn-xs btn-primary" href="schedule_session.php?id=' . $availability->availability_id . '"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>' ?></td>
@@ -369,6 +369,7 @@ $(function() {
 	$(".loadtime").click(function(event) {
 		event.preventDefault();
 		$("#timeonline"+$(this).data("availid")).load($(this).attr("href"), function() {});
+		//$(".loadtime[data-availid]").attr($(this).data("availid")).hide();
 		$(this).hide();
   });
 });

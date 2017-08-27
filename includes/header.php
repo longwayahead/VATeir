@@ -104,7 +104,7 @@ try {
      <li><a href=<?php echo BASE_URL . "about"; ?>>About Us</a></li>
 
       <li><a target="_blank" href="<?php echo BASE_URL . 'forum'?>">Forum</a></li>
-      <li><a href="<?php echo BASE_URL . 'donate.php'?>">Donate</a></li>
+      <!-- <li><a href="<?php //echo BASE_URL . 'donate.php'?>">Donate</a></li> -->
    </ul>
     <ul class="nav navbar-nav navbar-right">
     <?php

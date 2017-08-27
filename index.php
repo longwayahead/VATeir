@@ -82,19 +82,19 @@ require_once("includes/header.php");
 
 
 <div class="col-md-4 well">
-	<div class="panel panel-danger">
+	<!-- <div class="panel panel-danger">
 		<div class="panel-heading">
 			<h3 class="panel-title">Donations</h3>
 		</div>
 		<div class="panel-body text-center">
 			<div style="font-size:16px">
-				€15 of our goal of €30 has been raised.<br>
+				€25 of our goal has been raised.<br>
 				Please consider donating to help us pay for our web services.<br>
 			</div><br>
 			<a href="donate.php" class="btn btn-default">Read more&raquo;&raquo;</a>
 
 		</div>
-	</div>
+	</div> -->
 	<div class="panel panel-primary">
 		<div class="panel-heading">
 				<h3 class="panel-title">VATeir Now...</h3>
@@ -137,8 +137,14 @@ require_once("includes/header.php");
 				<div class="tab-pane fade active in" id="atc">
 					<table class="table table-striped table-condensed" style="margin:0;">
 						<?php
+						$ctx = stream_context_create(array(
+					    'http' => array(
+					        'timeout' => 2
+					        )
+					    )
+					);
 							//cacheFile("datafiles/atc.json", "http://api.vateud.net/online/atc/ei.json");
-							$atcs = json_decode(@file_get_contents("http://api.vateud.net/online/atc/ei.json"));
+							$atcs = json_decode(@file_get_contents("http://api.vateud.net/online/atc/ei.json", 0, $ctx));
 
 							if($atcs) {
 
@@ -186,7 +192,7 @@ require_once("includes/header.php");
 					<table class="table table-striped table-condensed" style="margin:0;">
 						<?php
 							//cacheFile("datafiles/in.json", "http://api.vateud.net/online/arrivals/ei.json"); -->
-							$pilots = json_decode(@file_get_contents("http://api.vateud.net/online/arrivals/ei.json"));
+							$pilots = json_decode(@file_get_contents("http://api.vateud.net/online/arrivals/ei.json", 0, $ctx));
 
 							if($pilots) {
 
@@ -231,7 +237,7 @@ require_once("includes/header.php");
 					<table class="table table-striped table-condensed" style="margin:0;">
 						<?php
 							//cacheFile("datafiles/out.json", "");
-							$pilots = json_decode(@file_get_contents("http://api.vateud.net/online/departures/ei.json"));
+							$pilots = json_decode(@file_get_contents("http://api.vateud.net/online/departures/ei.json", 0, $ctx));
 
 							if($pilots) {
 

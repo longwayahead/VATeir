@@ -228,7 +228,7 @@ unset($_SESSION['ssouser']);
 			// </script>';
 		}
 	} elseif($login_type == 'ts') {
-		$_SESSION['ts'] = $user->user->id;
+		$_SESSION['ts'] = $user->user;
 
 		Session::flash('success', 'You have successfully logged in.');
 		Redirect::to('../teamspeak/index.php');
