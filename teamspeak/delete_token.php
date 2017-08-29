@@ -15,7 +15,7 @@ if(isset($_GET['id'])) {
     $check->execute();
     $results = $check->fetchAll(PDO::FETCH_ASSOC)[0];
     if(count($results) > 0) { //if that user owns the privilege key...
-      $ts = new Teamspeak;
+      $ts = new Teamspeak($tspw);
       $key = $ts->deleteKey($results['token']);
       if($key == true) {
         $delete = $conn->prepare("DELETE FROM priv_keys WHERE cid = :cid AND token = :token");

@@ -16,7 +16,7 @@ if(isset($_GET['id'])) {
     $check->execute();
     $results = $check->fetchAll(PDO::FETCH_ASSOC)[0];
     if(count($results) > 0) { //if that user owns the privilege key...
-      $ts = new Teamspeak;
+      $ts = new Teamspeak($tspw);
       $delete = $conn->prepare("DELETE FROM clients WHERE cid = :cid AND id = :id");
       $delete->bindParam(':cid', $vatsimData->id);
       $delete->bindParam(':id', $results['id']);

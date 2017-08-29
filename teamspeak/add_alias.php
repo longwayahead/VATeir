@@ -34,8 +34,8 @@ require_once('init.php');
       $insert->bindParam(':first_name', Input::get('first_name'));
       $insert->bindParam(':last_name', Input::get('last_name'));
       $insert->execute();
-      Session::flash('success', 'Client added!');
-			Redirect::to('./index.php');
+      Session::flash('success', 'Alias added!');
+			Redirect::to('./index.php#alias');
     } else {
       echo '
       <div class="col-md-6 col-md-offset-3">

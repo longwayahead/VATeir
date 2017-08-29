@@ -40,7 +40,7 @@ require_once('init.php');
       }
       $insert->execute();
       Session::flash('success', 'Client added!');
-			Redirect::to('./index.php');
+			Redirect::to('./index.php#client');
     } else {
       echo '
       <div class="col-md-6 col-md-offset-3">
@@ -74,7 +74,9 @@ require_once('init.php');
       <div class="form-group">
         <label for="description" class="col-lg-3 control-label">Description</label>
         <div class="col-lg-9">
-          <input class="form-control" type="text" id="description" name="description" placeholder="">
+          <input class="form-control" type="text" id="description" name="description" placeholder="Desktop PC">
+          <span class="help-block">This helps you remember which client is which. For example "Desktop PC", or "Phone". Leave this blank if you like.</span>
+
         </div>
       </div>
     </fieldset>

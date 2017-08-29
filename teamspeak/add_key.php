@@ -8,7 +8,7 @@ if(!isset($_SESSION['ts']) ) {
 $vatsimData = $_SESSION['ts'];
 
 try{
-  $ts = new Teamspeak;
+  $ts = new Teamspeak($tspw);
   $key = $ts->makeKey(1032602);
   echo '<pre>';
   print_r($key);
@@ -22,4 +22,4 @@ try{
   echo $e->getMessage();
   die();
 }
-header('Location: index.php');
+header('Location: index.php#token');

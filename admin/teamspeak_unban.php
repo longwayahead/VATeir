@@ -5,7 +5,7 @@ if(!$user->isLoggedIn() || !$user->hasAdmin("admin")) {
 	Session::flash('error', 'Invalid permissions.');
 	Redirect::to('../index.php');
 }
-$ts = new Teamspeak;
+$ts = new Teamspeak($tspw);
 if(Input::exists('get')) {
   $select = $conn->prepare("SELECT * FROM bans WHERE cid = :cid LIMIT 1");
   $select->bindParam(':cid', Input::get('cid'));

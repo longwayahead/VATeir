@@ -29,12 +29,13 @@ require_once('init.php');
     $check->bindParam(':cid', $vatsimData->id);
     $check->execute();
     $results = $check->fetchAll(PDO::FETCH_ASSOC);
-
+    $firstname = ucwords($vatsimData->name_first);
+    $lastname = ucwords($vatsimData->name_last);
     if($check->rowCount() == 0) { //they are registered with the system
       $register = $conn->prepare("INSERT INTO users (cid, first_name, last_name, reg_ts, rating) VALUES (:vatsim_id, :first_name, :last_name, NOW(), :rating)");
       $register->bindParam(':vatsim_id', $vatsimData->id);
-      $register->bindParam(':first_name', $vatsimData->name_first);
-      $register->bindParam(':last_name', $vatsimData->name_last);
+      $register->bindParam(':first_name', $firstname);
+      $register->bindParam(':last_name', $lastname);
       $register->bindParam(':rating', $vatsimData->rating->id);
       $register->execute();
     } else {
@@ -51,12 +52,14 @@ require_once('init.php');
         Session::flash('error', 'You have been banned from teamspeak with reason:<br><strong>' . $ban[0]['reason'] . '</strong><br>Your ban will expire on ' . $expiry);
         Redirect::to('../index.php');
       }
-      $update = $conn->prepare("UPDATE users SET first_name = :first_name, last_name = :last_name, rating = :rating WHERE cid = :cid");
-      $update->bindParam(':first_name', $vatsimData->name_first);
-      $update->bindParam(':last_name', $vatsimData->name_last);
-      $update->bindParam(':rating', $vatsimData->rating->id);
-      $update->bindParam(':cid', $vatsimData->id);
-      $update->execute();
+
+        $update = $conn->prepare("UPDATE users SET first_name = :first_name, last_name = :last_name, rating = :rating WHERE cid = :cid");
+        $update->bindParam(':first_name', $firstname);
+        $update->bindParam(':last_name', $lastname);
+        $update->bindParam(':rating', $vatsimData->rating->id);
+        $update->bindParam(':cid', $vatsimData->id);
+        $update->execute();
+
     }
     ?>
 
@@ -76,7 +79,7 @@ require_once('init.php');
     <br>
       <div class="row">
       <div class="col-md-12">
-        <div class="panel panel-primary">
+        <div id="client" class="panel panel-primary">
           <div class="panel-heading">
             <h3 class="panel-title">Step #1: Register a TS client</h3>
           </div>
@@ -158,7 +161,7 @@ require_once('init.php');
     <div class="row">
 
     <div class="col-md-12">
-      <div class="panel panel-primary">
+      <div id="token" class="panel panel-primary">
         <div class="panel-heading">
           <h3 class="panel-title">Step #2: Generate an access token</h3>
         </div>
@@ -223,6 +226,7 @@ require_once('init.php');
       <p>3.1. Open teamspeak and connecting using the IP  <samp>ts.vateir.org</samp>.</p>
       <div class="text-center"><img src="http://i.imgur.com/zZyJQH4.png" /></div><br><br>
       <p class="text-danger">3.2. MAKE SURE YOU CONNECT USING YOUR CERT-REGISTERED VATSIM NAME AS YOUR NICKNAME.<br> If you're unsure what this is, <a  target="_blank" href="https://cert.vatsim.net/vatsimnet/idstatus.php?cid=<?php echo $vatsimData->id;?>">Click on this link to find out</a>. Your teamspeak nickname should appear exactly as it does under name_first and name_last on this page separated by a space. If it does not, you will be removed automatically from teamspeak.</p>
+      <p>3.3. Despite what capitalisation you used when you registered on VATSIM, you must log in with your username in the format "Firstname Lastname" and not "firstname lastname".</p>
     </div>
   </div>
   <hr><br>
@@ -248,7 +252,7 @@ require_once('init.php');
   </div>
   <div class="row">
     <div class="col-md-12">
-      <div class="panel panel-primary">
+      <div id="alias" class="panel panel-primary">
         <div class="panel-heading">
           <h3 class="panel-title">OPTIONAL ONLY: Request to use your non-cert real name (read above)</h3>
         </div>

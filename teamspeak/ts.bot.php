@@ -1,12 +1,12 @@
 <?php
 require_once('init.php');
-$ts = new Teamspeak;
+$ts = new Teamspeak($tspw);
 $exempt = [];
 //Get connected clients
 $clients = $ts->clients();
-echo '<pre>';
-print_r($clients);
-echo '</pre>';
+// echo '<pre>';
+// print_r($clients);
+// echo '</pre>';
 
 foreach($clients as $client) {
   // echo $client['client_nickname'];
