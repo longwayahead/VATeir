@@ -24,6 +24,13 @@ In order to get this website to work on your own server you must see to the foll
 * DB Schematic provided at "vateir_statistics.sql".
 * Just add "update.php" to your CRON to run at a conservative interval in order to update controllers online.
 * We don't need to download the VATSIM data file every two minutes, that'd be silly.
-* Add "pilots".php to your CRON too. This doesn't download the datafile, but should be run at the same interval as "update.php". 
+* Add "pilots".php to your CRON too. This doesn't download the datafile, but should be run at the same interval as "update.php".
 * Make sure to modify the files to your needs including the regex in "update.php" and "pilots.php".
 * There are some scripts in this folder which need to be run by CRON, simply because it'd be too expensive to run them to serve up static content each time a user requests a page. If this doesn't make sense, don't worry.
+
+## Integrate Teamspeak with SSO login
+* Like the statistics folder, the teamspeak folder is completely self-contained.
+* To get it to work, rename "db/dbpw_demo.php" to "db/dbpw.php".
+* $password is the database password, while $tspw is the teamspeak serverquery password.
+* The bot is, I think, fairly self explanatory. We run it every five minutes and it does the trick to keep things organised.
+* The [ts3admin class](http://ts3admin.info/) has loads of functions to help moderate your server, so I suggest you read the documentation for that.
