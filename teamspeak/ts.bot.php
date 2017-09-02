@@ -1,7 +1,7 @@
 <?php
 require_once('init.php');
 $ts = new Teamspeak($tspw);
-$exempt = [];
+$exempt = [1032602];
 //Get connected clients
 $clients = $ts->clients();
 // echo '<pre>';

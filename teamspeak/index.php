@@ -17,6 +17,10 @@ require_once('init.php');
         <a href="<?php echo BASE_URL; ?>login/index.php?ts" class="btn btn-lg btn-primary">Manage My Access Tokens</a>
       </div>
     </div>
+    <div class="col-md-6 well" style="font-size:16px;">
+      <p><img class="img-responsive" src="http://i.imgur.com/0hwKuqW.png"\></p>
+    </div>
+
   <?php
   } else {
     $vatsimData = $_SESSION['ts'];

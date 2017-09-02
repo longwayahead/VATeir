@@ -26,7 +26,7 @@ a:hover {
 			<li><a target="_blank" href="https://cert.vatsim.net/fp/file.php">File Flight Plan</a></li>
 			<li><a href="<?php echo BASE_URL . 'pilots/fuel.php'; ?>">Fuel Planning</a></li>
 			<li><a href="<?php echo BASE_URL . 'pilots/tracks.php'; ?>">Oceanic Tracks</a></li>
-			<li><a href="ts3server://ts.vateud.net?nickname=<?php echo ($user->isLoggedIn()) ? $user->data()->first_name . ' ' . $user->data()->last_name : '';?>&channel=%5Bcspacer0%5D%20vACC%20ROOMS%2FIreland%20vACC&password=vateudts">Teamspeak</a></li>
+			<li><a href="<?php echo BASE_URL . 'teamspeak'; ?>">Teamspeak</a></li>
 			<li class="divider"></li>
 			<br>
 
