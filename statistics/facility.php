@@ -63,8 +63,10 @@ $boxes = 0;
 foreach($stats as $name => $s) {
   $i = 1;
   $boxes++;
+  $trip = 0;
   if($boxes == 1 || $boxes == 4) {
     $output .= '<div class="row">';
+    $trip = 1;
   }
   $output .= '<div class="col-md-4">
     <div class="panel panel-warning">
@@ -102,7 +104,7 @@ $output .= '</table>
           </div>
         </div>
         </div>';
-        if($boxes == 3 || $boxes == 6) {
+        if($boxes == 3 || ($boxes == 5 && $boxes != 6) || $boxes == 6) {
           $output .= '</div>';
         }
 }

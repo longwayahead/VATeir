@@ -10,12 +10,12 @@ if(isset($_POST['auth_token']) == false) {
     unset($_SESSION['atkn']);
     require_once('../statistics/db.php');
     $get = $conn->prepare("SELECT s.cid, s.position, v.first_name, v.last_name,
-    (SELECT SUM(time_to_sec(TIMEDIFF(finish, start))) FROM sessions WHERE cid = s.cid AND position = s.position AND YEAR(CURRENT_DATE()) = YEAR(finish)
-    	AND MONTH(CURRENT_DATE()) = MONTH(finish)) as duration
+    (SELECT SUM(time_to_sec(TIMEDIFF(finish, start))) FROM sessions WHERE cid = s.cid AND position = s.position AND YEAR(CURRENT_DATE() - interval 1 month) = YEAR(finish)
+    	AND MONTH(CURRENT_DATE() - interval 1 month) = MONTH(finish)) as duration
     FROM sessions s
     LEFT JOIN vateir.controllers v ON v.id = s.cid
-    WHERE YEAR(CURRENT_DATE()) = YEAR(s.finish)
-    	AND MONTH(CURRENT_DATE()) = MONTH(s.finish)
+    WHERE YEAR(CURRENT_DATE() - interval 1 month) = YEAR(s.finish)
+    	AND MONTH(CURRENT_DATE() - interval 1 month) = MONTH(s.finish)
     GROUP BY s.cid, s.position
     ORDER BY  s.facility DESC, v.last_name DESC
     ");
@@ -57,7 +57,7 @@ if(isset($_POST['auth_token']) == false) {
     }
         //headers
     	//CSV STUFF
-      $csv[0][] = date("F Y");
+      $csv[0][] = date("F Y", strtotime("-1 month"));
     	$csv[1][0] = '';
     		foreach($out[0] as $key => $v) {
     			$csv[1][$key+1] = $v;
@@ -89,7 +89,7 @@ if(isset($_POST['auth_token']) == false) {
     		$csv['totals'][] = $total_time;
     	}
       header('Content-Type: text/csv; charset=utf-8');
-      header('Content-Disposition: attachment; filename='. date("m.Y") . '.incomplete.csv');
+      header('Content-Disposition: attachment; filename='. date("m.Y", strtotime("- 1 month")) . '_month_controller_stats.csv');
 
     $fp = fopen('php://output', 'w');
 

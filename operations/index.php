@@ -12,6 +12,7 @@ $_SESSION['atkn'] = $token;
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/master/FileSaver.min.js"></script>
 <script src="https://cdn.rawgit.com/eligrey/canvas-toBlob.js/master/canvas-toBlob.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 <h4>VATSIM Now</h4>
 <div class="row">
@@ -28,14 +29,18 @@ $_SESSION['atkn'] = $token;
   </div>
 </div>
 <h4>ATC</h4>
+<h5>Last month</h6>
+<?php require_once('../statistics/atcmovements_line_last.php'); ?>
+<br>
 <h5>Last week</h6>
 <?php require_once('../statistics/atcmovements_line_7.php'); ?>
 <br>
 <h4>Flights</h5>
-<h5>Last week</h6>
-<?php //require_once('../statistics/movements_line_last.php'); ?>
+<h5>Last month</h6>
+<?php require_once('../statistics/movements_line_last.php'); ?>
 <?php //require_once('../statistics/movements_pie_last.php'); ?>
-
+<br>
+<h5>Last week</h6>
 <?php require_once('../statistics/movements_line_7.php'); ?>
 <?php require_once('../statistics/movements_pie_7.php'); ?>
 <h4>Download</h5>

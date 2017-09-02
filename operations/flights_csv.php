@@ -42,12 +42,13 @@ if(isset($_POST['auth_token']) == false) {
     				from movements
     				where date(arr_time) = days
     					and arr_time is not null
-    	) as Total_In";
+    	) as Total_In ";
         $sql .= "
     from movements
+    where YEAR(logon_time) = YEAR(CURRENT_DATE() - INTERVAL 1 MONTH)
+      AND MONTH(logon_time) = MONTH(CURRENT_DATE() - INTERVAL 1 MONTH)
     group by date(days)
-    order by date(days) desc
-    limit 1, 7";
+    order by date(days) desc";
 //  where YEAR(logon_time) = YEAR(CURRENT_DATE() - INTERVAL 1 MONTH) ////////////////for last month's results
 //AND MONTH(logon_time) = MONTH(CURRENT_DATE() - INTERVAL 1 MONTH)
 
@@ -66,7 +67,7 @@ if(isset($_POST['auth_token']) == false) {
 
 
       header('Content-Type: text/csv; charset=utf-8');
-      header('Content-Disposition: attachment; filename='. date("m.Y") . '.incomplete.csv');
+      header('Content-Disposition: attachment; filename='. date("m.Y", strtotime("-1 month")) . '.csv');
 
     $fp = fopen('php://output', 'w');
 

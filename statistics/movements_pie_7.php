@@ -167,3 +167,8 @@ $("#btnarr").click(function() {
     });
 });
 </script>
+<?php
+unset($departures);
+unset($arrivals);
+unset($out);
+?>

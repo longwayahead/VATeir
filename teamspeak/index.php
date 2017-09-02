@@ -236,7 +236,7 @@ require_once('init.php');
       <p>4.1. You will have noticed that you cannot speak in teamspeak. This is to stop people from logging on and screaming at us. This is usually not wanted.</p>
       <p>4.2. To be able to speak, use the privilege token we generated in Step 2. Click Permissions > Use Privilege Key, and enter the token we generated in step 2. This token is valid for 24 hours.</p>
       <div class="text-center"><img src="http://i.imgur.com/rNQPpQn.png" /></div><br><br>
-      <p>4.3 Tokens only have to be used once. One you use a token, the server will remember you, <span class="text-danger">so do not be alarmed if there are no privilege tokens displayed in the list below.</span></p>
+      <p>4.3 Tokens only have to be used once. One you use a token, the server will remember you, <span class="text-danger">so do not be alarmed if there are no privilege tokens displayed in the list above in Step 2.</span></p>
 
     </div>
   </div>

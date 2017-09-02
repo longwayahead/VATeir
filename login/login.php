@@ -70,7 +70,7 @@ unset($_SESSION['ssouser']);
 								<div class="panel-body">
 									<div style="font-size:16px">
 										<p>Welcome to VATeir! We can see that you are a registered member of VATeir, but that your account details haven't reached our database yet. Account details have to be passed from VATSIM to VATEUD and then on to us. Please allow up to five days for this to happen.<br></p>
-										<p>In the mean time, please feel free to stop by the <a target="_blank" href="<?php echo BASE_URL . 'forum';?>">forum</a>, or to pop on to the <a href="ts3server://ts.vateud.net?nickname=<?php echo $user->user->name_first . ' ' . $user->user->name_last;?>&channel=%5Bcspacer0%5D%20vACC%20ROOMS%2FIreland%20vACC&password=vateudts">Teamspeak Server</a>.</p>
+										<p>In the mean time, please feel free to stop by the <a target="_blank" href="<?php echo BASE_URL . 'forum';?>">forum</a>, or to pop on to the <a href="<?php echo BASE_URL . 'teamspeak'; ?>">Teamspeak Server</a>.</p>
 									</div>
 								</div>
 							</div>
@@ -138,7 +138,7 @@ unset($_SESSION['ssouser']);
 											<div style="font-size:16px">
 											<p>Unfortunately, it looks as though your account has not been set as belonging to VATeir.<br></p>
 											<p>Do you think it should be? Have you just registered? It usually takes a few days for your VATSIM account to register with our website. You'll get an email from us when this is done so keep an eye on your inbox and spam folders.
-											<p>In the mean time, please feel free to stop by the <a target="_blank" href="<?php echo BASE_URL . 'forum';?>">forum</a>, or to pop on to the <a href="ts3server://ts.vateud.net?nickname=<?php echo $user->user->name_first . ' ' . $user->user->name_last;?>&channel=%5Bcspacer0%5D%20vACC%20ROOMS%2FIreland%20vACC&password=vateudts">Teamspeak Server</a>.</p>
+											<p>In the mean time, please feel free to stop by the <a target="_blank" href="<?php echo BASE_URL . 'forum';?>">forum</a>, or to pop on to the <a href="<?php echo BASE_URL . 'teamspeak'; ?>">Teamspeak Server</a>.</p>
 
 											<!-- <p><div class="text-danger">For those looking for to control in Ireland as a visiting controller, we are not accepting any visiting controller requests at present due to a backlog in training our own students.</div></p> -->
 											<?php
@@ -230,6 +230,6 @@ unset($_SESSION['ssouser']);
 	} elseif($login_type == 'ts') {
 		$_SESSION['ts'] = $user->user;
 
-		Session::flash('success', 'You have successfully logged in.');
+		Session::flash('success', 'You have successfully authenticated.');
 		Redirect::to('../teamspeak/index.php');
 	}
