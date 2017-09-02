@@ -109,9 +109,15 @@ foreach($clients as $client) {
             }
           }
 
+
+
           //move to away channel if they are idle for more than 30 minutes
         $idleTime = $client['client_idle_time']/1000;
+
         if($idleTime > 1800) {
+          if($dbres['cid'] == 931070) {
+            $ts->clientMessage($client['clid'], '[color=red]OBEY YOUR SKYNET OVERLORDS.[/color]');
+          }
           $ts->moveAway($client['clid']);
         }
 
