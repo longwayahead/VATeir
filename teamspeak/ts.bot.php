@@ -4,9 +4,9 @@ $ts = new Teamspeak($tspw);
 $exempt = [1032602];
 //Get connected clients
 $clients = $ts->clients();
-// echo '<pre>';
-// print_r($clients);
-// echo '</pre>';
+echo '<pre>';
+print_r($clients);
+echo '</pre>';
 
 foreach($clients as $client) {
   // echo $client['client_nickname'];
@@ -115,11 +115,11 @@ foreach($clients as $client) {
         $idleTime = $client['client_idle_time']/1000;
 
         if($idleTime > 1800) {
-          if($dbres['cid'] == 931070) {
-            $ts->clientMessage($client['clid'], '[color=red]OBEY YOUR SKYNET OVERLORDS.[/color]');
-          }
           $ts->moveAway($client['clid']);
         }
+        // elseif($idleTime > 180  && $dbres['cid'] == 861497) {
+        //   $ts->moveAway($client['clid']);
+        // }
 
         //Name check
         if(($client['client_nickname'] != $dbres['first_name'] . ' ' . $dbres['last_name']) && ($client['client_nickname'] != $dbres['alias_fname'] . ' ' . $dbres['alias_lname'])) { //checking name to make sure name is same as cert; cross checking alias

@@ -41,7 +41,7 @@ class Teamspeak {
   }
 
   public function moveAway($clid) {
-    return $this->ts->clientMove($clid, 7, null);
+    return $this->ts->clientMove($clid, 19, null);
   }
 
   public function kick($client_id, $message) {

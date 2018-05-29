@@ -39,17 +39,18 @@ require_once("includes/header.php");
 // var_dump($stream);
 // echo '</pre>';
 
-	$twitch = new Twitch;
-	$livestream = $twitch->johnStream();
-	if($livestream == false || strpos($livestream->stream->channel->status, 'ATC') == false) {
-		?>
+	// $twitch = new Twitch;
+	// $livestream = $twitch->johnStream();
+	// if($livestream == false || strpos($livestream->stream->channel->status, 'ATC') == false) {
+	//
+	?>
 		<h2 class="text-center">Fáilte</h2>
 	 	<br>
 		<div class="videoWrapper"><iframe width="560" height="315" src="https://www.youtube.com/embed/r1wrc9DLgWQ" frameborder="0" allowfullscreen></iframe></iframe></div>
 		<?php
-	} else {
+	// } else {
 		?>
-		<div class="videoWrapper">
+		<!-- <div class="videoWrapper">
 			<iframe
 				width="560"
 				height="310"
@@ -57,14 +58,14 @@ require_once("includes/header.php");
 				frameborder="0"
 				allowfullscreen>
 			</iframe>
-		</div>
-		<h5 class="text-center">
-			<span class="label label-danger blink">Live!</span>
-			<?php echo '  ' .$livestream->stream->channel->status; ?>
-		</h5>
+		</div> -->
+		<!-- <h5 class="text-center">
+			<span class="label label-danger blink">Live!</span> -->
+			<?php //echo '  ' .$livestream->stream->channel->status; ?>
+		<!-- </h5> -->
 		<?php
 
-	}
+	//}
 
 
   ?>
@@ -144,9 +145,9 @@ require_once("includes/header.php");
 					    )
 					);
 							//cacheFile("datafiles/atc.json", "http://api.vateud.net/online/atc/ei.json");
-							$atcs = json_decode(@file_get_contents("http://api.vateud.net/online/atc/ei.json", 0, $ctx));
+							//$atcs = json_decode(@file_get_contents("http://api.vateud.net/online/atc/ei.json", 0, $ctx));
 
-							if($atcs) {
+							if(@$atcs) {
 
 								echo '<tr>
 										<td>Callsign</td>
@@ -169,11 +170,11 @@ require_once("includes/header.php");
 											</td>
 											<td>';
 
-											if($user->find($atc->cid)) { //link to profile if vateir controller
-												echo '<a target="_blank" href="' . BASE_URL . 'controllers/profile.php?id=' . $atc->cid . '">' . $atc->name . '</a>';
-											} else {
+											//if($user->find($atc->cid)) { //link to profile if vateir controller
+											//	echo '<a target="_blank" href="' . BASE_URL . 'controllers/profile.php?id=' . $atc->cid . '">' . $atc->name . '</a>';
+											//} else {
 												echo $atc->name;
-											}
+											//}
 
 
 											echo '</td>
@@ -191,10 +192,10 @@ require_once("includes/header.php");
 				<div class="tab-pane fade" id="inbound">
 					<table class="table table-striped table-condensed" style="margin:0;">
 						<?php
-							//cacheFile("datafiles/in.json", "http://api.vateud.net/online/arrivals/ei.json"); -->
-							$pilots = json_decode(@file_get_contents("http://api.vateud.net/online/arrivals/ei.json", 0, $ctx));
+							//cacheFile("datafiles/in.json", "http://api.vateud.net/online/arrivals/ei.json");
+							//$pilots = json_decode(@file_get_contents("http://api.vateud.net/online/arrivals/ei.json", 0, $ctx));
 
-							if($pilots) {
+							if(@$pilots) {
 
 								echo '<tr>
 										<td>Callsign</td>
@@ -236,10 +237,10 @@ require_once("includes/header.php");
 				<div class="tab-pane fade" id="outbound">
 					<table class="table table-striped table-condensed" style="margin:0;">
 						<?php
-							//cacheFile("datafiles/out.json", "");
-							$pilots = json_decode(@file_get_contents("http://api.vateud.net/online/departures/ei.json", 0, $ctx));
+							//cacheFile("datafiles/out.json", "http://api.vateud.net/online/departures/ei.json");
+							//$pilots = json_decode(@file_get_contents("http://api.vateud.net/online/departures/ei.json", 0, $ctx));
 
-							if($pilots) {
+							if(@$pilots) {
 
 								echo '<tr>
 										<td>Callsign</td>
@@ -282,7 +283,7 @@ require_once("includes/header.php");
 		</div>
 	</div>
 
-<div class="panel panel-success">
+<!-- <div class="panel panel-success">
 			<div class="panel-heading">
 				<h3 class="panel-title">Events</h3>
 			</div>
@@ -291,7 +292,7 @@ require_once("includes/header.php");
       data-href="https://www.facebook.com/events/1527634263934583/permalink/1527634357267907"
       data-width="380"></div>
 			</div>
-		</div>
+		</div> -->
 	<?php
 	// $ev = new Events;
 	// try{
