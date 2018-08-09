@@ -104,7 +104,7 @@ $output .= '</table>
           </div>
         </div>
         </div>';
-        if($boxes == 3 || ($boxes == 5 && $boxes != 6) || $boxes == 6) {
+        if($boxes == 3  || $boxes == 6) {
           $output .= '</div>';
         }
 }

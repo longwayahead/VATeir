@@ -165,34 +165,19 @@ require_once('includes/header.php');
 	<div class="col-md-12">
 		<div class="panel panel-info">
 			<div class="panel-heading">
-				<h3 class="panel-title">Live VATSIM Flights</h3>
+				<h3 class="panel-title">Traffic: Last 7 Days</h3>
 			</div>
 			<div class="panel-body">
 				<div class="row">
-					<div class="col-md-6 text-center">
-							<a target="_blank" href="https://vatmm.org/ng/images/World/Out/ireland_0.jpg"><img class="img-responsive" src="https://vatmm.org/ng/images/World/Out/ireland_small_0.jpg" \></a>
-							Live
-					</div>
-					<div class="col-md-6 text-center">
-							<a target="_blank" href="https://vatmm.org/ng/images/World/Out/ireland_24.jpg"><img class="img-responsive" src="https://vatmm.org/ng/images/World/Out/ireland_small_24.jpg" \></a>
-							24h
+					<div class="col-md-12 text-center">
+							<a target="_blank" href="https://vatmm.org/static/map/fullsize/14640"><img class="img-responsive" src="https://vatmm.org/static/map/fullsize/14640" \></a>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-6 text-center">
-							<a target="_blank" href="https://vatmm.org/ng/images/World/Out/ireland_24.jpg"><img class="img-responsive" src="https://vatmm.org/ng/images/World/Out/ireland_small_24.jpg" \></a>
-							48h
-					</div>
-					<div class="col-md-6 text-center">
-							<a target="_blank" href="https://vatmm.org/ng/images/World/Out/ireland_96.jpg"><img class="img-responsive" src="https://vatmm.org/ng/images/World/Out/ireland_small_96.jpg" \></a>
-							96h
-					</div>
-				</div>
-				</div>
-
 			</div>
+
 		</div>
 	</div>
+</div>
 
 <?php
 require_once('../includes/footer.php');
