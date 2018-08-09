@@ -1,5 +1,9 @@
 <?php
 require_once('../includes/header.php');
+if(!$user->hasPermission('mentor')) {
+	Session::flash('error', 'Invalid permissions.');
+	Redirect::to('../index.php');
+}
 try {
 	$session = $s->get([
 		'id' => Input::get('id')

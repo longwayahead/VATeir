@@ -1,6 +1,10 @@
 <?php
 $pagetitle = "Edit Report";
 require_once('../includes/header.php');
+if(!$user->hasPermission('mentor')) {
+	Session::flash('error', 'Invalid permissions.');
+	Redirect::to('../index.php');
+}
 $f = new Files;
 ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/8.5.1/nouislider.min.css">

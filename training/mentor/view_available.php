@@ -1,6 +1,10 @@
 <?php
 $pagetitle = 'Availabilities';
 require_once("../includes/header.php");
+if(!$user->hasPermission('mentor')) {
+	Session::flash('error', 'Invalid permissions.');
+	Redirect::to('../index.php');
+}
 echo '<h3 class="text-center">Availablities</h3><br>';
 try {
 	$a = new Availability;

@@ -1,5 +1,9 @@
 <?php
 require_once("../includes/header.php");
+if(!$user->hasPermission('tdstaff')) {
+	Session::flash('error', 'Invalid permissions.');
+	Redirect::to('../index.php');
+}
 if(Input::exists('post')) {
 	foreach(Input::get('data') as $id => $p) {
 		if(($p >= 10 && $p <= 15) && ($id != $user->data()->id) && ($p >= 10) && ($p <= 15)) {

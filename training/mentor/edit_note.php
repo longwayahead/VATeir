@@ -1,7 +1,10 @@
 <?php
 $pagetitle = "Edit Note";
 require_once('../includes/header.php');
-
+if(!$user->hasPermission('mentor')) {
+	Session::flash('error', 'Invalid permissions.');
+	Redirect::to('../index.php');
+}
 if(isset($_GET['id'])) {
 	$note = $r->getNote($_GET['id']);
 	$types = $r->getTypes(1);

@@ -1,6 +1,10 @@
 <?php
 $pagetitle = "Schedule a Session";
 require_once("../includes/header.php");
+if(!$user->hasPermission('mentor')) {
+  Session::flash('error', 'Invalid permissions.');
+  Redirect::to('../index.php');
+}
 $a = new Availability;
 if(Input::exists('post')) {
   $from = new DateTime(Input::get('from'));

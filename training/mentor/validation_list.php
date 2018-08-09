@@ -1,7 +1,10 @@
 <?php
 $pagetitle = "Validation List";
 require_once("../includes/header.php");
-
+if(!$user->hasPermission('mentor')) {
+	Session::flash('error', 'Invalid permissions.');
+	Redirect::to('../index.php');
+}
 echo '<div class="col-md-10 col-md-offset-1">';
 	echo '<h3 class="text-center">Validation List';
 	echo ((!isset($_GET['v'])) || ($_GET['v']) == '0') ? ' <small>Sector View</small>' : ' <small>Positions View</small>';
@@ -39,11 +42,11 @@ echo '<div class="col-md-10 col-md-offset-1">';
 										$not[] = $val->cid;
 										if(!in_array($val->cid, $students)) {
 											$students[] = $val->cid;
-										}//if!inarray							
-									}//if$t					
+										}//if!inarray
+									}//if$t
 								}//vals loop 34
 								if((count($not)) && (count($students))) {
-								
+
 									echo '<div class="panel panel-primary">
 											<div class="panel-heading">
 												<h3 class="panel-title">' . $major->icao . '_' . $call;
@@ -60,7 +63,7 @@ echo '<div class="col-md-10 col-md-offset-1">';
 													<td><strong>Validated Since</strong></td>
 													<td><strong>Validated Until</strong></td>
 												</tr>';
-								
+
 									foreach($vals as $val) {
 										if(($t->maxValidatedSectorType($major->icao, $val->cid)->position_type_id == $val->position_type_id)) { //Makes sure the sector type is the highest for this cid and icao
 											if(in_array($val->cid, $students)){
@@ -73,28 +76,28 @@ echo '<div class="col-md-10 col-md-offset-1">';
 														<td>' . date("j-M-Y", strtotime($val->valid_until)) . '</td>
 													</tr>';
 												}
-												
 
-												 
+
+
 											}
 										}
 									}
 									echo '</table>';
-									echo '</div>';	
+									echo '</div>';
 									echo'</div>';
 								} //if !counts
 
 							} //no one validated
 						}//sector loop
-				
+
 					}//if!sectors
 
-					
+
 
 				}//end major loop
 	echo'</div>';
 			}
-			
+
 		} catch (Exception $e) {
 			echo $e->getMessage();
 		}
@@ -139,15 +142,15 @@ echo '<div class="col-md-10 col-md-offset-1">';
 											}
 											echo '</table>
 												</div>
-												
+
 											</div>';
-								
+
 							}
-						}						
+						}
 					}
 				}
 			}
-			
+
 	} catch (Exception $e) {
 		echo $e->getMessage();
 	}

@@ -1,6 +1,9 @@
 <?php
 require_once('../includes/header.php');
-
+	if(!$user->hasPermission('mentor')) {
+		Session::flash('error', 'Invalid permissions.');
+		Redirect::to('../index.php');
+	}
 
 if(Input::exists()) { //if form submitted!
 
