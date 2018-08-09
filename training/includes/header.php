@@ -43,6 +43,7 @@ $s = new Sessions;
 			</li>
 			<li><a href="<?php echo BASE_URL . 'training/mentor/student_list.php'; ?>">Students</a></li>
 			<li><a href="<?php echo BASE_URL . 'training/mentor/validation_list.php'; ?>">Validations</a></li>
+			<li><a href="<?php echo BASE_URL . 'training/mentor/downloads.php'; ?>">Downloads</a></li>
 			<br>
 
 <?php

@@ -13,7 +13,7 @@ if($cats !== false) {
 		?>
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
-			<div class="panel panel-warning">
+			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h3 class="panel-title"><?php echo $category->name; ?>	</h3>
 				</div>
