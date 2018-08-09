@@ -5,7 +5,7 @@ if(!$user->hasPermission('mentor')) {
 	Session::flash('error', 'Invalid permissions.');
 	Redirect::to('../index.php');
 }
-echo '<h3 class="text-center">Mentor Downloads</h3><br>';
+echo '<h3 class="text-center">Mentor Resources</h3><br>';
 $d = new Download;
 $cats = $d->sub_cats(3);
 if($cats !== false) {
