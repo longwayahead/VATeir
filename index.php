@@ -144,8 +144,8 @@ require_once("includes/header.php");
 					        )
 					    )
 					);
-							//cacheFile("datafiles/atc.json", "http://api.vateud.net/online/atc/ei.json");
-							//$atcs = json_decode(@file_get_contents("http://api.vateud.net/online/atc/ei.json", 0, $ctx));
+							cacheFile("datafiles/atc.json", "http://api.vateud.net/online/atc/ei.json");
+							$atcs = json_decode(@file_get_contents("http://api.vateud.net/online/atc/ei.json", 0, $ctx));
 
 							if(@$atcs) {
 
@@ -192,8 +192,8 @@ require_once("includes/header.php");
 				<div class="tab-pane fade" id="inbound">
 					<table class="table table-striped table-condensed" style="margin:0;">
 						<?php
-							//cacheFile("datafiles/in.json", "http://api.vateud.net/online/arrivals/ei.json");
-							//$pilots = json_decode(@file_get_contents("http://api.vateud.net/online/arrivals/ei.json", 0, $ctx));
+							cacheFile("datafiles/in.json", "http://api.vateud.net/online/arrivals/ei.json");
+							$pilots = json_decode(@file_get_contents("http://api.vateud.net/online/arrivals/ei.json", 0, $ctx));
 
 							if(@$pilots) {
 
@@ -237,8 +237,8 @@ require_once("includes/header.php");
 				<div class="tab-pane fade" id="outbound">
 					<table class="table table-striped table-condensed" style="margin:0;">
 						<?php
-							//cacheFile("datafiles/out.json", "http://api.vateud.net/online/departures/ei.json");
-							//$pilots = json_decode(@file_get_contents("http://api.vateud.net/online/departures/ei.json", 0, $ctx));
+							cacheFile("datafiles/out.json", "http://api.vateud.net/online/departures/ei.json");
+							$pilots = json_decode(@file_get_contents("http://api.vateud.net/online/departures/ei.json", 0, $ctx));
 
 							if(@$pilots) {
 
