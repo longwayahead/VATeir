@@ -301,7 +301,7 @@ if(isset($_GET['id'])) {
 						<label for="uploads" class="control-label col-lg-3">Files</label>
 						<div class="col-lg-8">
 							<?php
-							if($files){
+							if(isset($files)){
 								?>
 								<table class="table table-condensed table-responsive table-striped">
 									<tr>
@@ -354,9 +354,9 @@ if(isset($_GET['id'])) {
 	require_once("../../includes/footer.php");
 ?>
 	<script src=<?php echo BASE_URL . "js/jquery.nouislider.all.min.js";?>></script>
-	<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/8.5.1/nouislider.min.js"></script> -->
+	 <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/8.5.1/nouislider.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.2/js/fileinput.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.2/js/fileinput.min.js" type="text/javascript"></script> -->
 
 	<script>
 		<?php
