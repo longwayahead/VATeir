@@ -76,7 +76,7 @@ class Validate {
 							}
 						break;
 						case 'fileType':
-							$types = ['application/zip', 'application/x-zip-compressed', 'text/plain'];
+							$types = ['application/zip', 'application/x-zip-compressed', 'text/plain', 'application/pdf'];
 							if(!in_array($rule_value, $types)) {
 								$this->addError("File must be a ZIP.");
 							}
