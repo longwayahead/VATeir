@@ -41,7 +41,7 @@ if(Input::exists()) { //if form submitted!
 			Session::flash('success', 'Download Added');
 			Redirect::to('./downloads.php');
 
-				
+
 		} catch (Exception $e) {
 			die($e->getMessage());
 		}
@@ -60,7 +60,7 @@ if(Input::exists()) { //if form submitted!
 		</div>
 	</div></div>
 	';
-		
+
 }
 }
 

@@ -10,7 +10,7 @@ class Download {
 
 	public function file($file) {
 		$this->f = a2o($file);
-		$this->f->name = $this->name($this->f->name);
+		//$this->f->name = $this->name($this->f->name);
 		// $this->f->uniq = uniqid();
 		// $ext = new SplFileInfo($this->f->name);
 		// $this->f->ext = $ext->getExtension();

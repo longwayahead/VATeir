@@ -12,7 +12,7 @@ class Validate {
 	public function check($source, $items = array()) {
 		foreach($items as $item => $rules) {
 			foreach($rules as $rule => $rule_value) {
-				
+
 				$value = trim($source[$item]);
 				if($rule == 'field_name') {
 					$fieldname = $rule_value;
@@ -21,7 +21,7 @@ class Validate {
 				if($rule === 'required' && $rule_value === true && empty($value)) {
 					$this->addError("{$fieldname} is required.");
 				} else if (!empty($value)) {
-					
+
 					switch($rule) {
 						case 'min':
 							if(strlen($value) < $rule_value) {
@@ -76,7 +76,7 @@ class Validate {
 							}
 						break;
 						case 'fileType':
-							$types = ['application/zip'];
+							$types = ['application/zip', 'application/x-zip-compressed'];
 							if(!in_array($rule_value, $types)) {
 								$this->addError("File must be a ZIP.");
 							}
