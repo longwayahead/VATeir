@@ -94,15 +94,15 @@ if($user->isLoggedIn() && !isset($_GET['forum']) && !isset($_GET['ts'])) {
 							switch($_GET) {
 								case(isset($_GET['forum'])):
 									$_SESSION['ssologin'] = 'forum';
-									$typ = 1; //for terms and conditions
+								//	$typ = 1; //for terms and conditions
 									break;
 								case(isset($_GET['ts'])):
 									$_SESSION['ssologin'] = 'ts';
-									$typ = 2;
+								//	$typ = 2;
 									break;
 								default:
 									$_SESSION['ssologin'] = 'site';
-									$typ = 0;
+								//	$typ = 0;
 									break;
 							}
 							//      	if(!isset($_GET['forum'])) {
@@ -113,9 +113,10 @@ if($user->isLoggedIn() && !isset($_GET['forum']) && !isset($_GET['ts'])) {
 
 	            //Verify agreement to all T&Cs.
 	            //  $typ = (!isset($_GET['forum'])) ? 0 : 1;
-	            $terms = $u->terms($typ, $user->user->id);
+	            $terms = $u->terms(1, $user->user->id);
 	            if(!empty($terms)) { //If not, redirect them away so that they can agree to them before being logged in.
-	            	Redirect::to('terms.php');
+	            	header('Location: terms.php');
+								die();
 	            }
 				//Otherwise they have agreed so we can go ahead and log them in!
 				Redirect::to('login.php');

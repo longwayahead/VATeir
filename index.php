@@ -42,7 +42,7 @@ require_once("includes/header.php");
 	// $twitch = new Twitch;
 	// $livestream = $twitch->johnStream();
 	// if($livestream == false || strpos($livestream->stream->channel->status, 'ATC') == false) {
-	//
+
 	?>
 		<h2 class="text-center">Fáilte</h2>
 	 	<br>
@@ -60,12 +60,12 @@ require_once("includes/header.php");
 			</iframe>
 		</div> -->
 		<!-- <h5 class="text-center">
-			<span class="label label-danger blink">Live!</span> -->
+			<span class="label label-danger blink">Live!</span>
 			<?php //echo '  ' .$livestream->stream->channel->status; ?>
-		<!-- </h5> -->
+		</h5> -->
 		<?php
 
-	//}
+	// }
 
 
   ?>

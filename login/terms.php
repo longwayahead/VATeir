@@ -15,8 +15,8 @@ if(isset($_POST['term_id']) && isset($_POST['submit'])) {
 
 //Get all terms and conditions
 $login_type = $_SESSION['ssologin'];
-$typ = ($login_type == 'site') ? 0 : 1;
-$terms = $user->terms($typ, $cid);
+// $typ = $_GET['t'];
+$terms = $user->terms(1, $cid);
 
 if(!empty($terms)) {
 	echo '<h3 class="text-center">Accept T&Cs</h3><br>';
@@ -24,15 +24,9 @@ if(!empty($terms)) {
 	echo '<br><br><div class="row"><div class="col-md-6 col-md-offset-3">';
 	//print_r($terms);
 	foreach($terms as $term) {
-
-		if($term->type == 0) {
-			$type = 'Site';
-		} else {
-			$type = 'Forum';
-		}
 		echo '<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h3 class="panel-title">'. $type . ': ' . $term->name .'</h3>
+					<h3 class="panel-title">' . $term->name .'</h3>
 				</div>
 				<div class="panel-body">
 					<div>' . $term->text . '</div>
